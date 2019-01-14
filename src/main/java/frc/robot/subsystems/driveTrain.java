@@ -7,10 +7,17 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.drive.MecanumDrive;
+import frc.robot.RobotMap;
 import frc.robot.commands.joystickDrive;
 
 /**
@@ -20,27 +27,34 @@ public class driveTrain extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  private Talon m_frontRight;
-  private Talon m_midRight;
-  private Talon m_backRight;
-  private Talon m_frontLeft;
-  private Talon m_midLeft;
-  private Talon m_backLeft;
+  private CANSparkMax m_leftFront;
+  private CANSparkMax m_leftBack;
+  private CANSparkMax m_rightFront;
+  private CANSparkMax m_rightBack;
+
+  private RobotDrive m_robotDrive;
+
   SpeedControllerGroup m_rightSide;
   SpeedControllerGroup m_leftSide;
 
   public driveTrain (){
 
-    m_frontRight = new Talon (0);
-    m_midRight = new Talon (1);
-    m_backRight = new Talon (2);
-    m_frontLeft = new Talon (3);
-    m_midLeft = new Talon (4);
-    m_backLeft = new Talon (5);
+    m_leftFront = new CANSparkMax(RobotMap.CAN_DRIVE_LEFT_FRONT, MotorType.kBrushless);
+    m_leftBack = new CANSparkMax(RobotMap.CAN_DRIVE_LEFT_BACK, MotorType.kBrushless);
+    m_rightFront = new CANSparkMax(RobotMap.CAN_DRIVE_RIGHT_FRONT, MotorType.kBrushless);
+    m_rightBack = new CANSparkMax(RobotMap.CAN_DRIVE_RIGHT_BACK, MotorType.kBrushless);
     //ports for the motors
 
-    m_rightSide = new SpeedControllerGroup((SpeedController)m_frontRight, (SpeedController)m_midRight, (SpeedController)m_backRight);
-    m_leftSide = new SpeedControllerGroup((SpeedController)m_frontLeft, (SpeedController)m_midLeft, (SpeedController)m_backLeft);
+    m_rightSide = new SpeedControllerGroup(m_leftFront, m_leftBack);
+    m_leftSide = new SpeedControllerGroup(m_rightFront, m_rightBack);
+
+    m_robotDrive = new RobotDrive(m_leftSide, m_rightSide);
+
+  }
+
+  public void mecanumDrive (double X, double Y, double Z){
+
+    m_robotDrive.mecanumDrive_Cartesian(X, Y, Z, 0.0);
 
   }
 
