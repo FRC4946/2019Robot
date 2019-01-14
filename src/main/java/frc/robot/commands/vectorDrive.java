@@ -14,13 +14,14 @@ import frc.robot.Robot;
 public class VectorDrive extends Command {
 
   double verticalSpeed, horizontalSpeed, time;
-  Timer timer = new Timer();
+  Timer timer;
 
-  /** @param verticalSpeed the speed for the robot to move forwards/backwards at as a fraction of its maximum speed
+  /** 
+   *  Moves the robot at the desired speed for the desired time.
+   * 
+   *  @param verticalSpeed the speed for the robot to move forwards/backwards at as a fraction of its maximum speed
    *  @param horizontalSpeed the speed for the robot to move left/right at as a fraction of its maximum speed
    *  @param time the amount time for the robot to move in seconds
-   * 
-   * Moves the robot at the desired speed for the desired time
    */
   public VectorDrive(double verticalSpeed, double horizontalSpeed, double time) {
     // Use requires() here to declare subsystem dependencies
@@ -30,6 +31,8 @@ public class VectorDrive extends Command {
     this.horizontalSpeed = horizontalSpeed;
     this.verticalSpeed = verticalSpeed;
     this.time = time;
+
+    timer = new Timer();
   }
 
   // Called just before this Command runs the first time
@@ -43,9 +46,9 @@ public class VectorDrive extends Command {
   protected void execute() {
     if (timer.get() < time) {
         Robot.m_driveTrain.mecanumDrive(horizontalSpeed, verticalSpeed, 0.0);
-    } else {
-      //Not yet implemented
-      //Robot.m_driveTrain.stop();
+    } 
+    else {
+      Robot.m_driveTrain.stop();
     }
   }
 
@@ -58,8 +61,7 @@ public class VectorDrive extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    //Not yet implemented
-    //Robot.m_driveTrain.stop();
+    Robot.m_driveTrain.stop();
   }
 
   // Called when another command which requires one or more of the same
