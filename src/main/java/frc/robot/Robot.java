@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.driveTrain;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -28,6 +29,8 @@ public class Robot extends TimedRobot {
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
+
+  public static driveTrain m_driveTrain = new driveTrain ();
 
   /**
    * This function is run when the robot is first started up and should be
