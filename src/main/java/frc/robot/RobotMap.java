@@ -39,6 +39,12 @@ public class RobotMap {
   public static final int CAN_LIFT_LEFT_FRONT = 6;
   public static final int CAN_LIFT_LEFT_BACK = 7;
 
+  //Intake motor ports
+  public static final int CAN_INTAKE_OUTER_LEFT = 6;
+  public static final int CAN_INTAKE_OUTER_RIGHT = 7;
+  public static final int CAN_INTAKE_INNER_LEFT = 8;
+  public static final int CAN_INTAKE_INNER_RIGHT = 9;
+
   //Drive train encoder ports
   public static final int CAN_DRIVE_LEFT_FRONT_ENCA = 0;
   public static final int CAN_DRIVE_LEFT_FRONT_ENCB = 1;
