@@ -57,4 +57,7 @@ public class RobotMap {
 
   // dummy port used
   public static final int PCM_SOLGRABBER = 0;
+
+  //Intake sensor ports
+  public static final int INTAKE_BANNER_SENSOR = 0;
 }
