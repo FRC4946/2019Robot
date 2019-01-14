@@ -67,13 +67,14 @@ public class DriveTrain extends Subsystem {
 
   }
 
+  /*
   public void drive(double drive, double turn) {
     
     // drive method
     m_leftSide.set(drive - turn);
     m_rightSide.set(-drive - turn);
     
-  }
+  }*/
 
   public void stop (){
 

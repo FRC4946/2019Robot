@@ -28,7 +28,8 @@ public class JoystickDrive extends Command {
   @Override
   protected void execute() {
 
-    Robot.m_driveTrain.drive(Robot.m_oi.getdriveStick().getRawAxis(0),(Robot.m_oi.getdriveStick().getRawAxis(1)));
+    Robot.m_driveTrain.mecanumDrive(Robot.m_oi.getdriveStick().getX(),
+      Robot.m_oi.getdriveStick().getY(), Robot.m_oi.getdriveStick().getZ()); 
 
   }
 
