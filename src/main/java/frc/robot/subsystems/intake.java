@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
 /**
- * Add your docs here.
+ *  Intake subsystem
  */
 public class intake extends Subsystem {
   // Put methods for controlling this subsystem
@@ -25,27 +25,27 @@ public class intake extends Subsystem {
   CANSparkMax m_innerLeft = new CANSparkMax(RobotMap.CAN_INTAKE_INNER_LEFT, MotorType.kBrushless);
   CANSparkMax m_innerRight = new CANSparkMax(RobotMap.CAN_INTAKE_INNER_RIGHT, MotorType.kBrushless);
 
-  /** @param speed the speed to run the outer intake at as a fraction of its max speed
+  /** Runs the outer intake at the desired speed
+   *  @param speed the speed to run the outer intake at as a fraction of its max speed
    * 
-   *  Runs the outer intake at the desired speed
    */
   public void runOuter(double speed) {
     m_outerLeft.set(speed);
     m_outerRight.set(speed);
   }
 
-  /** @param speed the speed to run the inner intake at as a fraction of its max speed
+  /** Runs the inner intake at the desired speed 
+   *  @param speed the speed to run the inner intake at as a fraction of its max speed
    * 
-   *  Runs the inner intake at the desired speed
    */
   public void runInner(double speed) {
     m_innerLeft.set(speed);
     m_innerRight.set(speed);
   }
 
-  /** @param speed the speed to run both intakes at as a fraction of their top speed
+  /** Runs both intakes at the desired speed
+   *  @param speed the speed to run both intakes at as a fraction of their top speed
    *  
-   *  Runs both intakes at the desired speed
    */
   public void runAll(double speed) {
     runOuter(speed);
