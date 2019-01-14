@@ -18,12 +18,12 @@ import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import frc.robot.RobotMap;
-import frc.robot.commands.joystickDrive;
+import frc.robot.commands.JoystickDrive;
 
 /**
  * Add your docs here.
  */
-public class driveTrain extends Subsystem {
+public class DriveTrain extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
@@ -37,7 +37,7 @@ public class driveTrain extends Subsystem {
   SpeedControllerGroup m_rightSide;
   SpeedControllerGroup m_leftSide;
 
-  public driveTrain (){
+  public DriveTrain (){
 
     m_leftFront = new CANSparkMax(RobotMap.CAN_DRIVE_LEFT_FRONT, MotorType.kBrushless);
     m_leftBack = new CANSparkMax(RobotMap.CAN_DRIVE_LEFT_BACK, MotorType.kBrushless);
@@ -49,6 +49,15 @@ public class driveTrain extends Subsystem {
     m_leftSide = new SpeedControllerGroup(m_rightFront, m_rightBack);
 
     m_robotDrive = new RobotDrive(m_leftSide, m_rightSide);
+
+  }
+  
+  @Override
+  public void initDefaultCommand() {
+
+    // Set the default command for a subsystem here.
+    // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new JoystickDrive());
 
   }
 
@@ -66,12 +75,8 @@ public class driveTrain extends Subsystem {
     
   }
 
-  @Override
-  public void initDefaultCommand() {
+  public void stop (){
 
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(new joystickDrive());
-
+    m_robotDrive.mecanumDrive_Cartesian(0.0, 0.0, 0.0, 0.0);
   }
 }

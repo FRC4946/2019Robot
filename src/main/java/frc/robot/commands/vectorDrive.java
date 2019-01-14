@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class vectorDrive extends Command {
+public class VectorDrive extends Command {
 
   double verticalSpeed, horizontalSpeed, time;
   Timer timer = new Timer();
@@ -22,7 +22,7 @@ public class vectorDrive extends Command {
    * 
    * Moves the robot at the desired speed for the desired time
    */
-  public vectorDrive(double verticalSpeed, double horizontalSpeed, double time) {
+  public VectorDrive(double verticalSpeed, double horizontalSpeed, double time) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.m_driveTrain);
@@ -42,8 +42,7 @@ public class vectorDrive extends Command {
   @Override
   protected void execute() {
     if (timer.get() < time) {
-        //Not yet implemented
-        //Robot.m_driveTrain.mecanumDrive(horizontalSpeed, verticalSpeed);
+        Robot.m_driveTrain.mecanumDrive(horizontalSpeed, verticalSpeed, 0.0);
     } else {
       //Not yet implemented
       //Robot.m_driveTrain.stop();
