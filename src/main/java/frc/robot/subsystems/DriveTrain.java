@@ -34,9 +34,6 @@ public class DriveTrain extends Subsystem {
 
   private MecanumDrive m_mecanumDrive;
 
-  SpeedControllerGroup m_rightSide;
-  SpeedControllerGroup m_leftSide;
-
   public DriveTrain (){
 
     m_leftFront = new CANSparkMax(RobotMap.CAN_DRIVE_LEFT_FRONT, MotorType.kBrushless);
@@ -60,18 +57,8 @@ public class DriveTrain extends Subsystem {
     m_mecanumDrive.driveCartesian(Y, X, Z);
   }
 
-  /*
-  public void drive(double drive, double turn) {
-    
-    // drive method
-    m_leftSide.set(drive - turn);
-    m_rightSide.set(-drive - turn);
-    
-  }*/
-
   public void stop (){
     m_mecanumDrive.driveCartesian(0.0, 0.0, 0.0);
-    
   }
 
   public void mecanumDriveAbs(double y, double x , double rotation, double gyroAngle) {
