@@ -76,7 +76,10 @@ public class DriveTrain extends Subsystem {
   }*/
 
   public void stop (){
-
     m_robotDrive.mecanumDrive_Cartesian(0.0, 0.0, 0.0, 0.0);
+  }
+
+  public void mecanumDriveAbs(double x, double y , double rotation, double gyroAngle) {
+    m_robotDrive.mecanumDrive_Cartesian(x, y, rotation, gyroAngle);
   }
 }
