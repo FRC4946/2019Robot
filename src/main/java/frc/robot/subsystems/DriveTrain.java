@@ -32,7 +32,7 @@ public class DriveTrain extends Subsystem {
   private CANSparkMax m_rightFront;
   private CANSparkMax m_rightBack;
 
-  private RobotDrive m_robotDrive;
+  private MecanumDrive m_mecanumDrive;
 
   SpeedControllerGroup m_rightSide;
   SpeedControllerGroup m_leftSide;
@@ -43,13 +43,8 @@ public class DriveTrain extends Subsystem {
     m_leftBack = new CANSparkMax(RobotMap.CAN_DRIVE_LEFT_BACK, MotorType.kBrushless);
     m_rightFront = new CANSparkMax(RobotMap.CAN_DRIVE_RIGHT_FRONT, MotorType.kBrushless);
     m_rightBack = new CANSparkMax(RobotMap.CAN_DRIVE_RIGHT_BACK, MotorType.kBrushless);
-    //ports for the motors
 
-    m_rightSide = new SpeedControllerGroup(m_leftFront, m_leftBack);
-    m_leftSide = new SpeedControllerGroup(m_rightFront, m_rightBack);
-
-    m_robotDrive = new RobotDrive(m_leftSide, m_rightSide);
-
+    m_mecanumDrive = new MecanumDrive(m_leftFront, m_rightFront, m_leftBack, m_rightBack);
   }
   
   @Override
@@ -61,9 +56,8 @@ public class DriveTrain extends Subsystem {
 
   }
 
-  public void mecanumDrive (double X, double Y, double Z){
-
-    m_robotDrive.mecanumDrive_Cartesian(X, Y, Z, 0.0);
+  public void mecanumDrive (double Y, double X, double Z){
+    m_mecanumDrive.driveCartesian(Y, X, Z);
   }
 
   /*
@@ -76,10 +70,11 @@ public class DriveTrain extends Subsystem {
   }*/
 
   public void stop (){
-    m_robotDrive.mecanumDrive_Cartesian(0.0, 0.0, 0.0, 0.0);
+    m_mecanumDrive.driveCartesian(0.0, 0.0, 0.0);
+    
   }
 
-  public void mecanumDriveAbs(double x, double y , double rotation, double gyroAngle) {
-    m_robotDrive.mecanumDrive_Cartesian(x, y, rotation, gyroAngle);
+  public void mecanumDriveAbs(double y, double x , double rotation, double gyroAngle) {
+    m_mecanumDrive.driveCartesian(y, x, rotation, gyroAngle);
   }
 }
