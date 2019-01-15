@@ -45,7 +45,7 @@ public class VectorDrive extends Command {
   @Override
   protected void execute() {
     if (timer.get() < time) {
-        Robot.m_driveTrain.mecanumDrive(horizontalSpeed, verticalSpeed, 0.0);
+        Robot.m_driveTrain.mecanumDrive(verticalSpeed, horizontalSpeed, 0.0);
     } 
     else {
       Robot.m_driveTrain.stop();
