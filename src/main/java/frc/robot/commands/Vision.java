@@ -23,14 +23,33 @@ public class Vision extends Command {
     
   }
 
+NetworkTable table; // Initialising In Global Scope
+NetworkTableEntry tx;
+NetworkTableEntry ty;
+NetworkTableEntry ta;
+
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    table = NetworkTableInstance.getDefault().getTable("limelight");
+    tx = table.getEntry("tx");
+    ty = table.getEntry("ty");
+    ta = table.getEntry("ta");
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    //read values periodically
+    double x = tx.getDouble(0.0);
+    double y = ty.getDouble(0.0);
+    double area = ta.getDouble(0.0);
+
+    //post to smart dashboard periodically
+    SmartDashboard.putNumber("LimelightX", x);
+    SmartDashboard.putNumber("LimelightY", y);
+    SmartDashboard.putNumber("LimelightArea", area);
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
