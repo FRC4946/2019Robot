@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -15,6 +16,7 @@ import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import frc.robot.RobotMap;
@@ -34,6 +36,8 @@ public class DriveTrain extends Subsystem {
 
   private MecanumDrive m_mecanumDrive;
 
+  private AHRS m_gyro;
+
   public DriveTrain (){
 
     m_leftFront = new CANSparkMax(RobotMap.CAN_DRIVE_LEFT_FRONT, MotorType.kBrushless);
@@ -42,6 +46,8 @@ public class DriveTrain extends Subsystem {
     m_rightBack = new CANSparkMax(RobotMap.CAN_DRIVE_RIGHT_BACK, MotorType.kBrushless);
 
     m_mecanumDrive = new MecanumDrive(m_leftFront, m_rightFront, m_leftBack, m_rightBack);
+
+    m_gyro = new AHRS(Port.kMXP);
   }
   
   @Override
@@ -63,5 +69,9 @@ public class DriveTrain extends Subsystem {
 
   public void mecanumDriveAbs(double y, double x , double rotation, double gyroAngle) {
     m_mecanumDrive.driveCartesian(y, x, rotation, gyroAngle);
+  }
+
+  public double getGyroAngle() {
+    return m_gyro.getAngle();
   }
 }
