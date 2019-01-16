@@ -27,6 +27,11 @@ NetworkTable table; // Initialising In Global Scope
 NetworkTableEntry tx;
 NetworkTableEntry ty;
 NetworkTableEntry ta;
+NetworkTableEntry tv;
+double detected;
+double xOffset;
+double yOffset;
+double area;
 
   // Called just before this Command runs the first time
   @Override
@@ -35,20 +40,24 @@ NetworkTableEntry ta;
     tx = table.getEntry("tx");
     ty = table.getEntry("ty");
     ta = table.getEntry("ta");
+    tv = table.getEntry("tv");
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //read values periodically
-    double x = tx.getDouble(0.0);
-    double y = ty.getDouble(0.0);
-    double area = ta.getDouble(0.0);
-
-    //post to smart dashboard periodically
-    SmartDashboard.putNumber("LimelightX", x);
-    SmartDashboard.putNumber("LimelightY", y);
+    // Periodic Updates To Info
+    xOffset = tx.getDouble(0.0); // Coordinate updates
+    yOffset = ty.getDouble(0.0);
+    area = ta.getDouble(0.0);
+    detected = tv.getDouble(0); // see if limelight has detected anytihng
+    SmartDashboard.putNumber("LimelightX", xOffset); // Dashboard updates
+    SmartDashboard.putNumber("LimelightY", yOffset);
     SmartDashboard.putNumber("LimelightArea", area);
+
+    if(detected == 1.0) {
+      // Moving To Target
+    }
 
   }
 
