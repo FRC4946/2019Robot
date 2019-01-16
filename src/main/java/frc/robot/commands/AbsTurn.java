@@ -10,42 +10,64 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class joystickDrive extends Command {
+public class AbsTurn extends Command {
 
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+  double angle; //angle to turn to in degrees
+  boolean m_turnLeft; //whether to turn left or not
 
-    public joystickDrive () {
-      requires (Robot.m_driveTrain);
-    }
+
+  /** Turns the robot on the spot to the gyro angle provided
+   * 
+   * @param turn the angle to turn to in degrees
+   */
+  public AbsTurn(double angle) {
+    requires(Robot.m_driveTrain);
+    this.angle = angle;
+  }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    m_turnLeft = ((angle - Robot.m_driveTrain.getGyroAngle()) > 0);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-
-    Robot.m_driveTrain.drive(Robot.m_oi.getdriveStick().getRawAxis(0),(Robot.m_oi.getdriveStick().getRawAxis(1)));
-
+    if (m_turnLeft) {
+      if (angle - Robot.m_driveTrain.getGyroAngle() >= 180) {
+       Robot.m_driveTrain.mecanumDrive(0.0, 0.0, 0.3);
+      } 
+      else {
+        Robot.m_driveTrain.mecanumDrive(0.0, 0.0, -0.3);
+      }
+    } 
+    else {
+     if (Robot.m_driveTrain.getGyroAngle() >= 180){
+       Robot.m_driveTrain.mecanumDrive(0.0, 0.0, -0.3);
+     }
+     else {
+       Robot.m_driveTrain.mecanumDrive(0.0, 0.0, 0.3);
+     }
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return (Math.abs(Robot.m_driveTrain.getGyroAngle() - angle) < 2); //within 2 degrees
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.m_driveTrain.stop();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }
