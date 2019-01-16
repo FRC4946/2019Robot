@@ -46,8 +46,8 @@ public class DriveTrain extends Subsystem {
     m_rightBack = new CANSparkMax(RobotMap.CAN_DRIVE_RIGHT_BACK, MotorType.kBrushless);
 
     m_mecanumDrive = new MecanumDrive(m_leftFront, m_rightFront, m_leftBack, m_rightBack);
-
     m_gyro = new AHRS(Port.kMXP);
+    
   }
   
   @Override
@@ -72,6 +72,10 @@ public class DriveTrain extends Subsystem {
   }
 
   public double getGyroAngle() {
-    return m_gyro.getAngle();
+    if (m_gyro.getAngle() % 360.0 >= 0) {
+      return m_gyro.getAngle() % 360.0;
+    } else {  
+      return m_gyro.getAngle() % 360.0 + 360.0;
+    }
   }
 }

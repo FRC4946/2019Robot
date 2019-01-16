@@ -28,16 +28,27 @@ public class AbsTurn extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    m_turnLeft = ((Robot.m_driveTrain.getGyroAngle() - angle) > 0);
+    m_turnLeft = ((angle - Robot.m_driveTrain.getGyroAngle()) > 0);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
     if (m_turnLeft) {
-      Robot.m_driveTrain.mecanumDrive(0.0, 0.0, -0.8);
-    } else {
-      Robot.m_driveTrain.mecanumDrive(0.0, 0.0, 0.8);
+      if (angle - Robot.m_driveTrain.getGyroAngle() >= 180) {
+       Robot.m_driveTrain.mecanumDrive(0.0, 0.0, 0.3);
+      } 
+      else {
+        Robot.m_driveTrain.mecanumDrive(0.0, 0.0, -0.3);
+      }
+    } 
+    else {
+     if (Robot.m_driveTrain.getGyroAngle() >= 180){
+       Robot.m_driveTrain.mecanumDrive(0.0, 0.0, -0.3);
+     }
+     else {
+       Robot.m_driveTrain.mecanumDrive(0.0, 0.0, 0.3);
+     }
     }
   }
 
