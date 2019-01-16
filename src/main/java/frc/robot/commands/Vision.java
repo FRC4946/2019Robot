@@ -42,6 +42,7 @@ public class Vision extends Command {
   double xOffset;
   double yOffset;
   double area;
+  double KpDistance = -0.1;  // Proportional control constant for distance
 
   // Called just before this Command runs the first time
   @Override
@@ -65,9 +66,10 @@ public class Vision extends Command {
     SmartDashboard.putNumber("LimelightY", yOffset);
     SmartDashboard.putNumber("LimelightArea", area);
 
-    if(detected == 1.0) {
+    if(Robot.m_oi.getdriveStick().getRawButton(/*Button Number*/1) == true) {
       // Moving To Target
-      
+      double driveAdj = KpDistance*(-1*findDistance());
+      /*Drive Commands*/ 
     }
 
   }
