@@ -23,15 +23,25 @@ public class Vision extends Command {
     
   }
 
-NetworkTable table; // Initialising In Global Scope
-NetworkTableEntry tx;
-NetworkTableEntry ty;
-NetworkTableEntry ta;
-NetworkTableEntry tv;
-double detected;
-double xOffset;
-double yOffset;
-double area;
+  public double findDistance() {
+    double height = 1; // In metres
+    double angle = 45; // angle of mounting respective of roof
+    double distance; // distance from object to robot
+
+    distance = (height*-1) / Math.tan(angle+yOffset);
+
+    return(distance);
+  }
+
+  NetworkTable table; // Initialising In Global Scope
+  NetworkTableEntry tx;
+  NetworkTableEntry ty;
+  NetworkTableEntry ta;
+  NetworkTableEntry tv;
+  double detected;
+  double xOffset;
+  double yOffset;
+  double area;
 
   // Called just before this Command runs the first time
   @Override
@@ -57,6 +67,7 @@ double area;
 
     if(detected == 1.0) {
       // Moving To Target
+      
     }
 
   }
