@@ -32,6 +32,7 @@ public class Robot extends TimedRobot {
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   public static DriveTrain m_driveTrain = new DriveTrain ();
+  public static Limelight LimelightObj = new Limelight();
 
   /**
    * This function is run when the robot is first started up and should be
