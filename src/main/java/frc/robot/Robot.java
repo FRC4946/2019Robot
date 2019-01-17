@@ -14,8 +14,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.GrabberSubsystem;
 import frc.robot.Limelight;
 import frc.robot.commands.autonomous.TestAuto;
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -28,6 +30,7 @@ public class Robot extends TimedRobot {
   public static DriveTrain m_driveTrain = new DriveTrain();
   public static Limelight m_limelight = new Limelight();
   public static Climber m_climber = new Climber();
+  public static GrabberSubsystem m_grabberSubsystem = new GrabberSubsystem();
   public static Utility m_utility = new Utility();
   public static OI m_oi = new OI();
 
