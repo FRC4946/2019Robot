@@ -70,6 +70,7 @@ public class Vision extends Command {
       // Moving To Target
       double driveAdj = KpDistance*(-1*findDistance());
       /*Drive Commands*/ 
+      Robot.m_driveTrain.mecanumDrive(driveAdj,0,0);
     }
 
   }
