@@ -46,8 +46,8 @@ public class DriveTrain extends Subsystem {
     m_rightBack = new CANSparkMax(RobotMap.CAN_DRIVE_RIGHT_BACK, MotorType.kBrushless);
 
     m_mecanumDrive = new MecanumDrive(m_leftFront, m_rightFront, m_leftBack, m_rightBack);
+
     m_gyro = new AHRS(Port.kMXP);
-    
   }
   
   @Override
@@ -59,6 +59,12 @@ public class DriveTrain extends Subsystem {
 
   }
 
+  /** Drives on the desired vector while turning at the set speed
+   * 
+   * @param Y The forwards speed for the robot
+   * @param X The sideways speed for the robot
+   * @param Z The rate of rotation for the robot
+   */
   public void mecanumDrive (double Y, double X, double Z){
     m_mecanumDrive.driveCartesian(Y, X, Z);
   }
@@ -72,10 +78,6 @@ public class DriveTrain extends Subsystem {
   }
 
   public double getGyroAngle() {
-    if (m_gyro.getAngle() % 360.0 >= 0) {
-      return m_gyro.getAngle() % 360.0;
-    } else {  
-      return m_gyro.getAngle() % 360.0 + 360.0;
-    }
+    return m_gyro.getAngle();
   }
 }
