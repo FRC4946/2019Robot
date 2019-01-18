@@ -7,10 +7,14 @@
 
 package frc.robot.commands;
 
+import java.text.BreakIterator;
+
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotConstants;
 import frc.robot.subsystems.Limelight;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.subsystems.DriveTrain;;
 
 public class Vision extends Command {
   public Vision() {
@@ -20,11 +24,17 @@ public class Vision extends Command {
     //requires(Robot.LimelightObj);
     
   }
-  double KpDistance;
+  double headingErr;
+  double distanceErr;
+  double steeringAdj;
+  double driveAdj;
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    double KpDistance = -0.1;  // Proportional control constant for distance
+    headingErr = headingErr;
+    distanceErr = distanceErr;
+    steeringAdj = steeringAdj;
+    driveAdj = driveAdj;
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -41,8 +51,26 @@ public class Vision extends Command {
 
     if(Robot.m_oi.getdriveStick().getRawButton(/*Button Number*/1) == true) {
       // Moving To Target
-      double driveAdj = KpDistance*(-1*Robot.LimelightObj.findDistance());
-      /*Drive Commands*/ 
+      
+      if(Robot.LimelightObj.detected==1.0){
+        headingErr = -Robot.LimelightObj.xOffset;
+        distanceErr = -Robot.LimelightObj.yOffset;
+        steeringAdj = 0.0;
+        
+        
+        if(Robot.LimelightObj.xOffset > 1.0) {
+          steeringAdj = RobotConstants.LIMELIGHT_TURN_KP*headingErr - RobotConstants.MIN_AIM_COMMAND;
+        } else if(Robot.LimelightObj.xOffset < 1.0) {
+          steeringAdj = RobotConstants.LIMELIGHT_TURN_KP*headingErr + RobotConstants.MIN_AIM_COMMAND;
+        }
+        
+        driveAdj = RobotConstants.LIMELIGHT_DISTANCE_KP*(-1*Robot.LimelightObj.findDistance());
+        
+        // Driving
+        Robot.m_driveTrain.mecanumDrive(steeringAdj+driveAdj,0.0,0.0);
+        
+      }
+
     }
   }
 

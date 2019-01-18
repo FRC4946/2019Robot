@@ -43,7 +43,6 @@ public class Limelight extends Subsystem {
     double xOffset;
     double yOffset;
     double area;
-    double KpDistance = -0.1;  // Proportional control constant for distance
   }
 
   public double findDistance() {
