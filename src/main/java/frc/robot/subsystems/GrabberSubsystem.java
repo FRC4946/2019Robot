@@ -37,7 +37,7 @@ public class GrabberSubsystem extends Subsystem {
 			m_grabberUp = isUP;
 	
   }
-  public boolean getElbowPosition() {
+  public boolean getGrabberPosition() {
 		
 		return m_grabberUp;
 		}
