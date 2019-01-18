@@ -70,7 +70,6 @@ public class Vision extends Command {
         Robot.m_driveTrain.mecanumDrive(steeringAdj+driveAdj,0.0,0.0);
         
       }
-
     }
   }
 
