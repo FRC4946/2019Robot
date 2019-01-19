@@ -7,22 +7,18 @@
 
 package frc.robot.commands;
 
-import java.text.BreakIterator;
-
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotConstants;
-import frc.robot.subsystems.Limelight;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.subsystems.DriveTrain;;
 
 public class Vision extends Command {
   public Vision() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.m_driveTrain);
-    //requires(Robot.LimelightObj);
-    
+    //requires(Robot.m_imelightObj);
+
   }
   double headingErr;
   double distanceErr;
@@ -41,34 +37,34 @@ public class Vision extends Command {
   @Override
   protected void execute() {
     // Periodic Updates To Info
-    Robot.LimelightObj.xOffset = Robot.LimelightObj.tx.getDouble(0.0); // Coordinate updates
-    Robot.LimelightObj.yOffset = Robot.LimelightObj.ty.getDouble(0.0);
-    Robot.LimelightObj.area = Robot.LimelightObj.ta.getDouble(0.0);
-    Robot.LimelightObj.detected = Robot.LimelightObj.tv.getDouble(0); // see if limelight has detected anytihng
-    SmartDashboard.putNumber("LimelightX", Robot.LimelightObj.xOffset); // Dashboard updates
-    SmartDashboard.putNumber("LimelightY", Robot.LimelightObj.yOffset);
-    SmartDashboard.putNumber("LimelightArea", Robot.LimelightObj.area);
+    Robot.m_limelight.xOffset = Robot.m_limelight.tx.getDouble(0.0); // Coordinate updates
+    Robot.m_limelight.yOffset = Robot.m_limelight.ty.getDouble(0.0);
+    Robot.m_limelight.area = Robot.m_limelight.ta.getDouble(0.0);
+    Robot.m_limelight.detected = Robot.m_limelight.tv.getDouble(0); // see if limelight has detected anytihng
+    SmartDashboard.putNumber("LimelightX", Robot.m_limelight.xOffset); // Dashboard updates
+    SmartDashboard.putNumber("LimelightY", Robot.m_limelight.yOffset);
+    SmartDashboard.putNumber("LimelightArea", Robot.m_limelight.area);
 
     if(Robot.m_oi.getdriveStick().getRawButton(/*Button Number*/1) == true) {
       // Moving To Target
-      
-      if(Robot.LimelightObj.detected==1.0){
-        headingErr = -Robot.LimelightObj.xOffset;
-        distanceErr = -Robot.LimelightObj.yOffset;
+
+      if(Robot.m_limelight.detected==1.0){
+        headingErr = -Robot.m_limelight.xOffset;
+        distanceErr = -Robot.m_limelight.yOffset;
         steeringAdj = 0.0;
-        
-        
-        if(Robot.LimelightObj.xOffset > 1.0) {
+
+
+        if(Robot.m_limelight.xOffset > 1.0) {
           steeringAdj = RobotConstants.LIMELIGHT_TURN_KP*headingErr - RobotConstants.MIN_AIM_COMMAND;
-        } else if(Robot.LimelightObj.xOffset < 1.0) {
+        } else if(Robot.m_limelight.xOffset < 1.0) {
           steeringAdj = RobotConstants.LIMELIGHT_TURN_KP*headingErr + RobotConstants.MIN_AIM_COMMAND;
         }
-        
-        driveAdj = RobotConstants.LIMELIGHT_DISTANCE_KP*(-1*Robot.LimelightObj.findDistance());
-        
+
+        driveAdj = RobotConstants.LIMELIGHT_DISTANCE_KP*(-1*Robot.m_limelight.findDistance());
+
         // Driving
         Robot.m_driveTrain.mecanumDrive(steeringAdj+driveAdj,0.0,0.0);
-        
+
       }
     }
   }

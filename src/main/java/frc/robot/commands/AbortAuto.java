@@ -9,14 +9,13 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.subsystems.Limelight;
 
-public class abortAuto extends Command {
-  public abortAuto() {
+public class AbortAuto extends Command {
+  public AbortAuto() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.m_driveTrain);
-    requires(Robot.LimelightObj);
+    requires(Robot.m_limelight);
   }
 
   // Called just before this Command runs the first time
