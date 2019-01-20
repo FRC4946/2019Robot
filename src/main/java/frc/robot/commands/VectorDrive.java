@@ -26,8 +26,6 @@ public class VectorDrive extends Command {
    * @param time            the amount time for the robot to move in seconds
    */
   public VectorDrive(double verticalSpeed, double horizontalSpeed, double time) {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
     requires(Robot.m_driveTrain);
 
     this.horizontalSpeed = horizontalSpeed;

@@ -49,4 +49,8 @@ public class OI {
     return driveStick;
   }
 
+  public OI() {
+    // TODO: Bind buttons to commands
+  }
+
 }

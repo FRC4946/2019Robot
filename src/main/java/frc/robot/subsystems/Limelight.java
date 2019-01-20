@@ -14,11 +14,9 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import frc.robot.commands.Vision;
 
 /**
- * Add your docs here.
+ * TODO: Document
  */
 public class Limelight extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
 
   public NetworkTable table; // Initialising In Global Scope
   public NetworkTableEntry tx;
@@ -54,8 +52,6 @@ public class Limelight extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
     setDefaultCommand(new Vision());
   }
 }

@@ -18,11 +18,9 @@ import frc.robot.RobotMap;
 import frc.robot.commands.JoystickDrive;
 
 /**
- * Add your docs here.
+ * TODO: Document
  */
 public class DriveTrain extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
 
   private CANSparkMax m_leftFront;
   private CANSparkMax m_leftBack;
@@ -47,11 +45,7 @@ public class DriveTrain extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
     setDefaultCommand(new JoystickDrive());
-
   }
 
   /**
@@ -74,12 +68,10 @@ public class DriveTrain extends Subsystem {
   }
 
   public double getGyroAngle() {
-
     if (m_gyro.getAngle() % 360.0 >= 0) {
       return m_gyro.getAngle() % 360.0;
     } else {
       return m_gyro.getAngle() % 360.0 + 360.0;
     }
-
   }
 }

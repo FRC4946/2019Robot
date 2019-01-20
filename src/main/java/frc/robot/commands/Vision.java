@@ -13,11 +13,10 @@ import frc.robot.RobotConstants;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Vision extends Command {
+
   public Vision() {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
     requires(Robot.m_driveTrain);
-    //requires(Robot.m_imelightObj);
+    //requires(Robot.m_limelight);
   }
 
   double headingErr;

@@ -11,9 +11,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class AbortAuto extends Command {
+
   public AbortAuto() {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
     requires(Robot.m_driveTrain);
     requires(Robot.m_limelight);
   }
