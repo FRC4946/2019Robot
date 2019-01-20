@@ -34,10 +34,6 @@ public class Limelight extends Subsystem {
     ty = table.getEntry("ty");
     ta = table.getEntry("ta");
     tv = table.getEntry("tv");
-    double detected;
-    double xOffset;
-    double yOffset;
-    double area;
   }
 
   public double findDistance() {

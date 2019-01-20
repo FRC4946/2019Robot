@@ -13,8 +13,8 @@ import frc.robot.Robot;
 
 public class VectorDrive extends Command {
 
-  double verticalSpeed, horizontalSpeed, time;
-  Timer timer;
+  private double m_verticalSpeed, m_horizontalSpeed, m_time;
+  private Timer m_timer;
 
   /**
    * Moves the robot at the desired speed for the desired time.
@@ -28,24 +28,24 @@ public class VectorDrive extends Command {
   public VectorDrive(double verticalSpeed, double horizontalSpeed, double time) {
     requires(Robot.m_driveTrain);
 
-    this.horizontalSpeed = horizontalSpeed;
-    this.verticalSpeed = verticalSpeed;
-    this.time = time;
+    this.m_horizontalSpeed = horizontalSpeed;
+    this.m_verticalSpeed = verticalSpeed;
+    this.m_time = time;
 
-    timer = new Timer();
+    m_timer = new Timer();
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    timer.start();
+    m_timer.start();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (timer.get() < time) {
-      Robot.m_driveTrain.mecanumDrive(verticalSpeed, horizontalSpeed, 0.0);
+    if (m_timer.get() < m_time) {
+      Robot.m_driveTrain.mecanumDrive(m_verticalSpeed, m_horizontalSpeed, 0.0);
     } else {
       Robot.m_driveTrain.stop();
     }
@@ -54,7 +54,7 @@ public class VectorDrive extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return timer.get() >= time;
+    return m_timer.get() >= m_time;
   }
 
   // Called once after isFinished returns true

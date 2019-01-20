@@ -14,23 +14,23 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Vision extends Command {
 
+  private double m_headingErr;
+  private double m_distanceErr;
+  private double m_steeringAdj;
+  private double m_driveAdj;
+
   public Vision() {
     requires(Robot.m_driveTrain);
     //requires(Robot.m_limelight);
   }
 
-  double headingErr;
-  double distanceErr;
-  double steeringAdj;
-  double driveAdj;
-
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    headingErr = headingErr;
-    distanceErr = distanceErr;
-    steeringAdj = steeringAdj;
-    driveAdj = driveAdj;
+    m_headingErr = m_headingErr;
+    m_distanceErr = m_distanceErr;
+    m_steeringAdj = m_steeringAdj;
+    m_driveAdj = m_driveAdj;
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -45,24 +45,24 @@ public class Vision extends Command {
     SmartDashboard.putNumber("LimelightY", Robot.m_limelight.yOffset);
     SmartDashboard.putNumber("LimelightArea", Robot.m_limelight.area);
 
-    if (Robot.m_oi.getdriveStick().getRawButton(/* Button Number */1) == true) {
+    if (Robot.m_oi.getDriveStick().getRawButton(/* Button Number */1) == true) {
       // Moving To Target
 
       if (Robot.m_limelight.detected == 1.0) {
-        headingErr = -Robot.m_limelight.xOffset;
-        distanceErr = -Robot.m_limelight.yOffset;
-        steeringAdj = 0.0;
+        m_headingErr = -Robot.m_limelight.xOffset;
+        m_distanceErr = -Robot.m_limelight.yOffset;
+        m_steeringAdj = 0.0;
 
         if (Robot.m_limelight.xOffset > 1.0) {
-          steeringAdj = RobotConstants.LIMELIGHT_TURN_KP * headingErr - RobotConstants.MIN_AIM_COMMAND;
+          m_steeringAdj = RobotConstants.LIMELIGHT_TURN_KP * m_headingErr - RobotConstants.MIN_AIM_COMMAND;
         } else if (Robot.m_limelight.xOffset < 1.0) {
-          steeringAdj = RobotConstants.LIMELIGHT_TURN_KP * headingErr + RobotConstants.MIN_AIM_COMMAND;
+          m_steeringAdj = RobotConstants.LIMELIGHT_TURN_KP * m_headingErr + RobotConstants.MIN_AIM_COMMAND;
         }
 
-        driveAdj = RobotConstants.LIMELIGHT_DISTANCE_KP * (-1 * Robot.m_limelight.findDistance());
+        m_driveAdj = RobotConstants.LIMELIGHT_DISTANCE_KP * (-1 * Robot.m_limelight.findDistance());
 
         // Driving
-        Robot.m_driveTrain.mecanumDrive(steeringAdj + driveAdj, 0.0, 0.0);
+        Robot.m_driveTrain.mecanumDrive(m_steeringAdj + m_driveAdj, 0.0, 0.0);
 
       }
     }

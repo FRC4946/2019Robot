@@ -15,7 +15,7 @@ import frc.robot.RobotConstants;
 
 public class LimelightTurn extends PIDCommand {
 
-  double maxSpeed;
+  private double m_maxSpeed;
 
   /**
    * Turns the robot so that it is aligned with whatever the robot is detecting on
@@ -27,13 +27,12 @@ public class LimelightTurn extends PIDCommand {
     super(RobotConstants.LIMELIGHT_TURN_KP, RobotConstants.LIMELIGHT_TURN_KI, RobotConstants.LIMELIGHT_TURN_KD);
     requires(Robot.m_driveTrain);
 
-    this.maxSpeed = maxSpeed;
+    this.m_maxSpeed = maxSpeed;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -70,6 +69,6 @@ public class LimelightTurn extends PIDCommand {
   @Override
   protected void usePIDOutput(double output) {
     // drives at the outputted speed, or the max speed
-    Robot.m_driveTrain.mecanumDrive(0.0, 0.0, Math.min(output, maxSpeed));
+    Robot.m_driveTrain.mecanumDrive(0.0, 0.0, Math.min(output, m_maxSpeed));
   }
 }
