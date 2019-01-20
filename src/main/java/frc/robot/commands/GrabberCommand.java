@@ -10,12 +10,10 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-/**
- * An example command.  You can replace me with your own command.
- */
+
 public class GrabberCommand extends Command {
+
   public GrabberCommand() {
-    // Use requires() here to declare subsystem dependencies
     requires(Robot.m_grabberSubsystem);
   }
 
