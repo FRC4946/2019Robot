@@ -7,68 +7,63 @@
 
 package frc.robot.commands;
 
-import java.text.BreakIterator;
-
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotConstants;
-import frc.robot.subsystems.Limelight;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.subsystems.DriveTrain;;
 
 public class Vision extends Command {
+
+  private double m_headingErr;
+  private double m_distanceErr;
+  private double m_steeringAdj;
+  private double m_driveAdj;
+
   public Vision() {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
     requires(Robot.m_driveTrain);
-    //requires(Robot.LimelightObj);
-    
+    //requires(Robot.m_limelight);
   }
-  double headingErr;
-  double distanceErr;
-  double steeringAdj;
-  double driveAdj;
+
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    headingErr = headingErr;
-    distanceErr = distanceErr;
-    steeringAdj = steeringAdj;
-    driveAdj = driveAdj;
+    m_headingErr = m_headingErr;
+    m_distanceErr = m_distanceErr;
+    m_steeringAdj = m_steeringAdj;
+    m_driveAdj = m_driveAdj;
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
     // Periodic Updates To Info
-    Robot.LimelightObj.xOffset = Robot.LimelightObj.tx.getDouble(0.0); // Coordinate updates
-    Robot.LimelightObj.yOffset = Robot.LimelightObj.ty.getDouble(0.0);
-    Robot.LimelightObj.area = Robot.LimelightObj.ta.getDouble(0.0);
-    Robot.LimelightObj.detected = Robot.LimelightObj.tv.getDouble(0); // see if limelight has detected anytihng
-    SmartDashboard.putNumber("LimelightX", Robot.LimelightObj.xOffset); // Dashboard updates
-    SmartDashboard.putNumber("LimelightY", Robot.LimelightObj.yOffset);
-    SmartDashboard.putNumber("LimelightArea", Robot.LimelightObj.area);
+    Robot.m_limelight.xOffset = Robot.m_limelight.tx.getDouble(0.0); // Coordinate updates
+    Robot.m_limelight.yOffset = Robot.m_limelight.ty.getDouble(0.0);
+    Robot.m_limelight.area = Robot.m_limelight.ta.getDouble(0.0);
+    Robot.m_limelight.detected = Robot.m_limelight.tv.getDouble(0); // see if limelight has detected anytihng
+    SmartDashboard.putNumber("LimelightX", Robot.m_limelight.xOffset); // Dashboard updates
+    SmartDashboard.putNumber("LimelightY", Robot.m_limelight.yOffset);
+    SmartDashboard.putNumber("LimelightArea", Robot.m_limelight.area);
 
-    if(Robot.m_oi.getdriveStick().getRawButton(/*Button Number*/1) == true) {
+    if (Robot.m_oi.getDriveStick().getRawButton(/* Button Number */1) == true) {
       // Moving To Target
-      
-      if(Robot.LimelightObj.detected==1.0){
-        headingErr = -Robot.LimelightObj.xOffset;
-        distanceErr = -Robot.LimelightObj.yOffset;
-        steeringAdj = 0.0;
-        
-        
-        if(Robot.LimelightObj.xOffset > 1.0) {
-          steeringAdj = RobotConstants.LIMELIGHT_TURN_KP*headingErr - RobotConstants.MIN_AIM_COMMAND;
-        } else if(Robot.LimelightObj.xOffset < 1.0) {
-          steeringAdj = RobotConstants.LIMELIGHT_TURN_KP*headingErr + RobotConstants.MIN_AIM_COMMAND;
+
+      if (Robot.m_limelight.detected == 1.0) {
+        m_headingErr = -Robot.m_limelight.xOffset;
+        m_distanceErr = -Robot.m_limelight.yOffset;
+        m_steeringAdj = 0.0;
+
+        if (Robot.m_limelight.xOffset > 1.0) {
+          m_steeringAdj = RobotConstants.LIMELIGHT_TURN_KP * m_headingErr - RobotConstants.MIN_AIM_COMMAND;
+        } else if (Robot.m_limelight.xOffset < 1.0) {
+          m_steeringAdj = RobotConstants.LIMELIGHT_TURN_KP * m_headingErr + RobotConstants.MIN_AIM_COMMAND;
         }
-        
-        driveAdj = RobotConstants.LIMELIGHT_DISTANCE_KP*(-1*Robot.LimelightObj.findDistance());
-        
+
+        m_driveAdj = RobotConstants.LIMELIGHT_DISTANCE_KP * (-1 * Robot.m_limelight.findDistance());
+
         // Driving
-        Robot.m_driveTrain.mecanumDrive(steeringAdj+driveAdj,0.0,0.0);
-        
+        Robot.m_driveTrain.mecanumDrive(m_steeringAdj + m_driveAdj, 0.0, 0.0);
+
       }
     }
   }

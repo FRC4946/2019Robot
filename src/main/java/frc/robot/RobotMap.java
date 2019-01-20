@@ -24,15 +24,14 @@ public class RobotMap {
   // public static int rangefinderPort = 1;
   // public static int rangefinderModule = 1;
 
-public static final int USB_DS_DRIVESTICK = 0;
-public static final int USB_DS_OPERATORSTICK = 1;
-// Joystick ports
+  // Joystick ports
+  public static final int USB_DS_DRIVESTICK = 0;
+  public static final int USB_DS_OPERATORSTICK = 1;
 
-public static final int CAN_DRIVE_LEFT_FRONT = 0;
-public static final int CAN_DRIVE_LEFT_BACK = 1;
-public static final int CAN_DRIVE_RIGHT_FRONT = 2;
-public static final int CAN_DRIVE_RIGHT_BACK = 3;
-
-//Drive train motor ports
+  // Drive train motor ports
+  public static final int CAN_DRIVE_LEFT_FRONT = 0;
+  public static final int CAN_DRIVE_LEFT_BACK = 1;
+  public static final int CAN_DRIVE_RIGHT_FRONT = 2;
+  public static final int CAN_DRIVE_RIGHT_BACK = 3;
 
 }
