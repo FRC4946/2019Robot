@@ -11,11 +11,6 @@ import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
@@ -38,7 +33,7 @@ public class DriveTrain extends Subsystem {
 
   private AHRS m_gyro;
 
-  public DriveTrain (){
+  public DriveTrain() {
 
     m_leftFront = new CANSparkMax(RobotMap.CAN_DRIVE_LEFT_FRONT, MotorType.kBrushless);
     m_leftBack = new CANSparkMax(RobotMap.CAN_DRIVE_LEFT_BACK, MotorType.kBrushless);
@@ -49,7 +44,7 @@ public class DriveTrain extends Subsystem {
     m_gyro = new AHRS(Port.kMXP);
 
   }
-  
+
   @Override
   public void initDefaultCommand() {
 
@@ -58,22 +53,23 @@ public class DriveTrain extends Subsystem {
     setDefaultCommand(new JoystickDrive());
 
   }
-  
-  /** Drives on the desired vector while turning at the set speed
-   * 
+
+  /**
+   * Drives on the desired vector while turning at the set speed
+   *
    * @param Y The forwards speed for the robot
    * @param X The sideways speed for the robot
    * @param Z The rate of rotation for the robot
    */
-  public void mecanumDrive (double Y, double X, double Z){
+  public void mecanumDrive(double Y, double X, double Z) {
     m_mecanumDrive.driveCartesian(Y, X, Z);
   }
 
-  public void stop (){
+  public void stop() {
     m_mecanumDrive.driveCartesian(0.0, 0.0, 0.0);
   }
 
-  public void mecanumDriveAbs(double y, double x , double rotation, double gyroAngle) {
+  public void mecanumDriveAbs(double y, double x, double rotation, double gyroAngle) {
     m_mecanumDrive.driveCartesian(y, x, rotation, gyroAngle);
   }
 
@@ -81,7 +77,7 @@ public class DriveTrain extends Subsystem {
 
     if (m_gyro.getAngle() % 360.0 >= 0) {
       return m_gyro.getAngle() % 360.0;
-    } else {  
+    } else {
       return m_gyro.getAngle() % 360.0 + 360.0;
     }
 

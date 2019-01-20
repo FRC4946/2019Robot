@@ -17,21 +17,23 @@ public class LimelightTurn extends PIDCommand {
 
   double maxSpeed;
 
-  /** Turns the robot so that it is aligned with whatever the robot is detecting on the limelight
-   *  
+  /**
+   * Turns the robot so that it is aligned with whatever the robot is detecting on
+   * the limelight
+   *
    * @param maxSpeed the maximum speed of the turn as a fraction
    */
   public LimelightTurn(double maxSpeed) {
     super(RobotConstants.LIMELIGHT_TURN_KP, RobotConstants.LIMELIGHT_TURN_KI, RobotConstants.LIMELIGHT_TURN_KD);
     requires(Robot.m_driveTrain);
 
-    this.maxSpeed = maxSpeed; 
+    this.maxSpeed = maxSpeed;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-  
+
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -58,15 +60,16 @@ public class LimelightTurn extends PIDCommand {
     end();
   }
 
-  //returns the value the pid controller is using as an input
+  // returns the value the pid controller is using as an input
   @Override
   protected double returnPIDInput() {
-    return 0; //returns the distance from center of the object detected by the limelight 
+    return 0; // returns the distance from center of the object detected by the limelight
   }
 
-  //processes the pid output, sends new values to motors and stuff
+  // processes the pid output, sends new values to motors and stuff
   @Override
   protected void usePIDOutput(double output) {
-    Robot.m_driveTrain.mecanumDrive(0.0, 0.0, Math.min(output, maxSpeed)); //drives at the outputted speed, or the max speed
+    // drives at the outputted speed, or the max speed
+    Robot.m_driveTrain.mecanumDrive(0.0, 0.0, Math.min(output, maxSpeed));
   }
 }

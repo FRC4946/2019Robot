@@ -12,12 +12,12 @@ import frc.robot.Robot;
 
 public class AbsTurn extends Command {
 
-  double angle; //angle to turn to in degrees
-  boolean m_turnLeft; //whether to turn left or not
+  double angle; // angle to turn to in degrees
+  boolean m_turnLeft; // whether to turn left or not
 
-
-  /** Turns the robot on the spot to the gyro angle provided
-   * 
+  /**
+   * Turns the robot on the spot to the gyro angle provided
+   *
    * @param turn the angle to turn to in degrees
    */
   public AbsTurn(double angle) {
@@ -36,26 +36,23 @@ public class AbsTurn extends Command {
   protected void execute() {
     if (m_turnLeft) {
       if (angle - Robot.m_driveTrain.getGyroAngle() >= 180) {
-       Robot.m_driveTrain.mecanumDrive(0.0, 0.0, 0.3);
-      } 
-      else {
+        Robot.m_driveTrain.mecanumDrive(0.0, 0.0, 0.3);
+      } else {
         Robot.m_driveTrain.mecanumDrive(0.0, 0.0, -0.3);
       }
-    } 
-    else {
-     if (Robot.m_driveTrain.getGyroAngle() >= 180){
-       Robot.m_driveTrain.mecanumDrive(0.0, 0.0, -0.3);
-     }
-     else {
-       Robot.m_driveTrain.mecanumDrive(0.0, 0.0, 0.3);
-     }
+    } else {
+      if (Robot.m_driveTrain.getGyroAngle() >= 180) {
+        Robot.m_driveTrain.mecanumDrive(0.0, 0.0, -0.3);
+      } else {
+        Robot.m_driveTrain.mecanumDrive(0.0, 0.0, 0.3);
+      }
     }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return (Math.abs(Robot.m_driveTrain.getGyroAngle() - angle) < 2); //within 2 degrees
+    return (Math.abs(Robot.m_driveTrain.getGyroAngle() - angle) < 2); // within 2 degrees
   }
 
   // Called once after isFinished returns true

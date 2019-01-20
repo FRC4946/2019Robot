@@ -18,12 +18,13 @@ public class Vision extends Command {
     // eg. requires(chassis);
     requires(Robot.m_driveTrain);
     //requires(Robot.m_imelightObj);
-
   }
+
   double headingErr;
   double distanceErr;
   double steeringAdj;
   double driveAdj;
+
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
@@ -45,25 +46,24 @@ public class Vision extends Command {
     SmartDashboard.putNumber("LimelightY", Robot.m_limelight.yOffset);
     SmartDashboard.putNumber("LimelightArea", Robot.m_limelight.area);
 
-    if(Robot.m_oi.getdriveStick().getRawButton(/*Button Number*/1) == true) {
+    if (Robot.m_oi.getdriveStick().getRawButton(/* Button Number */1) == true) {
       // Moving To Target
 
-      if(Robot.m_limelight.detected==1.0){
+      if (Robot.m_limelight.detected == 1.0) {
         headingErr = -Robot.m_limelight.xOffset;
         distanceErr = -Robot.m_limelight.yOffset;
         steeringAdj = 0.0;
 
-
-        if(Robot.m_limelight.xOffset > 1.0) {
-          steeringAdj = RobotConstants.LIMELIGHT_TURN_KP*headingErr - RobotConstants.MIN_AIM_COMMAND;
-        } else if(Robot.m_limelight.xOffset < 1.0) {
-          steeringAdj = RobotConstants.LIMELIGHT_TURN_KP*headingErr + RobotConstants.MIN_AIM_COMMAND;
+        if (Robot.m_limelight.xOffset > 1.0) {
+          steeringAdj = RobotConstants.LIMELIGHT_TURN_KP * headingErr - RobotConstants.MIN_AIM_COMMAND;
+        } else if (Robot.m_limelight.xOffset < 1.0) {
+          steeringAdj = RobotConstants.LIMELIGHT_TURN_KP * headingErr + RobotConstants.MIN_AIM_COMMAND;
         }
 
-        driveAdj = RobotConstants.LIMELIGHT_DISTANCE_KP*(-1*Robot.m_limelight.findDistance());
+        driveAdj = RobotConstants.LIMELIGHT_DISTANCE_KP * (-1 * Robot.m_limelight.findDistance());
 
         // Driving
-        Robot.m_driveTrain.mecanumDrive(steeringAdj+driveAdj,0.0,0.0);
+        Robot.m_driveTrain.mecanumDrive(steeringAdj + driveAdj, 0.0, 0.0);
 
       }
     }

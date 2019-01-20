@@ -42,11 +42,11 @@ public class OI {
   // until it is finished as determined by it's isFinished method.
   // button.whenReleased(new ExampleCommand());
 
-private Joystick driveStick = new Joystick (RobotMap.USB_DS_DRIVESTICK);
-private Joystick operatorStick = new Joystick (RobotMap.USB_DS_OPERATORSTICK);
+  private Joystick driveStick = new Joystick(RobotMap.USB_DS_DRIVESTICK);
+  private Joystick operatorStick = new Joystick(RobotMap.USB_DS_OPERATORSTICK);
 
-public Joystick getdriveStick() {
-  return driveStick;
-}
+  public Joystick getdriveStick() {
+    return driveStick;
+  }
 
 }

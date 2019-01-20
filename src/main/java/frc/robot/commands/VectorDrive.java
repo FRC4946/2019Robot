@@ -16,12 +16,14 @@ public class VectorDrive extends Command {
   double verticalSpeed, horizontalSpeed, time;
   Timer timer;
 
-  /** 
-   *  Moves the robot at the desired speed for the desired time.
-   * 
-   *  @param verticalSpeed the speed for the robot to move forwards/backwards at as a fraction of its maximum speed
-   *  @param horizontalSpeed the speed for the robot to move left/right at as a fraction of its maximum speed
-   *  @param time the amount time for the robot to move in seconds
+  /**
+   * Moves the robot at the desired speed for the desired time.
+   *
+   * @param verticalSpeed   the speed for the robot to move forwards/backwards at
+   *                        as a fraction of its maximum speed
+   * @param horizontalSpeed the speed for the robot to move left/right at as a
+   *                        fraction of its maximum speed
+   * @param time            the amount time for the robot to move in seconds
    */
   public VectorDrive(double verticalSpeed, double horizontalSpeed, double time) {
     // Use requires() here to declare subsystem dependencies
@@ -45,9 +47,8 @@ public class VectorDrive extends Command {
   @Override
   protected void execute() {
     if (timer.get() < time) {
-        Robot.m_driveTrain.mecanumDrive(verticalSpeed, horizontalSpeed, 0.0);
-    } 
-    else {
+      Robot.m_driveTrain.mecanumDrive(verticalSpeed, horizontalSpeed, 0.0);
+    } else {
       Robot.m_driveTrain.stop();
     }
   }

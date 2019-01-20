@@ -13,15 +13,13 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import frc.robot.commands.Vision;
 
-
-
 /**
  * Add your docs here.
  */
 public class Limelight extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  
+
   public NetworkTable table; // Initialising In Global Scope
   public NetworkTableEntry tx;
   public NetworkTableEntry ty;
@@ -31,7 +29,6 @@ public class Limelight extends Subsystem {
   public double xOffset;
   public double yOffset;
   public double area;
-
 
   public Limelight() {
     table = NetworkTableInstance.getDefault().getTable("limelight"); // Initialising In Global Scope
@@ -50,9 +47,9 @@ public class Limelight extends Subsystem {
     double angle = 45; // angle of mounting respective of roof
     double distance; // distance from object to robot
 
-    distance = (height*-1) / Math.tan(angle+yOffset);
+    distance = (height * -1) / Math.tan(angle + yOffset);
 
-    return(distance);
+    return (distance);
   }
 
   @Override
