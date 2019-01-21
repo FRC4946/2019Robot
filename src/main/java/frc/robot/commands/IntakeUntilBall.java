@@ -11,8 +11,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class IntakeUntilBall extends Command {
-  /** Runs the intake backwards (intakes) until a ball is detected
-   * 
+
+  /**
+   * Runs the intake backwards (intakes) until a ball is detected
    */
   public IntakeUntilBall() {
     requires(Robot.m_intake);
@@ -27,11 +28,11 @@ public class IntakeUntilBall extends Command {
   @Override
   protected void execute() {
     if (!Robot.m_intake.getIsBall()) {
-      Robot.m_intake.runAll(-0.8); //not max speed (yet?)
+      Robot.m_intake.runAll(-0.8); // not max speed (yet?)
     } else {
-      Robot.m_intake.stopAll();;
+      Robot.m_intake.stopAll();
     }
-    
+
   }
 
   // Make this return true when this Command no longer needs to run execute()

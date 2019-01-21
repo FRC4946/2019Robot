@@ -15,11 +15,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
 /**
- *  Intake subsystem
+ * Intake subsystem
  */
 public class Intake extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
 
   CANSparkMax m_outerLeft = new CANSparkMax(RobotMap.CAN_INTAKE_OUTER_LEFT, MotorType.kBrushless);
   CANSparkMax m_outerRight = new CANSparkMax(RobotMap.CAN_INTAKE_OUTER_RIGHT, MotorType.kBrushless);
@@ -28,57 +26,64 @@ public class Intake extends Subsystem {
 
   DigitalInput m_bannerSensor = new DigitalInput(RobotMap.INTAKE_BANNER_SENSOR);
 
-  /** Runs the outer intake at the desired speed
-   *  @param speed the speed to run the outer intake at as a fraction of its max speed
-   *  negative is inwards positive is outwards
+  /**
+   * Runs the outer intake at the desired speed
+   *
+   * @param speed the speed to run the outer intake at as a fraction of its max
+   *              speed negative is inwards positive is outwards
    */
   public void runOuter(double speed) {
     m_outerLeft.set(speed);
     m_outerRight.set(speed);
   }
 
-  /** Runs the inner intake at the desired speed 
-   *  @param speed the speed to run the inner intake at as a fraction of its max speed
-   *  negative is inwards positive is outwards
+  /**
+   * Runs the inner intake at the desired speed
+   *
+   * @param speed the speed to run the inner intake at as a fraction of its max
+   *              speed negative is inwards positive is outwards
    */
   public void runInner(double speed) {
     m_innerLeft.set(speed);
     m_innerRight.set(speed);
   }
 
-  /** Runs both intakes at the desired speed
-   *  @param speed  the speed to run both intakes at as a fraction of their top speed
-   *  negative is inwards positive is outwards
+  /**
+   * Runs both intakes at the desired speed
+   *
+   * @param speed the speed to run both intakes at as a fraction of their top
+   *              speed negative is inwards positive is outwards
    */
   public void runAll(double speed) {
     runOuter(speed);
     runInner(speed);
   }
 
-  /** Stops the outer intake
-   * 
+  /**
+   * Stops the outer intake
    */
   public void stopOuter() {
     runOuter(0.0);
   }
 
-  /** Stops the inner intake
-   * 
+  /**
+   * Stops the inner intake
    */
   public void stopInner() {
     runInner(0.0);
   }
 
-  /** Stops both the outer and the inner intake
-   * 
+  /**
+   * Stops both the outer and the inner intake
    */
   public void stopAll() {
     stopInner();
     stopOuter();
   }
 
-  /** returns the state of the banner sensor on the intake
-   * 
+  /**
+   * Returns the state of the banner sensor on the intake
+   *
    * @return false if no ball is detected, true if a ball is detected
    */
   public boolean getIsBall() {
