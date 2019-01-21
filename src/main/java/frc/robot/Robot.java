@@ -23,8 +23,10 @@ import frc.robot.subsystems.Limelight;
  * project.
  */
 public class Robot extends TimedRobot {
+  
   public static DriveTrain m_driveTrain = new DriveTrain();
   public static Limelight m_limelight = new Limelight();
+  public static Utility m_utility = new Utility();
   public static OI m_oi;
 
   Command m_autonomousCommand;

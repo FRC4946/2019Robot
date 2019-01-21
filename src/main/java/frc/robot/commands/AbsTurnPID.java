@@ -7,9 +7,6 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.PIDOutput;
-import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import frc.robot.Robot;
 
@@ -29,7 +26,7 @@ public class AbsTurnPID extends PIDCommand {
 
     requires(Robot.m_driveTrain);
 
-    m_angle = Robot.m_driveTrain.conformAngle(angle);
+    m_angle = Robot.m_utility.conformAngle(angle);
     m_maxSpeed = maxSpeed;
 
     getPIDController().setInputRange(0.0, 360.0);

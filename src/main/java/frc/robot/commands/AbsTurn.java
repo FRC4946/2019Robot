@@ -21,7 +21,7 @@ public class AbsTurn extends Command {
    */
   public AbsTurn(double angle) {
     requires(Robot.m_driveTrain);
-    this.m_angle = Robot.m_driveTrain.conformAngle(angle);
+    this.m_angle = Robot.m_utility.conformAngle(angle);
   }
 
   // Called just before this Command runs the first time

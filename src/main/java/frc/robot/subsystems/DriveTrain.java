@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
+import frc.robot.Robot;
 import frc.robot.RobotConstants;
 import frc.robot.RobotMap;
 import frc.robot.commands.JoystickDrive;
@@ -83,19 +84,9 @@ public class DriveTrain extends Subsystem {
   public void mecanumDriveAbs(double Y, double X, double Z) {
     m_mecanumDrive.driveCartesian(deadzone(Y), deadzone(X), deadzone(Z), getGyroAngle());
   }
-
-  public double conformAngle(double angle) {
-    
-    while(angle < 0) {
-      angle += 360;
-    }
-
-    return angle;
-  }
   
   public double getGyroAngle() {
-    double angle = conformAngle(m_gyro.getAngle() % 360.0);
-    return angle;
+    return Robot.m_utility.conformAngle(m_gyro.getAngle() % 360.0);
   }
 
   public AHRS getGyro() {
