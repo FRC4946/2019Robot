@@ -22,30 +22,26 @@ public class AbsTurn extends Command {
    */
   public AbsTurn(double angle) {
     requires(Robot.m_driveTrain);
-    this.m_angle = angle;
+    this.m_angle = Robot.m_driveTrain.conformAngle(angle);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    m_turnLeft = ((m_angle - Robot.m_driveTrain.getGyroAngle()) > 0);
+    //turns left if these conditions are both true or both false
+    //both true: current angle is 1 degree, angle to turn to is 45
+    //both false: current angle is 356 degrees, angle to turn to is 1
+    //both cases require turn left
+    m_turnLeft = ((m_angle - Robot.m_driveTrain.getGyroAngle()) > 0 == Math.abs(m_angle - Robot.m_driveTrain.getGyroAngle()) <= 180);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
     if (m_turnLeft) {
-      if (m_angle - Robot.m_driveTrain.getGyroAngle() >= 180) {
-        Robot.m_driveTrain.mecanumDrive(0.0, 0.0, 0.3);
-      } else {
-        Robot.m_driveTrain.mecanumDrive(0.0, 0.0, -0.3);
-      }
+      Robot.m_driveTrain.mecanumDrive(0.0, 0.0, -0.3);
     } else {
-      if (Robot.m_driveTrain.getGyroAngle() >= 180) {
-        Robot.m_driveTrain.mecanumDrive(0.0, 0.0, -0.3);
-      } else {
-        Robot.m_driveTrain.mecanumDrive(0.0, 0.0, 0.3);
-      }
+      Robot.m_driveTrain.mecanumDrive(0.0, 0.0, 0.3);
     }
   }
 

@@ -84,14 +84,17 @@ public class DriveTrain extends Subsystem {
     m_mecanumDrive.driveCartesian(deadzone(Y), deadzone(X), deadzone(Z), getGyroAngle());
   }
 
-  public double getGyroAngle() {
-
-    double angle = m_gyro.getAngle() % 360.0;
-
-    while (angle < 0) {
+  public double conformAngle(double angle) {
+    
+    while(angle < 0) {
       angle += 360;
     }
 
+    return angle;
+  }
+  
+  public double getGyroAngle() {
+    double angle = conformAngle(m_gyro.getAngle() % 360.0);
     return angle;
   }
 }
