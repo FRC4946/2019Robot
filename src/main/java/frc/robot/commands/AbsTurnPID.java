@@ -10,61 +10,57 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PIDSource;
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.PIDCommand;
 import frc.robot.Robot;
 
-public class AbsTurnPID extends Command {
+public class AbsTurnPID extends PIDCommand {
 
-  private double m_angle; // angle to turn to in degrees
-  private boolean m_turnLeft; // whether to turn left or not
-  private PIDController m_turnPID;
+  private double m_angle, m_maxSpeed; // angle to turn to in degrees
 
   /**
    * Turns the robot on the spot to the gyro angle provided
    *
    * @param angle the angle to turn to in degrees
    */
-  public AbsTurnPID(double angle) {
-         
-    requires(Robot.m_driveTrain);
-   
+  public AbsTurnPID(double angle, double maxSpeed) {
+    
     //DUMMY P I and D values
-    m_turnPID = new PIDController(0.1, 0.0, 0.0, (PIDSource) Robot.m_driveTrain.getGyro(), 
-      (PIDOutput) new Object());
-    this.m_angle = Robot.m_driveTrain.conformAngle(angle);
+    super(0.1, 0.0, 0.0);
+
+    requires(Robot.m_driveTrain);
+
+    m_angle = Robot.m_driveTrain.conformAngle(angle);
+    m_maxSpeed = maxSpeed;
+
+    getPIDController().setInputRange(0.0, 360.0);
+    getPIDController().setOutputRange(-0.8, 0.8);
+    getPIDController().setContinuous(true);
+    getPIDController().setAbsoluteTolerance(2.0);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    //turns left if these conditions are both true or both false
-    //both true: current angle is 1 degree, angle to turn to is 45
-    //both false: current angle is 356 degrees, angle to turn to is 1
-    //both cases require turn left
-    m_turnPID.enable();
-    m_turnPID.setInputRange(0, 360);
-    m_turnPID.setOutputRange(-0.8, 0.8);
-    m_turnPID.setContinuous(true);
-    m_turnPID.setAbsoluteTolerance(2);
-    m_turnPID.setSetpoint(m_angle);
+    getPIDController().enable();
+    getPIDController().setSetpoint(m_angle);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_driveTrain.mecanumDrive(0.0, 0.0, m_turnPID.get());
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return m_turnPID.onTarget();
+    return getPIDController().onTarget();
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    m_turnPID.disable();
+    getPIDController().disable();
     Robot.m_driveTrain.stop();
   }
 
@@ -73,5 +69,15 @@ public class AbsTurnPID extends Command {
   @Override
   protected void interrupted() {
     end();
+  }
+
+  @Override
+  protected double returnPIDInput() {
+    return Robot.m_driveTrain.getGyroAngle();
+  }
+
+  @Override
+  protected void usePIDOutput(double output) {
+    Robot.m_driveTrain.mecanumDrive(0.0, 0.0, Math.min(m_maxSpeed, output));
   }
 }
