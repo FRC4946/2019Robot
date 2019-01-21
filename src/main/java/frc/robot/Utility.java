@@ -11,4 +11,14 @@ package frc.robot;
  * Add your docs here.
  */
 public class Utility {
+
+    public double conformAngle(double angle) {
+    
+        while(angle < 0) {
+          angle += 360;
+        }
+    
+        return angle;
+      }
+
 }
