@@ -7,20 +7,30 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDOutput;
+import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class AbsTurn extends Command {
+public class AbsTurnPID extends Command {
 
   private double m_angle; // angle to turn to in degrees
   private boolean m_turnLeft; // whether to turn left or not
+  private PIDController m_turnPID;
+
   /**
    * Turns the robot on the spot to the gyro angle provided
    *
    * @param angle the angle to turn to in degrees
    */
-  public AbsTurn(double angle) {
+  public AbsTurnPID(double angle) {
+         
     requires(Robot.m_driveTrain);
+   
+    //DUMMY P I and D values
+    m_turnPID = new PIDController(0.1, 0.0, 0.0, (PIDSource) Robot.m_driveTrain.getGyro(), 
+      (PIDOutput) new Object());
     this.m_angle = Robot.m_driveTrain.conformAngle(angle);
   }
 
@@ -31,28 +41,30 @@ public class AbsTurn extends Command {
     //both true: current angle is 1 degree, angle to turn to is 45
     //both false: current angle is 356 degrees, angle to turn to is 1
     //both cases require turn left
-    m_turnLeft = ((m_angle - Robot.m_driveTrain.getGyroAngle()) > 0 == Math.abs(m_angle - Robot.m_driveTrain.getGyroAngle()) <= 180);
+    m_turnPID.enable();
+    m_turnPID.setInputRange(0, 360);
+    m_turnPID.setOutputRange(-0.8, 0.8);
+    m_turnPID.setContinuous(true);
+    m_turnPID.setAbsoluteTolerance(2);
+    m_turnPID.setSetpoint(m_angle);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (m_turnLeft) {
-      Robot.m_driveTrain.mecanumDrive(0.0, 0.0, -0.3);
-    } else {
-      Robot.m_driveTrain.mecanumDrive(0.0, 0.0, 0.3);
-    }
+    Robot.m_driveTrain.mecanumDrive(0.0, 0.0, m_turnPID.get());
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return (Math.abs(Robot.m_driveTrain.getGyroAngle() - m_angle) < 2); // within 2 degrees
+    return m_turnPID.onTarget();
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    m_turnPID.disable();
     Robot.m_driveTrain.stop();
   }
 

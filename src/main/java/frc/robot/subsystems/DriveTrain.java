@@ -97,4 +97,8 @@ public class DriveTrain extends Subsystem {
     double angle = conformAngle(m_gyro.getAngle() % 360.0);
     return angle;
   }
+
+  public AHRS getGyro() {
+    return m_gyro;
+  }
 }
