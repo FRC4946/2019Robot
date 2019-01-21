@@ -17,19 +17,17 @@ import frc.robot.RobotMap;
 public class GrabberSubsystem extends Subsystem {
 
   private Solenoid m_grabSolenoid;
-  private boolean m_grabberUp;
 
   public GrabberSubsystem() {
     m_grabSolenoid = new Solenoid(RobotMap.PCM_SOLGRABBER);
   }
 
   public void setGrabber(boolean isUP) {
-    m_grabberUp = isUP;
-    m_grabSolenoid.set(m_grabberUp);
+    m_grabSolenoid.set(isUP);
   }
 
   public boolean getGrabberPosition() {
-    return m_grabberUp;
+    return m_grabSolenoid.get();
   }
 
   @Override
