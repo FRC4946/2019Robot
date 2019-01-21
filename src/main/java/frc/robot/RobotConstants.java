@@ -11,6 +11,8 @@ package frc.robot;
  * Class containing all the constants used by the robot
  */
 public class RobotConstants {
+
+   //PID
   public static final double LIMELIGHT_TURN_KP = -0.1; // kP for limelight turn
   public static final double LIMELIGHT_TURN_KI = 0.0; // kI for limelight turn
   public static final double LIMELIGHT_TURN_KD = 0.0; // kD for limelight turn
@@ -19,5 +21,23 @@ public class RobotConstants {
   public static final double LIMELIGHT_DISTANCE_KI = 0.0;
   public static final double LIMELIGHT_DISTANCE_KD = 0.0;
 
+  public static final double CAN_DRIVE_LEFT_FRONT_KP = 0.1;
+  public static final double CAN_DRIVE_LEFT_FRONT_KI = 0.0;
+  public static final double CAN_DRIVE_LEFT_FRONT_KD = 0.0;
+
+  public static final double CAN_DRIVE_LEFT_BACK_KP = 0.1;
+  public static final double CAN_DRIVE_LEFT_BACK_KI = 0.1;
+  public static final double CAN_DRIVE_LEFT_BACK_KD = 0.1;
+
+  public static final double CAN_DRIVE_RIGHT_FRONT_KP = 0.1;
+  public static final double CAN_DRIVE_RIGHT_FRONT_KI = 0.0;
+  public static final double CAN_DRIVE_RIGHT_FRONT_KD = 0.0;
+
+  public static final double CAN_DRIVE_RIGHT_BACK_KP = 0.1;
+  public static final double CAN_DRIVE_RIGHT_BACK_KI = 0.0;
+  public static final double CAN_DRIVE_RIGHT_BACK_KD = 0.0;
+
   public static final double MIN_AIM_COMMAND = 0.05;
+  
+  public static final double JOYSTICK_DEADZONE = 0.05;
 }

@@ -7,12 +7,22 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class JoystickDrive extends Command {
+public class PIDDriveStraightDist extends Command {
 
-  public JoystickDrive() {
+  double dist, speed;
+  boolean isHorizontal; 
+  PIDController frontLeft, backLeft, frontRight, backRight;
+
+  public PIDDriveStraightDist(double dist, double speed, boolean isHorizontal) {
+    
+    this.dist = dist;
+    this.speed = speed;
+    this.isHorizontal = isHorizontal;
+
     requires(Robot.m_driveTrain);
   }
 
@@ -24,10 +34,6 @@ public class JoystickDrive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_driveTrain.mecanumDrive(
-        Robot.m_oi.getDriveStick().getY(), 
-        Robot.m_oi.getDriveStick().getX(),
-        Robot.m_oi.getDriveStick().getZ());
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -39,13 +45,11 @@ public class JoystickDrive extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.m_driveTrain.stop();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.m_driveTrain.stop();
   }
 }
