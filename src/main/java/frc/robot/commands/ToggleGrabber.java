@@ -13,7 +13,7 @@ import frc.robot.Robot;
 
 public class ToggleGrabber extends Command {
 
-  public ToggleGrabber(boolean isOpen) {
+  public ToggleGrabber() {
     requires(Robot.m_grabberSubsystem);
   }
 

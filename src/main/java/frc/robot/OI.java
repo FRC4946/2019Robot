@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.drivetrain.JoystickDriveAbs;
-import frc.robot.commands.GrabberCommand;
+import frc.robot.commands.ToggleGrabber;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -61,7 +61,7 @@ public class OI {
 
     buttonA.whileHeld(new JoystickDriveAbs());
 
-    m_testButton.whenPressed(new GrabberCommand());
+    m_testButton.whenPressed(new ToggleGrabber());
   }
 
 }
