@@ -47,7 +47,6 @@ public class OI {
 
   private Joystick m_driveStick = new Joystick(RobotMap.USB_DS_DRIVESTICK);
   private Joystick m_operatorStick = new Joystick(RobotMap.USB_DS_OPERATORSTICK);
-
   private Button buttonA = new JoystickButton(m_driveStick, 1);
 
   public Joystick getDriveStick() {
@@ -58,6 +57,7 @@ public class OI {
     // TODO: Bind buttons to commands
 
     buttonA.whileHeld(new JoystickDriveAbs());
+    buttonA.whileHeld();
 
   }
 
