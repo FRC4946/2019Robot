@@ -40,7 +40,7 @@ public class Limelight extends Subsystem {
     double angle = 45; // angle of mounting respective of roof
     double distance; // distance from object to robot
 
-    distance = (height * -1) / Math.tan(angle + yOffset);
+    distance = (height * -1) / Math.tan(angle + ty.getDouble(0));
 
     return (distance);
   }

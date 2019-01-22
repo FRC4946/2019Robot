@@ -19,7 +19,7 @@ import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import frc.robot.Robot;
 import frc.robot.RobotConstants;
 import frc.robot.RobotMap;
-import frc.robot.commands.JoystickDrive;
+import frc.robot.commands.drivetrain.JoystickDrive;
 
 /**
  * TODO: Document

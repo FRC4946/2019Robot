@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
@@ -14,6 +14,7 @@ public class AbsTurn extends Command {
 
   private double m_angle; // angle to turn to in degrees
   private boolean m_turnLeft; // whether to turn left or not
+
   /**
    * Turns the robot on the spot to the gyro angle provided
    *

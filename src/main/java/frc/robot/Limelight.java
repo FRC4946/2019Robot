@@ -109,10 +109,27 @@ public class Limelight {
      * @throws IndexOutOfBoundsException if the pipeine number is not between 0 and 9
      */
     public void setPipeline(int pipeline) {
+
         if (pipeline > 9 || pipeline < 0) {
             throw new IndexOutOfBoundsException("Pipeline Index Is Out Of Bounds");
         }
         m_networkTable.getEntry("pipeline").setNumber(pipeline);
     }
 
+    /**
+     * Estimates the distance to a detected strip of reflective tape on the field floor
+     * @return estimated distance in metres
+     */
+    public double findDistance() {
+
+        //having a findDistance() function or an analogous function may be useful, though we will likely 
+        //not be using these calculations
+
+        //it may be more useful to just use tx, ty, and ta as raw values?? calculations may be inaccurate
+
+        double height = 1; // In metres
+        double angle = 45; // angle of mounting respective of roof
+    
+        return (height * -1) / Math.tan(angle + m_ty.getDouble(0));
+    }
 }

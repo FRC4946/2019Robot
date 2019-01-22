@@ -5,14 +5,14 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class AbortAuto extends Command {
+public class JoystickDrive extends Command {
 
-  public AbortAuto() {
+  public JoystickDrive() {
     requires(Robot.m_driveTrain);
   }
 
@@ -24,22 +24,28 @@ public class AbortAuto extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    Robot.m_driveTrain.mecanumDrive(
+        Robot.m_oi.getDriveStick().getY(), 
+        Robot.m_oi.getDriveStick().getX(),
+        Robot.m_oi.getDriveStick().getZ());
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.m_driveTrain.stop();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Robot.m_driveTrain.stop();
   }
 }
