@@ -8,27 +8,48 @@
 package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.PIDOutput;
+import edu.wpi.first.wpilibj.PIDSource;
+import edu.wpi.first.wpilibj.command.PIDCommand;
 import frc.robot.Robot;
+import frc.robot.RobotConstants;
 
-public class PIDDriveStraightDist extends Command {
+public class PIDDriveStraightDist extends PIDCommand {
 
-  double dist, speed;
-  boolean isHorizontal; 
-  PIDController frontLeft, backLeft, frontRight, backRight;
+  double m_dist, m_maxSpeed;
+  boolean m_isHorizontal; 
+  PIDController m_frontLeft, m_backLeft, m_frontRight, m_backRight;
 
-  public PIDDriveStraightDist(double dist, double speed, boolean isHorizontal) {
+  public PIDDriveStraightDist(double dist, double maxSpeed, boolean isHorizontal) {
     
-    this.dist = dist;
-    this.speed = speed;
-    this.isHorizontal = isHorizontal;
+    super(RobotConstants.CAN_DRIVE_KP, RobotConstants.CAN_DRIVE_KI, RobotConstants.CAN_DRIVE_KD);
 
     requires(Robot.m_driveTrain);
+
+    m_dist = dist;
+    m_maxSpeed = maxSpeed;
+    m_isHorizontal = isHorizontal;
+
+    /*
+    m_frontLeft = new PIDController(RobotConstants.CAN_DRIVE_LEFT_FRONT_KP, RobotConstants.CAN_DRIVE_LEFT_FRONT_KI, 
+      RobotConstants.CAN_DRIVE_LEFT_FRONT_KD, Robot.m_driveTrain.getLeftFrontEnc(), Robot.m_driveTrain.getLeftFront());
+    
+    m_frontRight = new PIDController(RobotConstants.CAN_DRIVE_RIGHT_FRONT_KP, RobotConstants.CAN_DRIVE_RIGHT_FRONT_KI,
+      RobotConstants.CAN_DRIVE_RIGHT_FRONT_KD, Robot.m_driveTrain.getRightFrontEnc(), Robot.m_driveTrain.getRightFront());
+    
+    m_backLeft = new PIDController(RobotConstants.CAN_DRIVE_LEFT_BACK_KP, RobotConstants.CAN_DRIVE_LEFT_BACK_KI, 
+      RobotConstants.CAN_DRIVE_LEFT_BACK_KD, Robot.m_driveTrain.getLeftFrontEnc(), Robot.m_driveTrain.getLeftFront());
+
+    m_backRight = new PIDController(RobotConstants.CAN_DRIVE_RIGHT_BACK_KP, RobotConstants.CAN_DRIVE_RIGHT_BACK_KI,
+      RobotConstants.CAN_DRIVE_RIGHT_BACK_KD, Robot.m_driveTrain.getRightBackEnc(), Robot.m_driveTrain.getRightBack());
+    */
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.m_driveTrain.resetEncs();
+    setSetpoint(m_dist);
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -51,5 +72,24 @@ public class PIDDriveStraightDist extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+  }
+
+  @Override
+  protected double returnPIDInput() {
+    if(m_isHorizontal) {
+      return - Robot.m_driveTrain.getLeftBackEnc().getDistance() + Robot.m_driveTrain.getLeftFrontEnc().getDistance() 
+        - Robot.m_driveTrain.getRightFrontEnc().getDistance() + Robot.m_driveTrain.getRightBackEnc().getDistance();
+    } else {
+      return Robot.m_driveTrain.getLeftBackEnc().getDistance() + Robot.m_driveTrain.getLeftFrontEnc().getDistance() 
+        + Robot.m_driveTrain.getRightFrontEnc().getDistance() + Robot.m_driveTrain.getRightBackEnc().getDistance();
+    }
+  }
+
+  @Override
+  protected void usePIDOutput(double output) {
+    Robot.m_driveTrain.getLeftFront().pidWrite(output);
+    Robot.m_driveTrain.getRightFront().pidWrite(-output);
+    Robot.m_driveTrain.getLeftBack().pidWrite(-output);
+    Robot.m_driveTrain.getRightBack().pidWrite(output);
   }
 }

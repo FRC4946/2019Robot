@@ -85,11 +85,50 @@ public class DriveTrain extends Subsystem {
     m_mecanumDrive.driveCartesian(deadzone(Y), deadzone(X), deadzone(Z), getGyroAngle());
   }
   
+  public void resetEncs() {
+    m_leftFrontEnc.reset();
+    m_rightFrontEnc.reset();
+    m_leftBackEnc.reset();
+    m_rightBackEnc.reset();
+  }
+
   public double getGyroAngle() {
     return Robot.m_utility.conformAngle(m_gyro.getAngle() % 360.0);
   }
 
   public AHRS getGyro() {
     return m_gyro;
+  }
+
+  public CANSparkMax getLeftFront() {
+    return m_leftFront;
+  }
+
+  public CANSparkMax getRightFront() {
+    return m_rightFront;
+  }
+
+  public CANSparkMax getLeftBack() {
+    return m_leftBack;
+  }
+
+  public CANSparkMax getRightBack() {
+    return m_rightBack;
+  }
+
+  public Encoder getLeftFrontEnc() {
+    return m_leftFrontEnc;
+  }
+
+  public Encoder getRightFrontEnc() {
+    return m_rightFrontEnc;
+  }
+
+  public Encoder getLeftBackEnc() {
+    return m_leftBackEnc;
+  }
+
+  public Encoder getRightBackEnc() {
+    return m_rightBackEnc;
   }
 }
