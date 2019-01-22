@@ -11,8 +11,10 @@ import edu.wpi.first.wpilibj.command.PIDCommand;
 import frc.robot.Robot;
 import frc.robot.RobotConstants;
 
-//TODO : Add handling for cases where limelight is detecting more than one object
-
+/**
+ * Turns the robot so that it is aligned with whatever the robot is detecting on the limelight
+ * @author Jacob4649
+ */
 public class LimelightTurn extends PIDCommand {
 
   private double m_maxSpeed;

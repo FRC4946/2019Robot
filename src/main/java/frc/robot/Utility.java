@@ -18,7 +18,7 @@ public class Utility {
           angle += 360;
         }
     
-        return angle;
+        return angle % 360; //if angle returns greater than 360
       }
 
 }
