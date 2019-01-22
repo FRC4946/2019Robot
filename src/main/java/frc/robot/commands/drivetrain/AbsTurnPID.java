@@ -77,6 +77,7 @@ public class AbsTurnPID extends PIDCommand {
 
   @Override
   protected void usePIDOutput(double output) {
-    Robot.m_driveTrain.mecanumDrive(0.0, 0.0, Math.min(m_maxSpeed, output));
+    Robot.m_driveTrain.mecanumDrive(0.0, 0.0, 
+      Math.abs(output) > Math.abs(m_maxSpeed) ? m_maxSpeed : output);
   }
 }

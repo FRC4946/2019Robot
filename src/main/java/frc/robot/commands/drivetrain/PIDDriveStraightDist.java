@@ -8,8 +8,6 @@
 package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.PIDOutput;
-import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import frc.robot.Robot;
 import frc.robot.RobotConstants;
@@ -87,9 +85,19 @@ public class PIDDriveStraightDist extends PIDCommand {
 
   @Override
   protected void usePIDOutput(double output) {
-    Robot.m_driveTrain.getLeftFront().pidWrite(output);
-    Robot.m_driveTrain.getRightFront().pidWrite(-output);
-    Robot.m_driveTrain.getLeftBack().pidWrite(-output);
-    Robot.m_driveTrain.getRightBack().pidWrite(output);
+
+    output = Math.abs(output) > Math.abs(m_maxSpeed) ? m_maxSpeed : output;
+
+    if(m_isHorizontal) {
+      Robot.m_driveTrain.getLeftFront().pidWrite(output);
+      Robot.m_driveTrain.getRightFront().pidWrite(-output);
+      Robot.m_driveTrain.getLeftBack().pidWrite(-output);
+      Robot.m_driveTrain.getRightBack().pidWrite(output);
+    } else {
+      Robot.m_driveTrain.getLeftFront().pidWrite(output);
+      Robot.m_driveTrain.getRightFront().pidWrite(output);
+      Robot.m_driveTrain.getLeftBack().pidWrite(output);
+      Robot.m_driveTrain.getRightBack().pidWrite(output);
+    }
   }
 }
