@@ -14,7 +14,6 @@ public class AbortAuto extends Command {
 
   public AbortAuto() {
     requires(Robot.m_driveTrain);
-    requires(Robot.m_limelight);
   }
 
   // Called just before this Command runs the first time
