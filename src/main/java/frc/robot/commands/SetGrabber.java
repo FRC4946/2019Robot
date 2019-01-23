@@ -11,16 +11,19 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 
-public class GrabberCommand extends Command {
+public class SetGrabber extends Command {
 
-  public GrabberCommand() {
+  boolean m_setClose;
+
+  public SetGrabber(boolean setClose) {
     requires(Robot.m_grabberSubsystem);
+    m_setClose = setClose;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.m_grabberSubsystem.setGrabber(Robot.m_grabberSubsystem.getGrabberPosition());
+    Robot.m_grabberSubsystem.setGrabber(m_setClose);
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -31,7 +34,7 @@ public class GrabberCommand extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true

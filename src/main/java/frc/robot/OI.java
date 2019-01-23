@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.drivetrain.JoystickDriveAbs;
+import frc.robot.commands.SetGrabber;
 import frc.robot.commands.ToggleGrabber;
 
 /**
@@ -48,7 +49,9 @@ public class OI {
 
   private Joystick m_driveStick = new Joystick(RobotMap.USB_DS_DRIVESTICK);
   private Joystick m_operatorStick = new Joystick(RobotMap.USB_DS_OPERATORSTICK);
-  private Button m_testButton = new JoystickButton(m_driveStick, 1);
+  private Button m_AButton = new JoystickButton(m_driveStick, 0);
+  private Button m_BButton = new JoystickButton(m_driveStick, 1);
+  private Button m_XButton = new JoystickButton(m_driveStick, 2);
 
   private Button buttonA = new JoystickButton(m_driveStick, 1);
 
@@ -61,7 +64,9 @@ public class OI {
 
     buttonA.whileHeld(new JoystickDriveAbs());
 
-    m_testButton.whenPressed(new ToggleGrabber());
+    m_AButton.whenPressed(new SetGrabber(true));
+    m_BButton.whenPressed(new SetGrabber(false));
+    //m_XButton.whenPressed(new ToggleGrabber());
   }
 
 }
