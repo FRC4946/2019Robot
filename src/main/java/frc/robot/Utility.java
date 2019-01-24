@@ -8,7 +8,7 @@
 package frc.robot;
 
 /**
- * Add your docs here.
+ * Utility functions.
  */
 public class Utility {
 
