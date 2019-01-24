@@ -9,26 +9,13 @@ package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import frc.robot.Robot;
-import frc.robot.RobotConstants;
 
 //TODO : Tuning
 
-/**
- * Turns the robot so that it is aligned with whatever the robot is detecting on the limelight
- * @author Jacob4649
- */
-public class LimelightTurn extends PIDCommand {
-
-  private double m_maxSpeed;
-
-  /**
-   * Turns the robot so that it is aligned with whatever the robot is detecting on
-   * the limelight
-   *
-   * @param maxSpeed the maximum speed of the turn as a fraction
-   */
-  public LimelightTurn(double maxSpeed) {
-    super(RobotConstants.LIMELIGHT_TURN_KP, RobotConstants.LIMELIGHT_TURN_KI, RobotConstants.LIMELIGHT_TURN_KD);
+public class AlignWithTarget extends PIDCommand {
+  
+  public AlignWithTarget() {
+    super(0.2, 0.0, 0.0);
     requires(Robot.m_driveTrain);
 
     getPIDController().setInputRange(-20.5, 20.5);
@@ -67,16 +54,13 @@ public class LimelightTurn extends PIDCommand {
     end();
   }
 
-  // returns the value the pid controller is using as an input
   @Override
-  protected double returnPIDInput() {
-    return Robot.m_limelight.getOffset()[0]; // returns the horizontal distance from center of the object detected by the limelight
+  public double returnPIDInput() {
+    return Robot.m_limelight.getOffset()[0];
   }
 
-  // processes the pid output, sends new values to motors and stuff
   @Override
-  protected void usePIDOutput(double output) {
-    // drives at the outputted speed, or the max speed
-    Robot.m_driveTrain.mecanumDrive(0.0, 0.0, output);
+  public void usePIDOutput(double output) {
+    Robot.m_driveTrain.mecanumDrive(0.0, output, 0.0);
   }
 }
