@@ -38,7 +38,7 @@ public class DriveTrain extends Subsystem {
     m_rightFront = new CANSparkMax(RobotMap.CAN_DRIVE_RIGHT_FRONT, MotorType.kBrushless);
     m_rightBack = new CANSparkMax(RobotMap.CAN_DRIVE_RIGHT_BACK, MotorType.kBrushless);
 
-    m_mecanumDrive = new MecanumDrive(m_leftFront, m_rightFront, m_leftBack, m_rightBack);
+    m_mecanumDrive = new MecanumDrive(m_leftFront, m_leftBack, m_rightFront, m_rightBack);
     m_gyro = new AHRS(Port.kMXP);
 
   }
