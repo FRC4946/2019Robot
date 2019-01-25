@@ -67,7 +67,7 @@ public class DriveTrain extends Subsystem {
    * @param Z The rate of rotation for the robot
    */
   public void mecanumDrive(double Y, double X, double Z) {
-    m_mecanumDrive.driveCartesian(deadzone(Y), deadzone(X), deadzone(Z));
+    m_mecanumDrive.driveCartesian(deadzone(-Y), deadzone(X), deadzone(Z));
   }
 
   public void stop() {
@@ -82,7 +82,7 @@ public class DriveTrain extends Subsystem {
    * @param Z The rate of rotation for the robot
    */
   public void mecanumDriveAbs(double Y, double X, double Z) {
-    m_mecanumDrive.driveCartesian(deadzone(Y), deadzone(X), deadzone(Z), getGyroAngle());
+    m_mecanumDrive.driveCartesian(deadzone(-Y), deadzone(X), deadzone(Z), getGyroAngle());
   }
   
   public void resetEncs() {

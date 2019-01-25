@@ -83,9 +83,9 @@ public class Limelight {
      */
     public void setLED(boolean on) {
         if (on) {
-            m_networkTable.getEntry("ledMode").setNumber(1);    
+            m_networkTable.getEntry("ledMode").setNumber(0);    
         } else {
-            m_networkTable.getEntry("ledMode").setNumber(0);
+            m_networkTable.getEntry("ledMode").setNumber(1);
         }
         
     }

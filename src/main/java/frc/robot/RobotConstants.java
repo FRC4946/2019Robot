@@ -47,5 +47,5 @@ public class RobotConstants {
 
   public static final double MIN_AIM_COMMAND = 0.05;
   
-  public static final double JOYSTICK_DEADZONE = 0.05;
+  public static final double JOYSTICK_DEADZONE = 0.2;
 }
