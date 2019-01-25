@@ -57,8 +57,6 @@ public class OI {
     // TODO: Bind buttons to commands
 
     buttonA.whileHeld(new JoystickDriveAbs());
-    buttonA.whileHeld();
-
   }
 
 }
