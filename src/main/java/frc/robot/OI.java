@@ -52,8 +52,7 @@ public class OI {
   private Button m_AButton = new JoystickButton(m_driveStick, 0);
   private Button m_BButton = new JoystickButton(m_driveStick, 1);
   private Button m_XButton = new JoystickButton(m_driveStick, 2);
-
-  private Button buttonA = new JoystickButton(m_driveStick, 1);
+  private Button m_YButton = new JoystickButton(m_driveStick, 3);
 
   public Joystick getDriveStick() {
     return m_driveStick;
@@ -62,7 +61,7 @@ public class OI {
   public OI() {
     // TODO: Bind buttons to commands
 
-    buttonA.whileHeld(new JoystickDriveAbs());
+    m_YButton.whileHeld(new JoystickDriveAbs());
 
     m_AButton.whenPressed(new SetGrabber(true));
     m_BButton.whenPressed(new SetGrabber(false));
