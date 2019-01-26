@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.GrabberSubsystem;
+import frc.robot.subsystems.Intake;
 import frc.robot.Limelight;
 import frc.robot.commands.autonomous.TestAuto;
 
@@ -31,6 +32,7 @@ public class Robot extends TimedRobot {
   public static Limelight m_limelight = new Limelight();
   public static Climber m_climber = new Climber();
   public static GrabberSubsystem m_grabberSubsystem = new GrabberSubsystem();
+  public static Intake m_intake = new Intake();
   public static Utility m_utility = new Utility();
   public static OI m_oi = new OI();
 
