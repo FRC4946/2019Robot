@@ -31,7 +31,6 @@ public class DriveTrain extends Subsystem {
   private PIDController m_leftFrontPID, m_leftBackPID, m_rightFrontPID, m_rightBackPID, m_gyroPID;
   private MecanumDrive m_mecanumDrive;
   private AHRS m_gyro;
-  
 
   private boolean pidEnabled;
 
@@ -75,8 +74,9 @@ public class DriveTrain extends Subsystem {
     m_mecanumDrive.driveCartesian(0.0, 0.0, 0.0);
   }
 
-   /**
-   * Drives on the desired vector relative to the field while turning at the set speed
+  /**
+   * Drives on the desired vector relative to the field while turning at the set
+   * speed
    *
    * @param Y The forwards speed for the robot
    * @param X The sideways speed for the robot
@@ -85,7 +85,7 @@ public class DriveTrain extends Subsystem {
   public void mecanumDriveAbs(double Y, double X, double Z) {
     m_mecanumDrive.driveCartesian(deadzone(-Y), deadzone(X), deadzone(Z), getGyroAngle());
   }
-  
+
   public void resetEncs() {
     m_leftFrontEnc.reset();
     m_rightFrontEnc.reset();
