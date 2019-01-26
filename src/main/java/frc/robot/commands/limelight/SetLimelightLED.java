@@ -10,7 +10,7 @@ package frc.robot.commands.limelight;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-/** 
+/**
  * Turns on or off the leds on the limelight
  */
 public class SetLimelightLED extends Command {
@@ -18,6 +18,7 @@ public class SetLimelightLED extends Command {
 
   /**
    * Turns the leds on the limelight on or off
+   *
    * @param m_ledOn turn the LED on?
    */
   public SetLimelightLED(boolean m_ledOn) {

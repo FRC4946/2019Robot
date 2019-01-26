@@ -16,10 +16,11 @@ public class TimedIntake extends Command {
   double time, speed;
   Timer timer = new Timer();
 
-  /** Runs the intake at the desired speed for the desired amount of time
+  /**
+   * Runs the intake at the desired speed for the desired amount of time
    *
    * @param speed the speed to run the intake at as a fraction of its max speed
-   * @param time the  time  to run the intake for in seconds
+   * @param time  the time to run the intake for in seconds
    */
   public TimedIntake(double speed, double time) {
     requires(Robot.m_intake);

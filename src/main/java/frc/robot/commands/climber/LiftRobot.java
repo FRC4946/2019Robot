@@ -12,12 +12,11 @@ import frc.robot.Robot;
 
 public class LiftRobot extends Command {
   double m_speed;
+
   public LiftRobot(double climberSpeed) {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
     requires(Robot.m_climber);
     m_speed = climberSpeed;
-    }
+  }
 
   // Called just before this Command runs the first time
   @Override

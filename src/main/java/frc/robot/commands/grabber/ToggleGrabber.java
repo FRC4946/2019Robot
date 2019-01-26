@@ -10,7 +10,6 @@ package frc.robot.commands.grabber;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-
 public class ToggleGrabber extends Command {
 
   public ToggleGrabber() {

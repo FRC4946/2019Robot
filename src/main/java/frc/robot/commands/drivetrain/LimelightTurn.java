@@ -14,7 +14,9 @@ import frc.robot.RobotConstants;
 //TODO : Tuning
 
 /**
- * Turns the robot so that it is aligned with whatever the robot is detecting on the limelight
+ * Turns the robot so that it is aligned with whatever the robot is detecting on
+ * the limelight
+ *
  * @author Jacob4649
  */
 public class LimelightTurn extends PIDCommand {
@@ -32,7 +34,7 @@ public class LimelightTurn extends PIDCommand {
     requires(Robot.m_driveTrain);
 
     getPIDController().setInputRange(-20.5, 20.5);
-    getPIDController().setOutputRange(0.2, 0.8); //Dummy numbers, will need to be updates
+    getPIDController().setOutputRange(0.2, 0.8); // Dummy numbers, will need to be updates
     getPIDController().setContinuous(false);
     getPIDController().setAbsoluteTolerance(4.0);
   }
@@ -67,10 +69,11 @@ public class LimelightTurn extends PIDCommand {
     end();
   }
 
-  // returns the value the pid controller is using as an input
+  // Returns the value the pid controller is using as an input, in this case
+  // the horizontal distance from center of the object detected by the limelight
   @Override
   protected double returnPIDInput() {
-    return Robot.m_limelight.getOffset()[0]; // returns the horizontal distance from center of the object detected by the limelight
+    return Robot.m_limelight.getOffset()[0];
   }
 
   // processes the pid output, sends new values to motors and stuff

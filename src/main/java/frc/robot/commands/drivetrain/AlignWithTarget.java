@@ -13,13 +13,13 @@ import frc.robot.Robot;
 //TODO : Tuning
 
 public class AlignWithTarget extends PIDCommand {
-  
+
   public AlignWithTarget() {
     super(0.2, 0.0, 0.0);
     requires(Robot.m_driveTrain);
 
     getPIDController().setInputRange(-20.5, 20.5);
-    getPIDController().setOutputRange(0.2, 0.8); //Dummy numbers, will need to be updates
+    getPIDController().setOutputRange(0.2, 0.8); // Dummy numbers, will need to be updates
     getPIDController().setContinuous(false);
     getPIDController().setAbsoluteTolerance(4.0);
   }
