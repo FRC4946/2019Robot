@@ -48,4 +48,7 @@ public class RobotMap {
   public static final int CAN_DRIVE_RIGHT_FRONT_ENCB = 5;
   public static final int CAN_DRIVE_RIGHT_BACK_ENCA = 6;
   public static final int CAN_DRIVE_RIGHT_BACK_ENCB = 7;
+
+  // dummy port used
+  public static final int PCM_SOLGRABBER = 0;
 }
