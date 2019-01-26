@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Grabber;
 import frc.robot.subsystems.Intake;
@@ -33,6 +34,7 @@ public class Robot extends TimedRobot {
   public static Climber m_climber = new Climber();
   public static Grabber m_grabber = new Grabber();
   public static Intake m_intake = new Intake();
+  public static Elevator m_elevator = new Elevator();
   public static OI m_oi = new OI();
 
   Command m_autonomousCommand;
