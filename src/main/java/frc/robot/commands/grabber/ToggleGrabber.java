@@ -13,13 +13,13 @@ import frc.robot.Robot;
 public class ToggleGrabber extends Command {
 
   public ToggleGrabber() {
-    requires(Robot.m_grabberSubsystem);
+    requires(Robot.m_grabber);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.m_grabberSubsystem.setGrabber(!Robot.m_grabberSubsystem.getGrabberPosition());
+    Robot.m_grabber.setGrabber(!Robot.m_grabber.getGrabberPosition());
   }
 
   // Called repeatedly when this Command is scheduled to run

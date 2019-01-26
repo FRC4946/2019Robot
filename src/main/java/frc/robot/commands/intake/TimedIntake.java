@@ -13,8 +13,8 @@ import frc.robot.Robot;
 
 public class TimedIntake extends Command {
 
-  double time, speed;
-  Timer timer = new Timer();
+  private double m_time, m_speed;
+  private Timer m_timer = new Timer();
 
   /**
    * Runs the intake at the desired speed for the desired amount of time
@@ -24,21 +24,21 @@ public class TimedIntake extends Command {
    */
   public TimedIntake(double speed, double time) {
     requires(Robot.m_intake);
-    this.speed = speed;
-    this.time = time;
+    m_time = speed;
+    m_time = time;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    timer.start();
+    m_timer.start();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (timer.get() < time) {
-      Robot.m_intake.runAll(speed);
+    if (m_timer.get() < m_time) {
+      Robot.m_intake.runAll(m_speed);
     } else {
       Robot.m_intake.stopAll();
     }
@@ -47,7 +47,7 @@ public class TimedIntake extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return timer.get() >= time;
+    return m_timer.get() >= m_time;
   }
 
   // Called once after isFinished returns true

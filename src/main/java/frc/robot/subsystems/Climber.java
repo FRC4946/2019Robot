@@ -30,11 +30,10 @@ public class Climber extends Subsystem {
 
   private SpeedControllerGroup m_liftMotors = new SpeedControllerGroup(m_leftFront, m_leftBack, m_rightFront, m_rightBack);
 
-  public Climber(){
-
+  public Climber() {
   }
 
-  public void setClimber(double climberSpeed){
+  public void setClimber(double climberSpeed) {
     m_liftMotors.set(climberSpeed);
   }
 
@@ -44,6 +43,5 @@ public class Climber extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-
   }
 }

@@ -11,7 +11,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class LiftRobot extends Command {
-  double m_speed;
+
+  private double m_speed;
 
   public LiftRobot(double climberSpeed) {
     requires(Robot.m_climber);

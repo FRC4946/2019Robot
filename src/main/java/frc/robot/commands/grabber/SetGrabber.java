@@ -12,17 +12,17 @@ import frc.robot.Robot;
 
 public class SetGrabber extends Command {
 
-  boolean m_setClose;
+  private boolean m_setClose;
 
   public SetGrabber(boolean setClose) {
-    requires(Robot.m_grabberSubsystem);
+    requires(Robot.m_grabber);
     m_setClose = setClose;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.m_grabberSubsystem.setGrabber(m_setClose);
+    Robot.m_grabber.setGrabber(m_setClose);
   }
 
   // Called repeatedly when this Command is scheduled to run
