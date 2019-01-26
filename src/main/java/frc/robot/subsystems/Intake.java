@@ -19,12 +19,12 @@ import frc.robot.RobotMap;
  */
 public class Intake extends Subsystem {
 
-  CANSparkMax m_outerLeft = new CANSparkMax(RobotMap.CAN_INTAKE_OUTER_LEFT, MotorType.kBrushless);
-  CANSparkMax m_outerRight = new CANSparkMax(RobotMap.CAN_INTAKE_OUTER_RIGHT, MotorType.kBrushless);
-  CANSparkMax m_innerLeft = new CANSparkMax(RobotMap.CAN_INTAKE_INNER_LEFT, MotorType.kBrushless);
-  CANSparkMax m_innerRight = new CANSparkMax(RobotMap.CAN_INTAKE_INNER_RIGHT, MotorType.kBrushless);
+  private CANSparkMax m_outerLeft = new CANSparkMax(RobotMap.CAN_INTAKE_OUTER_LEFT, MotorType.kBrushless);
+  private CANSparkMax m_outerRight = new CANSparkMax(RobotMap.CAN_INTAKE_OUTER_RIGHT, MotorType.kBrushless);
+  private CANSparkMax m_innerLeft = new CANSparkMax(RobotMap.CAN_INTAKE_INNER_LEFT, MotorType.kBrushless);
+  private CANSparkMax m_innerRight = new CANSparkMax(RobotMap.CAN_INTAKE_INNER_RIGHT, MotorType.kBrushless);
 
-  DigitalInput m_bannerSensor = new DigitalInput(RobotMap.INTAKE_BANNER_SENSOR);
+  private DigitalInput m_bannerSensor = new DigitalInput(RobotMap.INTAKE_BANNER_SENSOR);
 
   /**
    * Runs the outer intake at the desired speed

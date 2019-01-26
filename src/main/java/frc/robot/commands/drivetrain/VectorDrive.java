@@ -17,8 +17,8 @@ public class VectorDrive extends Command {
   private Timer m_timer;
 
   /**
-   * Moves the robot at the desired speed for the desired time.
-   * Must be timed out in a command group or with an executor or it will run indefinitely
+   * Moves the robot at the desired speed for the desired time. Must be timed out
+   * in a command group or with an executor or it will run indefinitely
    *
    * @param verticalSpeed   the speed for the robot to move forwards/backwards at
    *                        as a fraction of its maximum speed

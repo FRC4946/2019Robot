@@ -9,6 +9,7 @@ package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.Utilities;
 
 public class AbsTurn extends Command {
 
@@ -22,17 +23,18 @@ public class AbsTurn extends Command {
    */
   public AbsTurn(double angle) {
     requires(Robot.m_driveTrain);
-    this.m_angle = Robot.m_utility.conformAngle(angle);
+    this.m_angle = Utilities.conformAngle(angle);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    //turns left if these conditions are both true or both false
-    //both true: current angle is 1 degree, angle to turn to is 45
-    //both false: current angle is 356 degrees, angle to turn to is 1
-    //both cases require turn left
-    m_turnLeft = ((m_angle - Robot.m_driveTrain.getGyroAngle()) > 0 == Math.abs(m_angle - Robot.m_driveTrain.getGyroAngle()) <= 180);
+    // turns left if these conditions are both true or both false
+    // both true: current angle is 1 degree, angle to turn to is 45
+    // both false: current angle is 356 degrees, angle to turn to is 1
+    // both cases require turn left
+    m_turnLeft = ((m_angle - Robot.m_driveTrain.getGyroAngle()) > 0 == Math
+        .abs(m_angle - Robot.m_driveTrain.getGyroAngle()) <= 180);
   }
 
   // Called repeatedly when this Command is scheduled to run

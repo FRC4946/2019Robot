@@ -11,9 +11,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class JoystickDriveAbs extends Command {
+
   public JoystickDriveAbs() {
     requires(Robot.m_driveTrain);
-    
   }
 
   // Called just before this Command runs the first time
@@ -25,7 +25,7 @@ public class JoystickDriveAbs extends Command {
   @Override
   protected void execute() {
     Robot.m_driveTrain.mecanumDriveAbs(
-        Robot.m_oi.getDriveStick().getY(), 
+        Robot.m_oi.getDriveStick().getY(),
         Robot.m_oi.getDriveStick().getX(),
         Robot.m_oi.getDriveStick().getZ());
   }

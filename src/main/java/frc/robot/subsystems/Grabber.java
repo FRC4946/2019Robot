@@ -14,11 +14,11 @@ import frc.robot.RobotMap;
 /**
  * TODO: Document
  */
-public class GrabberSubsystem extends Subsystem {
+public class Grabber extends Subsystem {
 
   private Solenoid m_grabSolenoid;
 
-  public GrabberSubsystem() {
+  public Grabber() {
     m_grabSolenoid = new Solenoid(RobotMap.PCM_SOLGRABBER);
   }
 
