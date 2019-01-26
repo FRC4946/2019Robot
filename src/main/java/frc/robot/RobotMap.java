@@ -43,6 +43,9 @@ public class RobotMap {
   public static final int CAN_INTAKE_INNER_LEFT = 8;
   public static final int CAN_INTAKE_INNER_RIGHT = 9;
 
+  // Elevator motor ports (dummy ports used)
+  public static final int CAN_RUN_ELEVATOR = 0; 
+
   // Drive train encoder ports
   public static final int DIO_DRIVE_LEFT_FRONT_ENCA = 0;
   public static final int DIO_DRIVE_LEFT_FRONT_ENCB = 1;
@@ -58,4 +61,11 @@ public class RobotMap {
 
   // dummy port used
   public static final int PCM_SOLGRABBER = 0;
+  public static final int PCM_ELEVATOR_BREAK = 1;
+
+  // Intake sensor ports
+  public static final int INTAKE_BANNER_SENSOR = 0;
+
+  // Elevator potentiometer (Dummy ports used)
+  public static final int ANALOG_ELEVATOR_POT = 1;
 }
