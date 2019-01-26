@@ -12,13 +12,13 @@ package frc.robot;
  */
 public class Utility {
 
-    public double conformAngle(double angle) {
-    
-        while(angle < 0) {
-          angle += 360;
-        }
-    
-        return angle % 360; //if angle returns greater than 360
-      }
+  public double conformAngle(double angle) {
+
+    while (angle < 0) {
+      angle += 360;
+    }
+
+    return angle % 360; // if angle returns greater than 360
+  }
 
 }
