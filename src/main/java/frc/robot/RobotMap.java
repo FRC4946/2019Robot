@@ -29,9 +29,18 @@ public class RobotMap {
   public static final int USB_DS_OPERATORSTICK = 1;
 
   // Drive train motor ports
-  public static final int CAN_DRIVE_LEFT_FRONT = 0;
-  public static final int CAN_DRIVE_LEFT_BACK = 1;
+  public static final int CAN_DRIVE_LEFT_FRONT = 1;
+  public static final int CAN_DRIVE_LEFT_BACK = 0;
   public static final int CAN_DRIVE_RIGHT_FRONT = 2;
   public static final int CAN_DRIVE_RIGHT_BACK = 3;
 
+  //Drive train encoder ports
+  public static final int CAN_DRIVE_LEFT_FRONT_ENCA = 0;
+  public static final int CAN_DRIVE_LEFT_FRONT_ENCB = 1;
+  public static final int CAN_DRIVE_LEFT_BACK_ENCA = 2;
+  public static final int CAN_DRIVE_LEFT_BACK_ENCB = 3;
+  public static final int CAN_DRIVE_RIGHT_FRONT_ENCA = 4;
+  public static final int CAN_DRIVE_RIGHT_FRONT_ENCB = 5;
+  public static final int CAN_DRIVE_RIGHT_BACK_ENCA = 6;
+  public static final int CAN_DRIVE_RIGHT_BACK_ENCB = 7;
 }

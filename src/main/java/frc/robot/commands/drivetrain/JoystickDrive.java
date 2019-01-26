@@ -5,10 +5,11 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotConstants;
 
 public class JoystickDrive extends Command {
 
@@ -24,8 +25,10 @@ public class JoystickDrive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_driveTrain.mecanumDrive(Robot.m_oi.getDriveStick().getY(), Robot.m_oi.getDriveStick().getX(),
-        Robot.m_oi.getDriveStick().getZ());
+    Robot.m_driveTrain.mecanumDrive(
+      Robot.m_oi.getDriveStick().getRawAxis(1)*0.5, 
+      Robot.m_oi.getDriveStick().getRawAxis(0)*0.5,
+      Robot.m_oi.getDriveStick().getRawAxis(4)*0.5);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -37,11 +40,13 @@ public class JoystickDrive extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.m_driveTrain.stop();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Robot.m_driveTrain.stop();
   }
 }

@@ -5,50 +5,61 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import frc.robot.Robot;
 import frc.robot.RobotConstants;
 
-//TODO : Add handling for cases where limelight is detecting more than one object
+public class AbsTurnPID extends PIDCommand {
 
-public class LimelightTurn extends PIDCommand {
-
-  private double m_maxSpeed;
+  private double m_angle, m_maxSpeed; // angle to turn to in degrees
 
   /**
-   * Turns the robot so that it is aligned with whatever the robot is detecting on
-   * the limelight
+   * Turns the robot on the spot to the gyro angle provided
    *
-   * @param maxSpeed the maximum speed of the turn as a fraction
+   * @param angle the angle to turn to in degrees
    */
-  public LimelightTurn(double maxSpeed) {
-    super(RobotConstants.LIMELIGHT_TURN_KP, RobotConstants.LIMELIGHT_TURN_KI, RobotConstants.LIMELIGHT_TURN_KD);
+  public AbsTurnPID(double angle, double maxSpeed) {
+    
+    //DUMMY P I and D values
+    super(RobotConstants.CAN_DRIVE_GYRO_TURN_KP, 
+      RobotConstants.CAN_DRIVE_GYRO_TURN_KI, RobotConstants.CAN_DRIVE_GYRO_TURN_KD);
+
     requires(Robot.m_driveTrain);
 
-    this.m_maxSpeed = maxSpeed;
+    m_angle = Robot.m_utility.conformAngle(angle);
+    m_maxSpeed = maxSpeed;
+
+    getPIDController().setInputRange(0.0, 360.0);
+    getPIDController().setOutputRange(-0.8, 0.8);
+    getPIDController().setContinuous(true);
+    getPIDController().setAbsoluteTolerance(2.0);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    getPIDController().enable();
+    getPIDController().setSetpoint(m_angle);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return getPIDController().onTarget();
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    getPIDController().disable();
     Robot.m_driveTrain.stop();
   }
 
@@ -59,16 +70,14 @@ public class LimelightTurn extends PIDCommand {
     end();
   }
 
-  // returns the value the pid controller is using as an input
   @Override
   protected double returnPIDInput() {
-    return 0; // returns the distance from center of the object detected by the limelight
+    return Robot.m_driveTrain.getGyroAngle();
   }
 
-  // processes the pid output, sends new values to motors and stuff
   @Override
   protected void usePIDOutput(double output) {
-    // drives at the outputted speed, or the max speed
-    Robot.m_driveTrain.mecanumDrive(0.0, 0.0, Math.min(output, m_maxSpeed));
+    Robot.m_driveTrain.mecanumDrive(0.0, 0.0, 
+      Math.abs(output) > Math.abs(m_maxSpeed) ? m_maxSpeed : output);
   }
 }

@@ -5,54 +5,40 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.drivetrain;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.PIDCommand;
 import frc.robot.Robot;
 
-public class AbsTurn extends Command {
+//TODO : Tuning
 
-  private double m_angle; // angle to turn to in degrees
-  private boolean m_turnLeft; // whether to turn left or not
-
-  /**
-   * Turns the robot on the spot to the gyro angle provided
-   *
-   * @param angle the angle to turn to in degrees
-   */
-  public AbsTurn(double angle) {
+public class AlignWithTarget extends PIDCommand {
+  
+  public AlignWithTarget() {
+    super(0.2, 0.0, 0.0);
     requires(Robot.m_driveTrain);
-    this.m_angle = angle;
+
+    getPIDController().setInputRange(-20.5, 20.5);
+    getPIDController().setOutputRange(0.2, 0.8); //Dummy numbers, will need to be updates
+    getPIDController().setContinuous(false);
+    getPIDController().setAbsoluteTolerance(4.0);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    m_turnLeft = ((m_angle - Robot.m_driveTrain.getGyroAngle()) > 0);
+    getPIDController().enable();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (m_turnLeft) {
-      if (m_angle - Robot.m_driveTrain.getGyroAngle() >= 180) {
-        Robot.m_driveTrain.mecanumDrive(0.0, 0.0, 0.3);
-      } else {
-        Robot.m_driveTrain.mecanumDrive(0.0, 0.0, -0.3);
-      }
-    } else {
-      if (Robot.m_driveTrain.getGyroAngle() >= 180) {
-        Robot.m_driveTrain.mecanumDrive(0.0, 0.0, -0.3);
-      } else {
-        Robot.m_driveTrain.mecanumDrive(0.0, 0.0, 0.3);
-      }
-    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return (Math.abs(Robot.m_driveTrain.getGyroAngle() - m_angle) < 2); // within 2 degrees
+    return getPIDController().onTarget();
   }
 
   // Called once after isFinished returns true
@@ -66,5 +52,15 @@ public class AbsTurn extends Command {
   @Override
   protected void interrupted() {
     end();
+  }
+
+  @Override
+  public double returnPIDInput() {
+    return Robot.m_limelight.getOffset()[0];
+  }
+
+  @Override
+  public void usePIDOutput(double output) {
+    Robot.m_driveTrain.mecanumDrive(0.0, output, 0.0);
   }
 }

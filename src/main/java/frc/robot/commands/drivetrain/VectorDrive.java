@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -18,19 +18,18 @@ public class VectorDrive extends Command {
 
   /**
    * Moves the robot at the desired speed for the desired time.
+   * Must be timed out in a command group or with an executor or it will run indefinitely
    *
    * @param verticalSpeed   the speed for the robot to move forwards/backwards at
    *                        as a fraction of its maximum speed
    * @param horizontalSpeed the speed for the robot to move left/right at as a
    *                        fraction of its maximum speed
-   * @param time            the amount time for the robot to move in seconds
    */
-  public VectorDrive(double verticalSpeed, double horizontalSpeed, double time) {
+  public VectorDrive(double verticalSpeed, double horizontalSpeed) {
     requires(Robot.m_driveTrain);
 
     this.m_horizontalSpeed = horizontalSpeed;
     this.m_verticalSpeed = verticalSpeed;
-    this.m_time = time;
 
     m_timer = new Timer();
   }
@@ -38,23 +37,18 @@ public class VectorDrive extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    m_timer.start();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (m_timer.get() < m_time) {
-      Robot.m_driveTrain.mecanumDrive(m_verticalSpeed, m_horizontalSpeed, 0.0);
-    } else {
-      Robot.m_driveTrain.stop();
-    }
+    Robot.m_driveTrain.mecanumDrive(m_verticalSpeed, m_horizontalSpeed, 0.0);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return m_timer.get() >= m_time;
+    return false;
   }
 
   // Called once after isFinished returns true

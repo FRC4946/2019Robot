@@ -5,13 +5,12 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.subsystems;
+package frc.robot.deprecated;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import frc.robot.commands.Vision;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * TODO: Document
@@ -41,7 +40,7 @@ public class Limelight extends Subsystem {
     double angle = 45; // angle of mounting respective of roof
     double distance; // distance from object to robot
 
-    distance = (height * -1) / Math.tan(angle + yOffset);
+    distance = (height * -1) / Math.tan(angle + ty.getDouble(0));
 
     return (distance);
   }
