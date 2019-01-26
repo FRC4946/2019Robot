@@ -5,48 +5,40 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.intake;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class TimedIntake extends Command {
-  
-  double time, speed;
-  Timer timer = new Timer();
+public class IntakeUntilBall extends Command {
 
-  /** Runs the intake at the desired speed for the desired amount of time
-   * 
-   * @param speed the speed to run the intake at as a fraction of its max speed
-   * @param time the  time  to run the intake for in seconds
+  /**
+   * Runs the intake backwards (intakes) until a ball is detected
    */
-  public TimedIntake(double speed, double time) {
+  public IntakeUntilBall() {
     requires(Robot.m_intake);
-    this.speed = speed;
-    this.time = time;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    timer.start();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (timer.get() < time) {
-      Robot.m_intake.runAll(speed);
+    if (!Robot.m_intake.getIsBall()) {
+      Robot.m_intake.runAll(-0.8); // not max speed (yet?)
     } else {
       Robot.m_intake.stopAll();
     }
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return timer.get() >= time;
+    return Robot.m_intake.getIsBall();
   }
 
   // Called once after isFinished returns true

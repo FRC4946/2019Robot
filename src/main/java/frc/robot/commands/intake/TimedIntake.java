@@ -5,41 +5,54 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.intake;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class LiftRobot extends Command {
-  double m_speed;
-  public LiftRobot(double climberSpeed) {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-    requires(Robot.m_climber);
-    m_speed = climberSpeed;
-    }
+public class TimedIntake extends Command {
+
+  double time, speed;
+  Timer timer = new Timer();
+
+  /** Runs the intake at the desired speed for the desired amount of time
+   *
+   * @param speed the speed to run the intake at as a fraction of its max speed
+   * @param time the  time  to run the intake for in seconds
+   */
+  public TimedIntake(double speed, double time) {
+    requires(Robot.m_intake);
+    this.speed = speed;
+    this.time = time;
+  }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    timer.start();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_climber.setClimber(m_speed);
+    if (timer.get() < time) {
+      Robot.m_intake.runAll(speed);
+    } else {
+      Robot.m_intake.stopAll();
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return timer.get() >= time;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.m_climber.stopClimber();
+    Robot.m_intake.stopAll();
   }
 
   // Called when another command which requires one or more of the same

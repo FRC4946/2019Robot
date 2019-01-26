@@ -11,8 +11,8 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.drivetrain.JoystickDriveAbs;
-import frc.robot.commands.SetGrabber;
-import frc.robot.commands.ToggleGrabber;
+import frc.robot.commands.grabber.SetGrabber;
+import frc.robot.commands.grabber.ToggleGrabber;
 
 /**
  * This class is the glue that binds the controls on the physical operator
