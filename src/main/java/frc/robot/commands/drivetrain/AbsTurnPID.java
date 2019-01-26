@@ -10,6 +10,7 @@ package frc.robot.commands.drivetrain;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import frc.robot.Robot;
 import frc.robot.RobotConstants;
+import frc.robot.Utilities;
 
 public class AbsTurnPID extends PIDCommand {
 
@@ -21,14 +22,14 @@ public class AbsTurnPID extends PIDCommand {
    * @param angle the angle to turn to in degrees
    */
   public AbsTurnPID(double angle, double maxSpeed) {
-    
+
     //DUMMY P I and D values
-    super(RobotConstants.CAN_DRIVE_GYRO_TURN_KP, 
+    super(RobotConstants.CAN_DRIVE_GYRO_TURN_KP,
       RobotConstants.CAN_DRIVE_GYRO_TURN_KI, RobotConstants.CAN_DRIVE_GYRO_TURN_KD);
 
     requires(Robot.m_driveTrain);
 
-    m_angle = Robot.m_utility.conformAngle(angle);
+    m_angle = Utilities.conformAngle(angle);
     m_maxSpeed = maxSpeed;
 
     getPIDController().setInputRange(0.0, 360.0);
@@ -77,7 +78,7 @@ public class AbsTurnPID extends PIDCommand {
 
   @Override
   protected void usePIDOutput(double output) {
-    Robot.m_driveTrain.mecanumDrive(0.0, 0.0, 
+    Robot.m_driveTrain.mecanumDrive(0.0, 0.0,
       Math.abs(output) > Math.abs(m_maxSpeed) ? m_maxSpeed : output);
   }
 }

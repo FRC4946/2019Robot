@@ -16,9 +16,9 @@ import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
-import frc.robot.Robot;
 import frc.robot.RobotConstants;
 import frc.robot.RobotMap;
+import frc.robot.Utilities;
 import frc.robot.commands.drivetrain.JoystickDrive;
 
 /**
@@ -94,7 +94,7 @@ public class DriveTrain extends Subsystem {
   }
 
   public double getGyroAngle() {
-    return Robot.m_utility.conformAngle(m_gyro.getAngle() % 360.0);
+    return Utilities.conformAngle(m_gyro.getAngle() % 360.0);
   }
 
   public AHRS getGyro() {

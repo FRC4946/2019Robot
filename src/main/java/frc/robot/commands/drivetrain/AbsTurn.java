@@ -9,6 +9,7 @@ package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.Utilities;
 
 public class AbsTurn extends Command {
 
@@ -22,7 +23,7 @@ public class AbsTurn extends Command {
    */
   public AbsTurn(double angle) {
     requires(Robot.m_driveTrain);
-    this.m_angle = Robot.m_utility.conformAngle(angle);
+    this.m_angle = Utilities.conformAngle(angle);
   }
 
   // Called just before this Command runs the first time

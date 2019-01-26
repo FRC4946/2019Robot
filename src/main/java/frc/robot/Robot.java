@@ -33,7 +33,6 @@ public class Robot extends TimedRobot {
   public static Climber m_climber = new Climber();
   public static Grabber m_grabber = new Grabber();
   public static Intake m_intake = new Intake();
-  public static Utility m_utility = new Utility();
   public static OI m_oi = new OI();
 
   Command m_autonomousCommand;

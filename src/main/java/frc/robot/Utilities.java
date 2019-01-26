@@ -8,11 +8,11 @@
 package frc.robot;
 
 /**
- * Utility functions.
+ * Utility functions
  */
-public class Utility {
+public class Utilities {
 
-  public double conformAngle(double angle) {
+  public static double conformAngle(double angle) {
 
     while (angle < 0) {
       angle += 360;
