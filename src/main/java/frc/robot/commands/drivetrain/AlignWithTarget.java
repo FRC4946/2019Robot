@@ -34,7 +34,7 @@ public class AlignWithTarget extends PIDCommand {
     gyroController.setAbsoluteTolerance(4);
 
     getPIDController().setInputRange(-20.5, 20.5);
-    getPIDController().setOutputRange(-0.1, 0.1); 
+    getPIDController().setOutputRange(-0.25, 0.25); 
     getPIDController().setContinuous(false);
     getPIDController().setAbsoluteTolerance(1.0);
     getPIDController().setSetpoint(0.0);
@@ -55,7 +55,8 @@ public class AlignWithTarget extends PIDCommand {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return getPIDController().onTarget();
+    //return getPIDController().onTarget();
+    return false;
   }
 
   // Called once after isFinished returns true
@@ -79,6 +80,6 @@ public class AlignWithTarget extends PIDCommand {
 
   @Override
   public void usePIDOutput(double output) {
-    Robot.m_driveTrain.mecanumDrive(0.0, -output, 0.0);
+    Robot.m_driveTrain.mecanumDrive(0.0, -output, gyroController.get());
   }
 }
