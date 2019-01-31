@@ -55,8 +55,8 @@ public class DriveTrain extends Subsystem {
     setDefaultCommand(new JoystickDrive());
   }
 
-  protected double deadzone(double input) {
-    return Math.abs(input) < RobotConstants.JOYSTICK_DEADZONE ? 0 : input;
+  public double deadzone(double input, double deadzone) {
+    return Math.abs(input) < deadzone ? 0 : input;
   }
 
   /**
@@ -67,7 +67,7 @@ public class DriveTrain extends Subsystem {
    * @param Z The rate of rotation for the robot
    */
   public void mecanumDrive(double Y, double X, double Z) {
-    m_mecanumDrive.driveCartesian(deadzone(-Y), deadzone(X), deadzone(Z));
+    m_mecanumDrive.driveCartesian(Y, X, Z);
   }
 
   public void stop() {
@@ -83,7 +83,7 @@ public class DriveTrain extends Subsystem {
    * @param Z The rate of rotation for the robot
    */
   public void mecanumDriveAbs(double Y, double X, double Z) {
-    m_mecanumDrive.driveCartesian(deadzone(-Y), deadzone(X), deadzone(Z), getGyroAngle());
+    m_mecanumDrive.driveCartesian(Y, X, Z, getGyroAngle());
   }
 
   public void resetEncs() {
@@ -94,7 +94,11 @@ public class DriveTrain extends Subsystem {
   }
 
   public double getGyroAngle() {
-    return Utilities.conformAngle(m_gyro.getAngle() % 360.0);
+    return Utilities.conformAngle(m_gyro.getAngle());
+  }
+
+  public double getGyroAngleAbs() {
+    return m_gyro.getAngle();
   }
 
   public AHRS getGyro() {

@@ -21,15 +21,13 @@ import frc.robot.RobotConstants;
  */
 public class LimelightTurn extends PIDCommand {
 
-  private double m_maxSpeed;
-
   /**
    * Turns the robot so that it is aligned with whatever the robot is detecting on
    * the limelight
    *
    * @param maxSpeed the maximum speed of the turn as a fraction
    */
-  public LimelightTurn(double maxSpeed) {
+  public LimelightTurn() {
     super(RobotConstants.LIMELIGHT_TURN_KP, RobotConstants.LIMELIGHT_TURN_KI, RobotConstants.LIMELIGHT_TURN_KD);
     requires(Robot.m_driveTrain);
 
