@@ -8,17 +8,19 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.Robot;
 
 public class AbortAuto extends Command {
 
   public AbortAuto() {
-    requires(Robot.m_driveTrain);
+    
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Scheduler.getInstance().removeAll();
   }
 
   // Called repeatedly when this Command is scheduled to run
