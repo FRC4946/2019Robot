@@ -55,11 +55,11 @@ public class DriveTrain extends Subsystem {
     setDefaultCommand(new JoystickDrive());
   }
 
-  protected double deadzone(double input) {
+  public double deadzone(double input) {
     return deadzone(input, RobotConstants.DEFAULT_DEADZONE);
   }
 
-  protected double deadzone(double input, double deadzone) {
+  public double deadzone(double input, double deadzone) {
     return Math.abs(input) < Math.abs(deadzone) ? 0 : input;
   }
 

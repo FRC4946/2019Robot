@@ -18,7 +18,6 @@ public class Vision extends Command {
   private double m_distanceErr;
   private double m_steeringAdj;
   private double m_driveAdj;
-  private double m_kP;
 
   public Vision() {
     requires(Robot.m_driveTrain);
@@ -28,7 +27,10 @@ public class Vision extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    m_kP = 0;
+    m_headingErr = m_headingErr;
+    m_distanceErr = m_distanceErr;
+    m_steeringAdj = m_steeringAdj;
+    m_driveAdj = m_driveAdj;
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -52,12 +54,12 @@ public class Vision extends Command {
         m_steeringAdj = 0.0;
 
         if (Robot.m_limelight.m_xOffset > 1.0) {
-          m_steeringAdj = m_kP * m_headingErr - RobotConstants.MIN_AIM_COMMAND;
+          //m_steeringAdj = RobotConstants.LIMELIGHT_TURN_KP * m_headingErr - RobotConstants.MIN_AIM_COMMAND;
         } else if (Robot.m_limelight.m_xOffset < 1.0) {
-          m_steeringAdj = m_kP * m_headingErr + RobotConstants.MIN_AIM_COMMAND;
+          //m_steeringAdj = RobotConstants.LIMELIGHT_TURN_KP * m_headingErr + RobotConstants.MIN_AIM_COMMAND;
         }
 
-        m_driveAdj = m_kP * (-1 * Robot.m_limelight.findDistance());
+        //m_driveAdj = RobotConstants.LIMELIGHT_DISTANCE_KP * (-1 * Robot.m_limelight.findDistance());
 
         // Driving
         Robot.m_driveTrain.mecanumDrive(m_steeringAdj + m_driveAdj, 0.0, 0.0);

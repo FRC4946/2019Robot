@@ -5,47 +5,41 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.drivetrain;
+package frc.robot.commands.limelight;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class JoystickDriveAbs extends Command {
-
-  public JoystickDriveAbs() {
-    requires(Robot.m_driveTrain);
+public class ToggleLimelightLED extends Command {
+  public ToggleLimelightLED() {
+    
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.m_limelight.setLED(!Robot.m_limelight.getLED());
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_driveTrain.mecanumDriveAbs(
-      -Robot.m_driveTrain.deadzone(Robot.m_oi.getDriveStick().getRawAxis(1) * 0.5, Robot.m_oi.getDriveStick().getRawAxis(0)*0.15 + 0.05),
-      Robot.m_driveTrain.deadzone(Robot.m_oi.getDriveStick().getRawAxis(0) * 0.5, Robot.m_oi.getDriveStick().getRawAxis(1)*0.15 + 0.05),
-      Robot.m_oi.getDriveStick().getRawAxis(4) * 0.5);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.m_driveTrain.stop();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.m_driveTrain.stop();
   }
 }
