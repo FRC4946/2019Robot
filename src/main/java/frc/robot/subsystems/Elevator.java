@@ -11,6 +11,8 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotConstants;
@@ -20,57 +22,50 @@ import frc.robot.RobotMap;
  * Add your docs here.
  */
 public class Elevator extends Subsystem {
-  private CANSparkMax m_motor; 
-  private Solenoid m_brake;
-  private AnalogPotentiometer m_analogPot;
+	private CANSparkMax m_motor; 
+  	private Solenoid m_brake;
+	private AnalogPotentiometer m_analogPot;
+	private PIDController m_PIDController;
+	  
 
 	private boolean m_isBrake = false;
 
 
 public Elevator (){
 
-  m_motor = new CANSparkMax(RobotMap.CAN_RUN_ELEVATOR, MotorType.kBrushless);
-  m_brake = new Solenoid(RobotMap.PCM_ELEVATOR_BREAK);
-  m_analogPot = new AnalogPotentiometer(RobotMap.ANALOG_ELEVATOR_POT, 
-  RobotConstants.ELEVATOR_SCALING_VALUE, RobotConstants.ELEVATOR_OFFSET_VALUE);
+	m_motor = new CANSparkMax(RobotMap.CAN_RUN_ELEVATOR, MotorType.kBrushless);
+  	m_brake = new Solenoid(RobotMap.PCM_ELEVATOR_BREAK);
+  	m_analogPot = new AnalogPotentiometer(RobotMap.ANALOG_ELEVATOR_POT, 
+		RobotConstants.ELEVATOR_SCALING_VALUE, RobotConstants.ELEVATOR_OFFSET_VALUE);
+	m_analogPot.setPIDSourceType(PIDSourceType.kDisplacement);
+	
+	//Set up PID
+	m_PIDController = new PIDController(0, 0, 0, m_analogPot, m_motor);
+	m_PIDController.setInputRange(RobotConstants.ELEVATOR_MAXIMUM_HEIGHT, RobotConstants.ELEVATOR_MINIMUM_HEIGHT);
 
+	//m_motor.setInverted(true/false); - needed??????
 }
 
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+    //setDefaultCommand(command); - if we are doing joystick
   }
-  public double getHeight() {
-		return m_analogPot.get();
-	}
 
-	public void setBrake(boolean isBrake) {
-		m_isBrake = isBrake;
-		m_brake.set(!m_isBrake);
-		// if (m_isBrake)
-		// m_brake.set(Value.kForward);
-		// else
-		// m_brake.set(Value.kReverse);
-	}
+  public void enablePID() {
+	 //
+  }
 
-	/**
-	 * Manually sets the speed of the motors.
-	 * 
-	 * @param speed
-	 *            The fraction of the motor's maximum speed the motors are to spin
-	 *            at. Ranges between -1.0 and 1.0
-	 */
-	public void set(double speed) {
+  public void getHeight(double height) {
+	  //return m_analogPot.get();
+  }
 
-		m_motor.set(speed);
+  public void setPoints(double level) {
+	m_PIDController.setSetpoint(level);
+  }
 
-	}
+  public void setBrake (boolean isBrake){
+	m_isBrake = isBrake;
+	m_brake.set(!isBrake);
+  }
 
-	/**
-	 * @return the speed of the elevator motors
-	 */
-	public double getSpeed() {
-		return m_motor.get();
-	}
 }
