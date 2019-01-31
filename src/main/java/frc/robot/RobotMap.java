@@ -57,6 +57,10 @@ public class RobotMap {
   // Intake sensor ports
   public static final int DIO_INTAKE_BANNER_SENSOR = 8;
 
+  public static final int GRABBER_ANALOG_POT = 0;
+  public static final int INNER_LIMIT_SWITCH = 10;
+  public static final int OUTER_LIMIT_SWITCH  = 11;
+
   // Intake sensor ports
   public static final int INTAKE_BANNER_SENSOR = 0;
   public static final int PCM_SOLGRABBER = 0;
@@ -65,5 +69,4 @@ public class RobotMap {
   // Elevator potentiometer (Dummy ports used)
   public static final int ANALOG_ELEVATOR_POT = 1;
   public static final int ANALOG_INTAKE_POT = 2;
-
 }
