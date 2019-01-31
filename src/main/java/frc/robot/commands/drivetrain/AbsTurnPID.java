@@ -24,7 +24,9 @@ public class AbsTurnPID extends PIDCommand {
   public AbsTurnPID(double angle, double maxSpeed) {
 
     //DUMMY P I and D values
-    super(0.02, 0, 0);
+    super(RobotConstants.CAN_DRIVE_GYRO_TURN_KP,
+      RobotConstants.CAN_DRIVE_GYRO_TURN_KI, RobotConstants.CAN_DRIVE_GYRO_TURN_KD);
+
     requires(Robot.m_driveTrain);
 
     m_angle = Utilities.conformAngle(angle);

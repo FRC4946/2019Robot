@@ -19,6 +19,10 @@ public class TestAuto extends CommandGroup {
    * Add your docs here.
    */
   public TestAuto() {
+    //addSequential(new AbortAuto());
+    addSequential(new SetLimelightLED(true));
+    addSequential(new VectorDrive(0.2, 0.0), 0.3);
     addSequential(new AlignWithTarget(), 2.5);
+    addSequential(new VectorDrive(0.2, 0.0), 0.3);
   }
 }

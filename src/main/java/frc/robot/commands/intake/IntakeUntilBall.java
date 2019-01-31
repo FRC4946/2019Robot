@@ -27,7 +27,12 @@ public class IntakeUntilBall extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-      Robot.m_intake.runAll(-0.8); 
+    if (!Robot.m_intake.getIsBall()) {
+      Robot.m_intake.runAll(-0.8); // not max speed (yet?)
+    } else {
+      Robot.m_intake.stopAll();
+    }
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
