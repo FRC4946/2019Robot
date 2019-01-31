@@ -25,24 +25,10 @@ public class JoystickDrive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-
-    if(Robot.m_oi.getDriveStick().getPOV() != -1) {
-      if(Robot.m_oi.getDriveStick().getPOV() == 90) {
-        Robot.m_driveTrain.mecanumDrive(0, 0.3, Robot.m_driveTrain.deadzone(Robot.m_oi.getDriveStick().getRawAxis(4) * 0.5, 0.05));
-      } else if(Robot.m_oi.getDriveStick().getPOV() == 270) {
-        Robot.m_driveTrain.mecanumDrive(0, -0.3, Robot.m_driveTrain.deadzone(Robot.m_oi.getDriveStick().getRawAxis(4) * 0.5, 0.05));
-      } else if(Robot.m_oi.getDriveStick().getPOV() == 0) {
-        Robot.m_driveTrain.mecanumDrive(0.3, 0, Robot.m_driveTrain.deadzone(Robot.m_oi.getDriveStick().getRawAxis(4) * 0.5, 0.05));
-      } else if(Robot.m_oi.getDriveStick().getPOV() == 180) {
-        Robot.m_driveTrain.mecanumDrive(-0.3, -0, Robot.m_driveTrain.deadzone(Robot.m_oi.getDriveStick().getRawAxis(4) * 0.5, 0.05));
-      }
-    } else {
-      Robot.m_driveTrain.mecanumDrive(
-        -Robot.m_driveTrain.deadzone(Robot.m_oi.getDriveStick().getRawAxis(1) * 0.5, Robot.m_oi.getDriveStick().getRawAxis(0)*0.25 + 0.05),
-        Robot.m_driveTrain.deadzone(Robot.m_oi.getDriveStick().getRawAxis(0) * 0.5, Robot.m_oi.getDriveStick().getRawAxis(1)*0.25 + 0.05),
-        Robot.m_driveTrain.deadzone(Robot.m_oi.getDriveStick().getRawAxis(4) * 0.5, 0.05));
-    }
-      
+    Robot.m_driveTrain.mecanumDrive(
+      Robot.m_oi.getDriveStick().getRawAxis(1) * 0.5,
+      Robot.m_oi.getDriveStick().getRawAxis(0) * 0.5,
+      Robot.m_oi.getDriveStick().getRawAxis(4) * 0.5);
   }
 
   // Make this return true when this Command no longer needs to run execute()

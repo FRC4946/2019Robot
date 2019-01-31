@@ -25,9 +25,9 @@ public class JoystickDriveAbs extends Command {
   @Override
   protected void execute() {
     Robot.m_driveTrain.mecanumDriveAbs(
-      -Robot.m_driveTrain.deadzone(Robot.m_oi.getDriveStick().getRawAxis(1) * 0.5, Robot.m_oi.getDriveStick().getRawAxis(0)*0.15 + 0.05),
-      Robot.m_driveTrain.deadzone(Robot.m_oi.getDriveStick().getRawAxis(0) * 0.5, Robot.m_oi.getDriveStick().getRawAxis(1)*0.15 + 0.05),
-      Robot.m_oi.getDriveStick().getRawAxis(4) * 0.5);
+        Robot.m_oi.getDriveStick().getY(),
+        Robot.m_oi.getDriveStick().getX(),
+        Robot.m_oi.getDriveStick().getZ());
   }
 
   // Make this return true when this Command no longer needs to run execute()

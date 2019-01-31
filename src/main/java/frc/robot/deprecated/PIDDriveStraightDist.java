@@ -20,7 +20,7 @@ public class PIDDriveStraightDist extends PIDCommand {
 
   public PIDDriveStraightDist(double dist, double maxSpeed, boolean isHorizontal) {
     
-    super(0.1, 0.0, 0.0);
+    super(RobotConstants.CAN_DRIVE_KP, RobotConstants.CAN_DRIVE_KI, RobotConstants.CAN_DRIVE_KD);
 
     requires(Robot.m_driveTrain);
 

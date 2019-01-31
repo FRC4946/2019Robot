@@ -10,9 +10,9 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.autonomous.TestAuto;
 import frc.robot.commands.drivetrain.JoystickDriveAbs;
-import frc.robot.commands.limelight.ToggleLimelightLED;
+import frc.robot.commands.grabber.SetGrabber;
+import frc.robot.commands.grabber.ToggleGrabber;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -49,10 +49,10 @@ public class OI {
 
   private Joystick m_driveStick = new Joystick(RobotMap.USB_DS_DRIVESTICK);
   private Joystick m_operatorStick = new Joystick(RobotMap.USB_DS_OPERATORSTICK);
-  private Button m_AButton = new JoystickButton(m_driveStick, 1);
-  private Button m_BButton = new JoystickButton(m_driveStick, 2);
-  private Button m_XButton = new JoystickButton(m_driveStick, 3);
-  private Button m_YButton = new JoystickButton(m_driveStick, 4);
+  private Button m_AButton = new JoystickButton(m_driveStick, 0);
+  private Button m_BButton = new JoystickButton(m_driveStick, 1);
+  private Button m_XButton = new JoystickButton(m_driveStick, 2);
+  private Button m_YButton = new JoystickButton(m_driveStick, 3);
 
   public Joystick getDriveStick() {
     return m_driveStick;
@@ -63,12 +63,9 @@ public class OI {
 
     m_YButton.whileHeld(new JoystickDriveAbs());
 
-    //m_AButton.whenPressed(new SetGrabber(true));
-    //m_BButton.whenPressed(new SetGrabber(false));
+    m_AButton.whenPressed(new SetGrabber(true));
+    m_BButton.whenPressed(new SetGrabber(false));
     //m_XButton.whenPressed(new ToggleGrabber());
-
-    m_AButton.whenPressed(new ToggleLimelightLED());
-    m_BButton.whenPressed(new TestAuto());
   }
 
 }

@@ -8,33 +8,33 @@
 package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.command.PIDCommand;
-import frc.robot.DummyPIDOutput;
 import frc.robot.Robot;
 
 //TODO : Tuning
 
-public class AlignWithTarget extends PIDCommand {
+public class AlignWithTarget extends PIDCommand implements PIDOutput {
   
   PIDController gyroController;
-  DummyPIDOutput dummyOutput;
+  DummyOutput dummyOutput;
 
   public AlignWithTarget() {
 
-    super(0.00045, 0.006, 0.0);
+    super(0.001, 0.001, 0.0);
     requires(Robot.m_driveTrain);
 
-    dummyOutput = new DummyPIDOutput();
+    dummyOutput = new DummyOutput();
 
-    gyroController = new PIDController(0.005, 0.0, 0.0, Robot.m_driveTrain.getGyro(), dummyOutput);
+    gyroController = new PIDController(0.009, 0.0, 0.0, Robot.m_driveTrain.getGyro(), dummyOutput);
     gyroController.setInputRange(0, 360.0);
     gyroController.setContinuous(true);
     gyroController.setOutputRange(-0.2, 0.2);
-    gyroController.setSetpoint(Robot.m_driveTrain.getGyroAngleAbs());
+    gyroController.setSetpoint(Robot.m_driveTrain.getGyroAngle());
     gyroController.setAbsoluteTolerance(4);
 
     getPIDController().setInputRange(-20.5, 20.5);
-    getPIDController().setOutputRange(-0.25, 0.25); 
+    getPIDController().setOutputRange(-0.2, 0.2); 
     getPIDController().setContinuous(false);
     getPIDController().setAbsoluteTolerance(1.0);
     getPIDController().setSetpoint(0.0);
@@ -44,7 +44,7 @@ public class AlignWithTarget extends PIDCommand {
   @Override
   protected void initialize() {
     gyroController.enable();
-    Robot.m_limelight.setLED(true);
+    getPIDController().enable();
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -64,6 +64,7 @@ public class AlignWithTarget extends PIDCommand {
   protected void end() {
     Robot.m_driveTrain.stop();
     gyroController.disable();
+    getPIDController().disable();
   }
 
   // Called when another command which requires one or more of the same
@@ -81,5 +82,20 @@ public class AlignWithTarget extends PIDCommand {
   @Override
   public void usePIDOutput(double output) {
     Robot.m_driveTrain.mecanumDrive(0.0, -output, gyroController.get());
+  }
+
+    
+  @Override
+  public void pidWrite(double output) {
+    //whatever
+  }
+
+}
+
+class DummyOutput implements PIDOutput {
+  
+  @Override
+  public void pidWrite(double output) {
+    //whatever
   }
 }
