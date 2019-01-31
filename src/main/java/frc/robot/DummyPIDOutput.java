@@ -5,18 +5,17 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.autonomous;
+package frc.robot;
 
-import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc.robot.commands.drivetrain.AlignWithTarget;
-import frc.robot.commands.limelight.SetLimelightLED;
+import edu.wpi.first.wpilibj.PIDOutput;
 
-public class TestAuto extends CommandGroup {
+/**
+ * Add your docs here.
+ */
+public class DummyPIDOutput implements PIDOutput{
 
-  /**
-   * Add your docs here.
-   */
-  public TestAuto() {
-    addSequential(new AlignWithTarget(), 2.5);
-  }
+    @Override
+    public void pidWrite(double output) {
+        //dum
+    }
 }
