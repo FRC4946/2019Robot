@@ -37,11 +37,7 @@ public class TimedIntake extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (m_timer.get() < m_time) {
-      Robot.m_intake.runAll(m_speed);
-    } else {
-      Robot.m_intake.stopAll();
-    }
+    Robot.m_intake.runAll(m_speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -54,6 +50,7 @@ public class TimedIntake extends Command {
   @Override
   protected void end() {
     Robot.m_intake.stopAll();
+    m_timer.stop();
   }
 
   // Called when another command which requires one or more of the same

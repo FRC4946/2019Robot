@@ -33,6 +33,7 @@ public class Robot extends TimedRobot {
   public static Climber m_climber = new Climber();
   public static Grabber m_grabber = new Grabber();
   public static Intake m_intake = new Intake();
+  public static Utilities m_utilities = new Utilities();
   public static OI m_oi = new OI();
 
   Command m_autonomousCommand;
@@ -118,6 +119,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    
     m_limelight.setLED(false);
   }
 

@@ -24,7 +24,7 @@ public class Intake extends Subsystem {
   private CANSparkMax m_innerLeft = new CANSparkMax(RobotMap.CAN_INTAKE_INNER_LEFT, MotorType.kBrushless);
   private CANSparkMax m_innerRight = new CANSparkMax(RobotMap.CAN_INTAKE_INNER_RIGHT, MotorType.kBrushless);
 
-  //private DigitalInput m_bannerSensor = new DigitalInput(RobotMap.INTAKE_BANNER_SENSOR);
+  private DigitalInput m_bannerSensor = new DigitalInput(RobotMap.DIO_INTAKE_BANNER_SENSOR);
 
   /**
    * Runs the outer intake at the desired speed
@@ -34,7 +34,7 @@ public class Intake extends Subsystem {
    */
   public void runOuter(double speed) {
     m_outerLeft.set(speed);
-    m_outerRight.set(speed);
+    m_outerRight.set(-speed);
   }
 
   /**
@@ -45,7 +45,7 @@ public class Intake extends Subsystem {
    */
   public void runInner(double speed) {
     m_innerLeft.set(speed);
-    m_innerRight.set(speed);
+    m_innerRight.set(-speed);
   }
 
   /**
@@ -86,8 +86,8 @@ public class Intake extends Subsystem {
    *
    * @return false if no ball is detected, true if a ball is detected
    */
-  public void getIsBall() {
-   // return !m_bannerSensor.get();
+  public boolean getIsBall() {
+    return !m_bannerSensor.get();
   }
 
   @Override

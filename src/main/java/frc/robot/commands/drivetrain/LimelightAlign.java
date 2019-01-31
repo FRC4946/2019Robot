@@ -5,41 +5,46 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.intake;
+package frc.robot.commands.drivetrain;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.PIDCommand;
 import frc.robot.Robot;
 
-public class IntakeUntilBall extends Command {
+public class LimelightAlign extends PIDCommand {
 
-  /**
-   * Runs the intake backwards (intakes) until a ball is detected
-   */
-  public IntakeUntilBall() {
-    requires(Robot.m_intake);
+
+  public LimelightAlign() {
+
+    super(0.02, 0.0, 0.0);
+    requires(Robot.m_driveTrain);
+    this.getPIDController().setInputRange(-27.0, 27.0);
+    this.getPIDController().setOutputRange(-0.2, 0.2);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    this.setSetpoint(0.0);
+    this.getPIDController().setSetpoint(0.0);
+    this.getPIDController().enable();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-      Robot.m_intake.runAll(-0.8); 
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Robot.m_intake.getIsBall();
+    return Math.abs(this.getPIDController().getError()) < 0.5;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.m_intake.stopAll();
+    Robot.m_driveTrain.stop();
   }
 
   // Called when another command which requires one or more of the same
@@ -47,5 +52,15 @@ public class IntakeUntilBall extends Command {
   @Override
   protected void interrupted() {
     end();
+  }
+
+  @Override
+  public double returnPIDInput() {
+    return Robot.m_limelight.getOffset()[0];
+  }
+
+  @Override
+  public void usePIDOutput(double output) {
+    Robot.m_driveTrain.mecanumDrive(0.0, output, 0.0);
   }
 }
