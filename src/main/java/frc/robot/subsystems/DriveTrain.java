@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
+import frc.robot.Robot;
 import frc.robot.RobotConstants;
 import frc.robot.RobotMap;
 import frc.robot.Utilities;
@@ -41,10 +42,10 @@ public class DriveTrain extends Subsystem {
     m_rightFront = new CANSparkMax(RobotMap.CAN_DRIVE_RIGHT_FRONT, MotorType.kBrushless);
     m_rightBack = new CANSparkMax(RobotMap.CAN_DRIVE_RIGHT_BACK, MotorType.kBrushless);
 
-    m_leftFrontEnc = new Encoder(RobotMap.CAN_DRIVE_LEFT_FRONT_ENCA, RobotMap.CAN_DRIVE_LEFT_FRONT_ENCB);
-    m_leftBackEnc = new Encoder(RobotMap.CAN_DRIVE_LEFT_BACK_ENCA, RobotMap.CAN_DRIVE_LEFT_BACK_ENCB);
-    m_rightFrontEnc = new Encoder(RobotMap.CAN_DRIVE_RIGHT_FRONT_ENCA, RobotMap.CAN_DRIVE_RIGHT_FRONT_ENCB);
-    m_rightBackEnc = new Encoder(RobotMap.CAN_DRIVE_RIGHT_BACK_ENCA, RobotMap.CAN_DRIVE_RIGHT_BACK_ENCB);
+    m_leftFrontEnc = new Encoder(RobotMap.DIO_DRIVE_LEFT_FRONT_ENCA, RobotMap.DIO_DRIVE_LEFT_FRONT_ENCB);
+    m_leftBackEnc = new Encoder(RobotMap.DIO_DRIVE_LEFT_BACK_ENCA, RobotMap.DIO_DRIVE_LEFT_BACK_ENCB);
+    m_rightFrontEnc = new Encoder(RobotMap.DIO_DRIVE_RIGHT_FRONT_ENCA, RobotMap.DIO_DRIVE_RIGHT_FRONT_ENCB);
+    m_rightBackEnc = new Encoder(RobotMap.DIO_DRIVE_RIGHT_BACK_ENCA, RobotMap.DIO_DRIVE_RIGHT_BACK_ENCB);
 
     m_mecanumDrive = new MecanumDrive(m_leftFront, m_rightFront, m_leftBack, m_rightBack);
     m_gyro = new AHRS(Port.kMXP);
@@ -94,7 +95,7 @@ public class DriveTrain extends Subsystem {
   }
 
   public double getGyroAngle() {
-    return Utilities.conformAngle(m_gyro.getAngle());
+    return Robot.m_utilities.conformAngle(m_gyro.getAngle());
   }
 
   public double getGyroAngleAbs() {
