@@ -22,8 +22,8 @@ public class Grabber extends Subsystem {
     m_grabSolenoid = new Solenoid(RobotMap.PCM_SOLGRABBER);
   }
 
-  public void setGrabber(boolean isUP) {
-    m_grabSolenoid.set(isUP);
+  public void setGrabber(boolean isUp) {
+    m_grabSolenoid.set(isUp);
   }
 
   public boolean getGrabberPosition() {
@@ -32,6 +32,5 @@ public class Grabber extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    // setDefaultCommand(new MySpecialCommand());
   }
 }
