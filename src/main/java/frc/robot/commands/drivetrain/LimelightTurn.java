@@ -30,7 +30,7 @@ public class LimelightTurn extends PIDCommand {
    * @param maxSpeed the maximum speed of the turn as a fraction
    */
   public LimelightTurn(double maxSpeed) {
-    super(RobotConstants.LIMELIGHT_TURN_KP, RobotConstants.LIMELIGHT_TURN_KI, RobotConstants.LIMELIGHT_TURN_KD);
+    super(0.02, 0, 0);
     requires(Robot.m_driveTrain);
 
     getPIDController().setInputRange(-20.5, 20.5);
