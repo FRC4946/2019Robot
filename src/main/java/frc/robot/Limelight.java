@@ -5,19 +5,18 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.subsystems;
+package frc.robot;
 
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.commands.limelight.SetLimelightLED;
 
 /**
  * Limelight Object
  *
+ * @author Jacob4649
  */
-public class Limelight extends Subsystem {
+public class Limelight {
 
   public NetworkTable m_networkTable;
   public NetworkTableEntry m_tx;
@@ -44,11 +43,6 @@ public class Limelight extends Subsystem {
     m_ta = m_networkTable.getEntry("ta");
     m_tv = m_networkTable.getEntry("tv");
     m_ts = m_networkTable.getEntry("ts");
-  }
-
-  @Override
-  public void initDefaultCommand() {
-    setDefaultCommand(new SetLimelightLED(false));
   }
 
   /**
@@ -104,14 +98,6 @@ public class Limelight extends Subsystem {
   }
 
   /**
-   * Returns true if the LED is on and false if it isn't 
-   * @return true if the LED is on
-   */
-  public boolean getLED() {
-    return (!(m_networkTable.getEntry("ledMode").getDouble(0.0) == 1.0));
-  }
-
-  /**
    * Enables or disables vision processcing on the limelight
    *
    * @param on Should vision processing be on or off
@@ -130,7 +116,7 @@ public class Limelight extends Subsystem {
    *
    * @param pipeline the pipeline to set the limelight to from 0 to 9
    * @throws IndexOutOfBoundsException if the pipeine number is not between 0 and
-   *                                   
+   *                                   9
    */
   public void setPipeline(int pipeline) {
 
@@ -140,4 +126,24 @@ public class Limelight extends Subsystem {
     m_networkTable.getEntry("pipeline").setNumber(pipeline);
   }
 
+  /**
+   * Estimates the distance to a detected strip of reflective tape on the field
+   * floor
+   *
+   * @return estimated distance in metres
+   */
+  public double findDistance() {
+
+    // having a findDistance() function or an analogous function may be useful,
+    // though we will likely
+    // not be using these calculations
+
+    // it may be more useful to just use tx, ty, and ta as raw values?? calculations
+    // may be inaccurate
+
+    double height = 1; // In metres
+    double angle = 45; // angle of mounting respective of roof
+
+    return (height * -1) / Math.tan(angle + m_ty.getDouble(0));
+  }
 }
