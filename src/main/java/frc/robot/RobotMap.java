@@ -34,10 +34,8 @@ public class RobotMap {
   public static final int CAN_DRIVE_RIGHT_FRONT = 2;
   public static final int CAN_DRIVE_RIGHT_BACK = 3;
 
-  public static final int CAN_LIFT_RIGHT_FRONT = 4;
-  public static final int CAN_LIFT_RIGHT_BACK = 5;
-  public static final int CAN_LIFT_LEFT_FRONT = 6;
-  public static final int CAN_LIFT_LEFT_BACK = 7;
+  public static final int CAN_LIFT_FRONT = 4;
+  public static final int CAN_LIFT_BACK = 5;
 
   // Intake motor ports
   public static final int CAN_INTAKE_OUTER_LEFT = 6;
@@ -46,18 +44,18 @@ public class RobotMap {
   public static final int CAN_INTAKE_INNER_RIGHT = 9;
 
   // Drive train encoder ports
-  public static final int CAN_DRIVE_LEFT_FRONT_ENCA = 0;
-  public static final int CAN_DRIVE_LEFT_FRONT_ENCB = 1;
-  public static final int CAN_DRIVE_LEFT_BACK_ENCA = 2;
-  public static final int CAN_DRIVE_LEFT_BACK_ENCB = 3;
-  public static final int CAN_DRIVE_RIGHT_FRONT_ENCA = 4;
-  public static final int CAN_DRIVE_RIGHT_FRONT_ENCB = 5;
-  public static final int CAN_DRIVE_RIGHT_BACK_ENCA = 6;
-  public static final int CAN_DRIVE_RIGHT_BACK_ENCB = 7;
+  public static final int DIO_DRIVE_LEFT_FRONT_ENCA = 0;
+  public static final int DIO_DRIVE_LEFT_FRONT_ENCB = 1;
+  public static final int DIO_DRIVE_LEFT_BACK_ENCA = 6;
+  public static final int DIO_DRIVE_LEFT_BACK_ENCB = 7;
+  public static final int DIO_DRIVE_RIGHT_FRONT_ENCA = 4;
+  public static final int DIO_DRIVE_RIGHT_FRONT_ENCB = 5;
+  public static final int DIO_DRIVE_RIGHT_BACK_ENCA = 2;
+  public static final int DIO_DRIVE_RIGHT_BACK_ENCB = 3;
+
+  // Intake sensor ports
+  public static final int DIO_INTAKE_BANNER_SENSOR = 0;
 
   // dummy port used
   public static final int PCM_SOLGRABBER = 0;
-
-  // Intake sensor ports
-  public static final int INTAKE_BANNER_SENSOR = 0;
 }

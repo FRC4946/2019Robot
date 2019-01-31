@@ -20,21 +20,16 @@ import frc.robot.RobotMap;
  * Climber subsystem
  */
 public class Climber extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
 
-  private CANSparkMax m_leftFront = new CANSparkMax(RobotMap.CAN_LIFT_LEFT_FRONT, MotorType.kBrushed);
-  private CANSparkMax m_leftBack = new CANSparkMax(RobotMap.CAN_LIFT_LEFT_BACK, MotorType.kBrushed);
-  private CANSparkMax m_rightFront = new CANSparkMax(RobotMap.CAN_LIFT_RIGHT_FRONT, MotorType.kBrushed);
-  private CANSparkMax m_rightBack = new CANSparkMax(RobotMap.CAN_LIFT_RIGHT_BACK, MotorType.kBrushed);
+  private CANSparkMax m_front = new CANSparkMax(RobotMap.CAN_LIFT_FRONT, MotorType.kBrushed);
+  private CANSparkMax m_back = new CANSparkMax(RobotMap.CAN_LIFT_BACK, MotorType.kBrushed);
 
-  private SpeedControllerGroup m_liftMotors = new SpeedControllerGroup(m_leftFront, m_leftBack, m_rightFront, m_rightBack);
-
-  public Climber() {
-  }
+  private SpeedControllerGroup m_liftMotors = new SpeedControllerGroup(m_front, m_back);
 
   public void setClimber(double climberSpeed) {
     m_liftMotors.set(climberSpeed);
+    //m_front.set(climberSpeed);
+    //m_back.set(-climberSpeed);
   }
 
   public void stopClimber() {
