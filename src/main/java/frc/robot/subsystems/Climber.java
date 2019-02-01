@@ -28,7 +28,7 @@ public class Climber extends Subsystem {
 
   public void setClimber(double climberSpeed) {
     m_front.set(climberSpeed);
-    m_front.set(-climberSpeed);
+    m_back.set(-climberSpeed);
   }
 
   public void stopClimber() {
