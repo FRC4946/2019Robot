@@ -49,7 +49,7 @@ public class RobotConstants {
 
   public static final double JOYSTICK_DEADZONE = 0.2;
 
-//Same numbers from last year because the real numbers are unknown
+  //Same numbers from last year because the real numbers are unknown
   public static final double ELEVATOR_SCALING_VALUE = 127.59;
 	public static final double ELEVATOR_OFFSET_VALUE = 0.7349;
 
