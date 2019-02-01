@@ -9,6 +9,7 @@ package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotConstants;
 
 public class JoystickDriveAbs extends Command {
 
@@ -24,10 +25,25 @@ public class JoystickDriveAbs extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_driveTrain.mecanumDriveAbs(
-        Robot.m_oi.getDriveStick().getY(),
-        Robot.m_oi.getDriveStick().getX(),
-        Robot.m_oi.getDriveStick().getZ());
+
+    if(Robot.m_oi.getDriveStick().getPOV() == 0) {
+      Robot.m_driveTrain.mecanumDriveAbs(0.25, 0, 0);
+    } else if (Robot.m_oi.getDriveStick().getPOV() == 90) {
+      Robot.m_driveTrain.mecanumDriveAbs(0, 0.25, 0);
+    } else if (Robot.m_oi.getDriveStick().getPOV() == 180) {
+      Robot.m_driveTrain.mecanumDriveAbs(-0.25, 0, 0);
+    } else if (Robot.m_oi.getDriveStick().getPOV() == 270) {
+      Robot.m_driveTrain.mecanumDriveAbs(0, -0.25, 0);
+    } else if (Robot.m_oi.getDriveStick().getPOV() == -1) {
+
+      Robot.m_driveTrain.mecanumDriveAbs(
+        Robot.m_utilities.deadzone(Robot.m_oi.getDriveStick().getY(), 
+          0.2*Robot.m_oi.getDriveStick().getX() + RobotConstants.DEFAULT_DEADZONE),
+        Robot.m_utilities.deadzone(Robot.m_oi.getDriveStick().getX(),
+          0.2*Robot.m_oi.getDriveStick().getY() + RobotConstants.DEFAULT_DEADZONE),
+        Robot.m_utilities.deadzone(Robot.m_oi.getDriveStick().getZ(), 
+          RobotConstants.DEFAULT_DEADZONE));
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

@@ -12,13 +12,21 @@ package frc.robot;
  */
 public class Utilities {
 
-  public static double conformAngle(double angle) {
+  public double conformAngle(double angle) {
 
     while (angle < 0) {
       angle += 360;
     }
 
     return angle % 360; // if angle returns greater than 360
+  }
+
+  public double deadzone(double input) {
+    return deadzone(input, RobotConstants.DEFAULT_DEADZONE);
+  }
+
+  public double deadzone(double input, double deadzone) {
+    return Math.abs(input) < Math.abs(deadzone) ? 0 : input;
   }
 
 }

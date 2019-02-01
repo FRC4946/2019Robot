@@ -28,7 +28,7 @@ public class AbsTurnPID extends PIDCommand {
 
     requires(Robot.m_driveTrain);
 
-    m_angle = Utilities.conformAngle(angle);
+    m_angle = Robot.m_utilities.conformAngle(angle);
     m_maxSpeed = maxSpeed;
 
     getPIDController().setInputRange(0.0, 360.0);
