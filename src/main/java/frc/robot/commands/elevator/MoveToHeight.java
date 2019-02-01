@@ -13,12 +13,14 @@ import frc.robot.RobotConstants;
 
 public class MoveToHeight extends Command {
   
-  double m_height;
+  //TODO: FINISH
+  double m_height, m_speed;
 	int onTargetCount = 0;
 
-  public MoveToHeight(double height) {
+  public MoveToHeight(double height, double speed) {
     requires (Robot.m_elevator);
     m_height = height;
+    m_speed = speed;
   }
 
   // Called just before this Command runs the first time
@@ -38,6 +40,11 @@ public class MoveToHeight extends Command {
 
     //Robot.m_elevator.setSetpoint(setpoint); (related to the PID part of the subsystem)
 
+		// Limit the setpoint to the appropriate bounds, and apply it to the elevator
+		m_height = Math.min(m_height, RobotConstants.ELEVATOR_MAXIMUM_HEIGHT);
+    m_height = Math.max(m_height, RobotConstants.ELEVATOR_MINIMUM_HEIGHT);
+    
+    Robot.m_elevator.setElevator(m_speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
