@@ -13,7 +13,11 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.Grabber;
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Limelight;
+import frc.robot.commands.autonomous.TestAuto;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,9 +27,14 @@ import frc.robot.subsystems.Limelight;
  * project.
  */
 public class Robot extends TimedRobot {
+
   public static DriveTrain m_driveTrain = new DriveTrain();
   public static Limelight m_limelight = new Limelight();
-  public static OI m_oi;
+  public static Climber m_climber = new Climber();
+  public static Grabber m_grabber = new Grabber();
+  public static Intake m_intake = new Intake();
+  public static OI m_oi = new OI();
+  public static Utilities m_utilities = new Utilities();
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -36,10 +45,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    m_oi = new OI();
-    m_chooser.setDefaultOption("Default Auto", null); // TODO: Implement autonomous command
-    // m_chooser.addOption("My Auto", new MyAutoCommand());
-    SmartDashboard.putData("Auto mode", m_chooser);
+    m_chooser.setDefaultOption("Align With Target", new TestAuto()); // TODO: Implement autonomous command
+    SmartDashboard.putData("Auto Mode", m_chooser);
   }
 
   /**
@@ -90,7 +97,6 @@ public class Robot extends TimedRobot {
      * autonomousCommand = new ExampleCommand(); break; }
      */
 
-    // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.start();
     }

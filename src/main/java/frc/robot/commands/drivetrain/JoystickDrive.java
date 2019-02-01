@@ -5,29 +5,16 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.drivetrain;
 
-import edu.wpi.first.wpilibj.command.PIDCommand;
+import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotConstants;
 
-//TODO : Add handling for cases where limelight is detecting more than one object
+public class JoystickDrive extends Command {
 
-public class LimelightTurn extends PIDCommand {
-
-  private double m_maxSpeed;
-
-  /**
-   * Turns the robot so that it is aligned with whatever the robot is detecting on
-   * the limelight
-   *
-   * @param maxSpeed the maximum speed of the turn as a fraction
-   */
-  public LimelightTurn(double maxSpeed) {
-    super(RobotConstants.LIMELIGHT_TURN_KP, RobotConstants.LIMELIGHT_TURN_KI, RobotConstants.LIMELIGHT_TURN_KD);
+  public JoystickDrive() {
     requires(Robot.m_driveTrain);
-
-    this.m_maxSpeed = maxSpeed;
   }
 
   // Called just before this Command runs the first time
@@ -38,6 +25,26 @@ public class LimelightTurn extends PIDCommand {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+
+    if(Robot.m_oi.getDriveStick().getPOV() == 0) {
+      Robot.m_driveTrain.mecanumDrive(0.25, 0, 0);
+    } else if (Robot.m_oi.getDriveStick().getPOV() == 90) {
+      Robot.m_driveTrain.mecanumDrive(0, 0.25, 0);
+    } else if (Robot.m_oi.getDriveStick().getPOV() == 180) {
+      Robot.m_driveTrain.mecanumDrive(-0.25, 0, 0);
+    } else if (Robot.m_oi.getDriveStick().getPOV() == 270) {
+      Robot.m_driveTrain.mecanumDrive(0, -0.25, 0);
+    } else if (Robot.m_oi.getDriveStick().getPOV() == -1) {
+
+      Robot.m_driveTrain.mecanumDrive(
+        Robot.m_utilities.deadzone(Robot.m_oi.getDriveStick().getRawAxis(1) * 0.5, 
+          0.2*Robot.m_oi.getDriveStick().getRawAxis(0) + RobotConstants.DEFAULT_DEADZONE),
+        Robot.m_utilities.deadzone(Robot.m_oi.getDriveStick().getRawAxis(0) * 0.5, 
+          0.2*Robot.m_oi.getDriveStick().getRawAxis(1) + RobotConstants.DEFAULT_DEADZONE),
+        Robot.m_utilities.deadzone(Robot.m_oi.getDriveStick().getRawAxis(4) * 0.5,
+          RobotConstants.DEFAULT_DEADZONE));
+    }
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -56,19 +63,6 @@ public class LimelightTurn extends PIDCommand {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
-  }
-
-  // returns the value the pid controller is using as an input
-  @Override
-  protected double returnPIDInput() {
-    return 0; // returns the distance from center of the object detected by the limelight
-  }
-
-  // processes the pid output, sends new values to motors and stuff
-  @Override
-  protected void usePIDOutput(double output) {
-    // drives at the outputted speed, or the max speed
-    Robot.m_driveTrain.mecanumDrive(0.0, 0.0, Math.min(output, m_maxSpeed));
+    Robot.m_driveTrain.stop();
   }
 }

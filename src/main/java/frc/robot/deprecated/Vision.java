@@ -5,12 +5,12 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.deprecated;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.RobotConstants;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Vision extends Command {
 
@@ -37,13 +37,13 @@ public class Vision extends Command {
   @Override
   protected void execute() {
     // Periodic Updates To Info
-    Robot.m_limelight.xOffset = Robot.m_limelight.tx.getDouble(0.0); // Coordinate updates
-    Robot.m_limelight.yOffset = Robot.m_limelight.ty.getDouble(0.0);
-    Robot.m_limelight.area = Robot.m_limelight.ta.getDouble(0.0);
-    Robot.m_limelight.detected = Robot.m_limelight.tv.getDouble(0); // see if limelight has detected anytihng
-    SmartDashboard.putNumber("LimelightX", Robot.m_limelight.xOffset); // Dashboard updates
-    SmartDashboard.putNumber("LimelightY", Robot.m_limelight.yOffset);
-    SmartDashboard.putNumber("LimelightArea", Robot.m_limelight.area);
+    Robot.m_limelight.m_xOffset = Robot.m_limelight.m_tx.getDouble(0.0); // Coordinate updates
+    Robot.m_limelight.m_yOffset = Robot.m_limelight.m_ty.getDouble(0.0);
+    Robot.m_limelight.m_area = Robot.m_limelight.m_ta.getDouble(0.0);
+    Robot.m_limelight.m_detected = Robot.m_limelight.m_tv.getDouble(0); // see if limelight has detected anytihng
+    SmartDashboard.putNumber("LimelightX", Robot.m_limelight.m_xOffset); // Dashboard updates
+    SmartDashboard.putNumber("LimelightY", Robot.m_limelight.m_yOffset);
+    SmartDashboard.putNumber("LimelightArea", Robot.m_limelight.m_area);
 
     
     

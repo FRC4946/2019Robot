@@ -5,22 +5,31 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.limelight;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.Robot;
 
-public class AbortAuto extends Command {
+/**
+ * Turns on or off the leds on the limelight
+ */
+public class SetLimelightLED extends Command {
 
-  public AbortAuto() {
-    
+  private boolean m_ledOn;
+
+  /**
+   * Turns the leds on the limelight on or off
+   *
+   * @param m_ledOn turn the LED on?
+   */
+  public SetLimelightLED(boolean m_ledOn) {
+    this.m_ledOn = m_ledOn;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Scheduler.getInstance().removeAll();
+    Robot.m_limelight.setLED(m_ledOn);
   }
 
   // Called repeatedly when this Command is scheduled to run
