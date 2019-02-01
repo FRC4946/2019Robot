@@ -14,15 +14,12 @@ package frc.robot;
  * floating around.
  */
 public class RobotMap {
-    public static final int PCM_SOLGRABBER = 0;
-    // dummy port used
-  // For example to map the left and right motors, you could define the
-  // following variables to use with your drivetrain subsystem.
-  // public static int leftMotor = 1;
-  // public static int rightMotor = 2;
+    public static final int PCM_SOLGRABBER = 22;
+    
+    public static final int GRABBER_ANALOG_POT = 0;
+    public static final int INNER_LIMIT_SWITCH = 10;
+    public static final int OUTER_LIMIT_SWITCH  = 11;
+    public static final int GRABBER_ENC = 3;
+    public static final int CAN_OPEN_GRABBER = 1;
 
-  // If you are using multiple modules, make sure to define both the port
-  // number and the module. For example you with a rangefinder:
-  // public static int rangefinderPort = 1;
-  // public static int rangefinderModule = 1;
 }

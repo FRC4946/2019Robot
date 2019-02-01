@@ -14,6 +14,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.GrabberAnalogPot;
+import frc.robot.subsystems.GrabberEncoder;
+import frc.robot.subsystems.GrabberLimitSwitch;
 import frc.robot.subsystems.GrabberSubsystem;
 
 /**
@@ -27,6 +30,9 @@ public class Robot extends TimedRobot {
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static OI m_oi;
   public static GrabberSubsystem m_grabberSubsystem = new GrabberSubsystem();
+  public static GrabberLimitSwitch m_grabberLimitSwitch = new GrabberLimitSwitch();
+  public static GrabberEncoder m_grabberEncoder = new GrabberEncoder();
+  public static GrabberAnalogPot m_grabberanalogPot = new GrabberAnalogPot();
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
