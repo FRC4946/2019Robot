@@ -10,7 +10,9 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.GrabberCommand;
+import frc.robot.commands.drivetrain.JoystickDriveAbs;
+import frc.robot.commands.grabber.SetGrabber;
+import frc.robot.commands.grabber.ToggleGrabber;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -20,15 +22,6 @@ public class OI {
   private Joystick drivestick = new Joystick(RobotMap.PCM_SOLGRABBER);
     private Button testButton = new JoystickButton(drivestick, 1);
     
-      public Joystick getDriveStick() {
-		
-       return drivestick;  
-    
-      }
-      public OI() {
-        testButton.whenPressed(new GrabberCommand());
-		
-	}
   
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
@@ -57,4 +50,26 @@ public class OI {
   // Start the command when the button is released and let it run the command
   // until it is finished as determined by it's isFinished method.
   // button.whenReleased(new ExampleCommand());
+
+  private Joystick m_driveStick = new Joystick(RobotMap.USB_DS_DRIVESTICK);
+  private Joystick m_operatorStick = new Joystick(RobotMap.USB_DS_OPERATORSTICK);
+  private Button m_AButton = new JoystickButton(m_driveStick, 0);
+  private Button m_BButton = new JoystickButton(m_driveStick, 1);
+  private Button m_XButton = new JoystickButton(m_driveStick, 2);
+  private Button m_YButton = new JoystickButton(m_driveStick, 3);
+
+  public Joystick getDriveStick() {
+    return m_driveStick;
+  }
+
+  public OI() {
+    // TODO: Bind buttons to commands
+
+    m_YButton.whileHeld(new JoystickDriveAbs());
+
+    m_AButton.whenPressed(new SetGrabber(true));
+    m_BButton.whenPressed(new SetGrabber(false));
+    //m_XButton.whenPressed(new ToggleGrabber());
+  }
+
 }

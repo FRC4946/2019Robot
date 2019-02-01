@@ -12,12 +12,17 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.GrabberAnalogPot;
 import frc.robot.subsystems.GrabberEncoder;
 import frc.robot.subsystems.GrabberLimitSwitch;
 import frc.robot.subsystems.GrabberSubsystem;
+import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.Grabber;
+import frc.robot.subsystems.Intake;
+import frc.robot.Limelight;
+import frc.robot.commands.autonomous.TestAuto;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -27,12 +32,18 @@ import frc.robot.subsystems.GrabberSubsystem;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
-  public static OI m_oi;
+
   public static GrabberSubsystem m_grabberSubsystem = new GrabberSubsystem();
   public static GrabberLimitSwitch m_grabberLimitSwitch = new GrabberLimitSwitch();
   public static GrabberEncoder m_grabberEncoder = new GrabberEncoder();
   public static GrabberAnalogPot m_grabberanalogPot = new GrabberAnalogPot();
+  public static DriveTrain m_driveTrain = new DriveTrain();
+  public static Limelight m_limelight = new Limelight();
+  public static Climber m_climber = new Climber();
+  public static Grabber m_grabber = new Grabber();
+  public static Intake m_intake = new Intake();
+  public static OI m_oi = new OI();
+
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -43,10 +54,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    m_oi = new OI();
-    m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
-    // chooser.addOption("My Auto", new MyAutoCommand());
-    SmartDashboard.putData("Auto mode", m_chooser);
+    m_chooser.setDefaultOption("Align With Target", new TestAuto()); // TODO: Implement autonomous command
+    SmartDashboard.putData("Auto Mode", m_chooser);
   }
 
   /**
@@ -97,7 +106,6 @@ public class Robot extends TimedRobot {
      * autonomousCommand = new ExampleCommand(); break; }
      */
 
-    // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.start();
     }
@@ -120,6 +128,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    m_limelight.setLED(false);
   }
 
   /**

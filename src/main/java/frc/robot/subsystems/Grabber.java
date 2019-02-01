@@ -7,18 +7,31 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
 
 /**
- * An example subsystem.  You can replace me with your own Subsystem.
+ * TODO: Document
  */
-public class ExampleSubsystem extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+public class Grabber extends Subsystem {
+
+  private Solenoid m_grabSolenoid;
+
+  public Grabber() {
+    m_grabSolenoid = new Solenoid(RobotMap.PCM_SOLGRABBER);
+  }
+
+  public void setGrabber(boolean isUP) {
+    m_grabSolenoid.set(isUP);
+  }
+
+  public boolean getGrabberPosition() {
+    return m_grabSolenoid.get();
+  }
 
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
 }
