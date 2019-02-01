@@ -20,7 +20,7 @@ public class DriveStraightPID extends PIDCommand {
 
   public DriveStraightPID(double dist) {
 
-    super(0.005, 0.00002, 0); //0.0075
+    super(0.0075, 0.00002, 0); //0.0075
 
     requires(Robot.m_driveTrain);
     m_dist = dist;
@@ -73,10 +73,7 @@ public class DriveStraightPID extends PIDCommand {
 
   @Override
   public double returnPIDInput() {
-    //Not yet implemented
-    //return -Robot.m_driveTrain.getAvgStraightDist();
-    
-    return 0;
+    return Robot.m_driveTrain.getAvgStraightDist();
   }
 
   @Override

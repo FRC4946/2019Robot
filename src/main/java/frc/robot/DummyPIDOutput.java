@@ -16,7 +16,5 @@ public class DummyPIDOutput implements PIDOutput {
 
     @Override
     public void pidWrite(double output) {
-
     }
-
 }

@@ -96,6 +96,11 @@ public class DriveTrain extends Subsystem {
     return Robot.m_utilities.conformAngle(m_gyro.getAngle() % 360.0);
   }
 
+  public double getAvgStraightDist() {
+    return (-m_leftFrontEnc.getDistance()  - m_leftBackEnc.getDistance() 
+      + m_rightFrontEnc.getDistance() + m_rightFrontEnc.getDistance())/4.0;
+  }
+
   public AHRS getGyro() {
     return m_gyro;
   }
