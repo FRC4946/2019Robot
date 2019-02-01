@@ -10,9 +10,9 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.drivetrain.AlignWithTarget;
 import frc.robot.commands.drivetrain.JoystickDriveAbs;
-import frc.robot.commands.grabber.SetGrabber;
-import frc.robot.commands.grabber.ToggleGrabber;
+import frc.robot.commands.limelight.ToggleLimelightLED;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -63,9 +63,8 @@ public class OI {
 
     m_YButton.whileHeld(new JoystickDriveAbs());
 
-    m_AButton.whenPressed(new SetGrabber(true));
-    m_BButton.whenPressed(new SetGrabber(false));
-    //m_XButton.whenPressed(new ToggleGrabber());
+    m_AButton.whenPressed(new ToggleLimelightLED());
+    m_BButton.whenPressed(new AlignWithTarget());
   }
 
 }
