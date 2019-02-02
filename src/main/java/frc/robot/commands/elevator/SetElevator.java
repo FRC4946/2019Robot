@@ -23,26 +23,20 @@ public class SetElevator extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    //Robot.m_elevator.disablePID(); (needed for when PID is added)
-		Robot.m_elevator.setBrake(false);
+
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-
-    if (Robot.m_elevator.getHeight() < RobotConstants.ELEVATOR_MINIMUM_HEIGHT && m_speed < 0
-      || Robot.m_elevator.getHeight() > RobotConstants.ELEVATOR_MAXIMUM_HEIGHT && m_speed > 0) {
-			Robot.m_elevator.setElevator(0);
-    } else {
       Robot.m_elevator.setElevator(m_speed);
-    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return Robot.m_elevator.getHeight() < RobotConstants.ELEVATOR_MINIMUM_HEIGHT && m_speed < 0
+    || Robot.m_elevator.getHeight() > RobotConstants.ELEVATOR_MAXIMUM_HEIGHT && m_speed > 0;
   }
 
   // Called once after isFinished returns true

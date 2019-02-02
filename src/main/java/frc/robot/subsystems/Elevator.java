@@ -22,50 +22,36 @@ import frc.robot.RobotMap;
  * Add your docs here.
  */
 public class Elevator extends Subsystem {
-	private CANSparkMax m_motor; 
-  	private Solenoid m_brake;
+
+	private CANSparkMax m_elevatorMotor; 
 	private AnalogPotentiometer m_analogPot;
-	private PIDController m_PIDController;
-	  
 
-	private boolean m_isBrake = false;
+	public Elevator (){
 
-
-public Elevator (){
-
-	m_motor = new CANSparkMax(RobotMap.CAN_RUN_ELEVATOR, MotorType.kBrushless);
-  	m_brake = new Solenoid(RobotMap.PCM_ELEVATOR_BREAK);
+		m_elevatorMotor = new CANSparkMax(RobotMap.CAN_RUN_ELEVATOR, MotorType.kBrushless);
   	m_analogPot = new AnalogPotentiometer(RobotMap.ANALOG_ELEVATOR_POT, 
-		RobotConstants.ELEVATOR_SCALING_VALUE, RobotConstants.ELEVATOR_OFFSET_VALUE);
-	m_analogPot.setPIDSourceType(PIDSourceType.kDisplacement);
-	
-	//Set up PID
-	m_PIDController = new PIDController(0, 0, 0, m_analogPot, m_motor);
-	m_PIDController.setInputRange(RobotConstants.ELEVATOR_MAXIMUM_HEIGHT, RobotConstants.ELEVATOR_MINIMUM_HEIGHT);
-
-	//m_motor.setInverted(true/false); - needed??????
-}
+			RobotConstants.ELEVATOR_SCALING_VALUE, RobotConstants.ELEVATOR_OFFSET_VALUE);
+		m_analogPot.setPIDSourceType(PIDSourceType.kDisplacement);
+	}
 
   @Override
   public void initDefaultCommand() {
-    //setDefaultCommand(command); - if we are doing joystick
+
   }
 
-  public void enablePID() {
-	 //
+  public double getHeight() {
+	  return m_analogPot.get();
   }
 
-  public void getHeight(double height) {
-	  //return m_analogPot.get();
-  }
+  public void setElevator(double speed) {
+		m_elevatorMotor.set(speed);
+	}
 
-  public void setPoints(double level) {
-	m_PIDController.setSetpoint(level);
-  }
+	public CANSparkMax getMotor() {
+		return m_elevatorMotor;
+	}
 
-  public void setBrake (boolean isBrake){
-	m_isBrake = isBrake;
-	m_brake.set(!isBrake);
-  }
-
+	public AnalogPotentiometer getPot() {
+		return m_analogPot;
+	}
 }

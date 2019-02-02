@@ -7,47 +7,41 @@
 
 package frc.robot.commands.elevator;
 
-import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.command.PIDCommand;
+import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotConstants;
 
-public class MoveToHeight extends PIDCommand {
-  
-  double m_height, m_maxSpeed;
-  PIDController m_elevatorPID;
+public class SetElevatorJoystick extends Command {
 
-  public MoveToHeight(double height, double maxSpeed) {
-
-    super(0.2, 0.0, 0.0);
-    requires (Robot.m_elevator);
-    m_height = height;
-    m_maxSpeed = maxSpeed;
-
-    m_elevatorPID = new PIDController(0.2, 0.0, 0.0, 
-      Robot.m_elevator.getPot(), Robot.m_elevator.getMotor());
+  public SetElevatorJoystick() {
+    requires(Robot.m_elevator);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    m_elevatorPID.setInputRange(RobotConstants.ELEVATOR_MINIMUM_HEIGHT, RobotConstants.ELEVATOR_MAXIMUM_HEIGHT);
-    m_elevatorPID.setOutputRange(-m_maxSpeed, m_maxSpeed);
-    m_elevatorPID.setAbsoluteTolerance(1.0);
-    m_elevatorPID.setSetpoint(m_height);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
 
+    if(Robot.m_elevator.getHeight() >= RobotConstants.ELEVATOR_MAXIMUM_HEIGHT && 
+        Robot.m_oi.getDriveStick().getRawAxis(1) >= 0 
+      || Robot.m_elevator.getHeight() <= RobotConstants.ELEVATOR_MINIMUM_HEIGHT &&
+        Robot.m_oi.getDriveStick().getRawAxis(1) <= 0) {
+         
+      Robot.m_elevator.setElevator(0);
+
+    } else {
+      Robot.m_elevator.setElevator(Robot.m_utilities.deadzone(Robot.m_oi.getDriveStick().getRawAxis(1)*0.5));
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
     return false;
-       // Robot.m_elevator.disablePID(); (needed for when PID is added)
   }
 
   // Called once after isFinished returns true
@@ -59,15 +53,5 @@ public class MoveToHeight extends PIDCommand {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-  }
-
-  @Override 
-  protected double returnPIDInput() {
-    return Robot.m_elevator.getHeight();
-  }
-
-  @Override
-  protected void usePIDOutput(double output) {
-    Robot.m_elevator.setElevator(output);
   }
 }
