@@ -12,38 +12,51 @@ import frc.robot.Robot;
 
 public class SetGrabber extends Command {
 
-  private boolean m_setClose;
+  private boolean m_setIn;
+  private double m_speed;
 
-  public SetGrabber(boolean setClose) {
+  public SetGrabber(boolean setIn, double speed) {
     requires(Robot.m_grabber);
-    m_setClose = setClose;
+    m_setIn = setIn;
+    m_speed = Math.abs(speed);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.m_grabber.setGrabber(m_setClose);
+  
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    if(m_setIn) {
+      Robot.m_grabber.setGrabber(m_speed);
+    } else {
+      Robot.m_grabber.setGrabber(-m_speed);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    if(m_setIn) {
+      return Robot.m_grabber.getGrabberIn();
+    } else {
+      return Robot.m_grabber.getGrabberOut();
+    }
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.m_grabber.setGrabber(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }
