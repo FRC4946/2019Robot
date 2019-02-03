@@ -29,11 +29,8 @@ public class DriveTrain extends Subsystem {
 
   private CANSparkMax m_leftFront, m_leftBack, m_rightFront, m_rightBack;
   private Encoder m_leftFrontEnc, m_leftBackEnc, m_rightFrontEnc, m_rightBackEnc;
-  private PIDController m_leftFrontPID, m_leftBackPID, m_rightFrontPID, m_rightBackPID, m_gyroPID;
   private MecanumDrive m_mecanumDrive;
   private AHRS m_gyro;
-
-  private boolean pidEnabled;
 
   public DriveTrain() {
 
@@ -47,6 +44,11 @@ public class DriveTrain extends Subsystem {
     m_rightFrontEnc = new Encoder(RobotMap.DIO_DRIVE_RIGHT_FRONT_ENCA, RobotMap.DIO_DRIVE_RIGHT_FRONT_ENCB);
     m_rightBackEnc = new Encoder(RobotMap.DIO_DRIVE_RIGHT_BACK_ENCA, RobotMap.DIO_DRIVE_RIGHT_BACK_ENCB);
 
+    m_leftFrontEnc.setDistancePerPulse(RobotConstants.ENC_DIST_PER_PULSE);
+    m_leftBackEnc.setDistancePerPulse(RobotConstants.ENC_DIST_PER_PULSE);
+    m_rightFrontEnc.setDistancePerPulse(RobotConstants.ENC_DIST_PER_PULSE);
+    m_rightBackEnc.setDistancePerPulse(RobotConstants.ENC_DIST_PER_PULSE);
+
     m_mecanumDrive = new MecanumDrive(m_leftFront, m_rightFront, m_leftBack, m_rightBack);
     m_gyro = new AHRS(Port.kMXP);
   }
@@ -54,14 +56,6 @@ public class DriveTrain extends Subsystem {
   @Override
   public void initDefaultCommand() {
     setDefaultCommand(new JoystickDrive());
-  }
-
-  protected double deadzone(double input) {
-    return deadzone(input, RobotConstants.JOYSTICK_DEADZONE);
-  }
-
-  protected double deadzone(double input, double deadzone) {
-    return Math.abs(input) < Math.abs(deadzone) ? 0 : input;
   }
 
   /**
@@ -72,7 +66,7 @@ public class DriveTrain extends Subsystem {
    * @param Z The rate of rotation for the robot
    */
   public void mecanumDrive(double Y, double X, double Z) {
-    m_mecanumDrive.driveCartesian(deadzone(Y), deadzone(X), deadzone(Z));
+    m_mecanumDrive.driveCartesian(Y, X, Z);
   }
 
   public void stop() {
@@ -88,7 +82,7 @@ public class DriveTrain extends Subsystem {
    * @param Z The rate of rotation for the robot
    */
   public void mecanumDriveAbs(double Y, double X, double Z) {
-    m_mecanumDrive.driveCartesian(deadzone(Y), deadzone(X), deadzone(Z), getGyroAngle());
+    m_mecanumDrive.driveCartesian(Y, X, Z);
   }
 
   public void resetEncs() {
@@ -100,6 +94,11 @@ public class DriveTrain extends Subsystem {
 
   public double getGyroAngle() {
     return Robot.m_utilities.conformAngle(m_gyro.getAngle() % 360.0);
+  }
+
+  public double getAvgStraightDist() {
+    return (-m_leftFrontEnc.getDistance()  - m_leftBackEnc.getDistance() 
+      + m_rightFrontEnc.getDistance() + m_rightFrontEnc.getDistance())/4.0;
   }
 
   public AHRS getGyro() {

@@ -16,7 +16,7 @@ import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Grabber;
 import frc.robot.subsystems.Intake;
-import frc.robot.Limelight;
+import frc.robot.subsystems.Limelight;
 import frc.robot.commands.autonomous.TestAuto;
 
 /**
@@ -35,6 +35,7 @@ public class Robot extends TimedRobot {
   public static Intake m_intake = new Intake();
   public static Utilities m_utilities = new Utilities();
   public static OI m_oi = new OI();
+  public static Utilities m_utilities = new Utilities();
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -119,7 +120,6 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    m_limelight.setLED(false);
   }
 
   /**

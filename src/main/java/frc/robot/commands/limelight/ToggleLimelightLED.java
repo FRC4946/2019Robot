@@ -5,22 +5,20 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.limelight;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.Robot;
 
-public class AbortAuto extends Command {
-
-  public AbortAuto() {
+public class ToggleLimelightLED extends Command {
+  public ToggleLimelightLED() {
     
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Scheduler.getInstance().removeAll();
+    Robot.m_limelight.setLED(!Robot.m_limelight.getLED());
   }
 
   // Called repeatedly when this Command is scheduled to run

@@ -7,15 +7,14 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.PIDOutput;
+
 /**
- * Class containing all the constants used by the robot
+ * Add your docs here.
  */
-public class RobotConstants {
+public class DummyPIDOutput implements PIDOutput {
 
-  public static final int ENC_PPR = 128;
-
-  public static final double MIN_AIM_COMMAND = 0.05;
-  public static final double DEFAULT_DEADZONE = 0.05;
-  public static final double WHEEL_DIAMETER = 6.0;
-  public static final double ENC_DIST_PER_PULSE = Math.PI*WHEEL_DIAMETER / (double) ENC_PPR;
+    @Override
+    public void pidWrite(double output) {
+    }
 }
