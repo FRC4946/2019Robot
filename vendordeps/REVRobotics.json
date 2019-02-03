@@ -1,13 +1,8 @@
 {
     "fileName": "REVRobotics.json",
     "name": "REVRobotics",
-<<<<<<< HEAD
-    "version": "1.0.28",
-    "uuid": "3f48eb8c-50fe-43a6-9cb7-44c86353c4cb",
-=======
     "version": "1.0.26",
     "uuid": "c16ed09f-23df-4beb-87e8-460bd7fa9924",
->>>>>>> 3cf2338fd88b568a5e4a0ebfcaf9bb37a239626c
     "mavenUrls": [
         "http://www.revrobotics.com/content/sw/max/sdk/maven/"
     ],
@@ -16,11 +11,7 @@
         {
             "groupId": "com.revrobotics.frc",
             "artifactId": "SparkMax-java",
-<<<<<<< HEAD
-            "version": "1.0.28"
-=======
             "version": "1.0.26"
->>>>>>> 3cf2338fd88b568a5e4a0ebfcaf9bb37a239626c
         }
     ],
     "jniDependencies": [],
@@ -28,11 +19,7 @@
         {
             "groupId": "com.revrobotics.frc",
             "artifactId": "SparkMax-cpp",
-<<<<<<< HEAD
-            "version": "1.0.27",
-=======
             "version": "1.0.26",
->>>>>>> 3cf2338fd88b568a5e4a0ebfcaf9bb37a239626c
             "libName": "libSparkMax",
             "headerClassifier": "headers",
             "sharedLibrary": false,

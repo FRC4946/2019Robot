@@ -19,10 +19,7 @@ import frc.robot.commands.grabber.ToggleGrabber;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-  private Joystick drivestick = new Joystick(RobotMap.PCM_SOLGRABBER);
-    private Button testButton = new JoystickButton(drivestick, 1);
     
-  
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
   //// joystick.
@@ -64,12 +61,9 @@ public class OI {
 
   public OI() {
     // TODO: Bind buttons to commands
-
     m_YButton.whileHeld(new JoystickDriveAbs());
 
-    m_AButton.whenPressed(new SetGrabber(true));
-    m_BButton.whenPressed(new SetGrabber(false));
-    //m_XButton.whenPressed(new ToggleGrabber());
+    m_AButton.whenPressed(new SetGrabber(true, 0.1));
+    m_BButton.whenPressed(new SetGrabber(false, 0.1));
   }
-
 }

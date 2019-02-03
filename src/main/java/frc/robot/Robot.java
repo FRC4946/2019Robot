@@ -12,10 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.subsystems.GrabberAnalogPot;
-import frc.robot.subsystems.GrabberEncoder;
-import frc.robot.subsystems.GrabberLimitSwitch;
-import frc.robot.subsystems.GrabberSubsystem;
+
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Grabber;
@@ -33,10 +30,6 @@ import frc.robot.commands.autonomous.TestAuto;
  */
 public class Robot extends TimedRobot {
 
-  public static GrabberSubsystem m_grabberSubsystem = new GrabberSubsystem();
-  public static GrabberLimitSwitch m_grabberLimitSwitch = new GrabberLimitSwitch();
-  public static GrabberEncoder m_grabberEncoder = new GrabberEncoder();
-  public static GrabberAnalogPot m_grabberanalogPot = new GrabberAnalogPot();
   public static DriveTrain m_driveTrain = new DriveTrain();
   public static Limelight m_limelight = new Limelight();
   public static Climber m_climber = new Climber();
