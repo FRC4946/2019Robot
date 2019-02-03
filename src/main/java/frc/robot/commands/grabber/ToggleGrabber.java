@@ -12,38 +12,25 @@ import frc.robot.Robot;
 
 public class ToggleGrabber extends Command {
 
-  boolean m_initIsIn;
-  double m_speed;
-
-  public ToggleGrabber(double speed) {
+  public ToggleGrabber() {
     requires(Robot.m_grabber);
-    m_speed = Math.abs(speed);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    m_initIsIn = Robot.m_grabber.getGrabberIn();
+    Robot.m_grabber.setGrabber(!Robot.m_grabber.getGrabberPosition());
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(m_initIsIn) { //if grabber is in
-      Robot.m_grabber.setGrabber(-m_speed);
-    } else {
-      Robot.m_grabber.setGrabber(m_speed);
-    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if (m_initIsIn) {
-      return Robot.m_grabber.getGrabberOut();
-    } else {
-      return Robot.m_grabber.getGrabberIn();
-    }
+    return false;
   }
 
   // Called once after isFinished returns true

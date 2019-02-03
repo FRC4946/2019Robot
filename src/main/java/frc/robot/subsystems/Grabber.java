@@ -7,10 +7,6 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
@@ -20,26 +16,18 @@ import frc.robot.RobotMap;
  */
 public class Grabber extends Subsystem {
 
-  private TalonSRX m_grabberMotor;
-  private DigitalInput m_innerSwitch, m_outerSwitch;
+  private Solenoid m_grabSolenoid;
 
   public Grabber() {
-    m_grabberMotor = new TalonSRX(RobotMap.CAN_GRABBER_MOTOR);
-    m_innerSwitch = new DigitalInput(RobotMap.DIO_GRABBER_IN);
-    m_outerSwitch = new DigitalInput(RobotMap.DIO_GRABBER_OUT);
+    m_grabSolenoid = new Solenoid(RobotMap.PCM_SOLGRABBER);
   }
 
-  public void setGrabber(double speed) {
-    m_grabberMotor.set(ControlMode.PercentOutput, speed); 
+  public void setGrabber(boolean isUp) {
+    m_grabSolenoid.set(isUp);
   }
 
-  public boolean getGrabberIn() {
-    return m_innerSwitch.get() && !m_outerSwitch.get();
-
-  }
-
-  public boolean getGrabberOut() {
-    return m_outerSwitch.get() && !m_innerSwitch.get();
+  public boolean getGrabberPosition() {
+    return m_grabSolenoid.get();
   }
 
   @Override
