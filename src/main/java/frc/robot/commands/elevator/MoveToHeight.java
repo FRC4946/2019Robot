@@ -7,7 +7,6 @@
 
 package frc.robot.commands.elevator;
 
-import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import frc.robot.Robot;
 import frc.robot.RobotConstants;
@@ -15,7 +14,6 @@ import frc.robot.RobotConstants;
 public class MoveToHeight extends PIDCommand {
   
   double m_height, m_maxSpeed;
-  PIDController m_elevatorPID;
 
   public MoveToHeight(double height, double maxSpeed) {
 
@@ -23,18 +21,15 @@ public class MoveToHeight extends PIDCommand {
     requires (Robot.m_elevator);
     m_height = height;
     m_maxSpeed = maxSpeed;
-
-    m_elevatorPID = new PIDController(0.2, 0.0, 0.0, 
-      Robot.m_elevator.getPot(), Robot.m_elevator.getMotor());
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    m_elevatorPID.setInputRange(RobotConstants.ELEVATOR_MINIMUM_HEIGHT, RobotConstants.ELEVATOR_MAXIMUM_HEIGHT);
-    m_elevatorPID.setOutputRange(-m_maxSpeed, m_maxSpeed);
-    m_elevatorPID.setAbsoluteTolerance(1.0);
-    m_elevatorPID.setSetpoint(m_height);
+    getPIDController().setInputRange(RobotConstants.ELEVATOR_MINIMUM_HEIGHT, RobotConstants.ELEVATOR_MAXIMUM_HEIGHT);
+    getPIDController().setOutputRange(-m_maxSpeed, m_maxSpeed);
+    getPIDController().setAbsoluteTolerance(1.0);
+    getPIDController().setSetpoint(m_height);
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -47,7 +42,6 @@ public class MoveToHeight extends PIDCommand {
   @Override
   protected boolean isFinished() {
     return false;
-       // Robot.m_elevator.disablePID(); (needed for when PID is added)
   }
 
   // Called once after isFinished returns true
