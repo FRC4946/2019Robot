@@ -39,6 +39,7 @@ public class DriveTrain extends Subsystem {
     m_rightFront = new CANSparkMax(RobotMap.CAN_DRIVE_RIGHT_FRONT, MotorType.kBrushless);
     m_rightBack = new CANSparkMax(RobotMap.CAN_DRIVE_RIGHT_BACK, MotorType.kBrushless);
 
+    m_mecanumDrive = new MecanumDrive(m_leftFront, m_leftBack, m_rightFront, m_rightBack);
     m_leftFrontEnc = new Encoder(RobotMap.DIO_DRIVE_LEFT_FRONT_ENCA, RobotMap.DIO_DRIVE_LEFT_FRONT_ENCB);
     m_leftBackEnc = new Encoder(RobotMap.DIO_DRIVE_LEFT_BACK_ENCA, RobotMap.DIO_DRIVE_LEFT_BACK_ENCB);
     m_rightFrontEnc = new Encoder(RobotMap.DIO_DRIVE_RIGHT_FRONT_ENCA, RobotMap.DIO_DRIVE_RIGHT_FRONT_ENCB);

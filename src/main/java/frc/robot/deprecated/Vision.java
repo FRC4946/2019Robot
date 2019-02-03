@@ -22,7 +22,6 @@ public class Vision extends Command {
 
   public Vision() {
     requires(Robot.m_driveTrain);
-    //requires(Robot.m_limelight);
   }
 
   // Called just before this Command runs the first time
@@ -43,27 +42,29 @@ public class Vision extends Command {
     SmartDashboard.putNumber("LimelightY", Robot.m_limelight.m_yOffset);
     SmartDashboard.putNumber("LimelightArea", Robot.m_limelight.m_area);
 
-    if (Robot.m_oi.getDriveStick().getRawButton(/* Button Number */1) == true) {
-      // Moving To Target
+    
+    
+    // Moving To Target
+    /*
+    if (Robot.m_limelight.detected == 1.0) {
+      m_headingErr = -Robot.m_limelight.xOffset;
+      m_distanceErr = -Robot.m_limelight.yOffset;
+      m_steeringAdj = 0.0;
 
-      if (Robot.m_limelight.m_detected == 1.0) {
-        m_headingErr = -Robot.m_limelight.m_xOffset;
-        m_distanceErr = -Robot.m_limelight.m_yOffset;
-        m_steeringAdj = 0.0;
+      if (Robot.m_limelight.xOffset > 1.0) {
+        m_steeringAdj = RobotConstants.LIMELIGHT_TURN_KP * m_headingErr - RobotConstants.MIN_AIM_COMMAND;
+      } else if (Robot.m_limelight.xOffset < 1.0) {
+        m_steeringAdj = RobotConstants.LIMELIGHT_TURN_KP * m_headingErr + RobotConstants.MIN_AIM_COMMAND;
+      }
 
-        if (Robot.m_limelight.m_xOffset > 1.0) {
-          //m_steeringAdj = RobotConstants.LIMELIGHT_TURN_KP * m_headingErr - RobotConstants.MIN_AIM_COMMAND;
-        } else if (Robot.m_limelight.m_xOffset < 1.0) {
-          //m_steeringAdj = RobotConstants.LIMELIGHT_TURN_KP * m_headingErr + RobotConstants.MIN_AIM_COMMAND;
-        }
+      m_driveAdj = RobotConstants.LIMELIGHT_DISTANCE_KP * (-1 * Robot.m_limelight.findDistance());
 
-        //m_driveAdj = RobotConstants.LIMELIGHT_DISTANCE_KP * (-1 * Robot.m_limelight.findDistance());
-
-        // Driving
-        Robot.m_driveTrain.mecanumDrive(m_steeringAdj + m_driveAdj, 0.0, 0.0);
+      // Driving
+      Robot.m_driveTrain.mecanumDrive(m_steeringAdj + m_driveAdj, 0.0, 0.0);
 
       }
     }
+    */
   }
 
   // Make this return true when this Command no longer needs to run execute()
