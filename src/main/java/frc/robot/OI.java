@@ -20,6 +20,7 @@ import frc.robot.commands.limelight.ToggleLimelightLED;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
+    
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
   //// joystick.
@@ -61,12 +62,13 @@ public class OI {
 
   public OI() {
     // TODO: Bind buttons to commands
-
     m_YButton.whileHeld(new JoystickDriveAbs());
     m_XButton.whileHeld(new SetElevatorJoystick());
-
     m_AButton.whenPressed(new ToggleLimelightLED());
     m_BButton.whenPressed(new AlignWithTarget());
-  }
+    
+    //m_XButton.whenPressed(new SetGrabber(true, 0.1));
+    //m_YButton.whenPressed(new SetGrabber(false, 0.1));
 
+  }
 }
