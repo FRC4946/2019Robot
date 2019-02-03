@@ -35,6 +35,7 @@ public class Grabber extends Subsystem {
 
   public boolean getGrabberIn() {
     return m_innerSwitch.get() && !m_outerSwitch.get();
+
   }
 
   public boolean getGrabberOut() {
@@ -43,6 +44,5 @@ public class Grabber extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-
   }
 }

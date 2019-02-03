@@ -5,18 +5,20 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot;
+package frc.robot.subsystems;
 
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.commands.limelight.SetLimelightLED;
 
 /**
  * Limelight Object
  *
  * @author Jacob4649
  */
-public class Limelight {
+public class Limelight extends Subsystem{
 
   public NetworkTable m_networkTable;
   public NetworkTableEntry m_tx;
@@ -43,6 +45,11 @@ public class Limelight {
     m_ta = m_networkTable.getEntry("ta");
     m_tv = m_networkTable.getEntry("tv");
     m_ts = m_networkTable.getEntry("ts");
+  }
+
+  @Override
+  public void initDefaultCommand() {
+    setDefaultCommand(new SetLimelightLED(false));
   }
 
   /**
@@ -81,6 +88,14 @@ public class Limelight {
    */
   public double getTargetSkew() {
     return m_ts.getDouble(0);
+  }
+
+  /**
+   * Returns true if the LED is on and false if it isn't 
+   * @return true if the LED is on
+   */
+  public boolean getLED() {
+    return (!(m_networkTable.getEntry("ledMode").getDouble(0.0) == 1.0));
   }
 
   /**

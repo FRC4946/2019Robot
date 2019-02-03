@@ -5,47 +5,63 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.intake;
+package frc.robot.commands.elevator;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.PIDCommand;
 import frc.robot.Robot;
+import frc.robot.RobotConstants;
 
-public class IntakeUntilBall extends Command {
+public class MoveToHeight extends PIDCommand {
+  
+  double m_height, m_maxSpeed;
 
-  /**
-   * Runs the intake backwards (intakes) until a ball is detected
-   */
-  public IntakeUntilBall() {
-    requires(Robot.m_intake);
+  public MoveToHeight(double height, double maxSpeed) {
+
+    super(0.2, 0.0, 0.0);
+    requires (Robot.m_elevator);
+    m_height = height;
+    m_maxSpeed = maxSpeed;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    getPIDController().setInputRange(RobotConstants.ELEVATOR_MINIMUM_HEIGHT, RobotConstants.ELEVATOR_MAXIMUM_HEIGHT);
+    getPIDController().setOutputRange(-m_maxSpeed, m_maxSpeed);
+    getPIDController().setAbsoluteTolerance(1.0);
+    getPIDController().setSetpoint(m_height);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_intake.runAll(-0.8); // not max speed (yet?)
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Robot.m_intake.getIsBall();
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.m_intake.stopAll();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
+  }
+
+  @Override 
+  protected double returnPIDInput() {
+    return Robot.m_elevator.getHeight();
+  }
+
+  @Override
+  protected void usePIDOutput(double output) {
+    Robot.m_elevator.setElevator(output);
   }
 }

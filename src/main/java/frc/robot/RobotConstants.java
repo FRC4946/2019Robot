@@ -12,40 +12,23 @@ package frc.robot;
  */
 public class RobotConstants {
 
-  // PID
-  public static final double LIMELIGHT_TURN_KP = -0.1; // kP for limelight turn
-  public static final double LIMELIGHT_TURN_KI = 0.0; // kI for limelight turn
-  public static final double LIMELIGHT_TURN_KD = 0.0; // kD for limelight turn
-
-  public static final double LIMELIGHT_DISTANCE_KP = -0.1;
-  public static final double LIMELIGHT_DISTANCE_KI = 0.0;
-  public static final double LIMELIGHT_DISTANCE_KD = 0.0;
-
-  public static final double CAN_DRIVE_LEFT_FRONT_KP = 0.1;
-  public static final double CAN_DRIVE_LEFT_FRONT_KI = 0.0;
-  public static final double CAN_DRIVE_LEFT_FRONT_KD = 0.0;
-
-  public static final double CAN_DRIVE_LEFT_BACK_KP = 0.1;
-  public static final double CAN_DRIVE_LEFT_BACK_KI = 0.1;
-  public static final double CAN_DRIVE_LEFT_BACK_KD = 0.1;
-
-  public static final double CAN_DRIVE_RIGHT_FRONT_KP = 0.1;
-  public static final double CAN_DRIVE_RIGHT_FRONT_KI = 0.0;
-  public static final double CAN_DRIVE_RIGHT_FRONT_KD = 0.0;
-
-  public static final double CAN_DRIVE_RIGHT_BACK_KP = 0.1;
-  public static final double CAN_DRIVE_RIGHT_BACK_KI = 0.0;
-  public static final double CAN_DRIVE_RIGHT_BACK_KD = 0.0;
-
-  public static final double CAN_DRIVE_GYRO_TURN_KP = 0.01; // ARE THESE ONES NECESSARY??
-  public static final double CAN_DRIVE_GYRO_TURN_KI = 0.0;
-  public static final double CAN_DRIVE_GYRO_TURN_KD = 0.0;
-
-  public static final double CAN_DRIVE_KP = 0.1; // ARE THESE ONES NECESSARY??
-  public static final double CAN_DRIVE_KI = 0.0;
-  public static final double CAN_DRIVE_KD = 0.0;
+  public static final int ENC_PPR = 128;
 
   public static final double MIN_AIM_COMMAND = 0.05;
+  public static final double DEFAULT_DEADZONE = 0.05;
+  public static final double WHEEL_DIAMETER = 6.0;
+  public static final double ENC_DIST_PER_PULSE = Math.PI*WHEEL_DIAMETER / (double) ENC_PPR;
 
-  public static final double JOYSTICK_DEADZONE = 0.2;
+//Same numbers from last year because the real numbers are unknown
+  public static final double ELEVATOR_SCALING_VALUE = 127.59;
+	public static final double ELEVATOR_OFFSET_VALUE = 0.7349;
+
+  public static final double ELEVATOR_MINIMUM_HEIGHT = 5.5; 
+  public static final double ELEVATOR_MAXIMUM_HEIGHT = 96;
+  public static final double ELEVATOR_INTERFERE_MIN = 6.25;
+	public static final double ELEVATOR_INTERFERE_MAX = 32;
+	public static final double ELEVATOR_SWITCH_HEIGHT = 42.0;
+	public static final double ELEVATOR_SCALE_LOWHEIGHT = 65.0;
+	public static final double ELEVATOR_SCALE_HIGHHEIGHT = 92.0;
+	public static final double ELEVATOR_RUNG_HEIGHT = 78.0;
 }

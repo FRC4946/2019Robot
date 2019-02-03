@@ -5,18 +5,16 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.intake;
+package frc.robot.commands.elevator;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotConstants;
 
-public class IntakeUntilBall extends Command {
+public class SetElevatorJoystick extends Command {
 
-  /**
-   * Runs the intake backwards (intakes) until a ball is detected
-   */
-  public IntakeUntilBall() {
-    requires(Robot.m_intake);
+  public SetElevatorJoystick() {
+    requires(Robot.m_elevator);
   }
 
   // Called just before this Command runs the first time
@@ -27,25 +25,33 @@ public class IntakeUntilBall extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_intake.runAll(-0.8); // not max speed (yet?)
+
+    if(Robot.m_elevator.getHeight() >= RobotConstants.ELEVATOR_MAXIMUM_HEIGHT && 
+        Robot.m_oi.getDriveStick().getRawAxis(1) >= 0 
+      || Robot.m_elevator.getHeight() <= RobotConstants.ELEVATOR_MINIMUM_HEIGHT &&
+        Robot.m_oi.getDriveStick().getRawAxis(1) <= 0) {
+         
+      Robot.m_elevator.setElevator(0);
+
+    } else {
+      Robot.m_elevator.setElevator(Robot.m_utilities.deadzone(Robot.m_oi.getDriveStick().getRawAxis(1)*0.5));
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Robot.m_intake.getIsBall();
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.m_intake.stopAll();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
   }
 }
