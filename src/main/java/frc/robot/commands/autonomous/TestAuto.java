@@ -8,7 +8,7 @@
 package frc.robot.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc.robot.commands.autonomous.AbortAuto;
+import frc.robot.commands.AbortAuto;
 import frc.robot.commands.drivetrain.AlignWithTarget;
 import frc.robot.commands.drivetrain.VectorDrive;
 import frc.robot.commands.limelight.SetLimelightLED;

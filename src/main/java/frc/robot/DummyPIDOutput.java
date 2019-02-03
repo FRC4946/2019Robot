@@ -7,25 +7,14 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.PIDOutput;
+
 /**
- * Utility functions
+ * Add your docs here.
  */
-public class Utilities {
+public class DummyPIDOutput implements PIDOutput {
 
-  public static double conformAngle(double angle) {
-    while (angle < 0) {
-      angle += 360;
+    @Override
+    public void pidWrite(double output) {
     }
-
-    return angle % 360; 
-  }
-
-  public double deadzone(double input) {
-    return deadzone(input, RobotConstants.DEFAULT_DEADZONE);
-  }
-
-  public double deadzone(double input, double deadzone) {
-    return Math.abs(input) < Math.abs(deadzone) ? 0 : input;
-  }
-
 }

@@ -14,10 +14,6 @@ package frc.robot;
  * floating around.
  */
 public class RobotMap {
-  // For example to map the left and right motors, you could define the
-  // following variables to use with your drivetrain subsystem.
-  // public static int leftMotor = 1;
-  // public static int rightMotor = 2;
 
   // If you are using multiple modules, make sure to define both the port
   // number and the module. For example you with a rangefinder:
@@ -34,10 +30,8 @@ public class RobotMap {
   public static final int CAN_DRIVE_RIGHT_FRONT = 2;
   public static final int CAN_DRIVE_RIGHT_BACK = 3;
 
-  public static final int CAN_LIFT_RIGHT_FRONT = 4;
-  public static final int CAN_LIFT_RIGHT_BACK = 5;
-  public static final int CAN_LIFT_LEFT_FRONT = 6;
-  public static final int CAN_LIFT_LEFT_BACK = 7;
+  public static final int CAN_LIFT_FRONT = 4;
+  public static final int CAN_LIFT_BACK = 5;
 
   // Intake motor ports
   public static final int CAN_INTAKE_OUTER_LEFT = 6;
@@ -45,19 +39,41 @@ public class RobotMap {
   public static final int CAN_INTAKE_INNER_LEFT = 8;
   public static final int CAN_INTAKE_INNER_RIGHT = 9;
 
+  //Grabber
+  public static final int CAN_GRABBER_MOTOR = 9;
+  public static final int DIO_GRABBER_IN = 10;
+  public static final int DIO_GRABBER_OUT = 11;
+
+  // Elevator motor ports (dummy ports used)
+  public static final int CAN_RUN_ELEVATOR = 0; 
+
+
   // Drive train encoder ports
-  public static final int CAN_DRIVE_LEFT_FRONT_ENCA = 0;
-  public static final int CAN_DRIVE_LEFT_FRONT_ENCB = 1;
-  public static final int CAN_DRIVE_LEFT_BACK_ENCA = 2;
-  public static final int CAN_DRIVE_LEFT_BACK_ENCB = 3;
-  public static final int CAN_DRIVE_RIGHT_FRONT_ENCA = 4;
-  public static final int CAN_DRIVE_RIGHT_FRONT_ENCB = 5;
-  public static final int CAN_DRIVE_RIGHT_BACK_ENCA = 6;
-  public static final int CAN_DRIVE_RIGHT_BACK_ENCB = 7;
+  public static final int DIO_DRIVE_LEFT_FRONT_ENCA = 0;
+  public static final int DIO_DRIVE_LEFT_FRONT_ENCB = 1;
+  public static final int DIO_DRIVE_LEFT_BACK_ENCA = 2;
+  public static final int DIO_DRIVE_LEFT_BACK_ENCB = 3;
+  public static final int DIO_DRIVE_RIGHT_FRONT_ENCA = 4;
+  public static final int DIO_DRIVE_RIGHT_FRONT_ENCB = 5;
+  public static final int DIO_DRIVE_RIGHT_BACK_ENCA = 6;
+  public static final int DIO_DRIVE_RIGHT_BACK_ENCB = 7;
+
+  // Intake sensor ports
+  public static final int DIO_INTAKE_BANNER_SENSOR = 0;
 
   // dummy port used
-  public static final int PCM_SOLGRABBER = 0;
+  public static final int GRABBER_ANALOG_POT = 0;
+  public static final int INNER_LIMIT_SWITCH = 10;
+  public static final int OUTER_LIMIT_SWITCH  = 11;
 
   // Intake sensor ports
   public static final int INTAKE_BANNER_SENSOR = 0;
+    
+
+  public static final int PCM_SOLGRABBER = 0;
+  public static final int PCM_ELEVATOR_BREAK = 1;
+
+  // Elevator potentiometer (Dummy ports used)
+  public static final int ANALOG_ELEVATOR_POT = 1;
+
 }

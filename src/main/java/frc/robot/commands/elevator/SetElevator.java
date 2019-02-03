@@ -5,41 +5,50 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.autonomous;
+package frc.robot.commands.elevator;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotConstants;
 
-public class AbortAuto extends Command {
+public class SetElevator extends Command {
 
-  public AbortAuto() {
-    requires(Robot.m_driveTrain);
+  private double m_speed;
+
+  public SetElevator(double speed) {
+    requires(Robot.m_elevator);
+    m_speed = speed;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+      Robot.m_elevator.setElevator(m_speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return Robot.m_elevator.getHeight() < RobotConstants.ELEVATOR_MINIMUM_HEIGHT && m_speed < 0
+    || Robot.m_elevator.getHeight() > RobotConstants.ELEVATOR_MAXIMUM_HEIGHT && m_speed > 0;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.m_elevator.setElevator(0);
   }
-
+  
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }

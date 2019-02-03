@@ -10,15 +10,17 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.drivetrain.AlignWithTarget;
 import frc.robot.commands.drivetrain.JoystickDriveAbs;
-import frc.robot.commands.grabber.SetGrabber;
-import frc.robot.commands.grabber.ToggleGrabber;
+import frc.robot.commands.elevator.SetElevatorJoystick;
+import frc.robot.commands.limelight.ToggleLimelightLED;
 
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
+    
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
   //// joystick.
@@ -60,12 +62,13 @@ public class OI {
 
   public OI() {
     // TODO: Bind buttons to commands
-
     m_YButton.whileHeld(new JoystickDriveAbs());
+    m_XButton.whileHeld(new SetElevatorJoystick());
+    m_AButton.whenPressed(new ToggleLimelightLED());
+    m_BButton.whenPressed(new AlignWithTarget());
+    
+    //m_XButton.whenPressed(new SetGrabber(true, 0.1));
+    //m_YButton.whenPressed(new SetGrabber(false, 0.1));
 
-    m_AButton.whenPressed(new SetGrabber(true));
-    m_BButton.whenPressed(new SetGrabber(false));
-    //m_XButton.whenPressed(new ToggleGrabber());
   }
-
 }

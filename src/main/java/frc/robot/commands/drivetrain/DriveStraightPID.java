@@ -7,59 +7,60 @@
 
 package frc.robot.commands.drivetrain;
 
+import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.PIDCommand;
+import frc.robot.DummyPIDOutput;
 import frc.robot.Robot;
-import frc.robot.RobotConstants;
-import frc.robot.Utilities;
 
-public class AbsTurnPID extends PIDCommand {
+public class DriveStraightPID extends PIDCommand {
 
-  private double m_angle, m_maxSpeed; // angle to turn to in degrees
+  double m_dist;
+  DummyPIDOutput m_dummyOutput;
+  PIDController m_gyroController;
 
-  /**
-   * Turns the robot on the spot to the gyro angle provided
-   *
-   * @param angle the angle to turn to in degrees
-   */
-  public AbsTurnPID(double angle, double maxSpeed) {
+  public DriveStraightPID(double dist) {
 
-    //DUMMY P I and D values
-    super(0.02, 0, 0);
+    super(0.0075, 0.00002, 0); //0.0075
 
     requires(Robot.m_driveTrain);
-
-    m_angle = Robot.m_utilities.conformAngle(angle);
-    m_maxSpeed = maxSpeed;
-
-    getPIDController().setInputRange(0.0, 360.0);
-    getPIDController().setOutputRange(-0.8, 0.8);
-    getPIDController().setContinuous(true);
-    getPIDController().setAbsoluteTolerance(2.0);
+    m_dist = dist;
+    m_dummyOutput = new DummyPIDOutput();
+    m_gyroController = new PIDController(0.2, 0.005, 0, 
+      Robot.m_driveTrain.getGyro(), m_dummyOutput);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    getPIDController().enable();
-    getPIDController().setSetpoint(m_angle);
+
+    Robot.m_driveTrain.resetEncs();
+
+    getPIDController().setSetpoint(-m_dist);
+    getPIDController().setOutputRange(-0.15, 0.15);
+    getPIDController().setAbsoluteTolerance(0);
+
+    m_gyroController.setInputRange(0, 360);
+    m_gyroController.setOutputRange(-0.25, 0.25);
+    m_gyroController.setContinuous(true);
+    m_gyroController.setSetpoint(Robot.m_driveTrain.getGyroAngle());
+    m_gyroController.setAbsoluteTolerance(1);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return getPIDController().onTarget();
+    //return getPIDController().onTarget() && m_gyroController.onTarget();
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    getPIDController().disable();
     Robot.m_driveTrain.stop();
   }
 
@@ -71,13 +72,12 @@ public class AbsTurnPID extends PIDCommand {
   }
 
   @Override
-  protected double returnPIDInput() {
-    return Robot.m_driveTrain.getGyroAngle();
+  public double returnPIDInput() {
+    return Robot.m_driveTrain.getAvgStraightDist();
   }
 
   @Override
-  protected void usePIDOutput(double output) {
-    Robot.m_driveTrain.mecanumDrive(0.0, 0.0,
-      Math.abs(output) > Math.abs(m_maxSpeed) ? m_maxSpeed : output);
+  public void usePIDOutput(double output) {
+    Robot.m_driveTrain.mecanumDrive(output, 0.0, -m_gyroController.get());
   }
 }
