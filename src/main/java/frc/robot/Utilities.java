@@ -13,7 +13,6 @@ package frc.robot;
 public class Utilities {
 
   public static double conformAngle(double angle) {
-
     while (angle < 0) {
       angle += 360;
     }
