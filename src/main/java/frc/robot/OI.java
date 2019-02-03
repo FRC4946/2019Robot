@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.drivetrain.AlignWithTarget;
 import frc.robot.commands.drivetrain.JoystickDriveAbs;
+import frc.robot.commands.elevator.SetElevatorJoystick;
 import frc.robot.commands.limelight.ToggleLimelightLED;
 
 /**
@@ -62,6 +63,7 @@ public class OI {
     // TODO: Bind buttons to commands
 
     m_YButton.whileHeld(new JoystickDriveAbs());
+    m_XButton.whileHeld(new SetElevatorJoystick());
 
     m_AButton.whenPressed(new ToggleLimelightLED());
     m_BButton.whenPressed(new AlignWithTarget());
