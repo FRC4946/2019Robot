@@ -10,9 +10,14 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.climber.LiftRobot;
 import frc.robot.commands.drivetrain.AlignWithTarget;
 import frc.robot.commands.drivetrain.JoystickDriveAbs;
 import frc.robot.commands.elevator.SetElevatorJoystick;
+import frc.robot.commands.grabber.SetGrabber;
+import frc.robot.commands.intake.IntakeUntilBall;
+import frc.robot.commands.intake.Outtake;
+import frc.robot.commands.intake.TimedIntake;
 import frc.robot.commands.limelight.ToggleLimelightLED;
 
 /**
@@ -51,22 +56,35 @@ public class OI {
 
   private Joystick m_driveStick = new Joystick(RobotMap.USB_DS_DRIVESTICK);
   private Joystick m_operatorStick = new Joystick(RobotMap.USB_DS_OPERATORSTICK);
-  private Button m_AButton = new JoystickButton(m_driveStick, 0);
-  private Button m_BButton = new JoystickButton(m_driveStick, 1);
-  private Button m_XButton = new JoystickButton(m_driveStick, 2);
-  private Button m_YButton = new JoystickButton(m_driveStick, 3);
+  private Button m_AButton = new JoystickButton(m_driveStick, 1);
+  private Button m_BButton = new JoystickButton(m_driveStick, 2);
+  private Button m_XButton = new JoystickButton(m_driveStick, 3);
+  private Button m_YButton = new JoystickButton(m_driveStick, 4);
+  private Button m_LBButton = new JoystickButton(m_driveStick, 5);
+  private Button m_RBButton = new JoystickButton(m_driveStick, 6);
+  private Button m_CLButton = new JoystickButton(m_driveStick, 7);
+  private Button m_CRButton = new JoystickButton(m_driveStick, 8);
+  private Button m_LJButton = new JoystickButton(m_driveStick, 9);
+  private Button m_RJButton = new JoystickButton(m_driveStick, 10);
+
 
   public Joystick getDriveStick() {
     return m_driveStick;
   }
 
   public OI() {
+
     // TODO: Bind buttons to commands
-    m_YButton.whileHeld(new JoystickDriveAbs());
-    m_XButton.whileHeld(new SetElevatorJoystick());
-    m_AButton.whenPressed(new ToggleLimelightLED());
-    m_BButton.whenPressed(new AlignWithTarget());
-    
+    m_BButton.whileHeld(new JoystickDriveAbs());
+    m_CRButton.whenPressed(new ToggleLimelightLED());
+    m_XButton.whenPressed(new AlignWithTarget());
+    m_RBButton.whenPressed(new IntakeUntilBall());
+    m_LBButton.whenReleased(new Outtake(0.1));
+    m_AButton.whenPressed(new SetGrabber(true, 0.1));
+    m_YButton.whenPressed(new SetGrabber(false, 0.1));
+    m_LJButton.whileHeld(new LiftRobot(0.2));
+    m_RJButton.whileHeld(new LiftRobot(-0.2));
+
     //m_XButton.whenPressed(new SetGrabber(true, 0.1));
     //m_YButton.whenPressed(new SetGrabber(false, 0.1));
 
