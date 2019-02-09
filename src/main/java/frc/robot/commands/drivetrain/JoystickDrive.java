@@ -35,7 +35,7 @@ public class JoystickDrive extends Command {
       Robot.m_driveTrain.mecanumDrive(-0.25, 0, 0);
     } else if (Robot.m_oi.getDriveStick().getPOV() == 270) {
       Robot.m_driveTrain.mecanumDrive(0, -0.25, 0);
-    } else if (Robot.m_oi.getDriveStick().getPOV() == -1) {
+    } else {
 
       Robot.m_driveTrain.mecanumDrive(
         Utilities.deadzone(-Robot.m_oi.getDriveStick().getRawAxis(1), 
