@@ -84,6 +84,9 @@ public class OI {
     m_LeftStickButton.whileHeld(new LiftRobot(0.2));
     m_RightStickButton.whileHeld(new LiftRobot(-0.2));
 
+    m_LBButton.whenPressed(new SliderCommand(0.2));
+    m_RBButton.whenPressed(new SliderCommand(-0.2));
+
     //m_XButton.whenPressed(new SetGrabber(true, 0.1));
     //m_YButton.whenPressed(new SetGrabber(false, 0.1));
 
