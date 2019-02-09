@@ -34,7 +34,7 @@ public class LimelightTurn extends PIDCommand {
     requires(Robot.m_driveTrain);
 
     getPIDController().setInputRange(-20.5, 20.5);
-    getPIDController().setOutputRange(0.2, 0.8); // Dummy numbers, will need to be updates
+    getPIDController().setOutputRange(-maxSpeed, maxSpeed); // Dummy numbers, will need to be updates
     getPIDController().setContinuous(false);
     getPIDController().setAbsoluteTolerance(4.0);
   }
