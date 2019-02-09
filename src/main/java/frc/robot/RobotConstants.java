@@ -19,7 +19,7 @@ public class RobotConstants {
   public static final double WHEEL_DIAMETER = 6.0;
   public static final double ENC_DIST_PER_PULSE = Math.PI*WHEEL_DIAMETER / (double) ENC_PPR;
 
-//Same numbers from last year because the real numbers are unknown
+  //Same numbers from last year because the real numbers are unknown
   public static final double ELEVATOR_SCALING_VALUE = 127.59;
 	public static final double ELEVATOR_OFFSET_VALUE = 0.7349;
 
@@ -32,8 +32,9 @@ public class RobotConstants {
 	public static final double ELEVATOR_SCALE_HIGHHEIGHT = 92.0;
   public static final double ELEVATOR_RUNG_HEIGHT = 78.0;
   
+  //DUMMY NUMBS - GROSS
   public static final double UPWARDS_OUTER_INTAKE_POSITION = 0.0;
-  public static final double DOWNWARDS_OUTER_INTAKE_POSITION = 0.0;
+  public static final double DOWNWARDS_OUTER_INTAKE_POSITION = 600.0;
   public static final double INTAKE_POT_MIN = 0.0;
-  public static final double INTAKE_POT_MAX = 0.0;
+  public static final double INTAKE_POT_MAX = 1000.0;
 }
