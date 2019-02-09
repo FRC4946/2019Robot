@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.climber.LiftRobot;
-import frc.robot.commands.drivetrain.AlignWithTarget;
+import frc.robot.commands.drivetrain.StrafeToTarget;
 import frc.robot.commands.drivetrain.JoystickDriveAbs;
 import frc.robot.commands.elevator.SetElevatorJoystick;
 import frc.robot.commands.grabber.SetGrabber;
@@ -76,7 +76,7 @@ public class OI {
     // TODO: Bind buttons to commands
     m_BButton.whileHeld(new JoystickDriveAbs());
     m_StartButton.whenPressed(new ToggleLimelightLED());
-    m_XButton.whenPressed(new AlignWithTarget());
+    m_XButton.whenPressed(new StrafeToTarget()); 
     m_RBButton.whenPressed(new IntakeUntilBall());
     m_LBButton.whenReleased(new SetIntake(0.1));
     m_AButton.whenPressed(new SetGrabber(true, 0.1));
