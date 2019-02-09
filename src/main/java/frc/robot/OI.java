@@ -62,10 +62,10 @@ public class OI {
   private Button m_YButton = new JoystickButton(m_driveStick, 4);
   private Button m_LBButton = new JoystickButton(m_driveStick, 5);
   private Button m_RBButton = new JoystickButton(m_driveStick, 6);
-  private Button m_CLButton = new JoystickButton(m_driveStick, 7);
-  private Button m_CRButton = new JoystickButton(m_driveStick, 8);
-  private Button m_LJButton = new JoystickButton(m_driveStick, 9);
-  private Button m_RJButton = new JoystickButton(m_driveStick, 10);
+  private Button m_ViewButton = new JoystickButton(m_driveStick, 7);
+  private Button m_StartButton = new JoystickButton(m_driveStick, 8);
+  private Button m_LeftStickButton = new JoystickButton(m_driveStick, 9);
+  private Button m_RightStickButton = new JoystickButton(m_driveStick, 10);
 
 
   public Joystick getDriveStick() {
@@ -76,14 +76,14 @@ public class OI {
 
     // TODO: Bind buttons to commands
     m_BButton.whileHeld(new JoystickDriveAbs());
-    m_CRButton.whenPressed(new ToggleLimelightLED());
+    m_StartButton.whenPressed(new ToggleLimelightLED());
     m_XButton.whenPressed(new AlignWithTarget());
     m_RBButton.whenPressed(new IntakeUntilBall());
     m_LBButton.whileHeld(new Outtake(0.1));
     m_AButton.whileHeld(new SetGrabber(true, 0.1));
     m_YButton.whileHeld(new SetGrabber(false, 0.1));
-    m_LJButton.whileHeld(new LiftRobot(0.2));
-    m_RJButton.whileHeld(new LiftRobot(-0.2));
+    m_LeftStickButton.whileHeld(new LiftRobot(0.2));
+    m_RightStickButton.whileHeld(new LiftRobot(-0.2));
 
     //m_XButton.whenPressed(new SetGrabber(true, 0.1));
     //m_YButton.whenPressed(new SetGrabber(false, 0.1));
