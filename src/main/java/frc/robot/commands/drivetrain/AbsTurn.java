@@ -53,7 +53,6 @@ public class AbsTurn extends Command {
     return (Math.abs(Robot.m_driveTrain.getGyroAngle() - m_angle) < 2); // within 2 degrees
   }
 
-  // Called once after isFinished returns true
   @Override
   protected void end() {
     Robot.m_driveTrain.stop();
