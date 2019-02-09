@@ -79,9 +79,9 @@ public class OI {
     m_CRButton.whenPressed(new ToggleLimelightLED());
     m_XButton.whenPressed(new AlignWithTarget());
     m_RBButton.whenPressed(new IntakeUntilBall());
-    m_LBButton.whenReleased(new Outtake(0.1));
-    m_AButton.whenPressed(new SetGrabber(true, 0.1));
-    m_YButton.whenPressed(new SetGrabber(false, 0.1));
+    m_LBButton.whileHeld(new Outtake(0.1));
+    m_AButton.whileHeld(new SetGrabber(true, 0.1));
+    m_YButton.whileHeld(new SetGrabber(false, 0.1));
     m_LJButton.whileHeld(new LiftRobot(0.2));
     m_RJButton.whileHeld(new LiftRobot(-0.2));
 
