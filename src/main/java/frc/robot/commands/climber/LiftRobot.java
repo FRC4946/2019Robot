@@ -27,7 +27,9 @@ public class LiftRobot extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_climber.setClimber(m_speed);
+    if (Robot.m_climber.isClimberTopped()) {
+      Robot.m_climber.setClimber(m_speed);
+    } // Only moving if climber isn't topped
   }
 
   // Make this return true when this Command no longer needs to run execute()
