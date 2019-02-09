@@ -67,7 +67,6 @@ public class OI {
   private Button m_LeftStickButton = new JoystickButton(m_driveStick, 9);
   private Button m_RightStickButton = new JoystickButton(m_driveStick, 10);
 
-
   public Joystick getDriveStick() {
     return m_driveStick;
   }
