@@ -10,6 +10,7 @@ package frc.robot.commands.drivetrain;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotConstants;
+import frc.robot.Utilities;
 
 public class JoystickDrive extends Command {
 
@@ -37,11 +38,11 @@ public class JoystickDrive extends Command {
     } else if (Robot.m_oi.getDriveStick().getPOV() == -1) {
 
       Robot.m_driveTrain.mecanumDrive(
-        Robot.m_utilities.deadzone(Robot.m_oi.getDriveStick().getRawAxis(1) * 0.5, 
+        Utilities.deadzone(-Robot.m_oi.getDriveStick().getRawAxis(1), 
           0.2*Robot.m_oi.getDriveStick().getRawAxis(0) + RobotConstants.DEFAULT_DEADZONE),
-        Robot.m_utilities.deadzone(Robot.m_oi.getDriveStick().getRawAxis(0) * 0.5, 
+        Utilities.deadzone(Robot.m_oi.getDriveStick().getRawAxis(0), 
           0.2*Robot.m_oi.getDriveStick().getRawAxis(1) + RobotConstants.DEFAULT_DEADZONE),
-        Robot.m_utilities.deadzone(Robot.m_oi.getDriveStick().getRawAxis(4) * 0.5,
+        Utilities.deadzone(Robot.m_oi.getDriveStick().getRawAxis(4),
           RobotConstants.DEFAULT_DEADZONE));
     }
 

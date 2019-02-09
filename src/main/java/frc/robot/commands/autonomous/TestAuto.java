@@ -8,9 +8,9 @@
 package frc.robot.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc.robot.commands.AbortAuto;
-import frc.robot.commands.drivetrain.AlignWithTarget;
-import frc.robot.commands.drivetrain.VectorDrive;
+import frc.robot.commands.drivetrain.DriveStraightPID;
+import frc.robot.commands.drivetrain.TargetLine;
+import frc.robot.commands.drivetrain.TurnPID;
 import frc.robot.commands.limelight.SetLimelightLED;
 
 public class TestAuto extends CommandGroup {
@@ -19,10 +19,10 @@ public class TestAuto extends CommandGroup {
    * Add your docs here.
    */
   public TestAuto() {
-    //addSequential(new AbortAuto());
-    addSequential(new SetLimelightLED(true));
-    addSequential(new VectorDrive(0.2, 0.0), 0.3);
-    addSequential(new AlignWithTarget(), 2.5);
-    addSequential(new VectorDrive(0.2, 0.0), 0.3);
+    addSequential(new SetLimelightLED(false));
+    addSequential(new TurnPID(180));
+    addSequential(new DriveStraightPID(60));
+    addSequential(new TurnPID(-90));
+    addSequential(new DriveStraightPID(-24));
   }
 }

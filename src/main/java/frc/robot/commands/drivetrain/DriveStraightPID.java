@@ -20,12 +20,12 @@ public class DriveStraightPID extends PIDCommand {
 
   public DriveStraightPID(double dist) {
 
-    super(0.0075, 0.00002, 0); //0.0075
+    super(0.005875, 0.00002, 0.002); //0.0075
 
     requires(Robot.m_driveTrain);
     m_dist = dist;
     m_dummyOutput = new DummyPIDOutput();
-    m_gyroController = new PIDController(0.2, 0.005, 0, 
+    m_gyroController = new PIDController(0.00645, 0.000001, 0.002, 
       Robot.m_driveTrain.getGyro(), m_dummyOutput);
   }
 
@@ -35,9 +35,9 @@ public class DriveStraightPID extends PIDCommand {
 
     Robot.m_driveTrain.resetEncs();
 
-    getPIDController().setSetpoint(-m_dist);
-    getPIDController().setOutputRange(-0.15, 0.15);
-    getPIDController().setAbsoluteTolerance(0);
+    getPIDController().setSetpoint(m_dist);
+    getPIDController().setOutputRange(-0.7, 0.7);
+    getPIDController().setAbsoluteTolerance(2);
 
     m_gyroController.setInputRange(0, 360);
     m_gyroController.setOutputRange(-0.25, 0.25);
@@ -54,8 +54,7 @@ public class DriveStraightPID extends PIDCommand {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    //return getPIDController().onTarget() && m_gyroController.onTarget();
-    return false;
+    return getPIDController().onTarget();
   }
 
   // Called once after isFinished returns true
@@ -78,6 +77,6 @@ public class DriveStraightPID extends PIDCommand {
 
   @Override
   public void usePIDOutput(double output) {
-    Robot.m_driveTrain.mecanumDrive(output, 0.0, -m_gyroController.get());
+    Robot.m_driveTrain.mecanumDrive(output, 0.0, m_gyroController.get());
   }
 }

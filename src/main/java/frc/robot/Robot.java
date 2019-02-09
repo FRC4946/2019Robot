@@ -41,7 +41,6 @@ public class Robot extends TimedRobot {
   public static Elevator m_elevator = new Elevator();
   public static IntakeElbow m_intakeElbow = new IntakeElbow();
   public static OI m_oi = new OI();
-  public static Utilities m_utilities = new Utilities();
 
 
   Command m_autonomousCommand;
@@ -53,8 +52,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    m_chooser.setDefaultOption("Align With Target", new TestAuto()); // TODO: Implement autonomous command
+    m_chooser.setDefaultOption("Test Auto", new TestAuto()); // TODO: Implement autonomous command
     SmartDashboard.putData("Auto Mode", m_chooser);
+    SmartDashboard.putNumber("Gyro", m_driveTrain.getGyroAngle());
   }
 
   /**
@@ -67,6 +67,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    SmartDashboard.getEntry("Gyro").setDouble(m_driveTrain.getGyroAngle());
   }
 
   /**
@@ -105,6 +106,8 @@ public class Robot extends TimedRobot {
      * autonomousCommand = new ExampleCommand(); break; }
      */
 
+    System.out.println(m_chooser.getSelected().getName());
+    
     if (m_autonomousCommand != null) {
       m_autonomousCommand.start();
     }

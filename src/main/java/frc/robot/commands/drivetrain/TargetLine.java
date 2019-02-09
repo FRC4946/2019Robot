@@ -7,15 +7,19 @@
 
 package frc.robot.commands.drivetrain;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.PIDCommand;
 import frc.robot.Robot;
-import frc.robot.Utilities;
-import frc.robot.RobotConstants;
 
-public class JoystickDriveAbs extends Command {
-
-  public JoystickDriveAbs() {
+public class TargetLine extends PIDCommand {
+  public TargetLine() {
+    super(0.002, 0.0, 0.0);
     requires(Robot.m_driveTrain);
+
+    getPIDController().setInputRange(-20.5, 20.5);
+    getPIDController().setOutputRange(-0.1, 0.1); 
+    getPIDController().setContinuous(false);
+    getPIDController().setAbsoluteTolerance(1.0);
+    getPIDController().setSetpoint(0.0);
   }
 
   // Called just before this Command runs the first time
@@ -26,25 +30,6 @@ public class JoystickDriveAbs extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    
-    if(Robot.m_oi.getDriveStick().getPOV() == 0) {
-      Robot.m_driveTrain.mecanumDriveAbs(0.25, 0, 0);
-    } else if (Robot.m_oi.getDriveStick().getPOV() == 90) {
-      Robot.m_driveTrain.mecanumDriveAbs(0, 0.25, 0);
-    } else if (Robot.m_oi.getDriveStick().getPOV() == 180) {
-      Robot.m_driveTrain.mecanumDriveAbs(-0.25, 0, 0);
-    } else if (Robot.m_oi.getDriveStick().getPOV() == 270) {
-      Robot.m_driveTrain.mecanumDriveAbs(0, -0.25, 0);
-    } else if (Robot.m_oi.getDriveStick().getPOV() == -1) {
-
-      Robot.m_driveTrain.mecanumDriveAbs(
-        Utilities.deadzone(Robot.m_oi.getDriveStick().getY(), 
-          0.2*Robot.m_oi.getDriveStick().getX() + RobotConstants.DEFAULT_DEADZONE),
-        Utilities.deadzone(Robot.m_oi.getDriveStick().getX(),
-          0.2*Robot.m_oi.getDriveStick().getY() + RobotConstants.DEFAULT_DEADZONE),
-        Utilities.deadzone(Robot.m_oi.getDriveStick().getZ(), 
-          RobotConstants.DEFAULT_DEADZONE));
-    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -63,6 +48,16 @@ public class JoystickDriveAbs extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.m_driveTrain.stop();
+    end();
+  }
+
+  @Override
+  protected double returnPIDInput() {
+    return Robot.m_limelight.getOffset()[0];
+  }
+
+  @Override
+  protected void usePIDOutput(double output) {
+    Robot.m_driveTrain.mecanumDrive(0.1, 0.0, -output);
   }
 }

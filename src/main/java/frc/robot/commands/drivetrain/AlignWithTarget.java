@@ -21,12 +21,12 @@ public class AlignWithTarget extends PIDCommand implements PIDOutput {
 
   public AlignWithTarget() {
 
-    super(0.001, 0.001, 0.0);
+    super(0.004, 0.0005, 0.0);
     requires(Robot.m_driveTrain);
 
     dummyOutput = new DummyOutput();
 
-    gyroController = new PIDController(0.009, 0.0, 0.0, Robot.m_driveTrain.getGyro(), dummyOutput);
+    gyroController = new PIDController(0.018, 0.001, 0.0, Robot.m_driveTrain.getGyro(), dummyOutput);
     gyroController.setInputRange(0, 360.0);
     gyroController.setContinuous(true);
     gyroController.setOutputRange(-0.2, 0.2);
@@ -55,8 +55,7 @@ public class AlignWithTarget extends PIDCommand implements PIDOutput {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    //return getPIDController().onTarget();
-    return false;
+    return getPIDController().onTarget();
   }
 
   // Called once after isFinished returns true
@@ -81,7 +80,7 @@ public class AlignWithTarget extends PIDCommand implements PIDOutput {
 
   @Override
   public void usePIDOutput(double output) {
-    Robot.m_driveTrain.mecanumDrive(0.0, -output, gyroController.get());
+    Robot.m_driveTrain.mecanumDrive(0.0, -output, 0.0);
   }
 
     

@@ -53,7 +53,7 @@ public class RobotMap {
   public static final int DIO_DRIVE_RIGHT_BACK_ENCB = 7;
 
   // Intake sensor ports
-  public static final int DIO_INTAKE_BANNER_SENSOR = 0;
+  public static final int DIO_INTAKE_BANNER_SENSOR = 8;
 
   // dummy port used
   public static final int GRABBER_ANALOG_POT = 0;
