@@ -14,12 +14,12 @@ import frc.robot.Robot;
 
 //TODO : Tuning
 
-public class AlignWithTarget extends PIDCommand implements PIDOutput {
+public class StrafeToTarget extends PIDCommand implements PIDOutput {
   
   PIDController gyroController;
   DummyOutput dummyOutput;
 
-  public AlignWithTarget() {
+  public StrafeToTarget() {
 
     super(0.004, 0.0005, 0.0);
     requires(Robot.m_driveTrain);
