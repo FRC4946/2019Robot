@@ -5,9 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.intake;
-
-import com.ctre.phoenix.motorcontrol.ControlMode;
+package frc.robot.deprecated;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.PIDCommand;
@@ -17,21 +15,23 @@ import frc.robot.RobotConstants;
 public class PIDSetIntakeUpwards extends PIDCommand {
 
   double m_maxSpeed, m_place;
- boolean m_value;
- PIDController m_intakeAnalogPot;
+  boolean m_value;
+  PIDController m_intakeAnalogPot;
 
   public PIDSetIntakeUpwards(double maxSpeed, double place, boolean value) {
-   super (0.02, 0,0);
-   requires(Robot.m_intake);
+   
+    super (0.02, 0,0);
+    requires(Robot.m_intake);
 
     m_maxSpeed = maxSpeed;
-   m_place = place;
-   m_value = value;
+    m_place = place;
+    m_value = value;
 
   }
+  
  @Override
  protected void initialize() {
-   setSetpoint(RobotConstants.UPWARDS_INTAKE_POSITION);    
+   setSetpoint(RobotConstants.UPWARDS_OUTER_INTAKE_POSITION);    
  }
 
   @Override
@@ -53,11 +53,11 @@ public class PIDSetIntakeUpwards extends PIDCommand {
  }
 
   protected double returnPIDInput() {
-   return Robot.m_intake.getAnalogPot().get();   
+   return Robot.m_intake.getPot();   
  }
 
   protected void usePIDOutput(double output){
-   Robot.m_intake.getAnalogPotMotor().set(ControlMode.PercentOutput, output);
+   Robot.m_intake.setElbow(output);
 
   }
 

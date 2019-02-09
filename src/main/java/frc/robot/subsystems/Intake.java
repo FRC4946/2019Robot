@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
@@ -19,10 +20,13 @@ import frc.robot.RobotMap;
  */
 public class Intake extends Subsystem {
 
-  private CANSparkMax m_outerLeft = new CANSparkMax(RobotMap.CAN_INTAKE_OUTER_LEFT, MotorType.kBrushless);
-  private CANSparkMax m_outerRight = new CANSparkMax(RobotMap.CAN_INTAKE_OUTER_RIGHT, MotorType.kBrushless);
+  private CANSparkMax m_outer = new CANSparkMax(RobotMap.CAN_INTAKE_OUTER, MotorType.kBrushless);
   private CANSparkMax m_innerLeft = new CANSparkMax(RobotMap.CAN_INTAKE_INNER_LEFT, MotorType.kBrushless);
   private CANSparkMax m_innerRight = new CANSparkMax(RobotMap.CAN_INTAKE_INNER_RIGHT, MotorType.kBrushless);
+  private CANSparkMax m_outerElbow = new CANSparkMax(RobotMap.CAN_INTAKE_OUTER_ELBOW, MotorType.kBrushless);
+
+
+  private AnalogPotentiometer m_outerIntakePot = new AnalogPotentiometer(RobotMap.ANALOG_INTAKE_POT);
 
   private DigitalInput m_bannerSensor = new DigitalInput(RobotMap.DIO_INTAKE_BANNER_SENSOR);
 
@@ -33,8 +37,7 @@ public class Intake extends Subsystem {
    *              speed negative is inwards positive is outwards
    */
   public void runOuter(double speed) {
-    m_outerLeft.set(speed);
-    m_outerRight.set(-speed);
+    m_outer.set(speed);
   }
 
   /**
@@ -88,6 +91,14 @@ public class Intake extends Subsystem {
    */
   public boolean getIsBall() {
     return !m_bannerSensor.get();
+  }
+
+  public double getPot() {
+    return m_outerIntakePot.get();
+  }
+
+  public void setElbow(double speed) {
+    m_outerElbow.set(speed);
   }
 
   @Override
