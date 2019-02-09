@@ -16,7 +16,7 @@ import frc.robot.commands.drivetrain.JoystickDriveAbs;
 import frc.robot.commands.elevator.SetElevatorJoystick;
 import frc.robot.commands.grabber.SetGrabber;
 import frc.robot.commands.intake.IntakeUntilBall;
-import frc.robot.commands.intake.Outtake;
+import frc.robot.commands.intake.SetIntake;
 import frc.robot.commands.intake.TimedIntake;
 import frc.robot.commands.limelight.ToggleLimelightLED;
 
@@ -79,9 +79,9 @@ public class OI {
     m_StartButton.whenPressed(new ToggleLimelightLED());
     m_XButton.whenPressed(new AlignWithTarget());
     m_RBButton.whenPressed(new IntakeUntilBall());
-    m_LBButton.whileHeld(new Outtake(0.1));
-    m_AButton.whileHeld(new SetGrabber(true, 0.1));
-    m_YButton.whileHeld(new SetGrabber(false, 0.1));
+    m_LBButton.whenReleased(new SetIntake(0.1));
+    m_AButton.whenPressed(new SetGrabber(true, 0.1));
+    m_YButton.whenPressed(new SetGrabber(false, 0.1));
     m_LeftStickButton.whileHeld(new LiftRobot(0.2));
     m_RightStickButton.whileHeld(new LiftRobot(-0.2));
 
