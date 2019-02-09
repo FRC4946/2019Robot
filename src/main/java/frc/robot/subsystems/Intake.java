@@ -25,10 +25,15 @@ public class Intake extends Subsystem {
   private CANSparkMax m_innerRight = new CANSparkMax(RobotMap.CAN_INTAKE_INNER_RIGHT, MotorType.kBrushless);
   private CANSparkMax m_outerElbow = new CANSparkMax(RobotMap.CAN_INTAKE_OUTER_ELBOW, MotorType.kBrushless);
 
-
   private AnalogPotentiometer m_outerIntakePot = new AnalogPotentiometer(RobotMap.ANALOG_INTAKE_POT);
 
   private DigitalInput m_bannerSensor = new DigitalInput(RobotMap.DIO_INTAKE_BANNER_SENSOR);
+
+  private boolean m_elbowIsUp;
+
+  public Intake() {
+    m_elbowIsUp = false;
+  }
 
   /**
    * Runs the outer intake at the desired speed
@@ -99,6 +104,14 @@ public class Intake extends Subsystem {
 
   public void setElbow(double speed) {
     m_outerElbow.set(speed);
+  }
+
+  public void setElbowIsUp(boolean isUp) { //is this useful or is this garbage - zheng
+    m_elbowIsUp = isUp;
+  }
+
+  public boolean getElbowIsUp() {
+    return m_elbowIsUp;
   }
 
   @Override
