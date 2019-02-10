@@ -5,18 +5,19 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.climber;
+package frc.robot.commands.grabberarm;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotConstants;
 
-public class LiftRobot extends Command {
+public class SetArm extends Command {
 
-  private double m_speed;
+  double m_speed;
 
-  public LiftRobot(double climberSpeed) {
-    requires(Robot.m_climber);
-    m_speed = climberSpeed;
+  public SetArm(double speed) {
+    requires(Robot.m_grabberArm);
+    m_speed = speed;
   }
 
   // Called just before this Command runs the first time
@@ -27,21 +28,20 @@ public class LiftRobot extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (Robot.m_climber.isClimberTopped()) {
-      Robot.m_climber.setClimber(m_speed);
-    } // Only moving if climber isn't topped
+    Robot.m_grabberArm.setArm(m_speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return (Robot.m_grabberArm.getPot() <= RobotConstants.GRABBER_ARM_IN && m_speed < 0)
+      || (Robot.m_grabberArm.getPot() <= RobotConstants.GRABBER_ARM_OUT && m_speed > 0);
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.m_climber.stopClimber();
+    Robot.m_grabberArm.setArm(0.0);
   }
 
   // Called when another command which requires one or more of the same

@@ -16,15 +16,13 @@ public class Utilities {
     while (angle < 0) {
       angle += 360;
     }
-
-    return angle % 360; 
+    return angle % 360;
   }
-
-  public double deadzone(double input) {
+  public static double deadzone(double input) {
     return deadzone(input, RobotConstants.DEFAULT_DEADZONE);
   }
 
-  public double deadzone(double input, double deadzone) {
+  public static double deadzone(double input, double deadzone) {
     return Math.abs(input) < Math.abs(deadzone) ? 0 : input;
   }
 

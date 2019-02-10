@@ -10,6 +10,7 @@ package frc.robot.commands.elevator;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotConstants;
+import frc.robot.Utilities;
 
 public class SetElevatorJoystick extends Command {
 
@@ -32,9 +33,8 @@ public class SetElevatorJoystick extends Command {
         Robot.m_oi.getDriveStick().getRawAxis(1) <= 0) {
          
       Robot.m_elevator.setElevator(0);
-
-    } else {
-      Robot.m_elevator.setElevator(Robot.m_utilities.deadzone(Robot.m_oi.getDriveStick().getRawAxis(1)*0.5));
+    } else { 
+      Robot.m_elevator.setElevator(Utilities.deadzone(Robot.m_oi.getDriveStick().getRawAxis(1)*0.5));
     }
   }
 

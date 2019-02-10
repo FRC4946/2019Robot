@@ -5,46 +5,45 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.climber;
+ package frc.robot.commands.slider;
 
-import edu.wpi.first.wpilibj.command.Command;
+ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class LiftRobot extends Command {
+ public class SliderCommand extends Command {
 
-  private double m_speed;
+   private double m_speed;
 
-  public LiftRobot(double climberSpeed) {
-    requires(Robot.m_climber);
-    m_speed = climberSpeed;
+   public SliderCommand(double Speed) {
+    requires(Robot.m_slider);
+    m_speed = Speed;
   }
 
-  // Called just before this Command runs the first time
+   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
   }
 
-  // Called repeatedly when this Command is scheduled to run
+   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (Robot.m_climber.isClimberTopped()) {
-      Robot.m_climber.setClimber(m_speed);
-    } // Only moving if climber isn't topped
+    Robot.m_slider.runRight(m_speed);
+    Robot.m_slider.runRight(m_speed);
   }
 
-  // Make this return true when this Command no longer needs to run execute()
+   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
     return false;
   }
 
-  // Called once after isFinished returns true
+   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.m_climber.stopClimber();
+    Robot.m_slider.stopAll();
   }
 
-  // Called when another command which requires one or more of the same
+   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {

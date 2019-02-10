@@ -11,8 +11,9 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.climber.LiftRobot;
-import frc.robot.commands.drivetrain.AlignWithTarget;
+import frc.robot.commands.drivetrain.StrafeToTarget;
 import frc.robot.commands.drivetrain.JoystickDriveAbs;
+import frc.robot.commands.slider.SliderCommand;
 import frc.robot.commands.elevator.SetElevatorJoystick;
 import frc.robot.commands.grabber.SetGrabber;
 import frc.robot.commands.intake.IntakeUntilBall;
@@ -67,7 +68,6 @@ public class OI {
   private Button m_LeftStickButton = new JoystickButton(m_driveStick, 9);
   private Button m_RightStickButton = new JoystickButton(m_driveStick, 10);
 
-
   public Joystick getDriveStick() {
     return m_driveStick;
   }
@@ -77,13 +77,15 @@ public class OI {
     // TODO: Bind buttons to commands
     m_BButton.whileHeld(new JoystickDriveAbs());
     m_StartButton.whenPressed(new ToggleLimelightLED());
-    m_XButton.whenPressed(new AlignWithTarget());
+    m_XButton.whenPressed(new StrafeToTarget()); 
     m_RBButton.whenPressed(new IntakeUntilBall());
     m_LBButton.whenReleased(new SetIntake(0.1));
     m_AButton.whenPressed(new SetGrabber(true, 0.1));
     m_YButton.whenPressed(new SetGrabber(false, 0.1));
     m_LeftStickButton.whileHeld(new LiftRobot(0.2));
     m_RightStickButton.whileHeld(new LiftRobot(-0.2));
+    m_LBButton.whenPressed(new SliderCommand(0.2));
+    m_RBButton.whenPressed(new SliderCommand(-0.2));
 
     //m_XButton.whenPressed(new SetGrabber(true, 0.1));
     //m_YButton.whenPressed(new SetGrabber(false, 0.1));

@@ -49,12 +49,13 @@ public class PIDSetIntakeUpwards extends PIDCommand {
 
 
   @Override
- protected void interrupted() {
- }
+  protected void interrupted() {
+    
+  }
 
   protected double returnPIDInput() {
    return Robot.m_intakeElbow.getPot();   
- }
+  }
 
   protected void usePIDOutput(double output){
    Robot.m_intakeElbow.setElbow(output);

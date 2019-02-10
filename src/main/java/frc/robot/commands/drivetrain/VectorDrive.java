@@ -7,14 +7,13 @@
 
 package frc.robot.commands.drivetrain;
 
-import edu.wpi.first.wpilibj.Timer;
+
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class VectorDrive extends Command {
 
-  private double m_verticalSpeed, m_horizontalSpeed, m_time;
-  private Timer m_timer;
+  private double m_verticalSpeed, m_horizontalSpeed;
 
   /**
    * Moves the robot at the desired speed for the desired time. Must be timed out
@@ -30,8 +29,6 @@ public class VectorDrive extends Command {
 
     this.m_horizontalSpeed = horizontalSpeed;
     this.m_verticalSpeed = verticalSpeed;
-
-    m_timer = new Timer();
   }
 
   // Called just before this Command runs the first time

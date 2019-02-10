@@ -5,43 +5,47 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.climber;
+package frc.robot.commands.grabberarm;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class LiftRobot extends Command {
+public class SetArmToPos extends Command {
 
-  private double m_speed;
-
-  public LiftRobot(double climberSpeed) {
-    requires(Robot.m_climber);
-    m_speed = climberSpeed;
+  double m_speed, m_desiredPos;
+  
+  public SetArmToPos(double desiredPos, double speed) {
+    requires(Robot.m_grabberArm);
+    m_speed = Math.abs(speed);
+    m_desiredPos = desiredPos;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    m_speed = m_desiredPos < Robot.m_grabberArm.getPot() ? -m_speed : m_speed;
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (Robot.m_climber.isClimberTopped()) {
-      Robot.m_climber.setClimber(m_speed);
-    } // Only moving if climber isn't topped
+    Robot.m_grabberArm.setArm(m_speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    if(m_speed < 0) {
+      return Robot.m_grabberArm.getPot() <= m_desiredPos;
+    } else {
+      return Robot.m_grabberArm.getPot() >= m_desiredPos;
+    }
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.m_climber.stopClimber();
+    Robot.m_grabberArm.setArm(0.0);
   }
 
   // Called when another command which requires one or more of the same

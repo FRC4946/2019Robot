@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.Utilities;
 
+
 public class AbsTurn extends Command {
 
   private double m_angle; // angle to turn to in degrees
@@ -23,7 +24,7 @@ public class AbsTurn extends Command {
    */
   public AbsTurn(double angle) {
     requires(Robot.m_driveTrain);
-    this.m_angle = Robot.m_utilities.conformAngle(angle);
+    this.m_angle = Utilities.conformAngle(angle);
   }
 
   // Called just before this Command runs the first time
@@ -53,7 +54,6 @@ public class AbsTurn extends Command {
     return (Math.abs(Robot.m_driveTrain.getGyroAngle() - m_angle) < 2); // within 2 degrees
   }
 
-  // Called once after isFinished returns true
   @Override
   protected void end() {
     Robot.m_driveTrain.stop();

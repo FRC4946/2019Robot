@@ -36,11 +36,15 @@ public class RobotMap {
 
   //Grabber
   public static final int CAN_GRABBER_MOTOR = 9;
+  public static final int CAN_GRABBER_ARM = 10;
   public static final int DIO_GRABBER_IN = 10;
   public static final int DIO_GRABBER_OUT = 11;
+  public static final int ANALOG_GRABBER_POT = 2;
 
   // Elevator motor ports (dummy ports used)
   public static final int CAN_RUN_ELEVATOR = 0; 
+
+  public static final int CAN_SLIDER_MOTOR = 10;
 
   // Drive train encoder ports
   public static final int DIO_DRIVE_LEFT_FRONT_ENCA = 0;
@@ -53,7 +57,7 @@ public class RobotMap {
   public static final int DIO_DRIVE_RIGHT_BACK_ENCB = 7;
 
   // Intake sensor ports
-  public static final int DIO_INTAKE_BANNER_SENSOR = 0;
+  public static final int DIO_INTAKE_BANNER_SENSOR = 8;
 
   // dummy port used
   public static final int GRABBER_ANALOG_POT = 0;
@@ -62,12 +66,10 @@ public class RobotMap {
 
   // Intake sensor ports
   public static final int INTAKE_BANNER_SENSOR = 0;
-
   public static final int PCM_SOLGRABBER = 0;
   public static final int PCM_ELEVATOR_BREAK = 1;
 
   // Elevator potentiometer (Dummy ports used)
   public static final int ANALOG_ELEVATOR_POT = 1;
   public static final int ANALOG_INTAKE_POT = 2;
-
 }

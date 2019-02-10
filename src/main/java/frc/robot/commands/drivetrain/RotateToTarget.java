@@ -9,45 +9,42 @@ package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import frc.robot.Robot;
-import frc.robot.RobotConstants;
-import frc.robot.Utilities;
 
-public class AbsTurnPID extends PIDCommand {
+//TODO : Tuning
 
-  private double m_angle, m_maxSpeed; // angle to turn to in degrees
+/**
+ * Turns the robot so that it is aligned with whatever the robot is detecting on
+ * the limelight
+ *
+ * @author Jacob4649
+ */
+public class RotateToTarget extends PIDCommand {
 
   /**
-   * Turns the robot on the spot to the gyro angle provided
+   * Turns the robot so that it is aligned with whatever the robot is detecting on
+   * the limelight
    *
-   * @param angle the angle to turn to in degrees
+   * @param maxSpeed the maximum speed of the turn as a fraction
    */
-  public AbsTurnPID(double angle, double maxSpeed) {
-
-    //DUMMY P I and D values
+  public RotateToTarget(double maxSpeed) {
     super(0.02, 0, 0);
-
     requires(Robot.m_driveTrain);
 
-    m_angle = Utilities.conformAngle(angle);
-    m_maxSpeed = maxSpeed;
-
-    getPIDController().setInputRange(0.0, 360.0);
-    getPIDController().setOutputRange(-0.8, 0.8);
-    getPIDController().setContinuous(true);
-    getPIDController().setAbsoluteTolerance(2.0);
+    getPIDController().setInputRange(-20.5, 20.5);
+    getPIDController().setOutputRange(-maxSpeed, maxSpeed); // Dummy numbers, will need to be updates
+    getPIDController().setContinuous(false);
+    getPIDController().setAbsoluteTolerance(4.0);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
     getPIDController().enable();
-    getPIDController().setSetpoint(m_angle);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -59,7 +56,6 @@ public class AbsTurnPID extends PIDCommand {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    getPIDController().disable();
     Robot.m_driveTrain.stop();
   }
 
@@ -70,14 +66,17 @@ public class AbsTurnPID extends PIDCommand {
     end();
   }
 
+  // Returns the value the pid controller is using as an input, in this case
+  // the horizontal distance from center of the object detected by the limelight
   @Override
   protected double returnPIDInput() {
-    return Robot.m_driveTrain.getGyroAngle();
+    return Robot.m_limelight.getOffset()[0];
   }
 
+  // processes the pid output, sends new values to motors and stuff
   @Override
   protected void usePIDOutput(double output) {
-    Robot.m_driveTrain.mecanumDrive(0.0, 0.0,
-      Math.abs(output) > Math.abs(m_maxSpeed) ? m_maxSpeed : output);
+    // drives at the outputted speed, or the max speed
+    Robot.m_driveTrain.mecanumDrive(0.0, 0.0, output);
   }
 }

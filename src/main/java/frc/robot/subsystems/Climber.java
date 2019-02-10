@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
@@ -26,6 +27,12 @@ public class Climber extends Subsystem {
 
   //private SpeedControllerGroup m_liftMotors = new SpeedControllerGroup(m_front, m_back);
 
+  public DigitalInput fLimitSwitch = new DigitalInput(1); // Currently Arbitrary numbers
+  public DigitalInput bLimitSwitch = new DigitalInput(2);
+
+   public Climber() {
+  }
+
   public void setClimber(double climberSpeed) {
     m_front.set(climberSpeed);
     m_back.set(-climberSpeed);
@@ -33,6 +40,10 @@ public class Climber extends Subsystem {
 
   public void stopClimber() {
     setClimber(0.0);
+  }
+  
+  public boolean isClimberTopped() {
+    return(fLimitSwitch.get() || bLimitSwitch.get());
   }
 
   @Override

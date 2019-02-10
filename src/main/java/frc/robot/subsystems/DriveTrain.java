@@ -8,15 +8,14 @@
 package frc.robot.subsystems;
 
 import com.kauailabs.navx.frc.AHRS;
+import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
-import frc.robot.Robot;
 import frc.robot.RobotConstants;
 import frc.robot.RobotMap;
 import frc.robot.Utilities;
@@ -39,7 +38,6 @@ public class DriveTrain extends Subsystem {
     m_rightFront = new CANSparkMax(RobotMap.CAN_DRIVE_RIGHT_FRONT, MotorType.kBrushless);
     m_rightBack = new CANSparkMax(RobotMap.CAN_DRIVE_RIGHT_BACK, MotorType.kBrushless);
 
-    m_mecanumDrive = new MecanumDrive(m_leftFront, m_leftBack, m_rightFront, m_rightBack);
     m_leftFrontEnc = new Encoder(RobotMap.DIO_DRIVE_LEFT_FRONT_ENCA, RobotMap.DIO_DRIVE_LEFT_FRONT_ENCB);
     m_leftBackEnc = new Encoder(RobotMap.DIO_DRIVE_LEFT_BACK_ENCA, RobotMap.DIO_DRIVE_LEFT_BACK_ENCB);
     m_rightFrontEnc = new Encoder(RobotMap.DIO_DRIVE_RIGHT_FRONT_ENCA, RobotMap.DIO_DRIVE_RIGHT_FRONT_ENCB);
@@ -52,7 +50,7 @@ public class DriveTrain extends Subsystem {
 
     m_mecanumDrive = new MecanumDrive(m_leftFront, m_rightFront, m_leftBack, m_rightBack);
     m_gyro = new AHRS(Port.kMXP);
-  }
+   }
 
   @Override
   public void initDefaultCommand() {
@@ -94,12 +92,11 @@ public class DriveTrain extends Subsystem {
   }
 
   public double getGyroAngle() {
-    return Robot.m_utilities.conformAngle(m_gyro.getAngle() % 360.0);
+    return Utilities.conformAngle(m_gyro.getAngle());
   }
 
   public double getAvgStraightDist() {
-    return (-m_leftFrontEnc.getDistance()  - m_leftBackEnc.getDistance() 
-      + m_rightFrontEnc.getDistance() + m_rightFrontEnc.getDistance())/4.0;
+    return (m_leftFrontEnc.getDistance() + m_rightFrontEnc.getDistance() + m_leftBackEnc.getDistance() + m_rightBackEnc.getDistance())/4.0;
   }
 
   public AHRS getGyro() {
@@ -136,5 +133,27 @@ public class DriveTrain extends Subsystem {
 
   public Encoder getRightBackEnc() {
     return m_rightBackEnc;
+  }
+
+  /**
+   * Sets the gains on the designated PID controller
+   * @param controller the controller to modify
+   * @param p the proportional gain
+   * @param i the intergral gain
+   * @param d the derivative gain
+   */
+  public void setPID(CANPIDController controller, double p, double i, double d) {
+    controller.setP(p);
+    controller.setI(i);
+    controller.setD(d);
+  }
+
+  /**
+   * Assigns a setpoint to a pid controller
+   * @param controller the controller to assign a setpoint to
+   * @param setpoint a value between -1 and 1 to set as the setpoint
+   */
+  public void setPIDSetpoint(CANSparkMax controller, double setpoint) {
+    controller.pidWrite(setpoint);
   }
 }

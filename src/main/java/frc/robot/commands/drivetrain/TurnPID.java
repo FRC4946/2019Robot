@@ -9,45 +9,33 @@ package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import frc.robot.Robot;
-import frc.robot.RobotConstants;
 import frc.robot.Utilities;
 
-public class AbsTurnPID extends PIDCommand {
+public class TurnPID extends PIDCommand {
 
-  private double m_angle, m_maxSpeed; // angle to turn to in degrees
+double m_angle, m_startAngle;
 
-  /**
-   * Turns the robot on the spot to the gyro angle provided
-   *
-   * @param angle the angle to turn to in degrees
-   */
-  public AbsTurnPID(double angle, double maxSpeed) {
-
-    //DUMMY P I and D values
-    super(0.02, 0, 0);
-
+  public TurnPID(double angle) {
+    super(0.00645, 0.000001, 0.002);
     requires(Robot.m_driveTrain);
-
-    m_angle = Utilities.conformAngle(angle);
-    m_maxSpeed = maxSpeed;
-
-    getPIDController().setInputRange(0.0, 360.0);
-    getPIDController().setOutputRange(-0.8, 0.8);
-    getPIDController().setContinuous(true);
-    getPIDController().setAbsoluteTolerance(2.0);
+    m_angle = angle;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    getPIDController().enable();
-    getPIDController().setSetpoint(m_angle);
+    m_startAngle = Robot.m_driveTrain.getGyroAngle();
+
+    getPIDController().setInputRange(0, 360);
+    getPIDController().setOutputRange(-0.5, 0.5);
+    getPIDController().setContinuous(true);
+    getPIDController().setAbsoluteTolerance(1);
+    getPIDController().setSetpoint(Utilities.conformAngle(m_startAngle + m_angle));
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -59,8 +47,8 @@ public class AbsTurnPID extends PIDCommand {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    getPIDController().disable();
     Robot.m_driveTrain.stop();
+    Robot.m_driveTrain.resetEncs();
   }
 
   // Called when another command which requires one or more of the same
@@ -77,7 +65,6 @@ public class AbsTurnPID extends PIDCommand {
 
   @Override
   protected void usePIDOutput(double output) {
-    Robot.m_driveTrain.mecanumDrive(0.0, 0.0,
-      Math.abs(output) > Math.abs(m_maxSpeed) ? m_maxSpeed : output);
+    Robot.m_driveTrain.mecanumDrive(0.0, 0.0, output);
   }
 }

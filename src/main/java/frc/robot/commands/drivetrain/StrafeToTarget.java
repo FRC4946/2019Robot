@@ -7,41 +7,43 @@
 
 package frc.robot.commands.drivetrain;
 
+import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import frc.robot.Robot;
-import frc.robot.RobotConstants;
 
 //TODO : Tuning
 
-/**
- * Turns the robot so that it is aligned with whatever the robot is detecting on
- * the limelight
- *
- * @author Jacob4649
- */
-public class LimelightTurn extends PIDCommand {
+public class StrafeToTarget extends PIDCommand implements PIDOutput {
+  
+  PIDController gyroController;
+  DummyOutput dummyOutput;
 
-  private double m_maxSpeed;
+  public StrafeToTarget() {
 
-  /**
-   * Turns the robot so that it is aligned with whatever the robot is detecting on
-   * the limelight
-   *
-   * @param maxSpeed the maximum speed of the turn as a fraction
-   */
-  public LimelightTurn(double maxSpeed) {
-    super(0.02, 0, 0);
+    super(0.004, 0.0005, 0.0);
     requires(Robot.m_driveTrain);
 
+    dummyOutput = new DummyOutput();
+
+    gyroController = new PIDController(0.018, 0.001, 0.0, Robot.m_driveTrain.getGyro(), dummyOutput);
+    gyroController.setInputRange(0, 360.0);
+    gyroController.setContinuous(true);
+    gyroController.setOutputRange(-0.2, 0.2);
+    gyroController.setSetpoint(Robot.m_driveTrain.getGyroAngle());
+    gyroController.setAbsoluteTolerance(4);
+
     getPIDController().setInputRange(-20.5, 20.5);
-    getPIDController().setOutputRange(0.2, 0.8); // Dummy numbers, will need to be updates
+    getPIDController().setOutputRange(-0.2, 0.2); 
     getPIDController().setContinuous(false);
-    getPIDController().setAbsoluteTolerance(4.0);
+    getPIDController().setAbsoluteTolerance(1.0);
+    getPIDController().setSetpoint(0.0);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    gyroController.enable();
     getPIDController().enable();
   }
 
@@ -60,6 +62,8 @@ public class LimelightTurn extends PIDCommand {
   @Override
   protected void end() {
     Robot.m_driveTrain.stop();
+    gyroController.disable();
+    getPIDController().disable();
   }
 
   // Called when another command which requires one or more of the same
@@ -69,17 +73,28 @@ public class LimelightTurn extends PIDCommand {
     end();
   }
 
-  // Returns the value the pid controller is using as an input, in this case
-  // the horizontal distance from center of the object detected by the limelight
   @Override
-  protected double returnPIDInput() {
+  public double returnPIDInput() {
     return Robot.m_limelight.getOffset()[0];
   }
 
-  // processes the pid output, sends new values to motors and stuff
   @Override
-  protected void usePIDOutput(double output) {
-    // drives at the outputted speed, or the max speed
-    Robot.m_driveTrain.mecanumDrive(0.0, 0.0, output);
+  public void usePIDOutput(double output) {
+    Robot.m_driveTrain.mecanumDrive(0.0, -output, 0.0);
+  }
+
+    
+  @Override
+  public void pidWrite(double output) {
+    //whatever
+  }
+
+}
+
+class DummyOutput implements PIDOutput {
+  
+  @Override
+  public void pidWrite(double output) {
+    //whatever
   }
 }

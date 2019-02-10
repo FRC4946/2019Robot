@@ -37,4 +37,8 @@ public class RobotConstants {
   public static final double DOWNWARDS_OUTER_INTAKE_POSITION = 600.0;
   public static final double INTAKE_POT_MIN = 0.0;
   public static final double INTAKE_POT_MAX = 1000.0;
+  
+  public static final double GRABBER_ARM_OUT = 1000.0;
+  public static final double GRABBER_ARM_HOLD_HATCH = 900.0;
+  public static final double GRABBER_ARM_IN = 0.0;
 }
