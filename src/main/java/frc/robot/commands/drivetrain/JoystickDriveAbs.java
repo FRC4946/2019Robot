@@ -39,10 +39,10 @@ public class JoystickDriveAbs extends Command {
     } else if (Robot.m_oi.getDriveStick().getPOV() == -1) {
 
       Robot.m_driveTrain.mecanumDriveAbs(
-        Utilities.deadzone(Robot.m_oi.getDriveStick().getY(), 
-          0.2*Robot.m_oi.getDriveStick().getX() + RobotConstants.DEFAULT_DEADZONE),
-        Utilities.deadzone(Robot.m_oi.getDriveStick().getX(),
-          0.2*Robot.m_oi.getDriveStick().getY() + RobotConstants.DEFAULT_DEADZONE),
+        Utilities.deadzone(-Math.pow(Robot.m_oi.getDriveStick().getRawAxis(1), 2), 
+          Math.abs(0.2*Robot.m_oi.getDriveStick().getRawAxis(0)) + RobotConstants.DEFAULT_DEADZONE),
+        Utilities.deadzone(Math.pow(Robot.m_oi.getDriveStick().getRawAxis(0), 2),
+          Math.abs(0.2*Robot.m_oi.getDriveStick().getRawAxis(1)) + RobotConstants.DEFAULT_DEADZONE),
         Utilities.deadzone(Robot.m_oi.getDriveStick().getZ(), 
           RobotConstants.DEFAULT_DEADZONE));
           
