@@ -14,7 +14,6 @@ import frc.robot.Robot;
 public class VectorDrive extends Command {
 
   private double m_verticalSpeed, m_horizontalSpeed;
-  
 
   /**
    * Moves the robot at the desired speed for the desired time. Must be timed out
@@ -30,7 +29,6 @@ public class VectorDrive extends Command {
 
     this.m_horizontalSpeed = horizontalSpeed;
     this.m_verticalSpeed = verticalSpeed;
-
   }
 
   // Called just before this Command runs the first time

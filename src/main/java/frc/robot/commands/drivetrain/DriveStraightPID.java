@@ -15,7 +15,6 @@ import frc.robot.Robot;
 public class DriveStraightPID extends PIDCommand {
 
   double m_dist;
-  DummyPIDOutput m_dummyOutput;
   PIDController m_gyroController;
 
   public DriveStraightPID(double dist) {
@@ -24,9 +23,8 @@ public class DriveStraightPID extends PIDCommand {
 
     requires(Robot.m_driveTrain);
     m_dist = dist;
-    m_dummyOutput = new DummyPIDOutput();
-    m_gyroController = new PIDController(0.00645, 0.000001, 0.002, 
-      Robot.m_driveTrain.getGyro(), m_dummyOutput);
+    m_gyroController = new PIDController(0.2, 0.005, 0, 
+      Robot.m_driveTrain.getGyro(), new DummyPIDOutput()); //0.00645, 0.000001, 0.002
   }
 
   // Called just before this Command runs the first time
