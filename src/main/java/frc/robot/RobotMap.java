@@ -57,6 +57,7 @@ public class RobotMap {
   // Intake sensor ports
   public static final int DIO_INTAKE_BANNER_SENSOR = 8;
 
+  // dummy port used
   public static final int GRABBER_ANALOG_POT = 0;
   public static final int INNER_LIMIT_SWITCH = 10;
   public static final int OUTER_LIMIT_SWITCH  = 11;
