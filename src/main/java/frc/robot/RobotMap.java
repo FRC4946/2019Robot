@@ -44,6 +44,8 @@ public class RobotMap {
   // Elevator motor ports (dummy ports used)
   public static final int CAN_RUN_ELEVATOR = 0; 
 
+  public static final int CAN_SLIDER_MOTOR = 10;
+
   // Drive train encoder ports
   public static final int DIO_DRIVE_LEFT_FRONT_ENCA = 0;
   public static final int DIO_DRIVE_LEFT_FRONT_ENCB = 1;
