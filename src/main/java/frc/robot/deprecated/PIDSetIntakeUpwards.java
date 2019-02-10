@@ -21,7 +21,7 @@ public class PIDSetIntakeUpwards extends PIDCommand {
   public PIDSetIntakeUpwards(double maxSpeed, double place, boolean value) {
    
     super (0.02, 0,0);
-    requires(Robot.m_intake);
+    requires(Robot.m_intakeElbow);
 
     m_maxSpeed = maxSpeed;
     m_place = place;
@@ -53,11 +53,11 @@ public class PIDSetIntakeUpwards extends PIDCommand {
  }
 
   protected double returnPIDInput() {
-   return Robot.m_intake.getPot();   
+   return Robot.m_intakeElbow.getPot();   
  }
 
   protected void usePIDOutput(double output){
-   Robot.m_intake.setElbow(output);
+   Robot.m_intakeElbow.setElbow(output);
 
   }
 

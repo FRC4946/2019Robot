@@ -20,19 +20,16 @@ import frc.robot.RobotMap;
  */
 public class Intake extends Subsystem {
 
-  private CANSparkMax m_outer = new CANSparkMax(RobotMap.CAN_INTAKE_OUTER, MotorType.kBrushless);
-  private CANSparkMax m_innerLeft = new CANSparkMax(RobotMap.CAN_INTAKE_INNER_LEFT, MotorType.kBrushless);
-  private CANSparkMax m_innerRight = new CANSparkMax(RobotMap.CAN_INTAKE_INNER_RIGHT, MotorType.kBrushless);
-  private CANSparkMax m_outerElbow = new CANSparkMax(RobotMap.CAN_INTAKE_OUTER_ELBOW, MotorType.kBrushless);
-
-  private AnalogPotentiometer m_outerIntakePot = new AnalogPotentiometer(RobotMap.ANALOG_INTAKE_POT);
-
-  private DigitalInput m_bannerSensor = new DigitalInput(RobotMap.DIO_INTAKE_BANNER_SENSOR);
-
-  private boolean m_elbowIsUp;
+  private CANSparkMax m_outer, m_innerLeft, m_innerRight;
+  private DigitalInput m_bannerSensor;
 
   public Intake() {
-    m_elbowIsUp = false;
+    
+    m_outer = new CANSparkMax(RobotMap.CAN_INTAKE_OUTER, MotorType.kBrushless);
+    m_innerLeft = new CANSparkMax(RobotMap.CAN_INTAKE_INNER_LEFT, MotorType.kBrushless);
+    m_innerRight = new CANSparkMax(RobotMap.CAN_INTAKE_INNER_RIGHT, MotorType.kBrushless);
+
+    m_bannerSensor = new DigitalInput(RobotMap.DIO_INTAKE_BANNER_SENSOR);
   }
 
   /**
@@ -98,25 +95,8 @@ public class Intake extends Subsystem {
     return !m_bannerSensor.get();
   }
 
-  public double getPot() {
-    return m_outerIntakePot.get();
-  }
-
-  public void setElbow(double speed) {
-    m_outerElbow.set(speed);
-  }
-
-  public void setElbowIsUp(boolean isUp) { //is this useful or is this garbage - zheng
-    m_elbowIsUp = isUp;
-  }
-
-  public boolean getElbowIsUp() {
-    return m_elbowIsUp;
-  }
-
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+
   }
 }
