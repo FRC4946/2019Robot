@@ -97,6 +97,5 @@ public class Intake extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-
   }
 }
