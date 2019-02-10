@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.intake;
+package frc.robot.commands.intakeelbow;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
@@ -29,10 +29,10 @@ public class ToggleOuterIntakeElbow extends Command {
   @Override
   protected void execute() {
 
-    if(Robot.m_intake.getElbowIsUp()) {
-      Robot.m_intake.setElbow(-m_speed);
+    if(Robot.m_intakeElbow.getElbowIsUp()) {
+      Robot.m_intakeElbow.setElbow(-m_speed);
     } else {
-      Robot.m_intake.setElbow(m_speed);
+      Robot.m_intakeElbow.setElbow(m_speed);
     }
   }
 
@@ -40,24 +40,24 @@ public class ToggleOuterIntakeElbow extends Command {
   @Override
   protected boolean isFinished() {
   
-    if(Robot.m_intake.getElbowIsUp()) { 
-      return Robot.m_intake.getPot() >= RobotConstants.DOWNWARDS_OUTER_INTAKE_POSITION;
+    if(Robot.m_intakeElbow.getElbowIsUp()) { 
+      return Robot.m_intakeElbow.getPot() >= RobotConstants.DOWNWARDS_OUTER_INTAKE_POSITION;
     } else {
-      return Robot.m_intake.getPot() <= RobotConstants.UPWARDS_OUTER_INTAKE_POSITION;
+      return Robot.m_intakeElbow.getPot() <= RobotConstants.UPWARDS_OUTER_INTAKE_POSITION;
     }
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.m_intake.setElbow(0.0);
-    Robot.m_intake.setElbowIsUp(!Robot.m_intake.getElbowIsUp());
+    Robot.m_intakeElbow.setElbow(0.0);
+    Robot.m_intakeElbow.setElbowIsUp(!Robot.m_intakeElbow.getElbowIsUp());
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.m_intake.setElbow(0.0);
+    Robot.m_intakeElbow.setElbow(0.0);
   }
 }
