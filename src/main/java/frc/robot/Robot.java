@@ -17,6 +17,7 @@ import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Grabber;
+import frc.robot.subsystems.GrabberArm;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.IntakeElbow;
 import frc.robot.subsystems.Limelight;
@@ -40,8 +41,8 @@ public class Robot extends TimedRobot {
   public static Intake m_intake = new Intake();
   public static Elevator m_elevator = new Elevator();
   public static IntakeElbow m_intakeElbow = new IntakeElbow();
+  public static GrabberArm m_grabberArm = new GrabberArm();
   public static OI m_oi = new OI();
-
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();

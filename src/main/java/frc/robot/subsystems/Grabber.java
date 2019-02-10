@@ -10,8 +10,8 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
@@ -35,7 +35,6 @@ public class Grabber extends Subsystem {
 
   public boolean getGrabberIn() {
     return m_innerSwitch.get() && !m_outerSwitch.get();
-
   }
 
   public boolean getGrabberOut() {
