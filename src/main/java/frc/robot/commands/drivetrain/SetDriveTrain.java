@@ -5,45 +5,44 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
- package frc.robot.commands.slider;
+package frc.robot.commands.drivetrain;
 
- import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
- public class SliderCommand extends Command {
+public class SetDriveTrain extends Command {
+  
+  double m_speed;
 
-   private double m_speed;
-
-   public SliderCommand(double Speed) {
-    requires(Robot.m_slider);
-    m_speed = Speed;
+  public SetDriveTrain(double speed) {
+    requires(Robot.m_driveTrain); 
+    m_speed = speed;
   }
 
-   // Called just before this Command runs the first time
+  // Called just before this Command runs the first time
   @Override
   protected void initialize() {
   }
 
-   // Called repeatedly when this Command is scheduled to run
+  // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_slider.runRight(m_speed);
-    Robot.m_slider.runRight(m_speed);
+    Robot.m_driveTrain.mecanumDrive(m_speed, 0.0, 0.0);
   }
 
-   // Make this return true when this Command no longer needs to run execute()
+  // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
     return false;
   }
 
-   // Called once after isFinished returns true
+  // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.m_slider.stopAll();
+    Robot.m_driveTrain.stop();
   }
 
-   // Called when another command which requires one or more of the same
+  // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {

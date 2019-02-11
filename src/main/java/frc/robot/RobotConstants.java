@@ -41,4 +41,9 @@ public class RobotConstants {
   public static final double GRABBER_ARM_OUT = 1000.0;
   public static final double GRABBER_ARM_HOLD_HATCH = 900.0;
   public static final double GRABBER_ARM_IN = 0.0;
+
+  public static final double CLIMBER_MIN_HEIGHT = 0.0;
+  public static final double CLIMBER_MAX_HEIGHT = 40.0;
+  public static final double LOWER_PLATFORM_HEIGHT = 6.0; //inches
+  public static final double UPPER_PLATFORM_HEIGHT = 19.0; //inches
 }

@@ -22,15 +22,14 @@ import frc.robot.RobotMap;
  */
 public class Climber extends Subsystem {
 
-  private CANSparkMax m_front = new CANSparkMax(RobotMap.CAN_LIFT_FRONT, MotorType.kBrushed);
-  private CANSparkMax m_back = new CANSparkMax(RobotMap.CAN_LIFT_BACK, MotorType.kBrushed);
+  private CANSparkMax m_front, m_back;
+  public DigitalInput fLimitSwitch, bLimitSwitch;
 
-  //private SpeedControllerGroup m_liftMotors = new SpeedControllerGroup(m_front, m_back);
-
-  public DigitalInput fLimitSwitch = new DigitalInput(1); // Currently Arbitrary numbers
-  public DigitalInput bLimitSwitch = new DigitalInput(2);
-
-   public Climber() {
+  public Climber() {
+    m_front = new CANSparkMax(RobotMap.CAN_LIFT_FRONT, MotorType.kBrushed);
+    m_back = new CANSparkMax(RobotMap.CAN_LIFT_BACK, MotorType.kBrushed);
+    fLimitSwitch = new DigitalInput(1);
+    bLimitSwitch = new DigitalInput(2);
   }
 
   public void setClimber(double climberSpeed) {
@@ -43,7 +42,11 @@ public class Climber extends Subsystem {
   }
   
   public boolean isClimberTopped() {
-    return(fLimitSwitch.get() || bLimitSwitch.get());
+    return (fLimitSwitch.get() || bLimitSwitch.get());
+  }
+
+  public double getClimberHeight() {
+    return (m_front.getEncoder().getPosition() + m_back.getEncoder().getPosition())/2.0;
   }
 
   @Override
