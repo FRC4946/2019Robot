@@ -26,10 +26,17 @@ public class GrabberArm extends Subsystem {
     m_armPot = new AnalogPotentiometer(RobotMap.ANALOG_GRABBER_POT);
   }
 
+  /**
+   * Gets the value of the analog potentiometer
+   */
   public double getPot() {
     return m_armPot.get();
   }
 
+  /**
+   * Sets the arm's motor to the desired speed
+   * @param speed The speed that the motor runs at
+   */
   public void setArm(double speed) { 
     m_armMotor.set(ControlMode.PercentOutput, speed);
   }

@@ -32,15 +32,26 @@ public class Climber extends Subsystem {
     bLimitSwitch = new DigitalInput(2);
   }
 
+  /**
+   * Sets the climber motors to the desired speed
+   * @param climberSpeed The desired speed for the climber motors
+   */
   public void setClimber(double climberSpeed) {
     m_front.set(climberSpeed);
     m_back.set(-climberSpeed);
   }
 
+  /**
+   * Stops the climber motors
+   */
   public void stopClimber() {
     setClimber(0.0);
   }
   
+  /**
+   * 
+   * @return
+   */
   public boolean isClimberTopped() {
     return (fLimitSwitch.get() || bLimitSwitch.get());
   }

@@ -84,6 +84,9 @@ public class DriveTrain extends Subsystem {
     m_mecanumDrive.driveCartesian(Y, X, Z);
   }
 
+  /**
+   * Resets the encoder value resulting in a value of 0
+   */
   public void resetEncs() {
     m_leftFrontEnc.reset();
     m_rightFrontEnc.reset();
@@ -91,10 +94,15 @@ public class DriveTrain extends Subsystem {
     m_rightBackEnc.reset();
   }
 
+  /**
+   * Gets the angle of the robot using the gyro
+   */
   public double getGyroAngle() {
     return Utilities.conformAngle(m_gyro.getAngle());
   }
-
+  /**
+   * 
+   */
   public double getAvgStraightDist() {
     return (m_leftFrontEnc.getDistance() + m_rightFrontEnc.getDistance() + m_leftBackEnc.getDistance() + m_rightBackEnc.getDistance())/4.0;
   }
@@ -103,34 +111,65 @@ public class DriveTrain extends Subsystem {
     return m_gyro;
   }
 
+  /**
+   * Gets the speed that the front left motor is currently running at
+   * @return the speed of the front left motor
+   */
   public CANSparkMax getLeftFront() {
     return m_leftFront;
   }
 
+  /**
+   * Gets the speed that the front right motor is currently running at
+   * @return the speed of the front right motor
+   */
   public CANSparkMax getRightFront() {
     return m_rightFront;
   }
 
+  /**
+   * Gets the speed that the back left motor is currently running at
+   * @return the speed of the back left motor
+   */
   public CANSparkMax getLeftBack() {
     return m_leftBack;
   }
 
+   /**
+   * Gets the speed that the back right motor is currently running at
+   * @return the speed of the back right motor
+   */
   public CANSparkMax getRightBack() {
     return m_rightBack;
   }
-
+  /**
+   * Gets the value of front left encoder
+   * @return the value of the front left encoder
+   */
   public Encoder getLeftFrontEnc() {
     return m_leftFrontEnc;
   }
 
+  /**
+   * Gets the value of front right encoder
+   * @return the value of the front right encoder
+   */
   public Encoder getRightFrontEnc() {
     return m_rightFrontEnc;
   }
 
+  /**
+   * Gets the value of back left encoder
+   * @return the value of the back left encoder
+   */
   public Encoder getLeftBackEnc() {
     return m_leftBackEnc;
   }
 
+  /**
+   * Gets the value of back right encoder
+   * @return the value of the back right encoder
+   */
   public Encoder getRightBackEnc() {
     return m_rightBackEnc;
   }

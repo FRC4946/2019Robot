@@ -24,7 +24,10 @@ public class Slider extends Subsystem {
   private TalonSRX m_Left = new TalonSRX(RobotMap.CAN_SLIDER_MOTOR);
   private TalonSRX m_Right = new TalonSRX(RobotMap.CAN_SLIDER_MOTOR);
 
-   /*
+   
+  /**
+   * 
+   * @param speed
    */
   public void runLeft(double speed) {
     m_Left.set(ControlMode.PercentOutput, speed);

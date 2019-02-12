@@ -29,18 +29,34 @@ public class IntakeElbow extends Subsystem {
     m_elbowIsUp = false;
   }
 
+  /**
+   * 
+   * @return
+   */
   public double getPot() {
     return m_outerIntakePot.get();
   }
 
+  /**
+   * 
+   * @param speed
+   */
   public void setElbow(double speed) {
     m_outerElbow.set(speed);
   }
 
+  /**
+   * 
+   * @param isUp
+   */
   public void setElbowIsUp(boolean isUp) { //is this useful or is this garbage - zheng
     m_elbowIsUp = isUp;
   }
 
+  /**
+   * 
+   * @return
+   */
   public boolean getElbowIsUp() {
     return m_elbowIsUp;
   }

@@ -39,18 +39,33 @@ public class Elevator extends Subsystem {
 
   }
 
+  /**
+   * Gets the height of the elevator
+   * @return the analog potentiometer's value
+   */
   public double getHeight() {
 	  return m_analogPot.get();
   }
 
+  /**
+   * Sets the speed of the elevator's motor to the desired speed
+   * @param speed The speed that elevator motor runs at
+   */
   public void setElevator(double speed) {
 		m_elevatorMotor.set(speed);
 	}
 
+	/**
+ 	* Gets the speed that the motor is running at
+ 	* @return the speed of the motor
+ 	*/
 	public CANSparkMax getMotor() {
 		return m_elevatorMotor;
 	}
 
+	/**
+	 * Gets the value of the analog potentiometer
+	 */
 	public AnalogPotentiometer getPot() {
 		return m_analogPot;
 	}
