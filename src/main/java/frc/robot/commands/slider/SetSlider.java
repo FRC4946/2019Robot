@@ -14,10 +14,14 @@ import frc.robot.Robot;
 
    private double m_speed;
 
-   public SetSlider(double Speed) {
-    requires(Robot.m_slider);
-    m_speed = Speed;
-  }
+   /**
+    * Runs the slider at the set speed
+    * @param speed the speed to run the slider at from 1.0 to -1.0
+    */
+   public SetSlider(double speed) {
+     requires(Robot.m_slider);
+     m_speed = speed;
+   }
 
    // Called just before this Command runs the first time
   @Override
@@ -27,7 +31,7 @@ import frc.robot.Robot;
    // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_slider.runSlider(m_speed);
+    Robot.m_slider.set(m_speed);
   }
 
    // Make this return true when this Command no longer needs to run execute()
@@ -39,7 +43,7 @@ import frc.robot.Robot;
    // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.m_slider.stopAll();
+    Robot.m_slider.stop();
   }
 
    // Called when another command which requires one or more of the same

@@ -82,4 +82,7 @@ public class RobotConstants {
   public static final double PID_ELEVATOR_MOVE_TO_HEIGHT_P = 0.02;
   public static final double PID_ELEVATOR_MOVE_TO_HEIGHT_I = 0.0;
   public static final double PID_ELEVATOR_MOVE_TO_HEIGHT_D = 0.0;
+
+  public static final double SLIDER_ACTUATION_TIME = 1.0; //actuation time for the slider in s, dummy number rn
+
 }
