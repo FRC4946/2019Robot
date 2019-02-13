@@ -47,6 +47,10 @@ public class Grabber extends Subsystem {
     return m_innerSwitch.get() && !m_outerSwitch.get();
   }
 
+  public void stop() {
+    setGrabber(0);
+  }
+
   public boolean getGrabberOut() {
     return m_outerSwitch.get() && !m_innerSwitch.get();
   }

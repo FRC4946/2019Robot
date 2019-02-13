@@ -23,6 +23,7 @@ public class ToggleGrabber extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    this.setTimeout(0.5);
     m_initIsIn = Robot.m_grabber.getGrabberIn();
   }
 
@@ -49,11 +50,13 @@ public class ToggleGrabber extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.m_grabber.setGrabber(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }

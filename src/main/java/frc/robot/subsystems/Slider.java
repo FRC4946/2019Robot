@@ -18,7 +18,7 @@ import frc.robot.RobotMap;
  */
 public class Slider extends Subsystem {
 
-  private TalonSRX m_sliderMotor = new TalonSRX(RobotMap.CAN_SLIDER_MOTOR);
+  private TalonSRX m_sliderMotor = new TalonSRX(RobotMap.CAN_TALON_SLIDER_MOTOR);
   private boolean m_sliderOut = false; //set to true if the slider starts out
 
   /**
