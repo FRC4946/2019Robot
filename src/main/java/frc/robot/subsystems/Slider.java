@@ -21,30 +21,43 @@ import frc.robot.RobotMap;
  */
 public class Slider extends Subsystem {
 
-  private TalonSRX m_Left = new TalonSRX(RobotMap.CAN_SLIDER_MOTOR);
-  private TalonSRX m_Right = new TalonSRX(RobotMap.CAN_SLIDER_MOTOR);
+  private TalonSRX m_sliderMotor = new TalonSRX(RobotMap.CAN_SLIDER_MOTOR);
+  private boolean m_sliderOut = false; //set to true if the slider starts out
 
-   /*
+  /**
+   * Sets the speed of the motor on the slider
+   * @param speed speed of the motor from -1 to 1
    */
-  public void runLeft(double speed) {
-    m_Left.set(ControlMode.PercentOutput, speed);
+  public void set(double speed) {
+    m_sliderMotor.set(ControlMode.PercentOutput, speed);
   }
 
-   public void runRight(double speed) {
-    m_Right.set(ControlMode.PercentOutput, -speed);
-    }
+
+  /**
+   * Gets the state  of the slider mechanism
+   * @return true if the slider is out
+   */
+  public boolean getSliderOut() {
+    return m_sliderOut;
+  }
+
+  /**
+   * Updates the subsystem with the current state of the slider mechanism
+   * @param state true if the slider is currently out, false otherwise
+   */
+  public void setSliderOut(boolean state) {
+    m_sliderOut = state;
+  }
 
   /**
    * Stops the slider
    */
-  public void stopAll() {
-    m_Right.set(ControlMode.PercentOutput, 0.0);
-    m_Left.set(ControlMode.PercentOutput, 0.0);
+  public void stop() {
+    m_sliderMotor.set(ControlMode.PercentOutput, 0.0);
   }
 
     @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+    
   }
 }

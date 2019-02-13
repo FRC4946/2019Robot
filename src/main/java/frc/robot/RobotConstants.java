@@ -41,4 +41,6 @@ public class RobotConstants {
   public static final double GRABBER_ARM_OUT = 1000.0;
   public static final double GRABBER_ARM_HOLD_HATCH = 900.0;
   public static final double GRABBER_ARM_IN = 0.0;
+
+  public static final double SLIDER_ACTUATION_TIME = 1.0; //actuation time for the slider in s, dummy number rn
 }
