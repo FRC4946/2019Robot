@@ -12,6 +12,7 @@ import frc.robot.RobotConstants;
 import frc.robot.commands.elevator.MoveToHeight;
 
 public class SetElbow extends CommandGroup {
+  
   /**
    * Add your docs here.
    */
@@ -19,11 +20,11 @@ public class SetElbow extends CommandGroup {
 
     if(setToUp) {
       addSequential(new MoveToHeight(RobotConstants.ELEVATOR_MINIMUM_HEIGHT + 5.0, speed)); //inches
-      addSequential(new SetOuterIntakeElbow(true, speed));
+      addSequential(new SetIntakeElbow(true, speed));
       addSequential(new MoveToHeight(RobotConstants.ELEVATOR_MINIMUM_HEIGHT, speed));
     } else {
       addSequential(new MoveToHeight(RobotConstants.ELEVATOR_MINIMUM_HEIGHT + 5.0, speed)); //inches
-      addSequential(new SetOuterIntakeElbow(false, speed));
+      addSequential(new SetIntakeElbow(false, speed));
       addSequential(new MoveToHeight(RobotConstants.ELEVATOR_MINIMUM_HEIGHT, speed));
     }
   }

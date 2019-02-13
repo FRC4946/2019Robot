@@ -11,12 +11,12 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotConstants;
 
-public class SetOuterIntakeElbow extends Command {
+public class SetIntakeElbow extends Command {
   
   boolean m_setToUp;
   double m_speed;
 
-  public SetOuterIntakeElbow(boolean setToUp, double speed) {
+  public SetIntakeElbow(boolean setToUp, double speed) {
     requires(Robot.m_intakeElbow);
     m_setToUp = setToUp;
     m_speed = Math.abs(speed);

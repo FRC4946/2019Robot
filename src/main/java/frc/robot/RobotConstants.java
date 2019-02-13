@@ -13,22 +13,22 @@ package frc.robot;
 public class RobotConstants {
 
   public static final int ENC_PPR = 128;
-
+  
   public static final double MIN_AIM_COMMAND = 0.05;
   public static final double DEFAULT_DEADZONE = 0.05;
   public static final double WHEEL_DIAMETER = 6.0;
   public static final double ENC_DIST_PER_PULSE = Math.PI*WHEEL_DIAMETER / (double) ENC_PPR;
 
   public static final double ELEVATOR_SCALING_VALUE = 0.0;
-	public static final double ELEVATOR_OFFSET_VALUE = 0.0;
+  public static final double ELEVATOR_OFFSET_VALUE = 0.0;
 
   public static final double ELEVATOR_MINIMUM_HEIGHT = 0.0; 
   public static final double ELEVATOR_MAXIMUM_HEIGHT = 0.0;
   public static final double ELEVATOR_INTERFERE_MIN = 0.0;
-	public static final double ELEVATOR_INTERFERE_MAX = 0.0;
-	public static final double ELEVATOR_SWITCH_HEIGHT = 0.0;
-	public static final double ELEVATOR_SCALE_LOWHEIGHT = 0.0;
-	public static final double ELEVATOR_SCALE_HIGHHEIGHT = 0.0;
+  public static final double ELEVATOR_INTERFERE_MAX = 0.0;
+  public static final double ELEVATOR_SWITCH_HEIGHT = 0.0;
+  public static final double ELEVATOR_SCALE_LOWHEIGHT = 0.0;
+  public static final double ELEVATOR_SCALE_HIGHHEIGHT = 0.0;
   public static final double ELEVATOR_RUNG_HEIGHT = 0.0;
   
   public static final double UPWARDS_OUTER_INTAKE_POSITION = 0.0;
@@ -84,5 +84,4 @@ public class RobotConstants {
   public static final double PID_ELEVATOR_MOVE_TO_HEIGHT_D = 0.0;
 
   public static final double SLIDER_ACTUATION_TIME = 1.0; //actuation time for the slider in s, dummy number rn
-
 }
