@@ -5,50 +5,41 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.elevator;
+package frc.robot.commands.drivetrain;
 
-import edu.wpi.first.wpilibj.command.PIDCommand;
+import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.RobotConstants;
 
-public class MoveToHeight extends PIDCommand {
+public class SetDriveTrain extends Command {
   
-  double m_height, m_maxSpeed;
+  double m_speed;
 
-  public MoveToHeight(double height, double maxSpeed) {
-
-    super(RobotConstants.PID_ELEVATOR_MOVE_TO_HEIGHT_P, 
-      RobotConstants.PID_ELEVATOR_MOVE_TO_HEIGHT_I, RobotConstants.PID_ELEVATOR_MOVE_TO_HEIGHT_D);
-    requires (Robot.m_elevator);
-    m_height = height;
-    m_maxSpeed = maxSpeed;
+  public SetDriveTrain(double speed) {
+    requires(Robot.m_driveTrain); 
+    m_speed = speed;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    getPIDController().setInputRange(RobotConstants.ELEVATOR_MINIMUM_HEIGHT, RobotConstants.ELEVATOR_MAXIMUM_HEIGHT);
-    getPIDController().setOutputRange(-m_maxSpeed, m_maxSpeed);
-    getPIDController().setAbsoluteTolerance(1.0);
-    getPIDController().setSetpoint(m_height);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-
+    Robot.m_driveTrain.mecanumDrive(m_speed, 0.0, 0.0);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return getPIDController().onTarget();
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.m_elevator.setElevator(0.0);
+    Robot.m_driveTrain.stop();
   }
 
   // Called when another command which requires one or more of the same
@@ -56,15 +47,5 @@ public class MoveToHeight extends PIDCommand {
   @Override
   protected void interrupted() {
     end();
-  }
-
-  @Override 
-  protected double returnPIDInput() {
-    return Robot.m_elevator.getHeight();
-  }
-
-  @Override
-  protected void usePIDOutput(double output) {
-    Robot.m_elevator.setElevator(output);
   }
 }

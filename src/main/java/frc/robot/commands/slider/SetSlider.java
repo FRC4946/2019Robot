@@ -19,9 +19,9 @@ import frc.robot.Robot;
     * @param speed the speed to run the slider at from 1.0 to -1.0
     */
    public SetSlider(double speed) {
-    requires(Robot.m_slider);
-    m_speed = speed;
-  }
+     requires(Robot.m_slider);
+     m_speed = speed;
+   }
 
    // Called just before this Command runs the first time
   @Override

@@ -13,6 +13,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 /**
@@ -24,15 +25,24 @@ public class Grabber extends Subsystem {
   private DigitalInput m_innerSwitch, m_outerSwitch;
 
   public Grabber() {
-    m_grabberMotor = new TalonSRX(RobotMap.CAN_GRABBER_MOTOR);
+    m_grabberMotor = new TalonSRX(RobotMap.CAN_TALON_GRABBER_MOTOR);
     m_innerSwitch = new DigitalInput(RobotMap.DIO_GRABBER_IN);
     m_outerSwitch = new DigitalInput(RobotMap.DIO_GRABBER_OUT);
   }
-
+  
+  /**
+  * Sets the speed for the grabber's motor to the desired value
+  * 
+  * @param speed Sets the speed of the graber to the desired speed
+  */ 
   public void setGrabber(double speed) {
-    m_grabberMotor.set(ControlMode.PercentOutput, speed); 
+    m_grabberMotor.set(ControlMode.PercentOutput, speed);
   }
 
+  /**
+   * 
+   * 
+   */
   public boolean getGrabberIn() {
     return m_innerSwitch.get() && !m_outerSwitch.get();
   }

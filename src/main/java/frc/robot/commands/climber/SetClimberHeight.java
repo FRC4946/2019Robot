@@ -5,21 +5,19 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.elevator;
+package frc.robot.commands.climber;
 
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import frc.robot.Robot;
 import frc.robot.RobotConstants;
 
-public class MoveToHeight extends PIDCommand {
+public class SetClimberHeight extends PIDCommand {
   
   double m_height, m_maxSpeed;
 
-  public MoveToHeight(double height, double maxSpeed) {
-
-    super(RobotConstants.PID_ELEVATOR_MOVE_TO_HEIGHT_P, 
-      RobotConstants.PID_ELEVATOR_MOVE_TO_HEIGHT_I, RobotConstants.PID_ELEVATOR_MOVE_TO_HEIGHT_D);
-    requires (Robot.m_elevator);
+  public SetClimberHeight(double height, double maxSpeed) {
+    super(0.02, 0.0, 0.0);
+    requires(Robot.m_climber);
     m_height = height;
     m_maxSpeed = maxSpeed;
   }
@@ -27,44 +25,37 @@ public class MoveToHeight extends PIDCommand {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    getPIDController().setInputRange(RobotConstants.ELEVATOR_MINIMUM_HEIGHT, RobotConstants.ELEVATOR_MAXIMUM_HEIGHT);
+    getPIDController().setInputRange(RobotConstants.CLIMBER_MIN_HEIGHT, RobotConstants.CLIMBER_MAX_HEIGHT);
     getPIDController().setOutputRange(-m_maxSpeed, m_maxSpeed);
-    getPIDController().setAbsoluteTolerance(1.0);
-    getPIDController().setSetpoint(m_height);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return getPIDController().onTarget();
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.m_elevator.setElevator(0.0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
   }
 
-  @Override 
   protected double returnPIDInput() {
-    return Robot.m_elevator.getHeight();
+    return Robot.m_climber.getClimberHeight();
   }
 
-  @Override
   protected void usePIDOutput(double output) {
-    Robot.m_elevator.setElevator(output);
+    Robot.m_climber.setClimber(output);
   }
 }

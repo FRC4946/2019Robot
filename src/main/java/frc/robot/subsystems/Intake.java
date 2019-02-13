@@ -25,9 +25,9 @@ public class Intake extends Subsystem {
 
   public Intake() {
     
-    m_outer = new CANSparkMax(RobotMap.CAN_INTAKE_OUTER, MotorType.kBrushless);
-    m_innerLeft = new CANSparkMax(RobotMap.CAN_INTAKE_INNER_LEFT, MotorType.kBrushless);
-    m_innerRight = new CANSparkMax(RobotMap.CAN_INTAKE_INNER_RIGHT, MotorType.kBrushless);
+    m_outer = new CANSparkMax(RobotMap.CAN_SPARK_INTAKE_OUTER, MotorType.kBrushless);
+    m_innerLeft = new CANSparkMax(RobotMap.CAN_SPARK_INTAKE_INNER_LEFT, MotorType.kBrushless);
+    m_innerRight = new CANSparkMax(RobotMap.CAN_SPARK_INTAKE_INNER_RIGHT, MotorType.kBrushless);
 
     m_bannerSensor = new DigitalInput(RobotMap.DIO_INTAKE_BANNER_SENSOR);
   }

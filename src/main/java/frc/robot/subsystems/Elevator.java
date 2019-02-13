@@ -23,34 +23,49 @@ import frc.robot.RobotMap;
  */
 public class Elevator extends Subsystem {
 
-	private CANSparkMax m_elevatorMotor; 
-	private AnalogPotentiometer m_analogPot;
+  private CANSparkMax m_elevatorMotor; 
+  private AnalogPotentiometer m_analogPot;
 
-	public Elevator (){
+  public Elevator (){
 
-		m_elevatorMotor = new CANSparkMax(RobotMap.CAN_RUN_ELEVATOR, MotorType.kBrushless);
+	m_elevatorMotor = new CANSparkMax(RobotMap.CAN_SPARK_ELEVATOR, MotorType.kBrushless);
   	m_analogPot = new AnalogPotentiometer(RobotMap.ANALOG_ELEVATOR_POT, 
-			RobotConstants.ELEVATOR_SCALING_VALUE, RobotConstants.ELEVATOR_OFFSET_VALUE);
-		m_analogPot.setPIDSourceType(PIDSourceType.kDisplacement);
-	}
+	RobotConstants.ELEVATOR_SCALING_VALUE, RobotConstants.ELEVATOR_OFFSET_VALUE);
+	m_analogPot.setPIDSourceType(PIDSourceType.kDisplacement);
+  }
 
   @Override
   public void initDefaultCommand() {
 
   }
 
+  /**
+   * Gets the height of the elevator
+   * @return the analog potentiometer's value
+   */
   public double getHeight() {
-	  return m_analogPot.get();
+	return m_analogPot.get();
   }
 
+  /**
+   * Sets the speed of the elevator's motor to the desired speed
+   * @param speed The speed that elevator motor runs at
+   */
   public void setElevator(double speed) {
-		m_elevatorMotor.set(speed);
-	}
+	m_elevatorMotor.set(speed);
+  }
 
+	/**
+ 	* Gets the speed that the motor is running at
+ 	* @return the speed of the motor
+ 	*/
 	public CANSparkMax getMotor() {
 		return m_elevatorMotor;
 	}
 
+	/**
+	 * Gets the value of the analog potentiometer
+	 */
 	public AnalogPotentiometer getPot() {
 		return m_analogPot;
 	}
