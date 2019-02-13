@@ -23,16 +23,16 @@ import frc.robot.RobotMap;
  */
 public class Elevator extends Subsystem {
 
-	private CANSparkMax m_elevatorMotor; 
-	private AnalogPotentiometer m_analogPot;
+  private CANSparkMax m_elevatorMotor; 
+  private AnalogPotentiometer m_analogPot;
 
-	public Elevator (){
+  public Elevator (){
 
-		m_elevatorMotor = new CANSparkMax(RobotMap.CAN_RUN_ELEVATOR, MotorType.kBrushless);
+	m_elevatorMotor = new CANSparkMax(RobotMap.CAN_SPARK_ELEVATOR, MotorType.kBrushless);
   	m_analogPot = new AnalogPotentiometer(RobotMap.ANALOG_ELEVATOR_POT, 
-			RobotConstants.ELEVATOR_SCALING_VALUE, RobotConstants.ELEVATOR_OFFSET_VALUE);
-		m_analogPot.setPIDSourceType(PIDSourceType.kDisplacement);
-	}
+	RobotConstants.ELEVATOR_SCALING_VALUE, RobotConstants.ELEVATOR_OFFSET_VALUE);
+	m_analogPot.setPIDSourceType(PIDSourceType.kDisplacement);
+  }
 
   @Override
   public void initDefaultCommand() {
@@ -44,7 +44,7 @@ public class Elevator extends Subsystem {
    * @return the analog potentiometer's value
    */
   public double getHeight() {
-	  return m_analogPot.get();
+	return m_analogPot.get();
   }
 
   /**
@@ -52,8 +52,8 @@ public class Elevator extends Subsystem {
    * @param speed The speed that elevator motor runs at
    */
   public void setElevator(double speed) {
-		m_elevatorMotor.set(speed);
-	}
+	m_elevatorMotor.set(speed);
+  }
 
 	/**
  	* Gets the speed that the motor is running at

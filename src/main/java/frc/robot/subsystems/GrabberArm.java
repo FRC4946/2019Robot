@@ -22,7 +22,7 @@ public class GrabberArm extends Subsystem {
   private AnalogPotentiometer m_armPot;
 
   public GrabberArm() {
-    m_armMotor = new TalonSRX(RobotMap.CAN_GRABBER_ARM);
+    m_armMotor = new TalonSRX(RobotMap.CAN_TALON_GRABBER_ARM);
     m_armPot = new AnalogPotentiometer(RobotMap.ANALOG_GRABBER_POT);
   }
 

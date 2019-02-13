@@ -18,20 +18,21 @@ public class RobotMap {
   public static final int USB_DS_DRIVESTICK = 0;
   public static final int USB_DS_OPERATORSTICK = 1;
 
-  public static final int CAN_DRIVE_LEFT_BACK = 0;
-  public static final int CAN_DRIVE_LEFT_FRONT = 1;
-  public static final int CAN_DRIVE_RIGHT_FRONT = 2;
-  public static final int CAN_DRIVE_RIGHT_BACK = 3;
-  public static final int CAN_LIFT_FRONT = 4;
-  public static final int CAN_LIFT_BACK = 5;
-  public static final int CAN_INTAKE_OUTER = 6;
-  public static final int CAN_INTAKE_OUTER_ELBOW = 7;
-  public static final int CAN_INTAKE_INNER_LEFT = 8;
-  public static final int CAN_INTAKE_INNER_RIGHT = 9;
-  public static final int CAN_GRABBER_MOTOR = 9;
-  public static final int CAN_GRABBER_ARM = 10;
-  public static final int CAN_RUN_ELEVATOR = 11; 
-  public static final int CAN_SLIDER_MOTOR = 12;
+  public static final int CAN_SPARK_DRIVE_LEFT_BACK = 0;
+  public static final int CAN_SPARK_DRIVE_LEFT_FRONT = 1;
+  public static final int CAN_SPARK_DRIVE_RIGHT_FRONT = 2;
+  public static final int CAN_SPARK_DRIVE_RIGHT_BACK = 3;
+  public static final int CAN_SPARK_LIFT_FRONT = 4;
+  public static final int CAN_SPARK_LIFT_BACK = 5;
+  public static final int CAN_SPARK_INTAKE_OUTER = 6;
+  public static final int CAN_SPARK_INTAKE_INNER_LEFT = 8;
+  public static final int CAN_SPARK_INTAKE_INNER_RIGHT = 9;
+  public static final int CAN_SPARK_ELEVATOR = 11; 
+
+  public static final int CAN_TALON_GRABBER_MOTOR = 9;
+  public static final int CAN_TALON_GRABBER_ARM = 10;
+  public static final int CAN_TALON_INTAKE_ELBOW = 7;
+  public static final int CAN_TALON_SLIDER_MOTOR = 12;
 
   public static final int DIO_DRIVE_LEFT_FRONT_ENCA = 0;
   public static final int DIO_DRIVE_LEFT_FRONT_ENCB = 1;

@@ -25,7 +25,7 @@ public class Grabber extends Subsystem {
   private DigitalInput m_innerSwitch, m_outerSwitch;
 
   public Grabber() {
-    m_grabberMotor = new TalonSRX(RobotMap.CAN_GRABBER_MOTOR);
+    m_grabberMotor = new TalonSRX(RobotMap.CAN_TALON_GRABBER_MOTOR);
     m_innerSwitch = new DigitalInput(RobotMap.DIO_GRABBER_IN);
     m_outerSwitch = new DigitalInput(RobotMap.DIO_GRABBER_OUT);
   }

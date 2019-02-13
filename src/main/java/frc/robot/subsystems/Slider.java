@@ -9,10 +9,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
@@ -21,28 +18,20 @@ import frc.robot.RobotMap;
  */
 public class Slider extends Subsystem {
 
-  private TalonSRX m_Left = new TalonSRX(RobotMap.CAN_SLIDER_MOTOR);
-  private TalonSRX m_Right = new TalonSRX(RobotMap.CAN_SLIDER_MOTOR);
+  private TalonSRX m_slider = new TalonSRX(RobotMap.CAN_TALON_SLIDER_MOTOR);
 
-   
-  /**
-   * 
-   * @param speed
-   */
-  public void runLeft(double speed) {
-    m_Left.set(ControlMode.PercentOutput, speed);
+  /*
+  * 
+  */
+  public void runSlider(double speed) {
+    m_slider.set(ControlMode.PercentOutput, speed);
   }
-
-   public void runRight(double speed) {
-    m_Right.set(ControlMode.PercentOutput, -speed);
-    }
 
   /**
    * Stops the slider
    */
   public void stopAll() {
-    m_Right.set(ControlMode.PercentOutput, 0.0);
-    m_Left.set(ControlMode.PercentOutput, 0.0);
+    m_slider.set(ControlMode.PercentOutput, 0.0);
   }
 
     @Override

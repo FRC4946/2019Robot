@@ -22,14 +22,13 @@ import frc.robot.RobotMap;
  */
 public class Climber extends Subsystem {
 
-  private CANSparkMax m_front, m_back;
-  public DigitalInput fLimitSwitch, bLimitSwitch;
+  private CANSparkMax m_front = new CANSparkMax(RobotMap.CAN_SPARK_LIFT_FRONT, MotorType.kBrushed);
+  private CANSparkMax m_back = new CANSparkMax(RobotMap.CAN_SPARK_LIFT_BACK, MotorType.kBrushed);
+
+  public DigitalInput fLimitSwitch = new DigitalInput(1); // Currently Arbitrary numbers
+  public DigitalInput bLimitSwitch = new DigitalInput(2);
 
   public Climber() {
-    m_front = new CANSparkMax(RobotMap.CAN_LIFT_FRONT, MotorType.kBrushed);
-    m_back = new CANSparkMax(RobotMap.CAN_LIFT_BACK, MotorType.kBrushed);
-    fLimitSwitch = new DigitalInput(1);
-    bLimitSwitch = new DigitalInput(2);
   }
 
   /**
