@@ -27,7 +27,7 @@ public class RobotMap {
   public static final int CAN_SPARK_INTAKE_OUTER = 6;
   public static final int CAN_SPARK_INTAKE_INNER_LEFT = 8;
   public static final int CAN_SPARK_INTAKE_INNER_RIGHT = 9;
-  public static final int CAN_SPARK_ELEVATOR = 11; 
+  public static final int CAN_SPARK_ELEVATOR = 11;
 
   public static final int CAN_TALON_GRABBER_MOTOR = 9;
   public static final int CAN_TALON_GRABBER_ARM = 10;

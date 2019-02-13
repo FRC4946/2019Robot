@@ -20,22 +20,22 @@ public class RobotConstants {
   public static final double ENC_DIST_PER_PULSE = Math.PI*WHEEL_DIAMETER / (double) ENC_PPR;
 
   public static final double ELEVATOR_SCALING_VALUE = 0.0;
-	public static final double ELEVATOR_OFFSET_VALUE = 0.0;
+  public static final double ELEVATOR_OFFSET_VALUE = 0.0;
 
-  public static final double ELEVATOR_MINIMUM_HEIGHT = 0.0; 
+  public static final double ELEVATOR_MINIMUM_HEIGHT = 0.0;
   public static final double ELEVATOR_MAXIMUM_HEIGHT = 0.0;
   public static final double ELEVATOR_INTERFERE_MIN = 0.0;
-	public static final double ELEVATOR_INTERFERE_MAX = 0.0;
-	public static final double ELEVATOR_SWITCH_HEIGHT = 0.0;
-	public static final double ELEVATOR_SCALE_LOWHEIGHT = 0.0;
-	public static final double ELEVATOR_SCALE_HIGHHEIGHT = 0.0;
+  public static final double ELEVATOR_INTERFERE_MAX = 0.0;
+  public static final double ELEVATOR_SWITCH_HEIGHT = 0.0;
+  public static final double ELEVATOR_SCALE_LOWHEIGHT = 0.0;
+  public static final double ELEVATOR_SCALE_HIGHHEIGHT = 0.0;
   public static final double ELEVATOR_RUNG_HEIGHT = 0.0;
-  
+
   public static final double UPWARDS_OUTER_INTAKE_POSITION = 0.0;
   public static final double DOWNWARDS_OUTER_INTAKE_POSITION = 600.0;
   public static final double INTAKE_POT_MIN = 0.0;
   public static final double INTAKE_POT_MAX = 1000.0;
-  
+
   public static final double GRABBER_ARM_OUT = 1000.0;
   public static final double GRABBER_ARM_HOLD_HATCH = 900.0;
   public static final double GRABBER_ARM_IN = 0.0;
@@ -44,7 +44,7 @@ public class RobotConstants {
   public static final double CLIMBER_MAX_HEIGHT = 40.0;
   public static final double LOWER_PLATFORM_HEIGHT = 6.0; //inches
   public static final double UPPER_PLATFORM_HEIGHT = 19.0; //inches
-  
+
   // -------------- PID time (default P = 0.002, I = 0.0, D = 0.0)
 
   public static final double PID_ABS_TURN_P = 0.2;
@@ -58,7 +58,7 @@ public class RobotConstants {
   public static final double PID_DRIVE_STRAIGHT_GYRO_P = 0.2;
   public static final double PID_DRIVE_STRAIGHT_GYRO_I = 0.005;
   public static final double PID_DRIVE_STRAIGHT_GYRO_D = 0.0;
-  
+
   public static final double PID_ROTATE_TO_TARGET_P = 0.02;
   public static final double PID_ROTATE_TO_TARGET_I = 0.0;
   public static final double PID_ROTATE_TO_TARGET_D = 0.0;
