@@ -17,7 +17,8 @@ public class MoveToHeight extends PIDCommand {
 
   public MoveToHeight(double height, double maxSpeed) {
 
-    super(0.2, 0.0, 0.0);
+    super(RobotConstants.PID_ELEVATOR_MOVE_TO_HEIGHT_P, 
+      RobotConstants.PID_ELEVATOR_MOVE_TO_HEIGHT_I, RobotConstants.PID_ELEVATOR_MOVE_TO_HEIGHT_D);
     requires (Robot.m_elevator);
     m_height = height;
     m_maxSpeed = maxSpeed;

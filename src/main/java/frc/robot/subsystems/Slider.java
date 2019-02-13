@@ -34,7 +34,7 @@ public class Slider extends Subsystem {
     m_slider.set(ControlMode.PercentOutput, 0.0);
   }
 
-    @Override
+  @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());

@@ -9,6 +9,7 @@ package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import frc.robot.Robot;
+import frc.robot.RobotConstants;
 import frc.robot.Utilities;
 
 public class TurnPID extends PIDCommand {
@@ -16,7 +17,7 @@ public class TurnPID extends PIDCommand {
 double m_angle, m_startAngle;
 
   public TurnPID(double angle) {
-    super(0.00645, 0.000001, 0.002);
+    super(RobotConstants.PID_TURN_P, RobotConstants.PID_TURN_I, RobotConstants.PID_TURN_D);
     requires(Robot.m_driveTrain);
     m_angle = angle;
   }
@@ -24,6 +25,7 @@ double m_angle, m_startAngle;
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    
     m_startAngle = Robot.m_driveTrain.getGyroAngle();
 
     getPIDController().setInputRange(0, 360);

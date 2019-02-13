@@ -23,8 +23,7 @@ public class AbsTurnPID extends PIDCommand {
    */
   public AbsTurnPID(double angle, double maxSpeed) {
 
-    //DUMMY P I and D values
-    super(0.02, 0, 0);
+    super(RobotConstants.PID_ABS_TURN_P, RobotConstants.PID_ABS_TURN_I, RobotConstants.PID_ABS_TURN_D);
 
     requires(Robot.m_driveTrain);
 

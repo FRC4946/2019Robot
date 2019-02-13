@@ -9,6 +9,7 @@ package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import frc.robot.Robot;
+import frc.robot.RobotConstants;
 
 //TODO : Tuning
 
@@ -27,9 +28,10 @@ public class RotateToTarget extends PIDCommand {
    * @param maxSpeed the maximum speed of the turn as a fraction
    */
   public RotateToTarget(double maxSpeed) {
-    super(0.02, 0, 0);
+    super(RobotConstants.PID_ROTATE_TO_TARGET_P, 
+      RobotConstants.PID_ROTATE_TO_TARGET_I, RobotConstants.PID_ROTATE_TO_TARGET_D);
+    
     requires(Robot.m_driveTrain);
-
     getPIDController().setInputRange(-20.5, 20.5);
     getPIDController().setOutputRange(-maxSpeed, maxSpeed); // Dummy numbers, will need to be updates
     getPIDController().setContinuous(false);

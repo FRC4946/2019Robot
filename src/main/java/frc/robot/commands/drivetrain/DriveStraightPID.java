@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import frc.robot.DummyPIDOutput;
 import frc.robot.Robot;
+import frc.robot.RobotConstants;
 
 public class DriveStraightPID extends PIDCommand {
 
@@ -19,11 +20,12 @@ public class DriveStraightPID extends PIDCommand {
 
   public DriveStraightPID(double dist) {
 
-    super(0.005875, 0.00002, 0.002); //0.0075
-
+    super(RobotConstants.PID_DRIVE_STRAIGHT_P, RobotConstants.PID_DRIVE_STRAIGHT_I, 
+      RobotConstants.PID_DRIVE_STRAIGHT_D); 
     requires(Robot.m_driveTrain);
     m_dist = dist;
-    m_gyroController = new PIDController(0.2, 0.005, 0, 
+    m_gyroController = new PIDController(RobotConstants.PID_DRIVE_STRAIGHT_GYRO_P, 
+      RobotConstants.PID_DRIVE_STRAIGHT_GYRO_I, RobotConstants.PID_DRIVE_STRAIGHT_GYRO_D, 
       Robot.m_driveTrain.getGyro(), new DummyPIDOutput()); //0.00645, 0.000001, 0.002
   }
 

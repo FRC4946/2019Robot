@@ -9,10 +9,15 @@ package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import frc.robot.Robot;
+import frc.robot.RobotConstants;
 
 public class TargetLine extends PIDCommand {
+ 
   public TargetLine() {
-    super(0.002, 0.0, 0.0);
+
+    super(RobotConstants.PID_TARGET_LINE_P, 
+      RobotConstants.PID_TARGET_LINE_I, RobotConstants.PID_TARGET_LINE_D);
+    
     requires(Robot.m_driveTrain);
 
     getPIDController().setInputRange(-20.5, 20.5);

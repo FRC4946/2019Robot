@@ -11,22 +11,25 @@ import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import frc.robot.Robot;
+import frc.robot.RobotConstants;
 
 //TODO : Tuning
 
-public class StrafeToTarget extends PIDCommand implements PIDOutput {
+public class StrafeToTarget extends PIDCommand {
   
   PIDController gyroController;
   DummyOutput dummyOutput;
 
   public StrafeToTarget() {
 
-    super(0.004, 0.0005, 0.0);
+    super(RobotConstants.PID_STRAFE_TO_TARGET_P, 
+      RobotConstants.PID_STRAFE_TO_TARGET_I, RobotConstants.PID_STRAFE_TO_TARGET_D);
+
     requires(Robot.m_driveTrain);
 
-    dummyOutput = new DummyOutput();
-
-    gyroController = new PIDController(0.018, 0.001, 0.0, Robot.m_driveTrain.getGyro(), dummyOutput);
+    gyroController = new PIDController(RobotConstants.PID_STRAFE_TO_TARGET_GYRO_P, 
+      RobotConstants.PID_STRAFE_TO_TARGET_GYRO_I, RobotConstants.PID_STRAFE_TO_TARGET_GYRO_D, 
+      Robot.m_driveTrain.getGyro(), new DummyOutput());
     gyroController.setInputRange(0, 360.0);
     gyroController.setContinuous(true);
     gyroController.setOutputRange(-0.2, 0.2);
@@ -82,13 +85,6 @@ public class StrafeToTarget extends PIDCommand implements PIDOutput {
   public void usePIDOutput(double output) {
     Robot.m_driveTrain.mecanumDrive(0.0, -output, 0.0);
   }
-
-    
-  @Override
-  public void pidWrite(double output) {
-    //whatever
-  }
-
 }
 
 class DummyOutput implements PIDOutput {
