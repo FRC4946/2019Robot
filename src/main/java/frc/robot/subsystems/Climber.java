@@ -25,8 +25,8 @@ public class Climber extends Subsystem {
   private CANSparkMax m_front = new CANSparkMax(RobotMap.CAN_SPARK_LIFT_FRONT, MotorType.kBrushed);
   private CANSparkMax m_back = new CANSparkMax(RobotMap.CAN_SPARK_LIFT_BACK, MotorType.kBrushed);
 
-  public DigitalInput fLimitSwitch = new DigitalInput(1); // Currently Arbitrary numbers
-  public DigitalInput bLimitSwitch = new DigitalInput(2);
+  private DigitalInput frontLimitSwitch = new DigitalInput(1); // Currently Arbitrary numbers
+  private DigitalInput backLimitSwitch = new DigitalInput(2);
 
   public Climber() {
   }
@@ -52,13 +52,20 @@ public class Climber extends Subsystem {
    * @return
    */
   public boolean isClimberTopped() {
-    return (fLimitSwitch.get() || bLimitSwitch.get());
+    return (frontLimitSwitch.get() || backLimitSwitch.get());
   }
 
   public double getClimberHeight() {
     return (m_front.getEncoder().getPosition() + m_back.getEncoder().getPosition())/2.0;
   }
 
+<<<<<<< HEAD
+=======
+  public boolean isClimberTopped() {
+    return(frontLimitSwitch.get() || backLimitSwitch.get());
+  }
+
+>>>>>>> 291ce83... cleaned up limit switches
   @Override
   public void initDefaultCommand() {
   }
