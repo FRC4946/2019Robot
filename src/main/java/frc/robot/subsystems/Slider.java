@@ -54,7 +54,6 @@ public class Slider extends Subsystem {
   }
 
   @Override
-  public void initDefaultCommand() {
-    
+  public void initDefaultCommand() { 
   }
 }

@@ -14,7 +14,6 @@ public class RobotConstants {
 
   public static final int ENC_PPR = 128;
 
-  public static final double MIN_AIM_COMMAND = 0.05;
   public static final double DEFAULT_DEADZONE = 0.05;
   public static final double WHEEL_DIAMETER = 6.0;
   public static final double ENC_DIST_PER_PULSE = Math.PI*WHEEL_DIAMETER / (double) ENC_PPR;
@@ -85,4 +84,9 @@ public class RobotConstants {
 
   public static final double SLIDER_ACTUATION_TIME = 1.0; //actuation time for the slider in s, dummy number rn
 
+  /* -------------- deprecated time :(
+
+  public static final double MIN_AIM_COMMAND = 0.05;
+
+  */
 }

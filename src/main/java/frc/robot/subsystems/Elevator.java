@@ -28,10 +28,10 @@ public class Elevator extends Subsystem {
 
   public Elevator (){
 
-	m_elevatorMotor = new CANSparkMax(RobotMap.CAN_SPARK_ELEVATOR, MotorType.kBrushless);
-  	m_analogPot = new AnalogPotentiometer(RobotMap.ANALOG_ELEVATOR_POT, 
-	RobotConstants.ELEVATOR_SCALING_VALUE, RobotConstants.ELEVATOR_OFFSET_VALUE);
-	m_analogPot.setPIDSourceType(PIDSourceType.kDisplacement);
+  m_elevatorMotor = new CANSparkMax(RobotMap.CAN_SPARK_ELEVATOR, MotorType.kBrushless);
+    m_analogPot = new AnalogPotentiometer(RobotMap.ANALOG_ELEVATOR_POT, 
+  RobotConstants.ELEVATOR_SCALING_VALUE, RobotConstants.ELEVATOR_OFFSET_VALUE);
+  m_analogPot.setPIDSourceType(PIDSourceType.kDisplacement);
   }
 
   @Override
@@ -44,7 +44,7 @@ public class Elevator extends Subsystem {
    * @return the analog potentiometer's value
    */
   public double getHeight() {
-	return m_analogPot.get();
+  return m_analogPot.get();
   }
 
   /**
@@ -52,21 +52,21 @@ public class Elevator extends Subsystem {
    * @param speed The speed that elevator motor runs at
    */
   public void setElevator(double speed) {
-	m_elevatorMotor.set(speed);
+  m_elevatorMotor.set(speed);
   }
 
-	/**
- 	* Gets the speed that the motor is running at
- 	* @return the speed of the motor
- 	*/
-	public CANSparkMax getMotor() {
-		return m_elevatorMotor;
-	}
+  /**
+   * Gets the speed that the motor is running at
+   * @return the speed of the motor
+   */
+  public CANSparkMax getMotor() {
+    return m_elevatorMotor;
+  }
 
-	/**
-	 * Gets the value of the analog potentiometer
-	 */
-	public AnalogPotentiometer getPot() {
-		return m_analogPot;
-	}
+  /**
+   * Gets the value of the analog potentiometer
+   */
+  public AnalogPotentiometer getPot() {
+    return m_analogPot;
+  }
 }

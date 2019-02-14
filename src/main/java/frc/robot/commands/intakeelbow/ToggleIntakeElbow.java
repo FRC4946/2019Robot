@@ -11,11 +11,11 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotConstants;
 
-public class ToggleOuterIntakeElbow extends Command {
+public class ToggleIntakeElbow extends Command {
 
   double m_speed;
 
-  public ToggleOuterIntakeElbow(double speed) {
+  public ToggleIntakeElbow(double speed) {
     requires(Robot.m_intake);
     m_speed = speed;
   }
