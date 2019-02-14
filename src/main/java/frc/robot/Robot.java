@@ -42,7 +42,6 @@ public class Robot extends TimedRobot {
   public static Elevator m_elevator = new Elevator();
   public static IntakeElbow m_intakeElbow = new IntakeElbow();
   public static GrabberArm m_grabberArm = new GrabberArm();
-  public static Slider m_slider = new Slider();
   public static OI m_oi = new OI();
 
   Command m_autonomousCommand;

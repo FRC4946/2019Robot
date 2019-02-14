@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.climber.LiftRobot;
 import frc.robot.commands.drivetrain.StrafeToTarget;
 import frc.robot.commands.drivetrain.JoystickDriveAbs;
-import frc.robot.commands.slider.SetSlider;
 import frc.robot.commands.grabber.SetGrabber;
 import frc.robot.commands.intake.IntakeUntilBall;
 import frc.robot.commands.intake.SetIntakeSpeed;
@@ -65,8 +64,6 @@ public class OI {
     m_YButton.whileHeld(new SetGrabber(false, 0.1));
     m_LeftStickButton.whileHeld(new LiftRobot(0.2));
     m_RightStickButton.whileHeld(new LiftRobot(-0.2));
-    m_LBButton.whileHeld(new SetSlider(0.2));
-    m_RBButton.whileHeld(new SetSlider(-0.2));
     //m_LeftStickButton.whileHeld(new ClimbOnPlatform(0.2, 0.15, RobotConstants.LOWER_PLATFORM_HEIGHT));
     //m_RightStickButton.whileHeld(new ClimbOnPlatform(0.2, 0.15, RobotConstants.UPPER_PLATFORM_HEIGHT));
   }
