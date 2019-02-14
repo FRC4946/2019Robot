@@ -25,6 +25,7 @@ public class RobotMap {
   public static final int CAN_SPARK_LIFT_FRONT = 4;
   public static final int CAN_SPARK_LIFT_BACK = 5;
   public static final int CAN_SPARK_INTAKE_OUTER = 6;
+
   public static final int CAN_SPARK_INTAKE_INNER_LEFT = 7;
   public static final int CAN_SPARK_INTAKE_INNER_RIGHT = 8;
   public static final int CAN_SPARK_ELEVATOR = 9; 
