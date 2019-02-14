@@ -21,16 +21,15 @@ import frc.robot.RobotMap;
  * Climber subsystem
  */
 public class Climber extends Subsystem {
-
-  private CANSparkMax m_front = new CANSparkMax(RobotMap.CAN_SPARK_LIFT_FRONT, MotorType.kBrushed);
-  private CANSparkMax m_back = new CANSparkMax(RobotMap.CAN_SPARK_LIFT_BACK, MotorType.kBrushed);
-
-  private DigitalInput frontLimitSwitch = new DigitalInput(1); // Currently Arbitrary numbers
-  private DigitalInput backLimitSwitch = new DigitalInput(2);
-
+  private CANSparkMax m_front, m_back;
+  private DigitalInput frontLimitSwitch, backLimitSwitch;
   public Climber() {
-  }
+    m_front = new CANSparkMax(RobotMap.CAN_SPARK_LIFT_FRONT, MotorType.kBrushed);
+    m_back = new CANSparkMax(RobotMap.CAN_SPARK_LIFT_BACK, MotorType.kBrushed);
 
+    frontLimitSwitch = new DigitalInput(1); // Currently Arbitrary numbers
+    backLimitSwitch = new DigitalInput(2);
+  }
   /**
    * Sets the climber motors to the desired speed
    * @param climberSpeed The desired speed for the climber motors
@@ -59,13 +58,6 @@ public class Climber extends Subsystem {
     return (m_front.getEncoder().getPosition() + m_back.getEncoder().getPosition())/2.0;
   }
 
-<<<<<<< HEAD
-=======
-  public boolean isClimberTopped() {
-    return(frontLimitSwitch.get() || backLimitSwitch.get());
-  }
-
->>>>>>> 291ce83... cleaned up limit switches
   @Override
   public void initDefaultCommand() {
   }
