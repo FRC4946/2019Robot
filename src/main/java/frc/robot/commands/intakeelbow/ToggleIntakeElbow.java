@@ -9,12 +9,16 @@ package frc.robot.commands.intakeelbow;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.RobotConstants;
 
 public class ToggleIntakeElbow extends Command {
 
   double m_speed;
+  boolean m_moveToUp;
 
+  /**
+   * Toggles the position of the intake elbow
+   * @param speed the speed to move the elbow from -1 to 1
+   */
   public ToggleIntakeElbow(double speed) {
     requires(Robot.m_intake);
     m_speed = speed;
@@ -23,13 +27,14 @@ public class ToggleIntakeElbow extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    m_moveToUp = !Robot.m_intakeElbow.isUp();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
 
-    if(Robot.m_intakeElbow.getElbowIsUp()) {
+    if(m_moveToUp) {
       Robot.m_intakeElbow.setElbow(-m_speed);
     } else {
       Robot.m_intakeElbow.setElbow(m_speed);
@@ -40,10 +45,10 @@ public class ToggleIntakeElbow extends Command {
   @Override
   protected boolean isFinished() {
   
-    if(Robot.m_intakeElbow.getElbowIsUp()) { 
-      return Robot.m_intakeElbow.getPot() >= RobotConstants.DOWNWARDS_OUTER_INTAKE_POSITION;
+    if(m_moveToUp) { 
+      return Robot.m_intakeElbow.isUp();
     } else {
-      return Robot.m_intakeElbow.getPot() <= RobotConstants.UPWARDS_OUTER_INTAKE_POSITION;
+      return Robot.m_intakeElbow.isDown();
     }
   }
 
@@ -51,13 +56,12 @@ public class ToggleIntakeElbow extends Command {
   @Override
   protected void end() {
     Robot.m_intakeElbow.setElbow(0.0);
-    Robot.m_intakeElbow.setElbowIsUp(!Robot.m_intakeElbow.getElbowIsUp());
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.m_intakeElbow.setElbow(0.0);
+    end();
   }
 }

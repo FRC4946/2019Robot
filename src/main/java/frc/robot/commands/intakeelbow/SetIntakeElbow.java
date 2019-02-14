@@ -9,16 +9,20 @@ package frc.robot.commands.intakeelbow;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.RobotConstants;
 
 public class SetIntakeElbow extends Command {
   
-  boolean m_setToUp;
+  boolean m_moveToUp;
   double m_speed;
 
+  /**
+   * Moves the elbow to the desired position
+   * @param setToUp position to move the elbow to, true for up, false for down
+   * @param speed speed to move to the desired position
+   */
   public SetIntakeElbow(boolean setToUp, double speed) {
     requires(Robot.m_intakeElbow);
-    m_setToUp = setToUp;
+    m_moveToUp = setToUp;
     m_speed = Math.abs(speed);
   }
 
@@ -30,27 +34,26 @@ public class SetIntakeElbow extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(m_setToUp) {
-      Robot.m_intakeElbow.setElbow(m_speed);
-    } else {
+    if(m_moveToUp) {
       Robot.m_intakeElbow.setElbow(-m_speed);
+    } else {
+      Robot.m_intakeElbow.setElbow(m_speed);
     }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if(m_setToUp) {
-      return Robot.m_intakeElbow.getPot() <= RobotConstants.UPWARDS_OUTER_INTAKE_POSITION;
+    if(m_moveToUp) {
+      return Robot.m_intakeElbow.isUp();
     } else {
-      return Robot.m_intakeElbow.getPot() >= RobotConstants.DOWNWARDS_OUTER_INTAKE_POSITION;
+      return Robot.m_intakeElbow.isDown();
     }
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.m_intakeElbow.setElbowIsUp(m_setToUp);
     Robot.m_intakeElbow.setElbow(0.0);
   }
 
@@ -58,6 +61,6 @@ public class SetIntakeElbow extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.m_intakeElbow.setElbow(0.0);
+    end();
   }
 }
