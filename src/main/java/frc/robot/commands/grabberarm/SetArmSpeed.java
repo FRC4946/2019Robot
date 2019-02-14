@@ -11,11 +11,11 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotConstants;
 
-public class SetArm extends Command {
+public class SetArmSpeed extends Command {
 
   double m_speed;
 
-  public SetArm(double speed) {
+  public SetArmSpeed(double speed) {
     requires(Robot.m_grabberArm);
     m_speed = speed;
   }
