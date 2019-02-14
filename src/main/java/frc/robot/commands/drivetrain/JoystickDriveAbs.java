@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.Utilities;
 import frc.robot.RobotConstants;
-import frc.robot.Utilities;
 
 public class JoystickDriveAbs extends Command {
 
@@ -36,14 +35,14 @@ public class JoystickDriveAbs extends Command {
       Robot.m_driveTrain.mecanumDriveAbs(-0.25, 0, 0);
     } else if (Robot.m_oi.getDriveStick().getPOV() == 270) {
       Robot.m_driveTrain.mecanumDriveAbs(0, -0.25, 0);
-    } else if (Robot.m_oi.getDriveStick().getPOV() == -1) {
+    } else {
 
       Robot.m_driveTrain.mecanumDriveAbs(
         Utilities.deadzone(-Math.pow(Robot.m_oi.getDriveStick().getRawAxis(1), 2), 
           Math.abs(0.2*Robot.m_oi.getDriveStick().getRawAxis(0)) + RobotConstants.DEFAULT_DEADZONE),
         Utilities.deadzone(Math.pow(Robot.m_oi.getDriveStick().getRawAxis(0), 2),
           Math.abs(0.2*Robot.m_oi.getDriveStick().getRawAxis(1)) + RobotConstants.DEFAULT_DEADZONE),
-        Utilities.deadzone(Robot.m_oi.getDriveStick().getZ(), 
+        Utilities.deadzone(Robot.m_oi.getDriveStick().getRawAxis(4), 
           RobotConstants.DEFAULT_DEADZONE));
           
     }

@@ -75,11 +75,11 @@ public class PIDDriveStraightDist extends PIDCommand {
   @Override
   protected double returnPIDInput() {
     if(m_isHorizontal) {
-      return - Robot.m_driveTrain.getLeftBackEnc().getDistance() + Robot.m_driveTrain.getLeftFrontEnc().getDistance() 
-        - Robot.m_driveTrain.getRightFrontEnc().getDistance() + Robot.m_driveTrain.getRightBackEnc().getDistance();
+      return - Robot.m_driveTrain.leftBackEncDistance() + Robot.m_driveTrain.leftFrontEncDistance()
+        - Robot.m_driveTrain.rightFrontEncDistance() + Robot.m_driveTrain.rightBackEncDistance();
     } else {
-      return Robot.m_driveTrain.getLeftBackEnc().getDistance() + Robot.m_driveTrain.getLeftFrontEnc().getDistance() 
-        + Robot.m_driveTrain.getRightFrontEnc().getDistance() + Robot.m_driveTrain.getRightBackEnc().getDistance();
+      return Robot.m_driveTrain.leftBackEncDistance() + Robot.m_driveTrain.leftFrontEncDistance() 
+        + Robot.m_driveTrain.rightFrontEncDistance() + Robot.m_driveTrain.rightBackEncDistance();
     }
   }
 
@@ -87,9 +87,9 @@ public class PIDDriveStraightDist extends PIDCommand {
   protected void usePIDOutput(double output) {
 
     output = Math.abs(output) > Math.abs(m_maxSpeed) ? m_maxSpeed : output;
-
+    /** 
     if(m_isHorizontal) {
-      Robot.m_driveTrain.getLeftFront().pidWrite(output);
+      Robot.m_driveTrain.leftBackMotorOutput();
       Robot.m_driveTrain.getRightFront().pidWrite(-output);
       Robot.m_driveTrain.getLeftBack().pidWrite(-output);
       Robot.m_driveTrain.getRightBack().pidWrite(output);
@@ -99,5 +99,6 @@ public class PIDDriveStraightDist extends PIDCommand {
       Robot.m_driveTrain.getLeftBack().pidWrite(output);
       Robot.m_driveTrain.getRightBack().pidWrite(output);
     }
+    */
   }
 }

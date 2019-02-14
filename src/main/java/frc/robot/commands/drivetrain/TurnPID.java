@@ -26,7 +26,7 @@ double m_angle, m_startAngle;
   @Override
   protected void initialize() {
     
-    m_startAngle = Robot.m_driveTrain.getGyroAngle();
+   // m_startAngle = Robot.m_driveTrain.getGyroAngle();
 
     getPIDController().setInputRange(0, 360);
     getPIDController().setOutputRange(-0.5, 0.5);

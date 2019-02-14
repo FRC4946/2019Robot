@@ -34,8 +34,8 @@ public class AbsTurn extends Command {
     // both true: current angle is 1 degree, angle to turn to is 45
     // both false: current angle is 356 degrees, angle to turn to is 1
     // both cases require turn left
-    m_turnLeft = ((m_angle - Robot.m_driveTrain.getGyroAngle()) > 0 == Math
-        .abs(m_angle - Robot.m_driveTrain.getGyroAngle()) <= 180);
+    //m_turnLeft = ((m_angle - Robot.m_driveTrain.getGyroAngle()) > 0 == 
+      //Math.abs(m_angle - Robot.m_driveTrain.getGyroAngle()) <= 180);
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -51,7 +51,7 @@ public class AbsTurn extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return (Math.abs(Robot.m_driveTrain.getGyroAngle() - m_angle) < 2); // within 2 degrees
+    return (Math.abs(Robot.m_driveTrain.getGyroAngle() - m_angle) < 2);  //within degrees
   }
 
   @Override
