@@ -34,7 +34,7 @@ public class SetElevatorJoystick extends Command {
          
       Robot.m_elevator.setElevator(0);
     } else { 
-      Robot.m_elevator.setElevator(Utilities.deadzone(Robot.m_oi.getDriveStick().getRawAxis(1)*0.5));
+      Robot.m_elevator.setElevator(Utilities.deadzone(Math.pow(Robot.m_oi.getDriveStick().getRawAxis(1)*0.5, 2)));
     }
   }
 
