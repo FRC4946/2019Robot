@@ -7,22 +7,22 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
+import frc.robot.commands.autonomous.TestAuto;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Elevator;
-import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Grabber;
 import frc.robot.subsystems.GrabberArm;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.IntakeElbow;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Slider;
-import frc.robot.commands.autonomous.TestAuto;
 
 
 /**
@@ -33,7 +33,6 @@ import frc.robot.commands.autonomous.TestAuto;
  * project.
  */
 public class Robot extends TimedRobot {
-
 
   public static DriveTrain m_driveTrain = new DriveTrain();
   public static Limelight m_limelight = new Limelight();
@@ -47,6 +46,7 @@ public class Robot extends TimedRobot {
   public static OI m_oi = new OI();
 
   Command m_autonomousCommand;
+  private Preferences m_robotPrefs;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   /**
@@ -55,9 +55,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    m_chooser.setDefaultOption("Test Auto", new TestAuto()); // TODO: Implement autonomous command
-    SmartDashboard.putData("Auto Mode", m_chooser);
-    SmartDashboard.putNumber("Gyro", m_driveTrain.getGyroAngle());
+    m_robotPrefs = Preferences.getInstance();
+
+    initializeSmartDashboard();
+    RobotConstants.repopulatePrefs(m_robotPrefs);
   }
 
   /**
@@ -70,7 +71,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    SmartDashboard.getEntry("Gyro").setDouble(m_driveTrain.getGyroAngle());
+    updateSmartDashboard();
   }
 
   /**
@@ -100,6 +101,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+    RobotConstants.updatePrefs(m_robotPrefs);
     m_autonomousCommand = m_chooser.getSelected();
 
     /*
@@ -126,6 +128,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+    RobotConstants.updatePrefs(m_robotPrefs);
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
@@ -149,4 +152,52 @@ public class Robot extends TimedRobot {
   @Override
   public void testPeriodic() {
   }
+
+  /**
+   * Sets up smart dashboard
+   */
+  public void initializeSmartDashboard() {
+
+    //auto stuff
+    m_chooser.setDefaultOption("Test Auto", new TestAuto()); // TODO: Implement autonomous command
+    SmartDashboard.putData("Autonomous/Auto Mode", m_chooser);
+
+    //Drive initialization
+    SmartDashboard.putNumber("Drive/Gyro", m_driveTrain.getGyroAngle());
+    SmartDashboard.putNumber("Drive/Right Front Encoder", m_driveTrain.getRightFrontEnc().getDistance());
+    SmartDashboard.putNumber("Drive/Left Front Encoder", m_driveTrain.getLeftFrontEnc().getDistance());
+    SmartDashboard.putNumber("Drive/Right Back Encoder", m_driveTrain.getRightBackEnc().getDistance());
+    SmartDashboard.putNumber("Drive/Left Back Encoder", m_driveTrain.getLeftBackEnc().getDistance());
+
+    //elevator initialization
+    SmartDashboard.putNumber("Elevator/Height", m_elevator.getHeight());
+
+    //outer intake
+    SmartDashboard.putNumber("Intake/Outer/Elbow Angle", m_intakeElbow.getPot());
+
+    //grabber
+    SmartDashboard.putNumber("Grabber/Grabber Arm/Position", m_grabberArm.getPot());
+   }
+
+  /**
+   * Send info to smart dashboard
+   */
+  public void updateSmartDashboard() {
+    //Drive
+    SmartDashboard.getEntry("Drive/Gyro").setDouble(m_driveTrain.getGyroAngle());
+    SmartDashboard.getEntry("Drive/Right Front Encoder").setDouble(m_driveTrain.getRightFrontEnc().getDistance());
+    SmartDashboard.getEntry("Drive/Left Front Encoder").setDouble(m_driveTrain.getLeftFrontEnc().getDistance());
+    SmartDashboard.getEntry("Drive/Right Back Encoder").setDouble(m_driveTrain.getRightBackEnc().getDistance());
+    SmartDashboard.getEntry("Drive/Left Back Encoder").setDouble(m_driveTrain.getLeftBackEnc().getDistance());
+
+    //Elevator
+    SmartDashboard.getEntry("Elevator/Height").setDouble(m_elevator.getHeight());
+
+    //Outer intake
+    SmartDashboard.getEntry("Intake/Outer/Elbow Angle").setDouble(m_intakeElbow.getPot());
+
+    //grabber
+    SmartDashboard.getEntry("Grabber/Grabber Arm/Position").setDouble(m_grabberArm.getPot());
+  }
+
 }
