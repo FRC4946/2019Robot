@@ -12,9 +12,7 @@ import frc.robot.RobotConstants;
 import frc.robot.commands.elevator.MoveToHeight;
 
 public class SetIntakeStage extends CommandGroup {
-  /**
-   * Add your docs here.
-   */
+
   public SetIntakeStage(double intakeStage) {
     
     if (!(intakeStage == RobotConstants.INTAKE_POT_BALL_HEIGHT || intakeStage == RobotConstants.INTAKE_POT_DOWN || intakeStage == RobotConstants.INTAKE_POT_UP)) {

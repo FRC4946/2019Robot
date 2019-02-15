@@ -11,7 +11,10 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class SetDriveTrain extends Command {
-  
+/**
+ * Sets the drivetrain to the desired speed
+ */
+ 
   double m_speed;
 
   public SetDriveTrain(double speed) {

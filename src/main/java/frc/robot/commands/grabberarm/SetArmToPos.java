@@ -11,6 +11,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotConstants;
 
+/**
+ * Sets the arm to the desired position
+ */
 public class SetArmToPos extends Command {
 
   double m_speed, m_desiredPos, m_desiredPosInit;

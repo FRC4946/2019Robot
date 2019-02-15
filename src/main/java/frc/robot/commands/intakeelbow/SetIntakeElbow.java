@@ -11,16 +11,16 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotConstants;
 
+/**
+ * Moves the elbow to the desired position
+ * @param setToUp position to move the elbow to, true for up, false for down
+ * @param speed speed to move to the desired position
+ */
 public class SetIntakeElbow extends Command {
 
   boolean m_setUp;
   double m_speed, m_desiredValue;
 
-  /**
-   * Moves the elbow to the desired position
-   * @param setToUp position to move the elbow to, true for up, false for down
-   * @param speed speed to move to the desired position
-   */
   public SetIntakeElbow(boolean setUp, double speed) {
     requires(Robot.m_intakeElbow);
     m_setUp = setUp;

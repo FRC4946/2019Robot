@@ -11,6 +11,10 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotConstants;
 
+/**
+ * Sets the Grabber Arm to a certain speed
+ * @param speed the speed for the arm to go at
+ */
 public class SetArmSpeed extends Command {
 
   double m_speed;

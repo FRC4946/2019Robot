@@ -15,6 +15,9 @@ import frc.robot.commands.intakeelbow.SetIntakePos;
 import frc.robot.commands.intakeelbow.SetIntakeStage;
 
 public class SetElevator extends Command {
+/**
+ * Sets the elevator 
+ */
 
   private boolean isBelowConflict;
   private double m_speed;

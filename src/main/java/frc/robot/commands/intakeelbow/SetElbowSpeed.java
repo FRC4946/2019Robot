@@ -11,6 +11,10 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotConstants;
 
+/**
+ * Sets the intake elbow to a rotate at a certain speed
+ * @param speed the speed for the elbow to rotate at
+ */
 public class SetElbowSpeed extends Command {
 
   double m_speed;

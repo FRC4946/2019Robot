@@ -12,9 +12,9 @@ import frc.robot.RobotConstants;
 import frc.robot.commands.grabber.SetGrabber;
 
 public class ActuateArmAndSetGrabber extends CommandGroup {
-  /**
-   * Add your docs here.
-   */
+/**
+ * Autonomus code for the grabber to function without human imput
+ */
   public ActuateArmAndSetGrabber(boolean setIn, double speed) {
     
     //note: .cancel() feature should be available??

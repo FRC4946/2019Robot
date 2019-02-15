@@ -16,7 +16,7 @@ import frc.robot.commands.intakeelbow.SetIntakePos;
 public class ClimbOnPlatform extends CommandGroup {
   
   /**
-   * Add your docs here.
+   * Autonomus code to make the climber work without human imput.
    */
   public ClimbOnPlatform() {
 

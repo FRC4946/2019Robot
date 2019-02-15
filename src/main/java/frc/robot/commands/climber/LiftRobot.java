@@ -9,7 +9,9 @@ package frc.robot.commands.climber;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-
+/**
+ * Makes the climber run with human imput for when to run and for how long
+ */
 public class LiftRobot extends Command {
 
   public LiftRobot() {

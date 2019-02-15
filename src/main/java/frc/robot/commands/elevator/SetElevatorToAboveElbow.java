@@ -13,7 +13,7 @@ import frc.robot.RobotConstants;
 
 public class SetElevatorToAboveElbow extends CommandGroup {
   /**
-   * Add your docs here.
+   *  An autonomus command to toggle the elbows.
    */
   public SetElevatorToAboveElbow() {
     addSequential(new MoveToHeight(RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT+0.5, 0.6));

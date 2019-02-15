@@ -15,6 +15,9 @@ import frc.robot.RobotConstants;
 import frc.robot.Utilities;
 
 public class JoystickDrive extends Command {
+/**
+ * Makes the drive train move according to the position of the joystick
+ */
 
   PIDController m_gyroController; 
   boolean isSidewaysStrafing;

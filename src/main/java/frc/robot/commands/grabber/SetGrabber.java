@@ -11,7 +11,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class SetGrabber extends Command {
-
+/**
+ * Sets the grabber to the inner position
+ */
   private boolean m_setIn;
   private double m_speed;
 
