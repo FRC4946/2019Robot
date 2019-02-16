@@ -7,11 +7,10 @@
 
 package frc.robot.commands.intake;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class SetIntake extends Command {
+public class SetIntakeSpeed extends Command {
 
   private double m_speed;
 
@@ -22,7 +21,7 @@ public class SetIntake extends Command {
    * @param speed the speed to run the intake at as a fraction of its max speed
    * @param time  the time to run the intake for in seconds
    */
-  public SetIntake(double speed) {
+  public SetIntakeSpeed(double speed) {
     requires(Robot.m_intake);
     m_speed = speed;
     

@@ -9,7 +9,7 @@ package frc.robot.commands.climber;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.commands.drivetrain.SetDriveTrain;
-import frc.robot.commands.intake.SetIntake;
+import frc.robot.commands.intake.SetIntakeSpeed;
 
 public class ClimbOnPlatform extends CommandGroup {
   
@@ -19,7 +19,7 @@ public class ClimbOnPlatform extends CommandGroup {
   public ClimbOnPlatform(double climbSpeed, double boardingSpeed, double height) {
 
     addSequential(new SetClimberHeight(height, climbSpeed));
-    addParallel(new SetIntake(boardingSpeed), 3.0);
+    addParallel(new SetIntakeSpeed(boardingSpeed), 3.0);
     addSequential(new SetDriveTrain(boardingSpeed), 3.0);
   }
 }
