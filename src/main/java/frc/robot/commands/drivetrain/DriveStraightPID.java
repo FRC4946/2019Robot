@@ -24,9 +24,9 @@ public class DriveStraightPID extends PIDCommand {
       RobotConstants.PID_DRIVE_STRAIGHT_D); 
     requires(Robot.m_driveTrain);
     m_dist = dist;
-    //m_gyroController = new PIDController(RobotConstants.PID_DRIVE_STRAIGHT_GYRO_P, 
-      //RobotConstants.PID_DRIVE_STRAIGHT_GYRO_I, RobotConstants.PID_DRIVE_STRAIGHT_GYRO_D, 
-      //Robot.m_driveTrain.getGyro(), new DummyPIDOutput()); //0.00645, 0.000001, 0.002
+    m_gyroController = new PIDController(RobotConstants.PID_DRIVE_STRAIGHT_GYRO_P, 
+      RobotConstants.PID_DRIVE_STRAIGHT_GYRO_I, RobotConstants.PID_DRIVE_STRAIGHT_GYRO_D, 
+      Robot.m_driveTrain.getGyro(), new DummyPIDOutput()); //0.00645, 0.000001, 0.002
   }
 
   // Called just before this Command runs the first time
@@ -42,7 +42,7 @@ public class DriveStraightPID extends PIDCommand {
     m_gyroController.setInputRange(0, 360);
     m_gyroController.setOutputRange(-0.25, 0.25);
     m_gyroController.setContinuous(true);
-    //m_gyroController.setSetpoint(Robot.m_driveTrain.getGyroAngle());
+    m_gyroController.setSetpoint(Robot.m_driveTrain.getGyroAngle());
     m_gyroController.setAbsoluteTolerance(1);
   }
 
