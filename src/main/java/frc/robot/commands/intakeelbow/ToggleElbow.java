@@ -18,7 +18,7 @@ public class ToggleElbow extends CommandGroup {
    */
   public ToggleElbow(double speed) {
     addSequential(new MoveToHeight(RobotConstants.ELEVATOR_MINIMUM_HEIGHT + 5.0, speed)); //inches
-    addSequential(new SetIntakeElbow(!Robot.m_intakeElbow.getElbowIsUp(), speed));
+    addSequential(new SetIntakeElbow(!Robot.m_intakeElbow.isUp(), speed));
     addSequential(new MoveToHeight(RobotConstants.ELEVATOR_MINIMUM_HEIGHT, speed));
   }
 }

@@ -31,7 +31,7 @@ public class PIDSetIntakeUpwards extends PIDCommand {
   
  @Override
  protected void initialize() {
-   setSetpoint(RobotConstants.UPWARDS_OUTER_INTAKE_POSITION);    
+   setSetpoint(RobotConstants.UPWARDS_ELBOW_ANGLE);    
  }
 
   @Override
@@ -54,7 +54,7 @@ public class PIDSetIntakeUpwards extends PIDCommand {
   }
 
   protected double returnPIDInput() {
-   return Robot.m_intakeElbow.getPot();   
+   return Robot.m_intakeElbow.getPos();   
   }
 
   protected void usePIDOutput(double output){

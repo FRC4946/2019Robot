@@ -32,8 +32,8 @@ public class RobotConstants {
   public static final double ELEVATOR_SCALE_HIGHHEIGHT = 0.0;
   public static final double ELEVATOR_RUNG_HEIGHT = 0.0;
 
-  public static final double UPWARDS_OUTER_INTAKE_POSITION = 0.0;
-  public static final double DOWNWARDS_OUTER_INTAKE_POSITION = 600.0;
+  public static final double UPWARDS_ELBOW_ANGLE = 90;
+  public static final double STARTING_ELBOW_ANGLE = 30;
   public static final double INTAKE_POT_MIN = 0.0;
   public static final double INTAKE_POT_MAX = 1000.0;
 

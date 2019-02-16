@@ -12,6 +12,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotConstants;
 import frc.robot.RobotMap;
 
 /**
@@ -21,44 +22,35 @@ public class IntakeElbow extends Subsystem {
 
   private CANSparkMax m_outerElbow; 
   private AnalogPotentiometer m_outerIntakePot;
-  private boolean m_elbowIsUp;
 
   public IntakeElbow() {
     m_outerElbow = new CANSparkMax(RobotMap.CAN_TALON_INTAKE_ELBOW, MotorType.kBrushless);
-    m_outerIntakePot = new AnalogPotentiometer(RobotMap.ANALOG_INTAKE_POT);
-    m_elbowIsUp = false;
+    m_outerIntakePot = new AnalogPotentiometer(RobotMap.ANALOG_INTAKE_POT, 3600, RobotConstants.STARTING_ELBOW_ANGLE); //scale value of 3600 because this is a 10 turn pot
   }
 
-  /**
-   * 
-   * @return
-   */
-  public double getPot() {
+
+  public double getPos() {
     return m_outerIntakePot.get();
   }
 
-  /**
-   * 
-   * @param speed
-   */
   public void setElbow(double speed) {
     m_outerElbow.set(speed);
   }
 
   /**
-   * 
-   * @param isUp
+   * Returns the elbow position
+   * @return True if the intake elbow is in the down position 
    */
-  public void setElbowIsUp(boolean isUp) { //is this useful or is this garbage - zheng
-    m_elbowIsUp = isUp;
+  public boolean isDown() {
+    return getPos() < 2; //within 2 degrees of 0
   }
 
   /**
-   * 
-   * @return
+   * Returns the elbow position
+   * @return True if the intake elbow is in the up position
    */
-  public boolean getElbowIsUp() {
-    return m_elbowIsUp;
+  public boolean isUp() {
+    return getPos() > (RobotConstants.UPWARDS_ELBOW_ANGLE-2); //within 2 degrees of upper height
   }
 
   @Override
