@@ -24,7 +24,7 @@ public class SetGrabber extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-  
+    this.setTimeout(0.5);
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -50,7 +50,7 @@ public class SetGrabber extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.m_grabber.setGrabber(0);
+    Robot.m_grabber.stop();
   }
 
   // Called when another command which requires one or more of the same
