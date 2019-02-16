@@ -11,7 +11,6 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
@@ -21,16 +20,15 @@ import frc.robot.RobotMap;
  * Climber subsystem
  */
 public class Climber extends Subsystem {
-
-  private CANSparkMax m_front = new CANSparkMax(RobotMap.CAN_SPARK_LIFT_FRONT, MotorType.kBrushed);
-  private CANSparkMax m_back = new CANSparkMax(RobotMap.CAN_SPARK_LIFT_BACK, MotorType.kBrushed);
-
-  public DigitalInput fLimitSwitch = new DigitalInput(1); // Currently Arbitrary numbers
-  public DigitalInput bLimitSwitch = new DigitalInput(2);
-
+  private CANSparkMax m_front, m_back;
+  private DigitalInput frontLimitSwitch, backLimitSwitch;
   public Climber() {
-  }
+    m_front = new CANSparkMax(RobotMap.CAN_SPARK_LIFT_FRONT, MotorType.kBrushed);
+    m_back = new CANSparkMax(RobotMap.CAN_SPARK_LIFT_BACK, MotorType.kBrushed);
 
+    frontLimitSwitch = new DigitalInput(1); // Currently Arbitrary numbers
+    backLimitSwitch = new DigitalInput(2);
+  }
   /**
    * Sets the climber motors to the desired speed
    * @param climberSpeed The desired speed for the climber motors
@@ -52,7 +50,7 @@ public class Climber extends Subsystem {
    * @return
    */
   public boolean isClimberTopped() {
-    return (fLimitSwitch.get() || bLimitSwitch.get());
+    return (frontLimitSwitch.get() || backLimitSwitch.get());
   }
 
   public double getClimberHeight() {
