@@ -75,11 +75,11 @@ public class PIDDriveStraightDist extends PIDCommand {
   @Override
   protected double returnPIDInput() {
     if(m_isHorizontal) {
-      return - Robot.m_driveTrain.leftBackEncDistance() + Robot.m_driveTrain.leftFrontEncDistance()
-        - Robot.m_driveTrain.rightFrontEncDistance() + Robot.m_driveTrain.rightBackEncDistance();
+      return - Robot.m_driveTrain.getLeftBackEncDistance() + Robot.m_driveTrain.getLeftFrontEncDistance()
+        - Robot.m_driveTrain.getRightFrontEncDistance() + Robot.m_driveTrain.getRightBackEncDistance();
     } else {
-      return Robot.m_driveTrain.leftBackEncDistance() + Robot.m_driveTrain.leftFrontEncDistance() 
-        + Robot.m_driveTrain.rightFrontEncDistance() + Robot.m_driveTrain.rightBackEncDistance();
+      return Robot.m_driveTrain.getLeftBackEncDistance() + Robot.m_driveTrain.getLeftFrontEncDistance() 
+        + Robot.m_driveTrain.getRightFrontEncDistance() + Robot.m_driveTrain.getRightBackEncDistance();
     }
   }
 

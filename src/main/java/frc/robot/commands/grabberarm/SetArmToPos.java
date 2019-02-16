@@ -23,7 +23,7 @@ public class SetArmToPos extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    m_speed = m_desiredPos < Robot.m_grabberArm.getPot() ? -m_speed : m_speed;
+    m_speed = m_desiredPos < Robot.m_grabberArm.getPos() ? -m_speed : m_speed;
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -36,9 +36,9 @@ public class SetArmToPos extends Command {
   @Override
   protected boolean isFinished() {
     if(m_speed < 0) {
-      return Robot.m_grabberArm.getPot() <= m_desiredPos;
+      return Robot.m_grabberArm.getPos() <= m_desiredPos;
     } else {
-      return Robot.m_grabberArm.getPot() >= m_desiredPos;
+      return Robot.m_grabberArm.getPos() >= m_desiredPos;
     }
   }
 

@@ -23,7 +23,7 @@ public class TurnPID extends PIDCommand {
    */
   public TurnPID(double angle, double maxSpeed, boolean isAbsolute) {
 
-    super(RobotConstants.PID_ABS_TURN_P, RobotConstants.PID_ABS_TURN_I, RobotConstants.PID_ABS_TURN_D);
+    super(RobotConstants.PID_TURN_P, RobotConstants.PID_TURN_I, RobotConstants.PID_TURN_D);
 
     requires(Robot.m_driveTrain);
 
