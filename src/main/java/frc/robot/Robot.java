@@ -22,8 +22,6 @@ import frc.robot.subsystems.GrabberArm;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.IntakeElbow;
 import frc.robot.subsystems.Limelight;
-import frc.robot.subsystems.Slider;
-
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -163,19 +161,19 @@ public class Robot extends TimedRobot {
 
     //Drive initialization
     SmartDashboard.putNumber("Drive/Gyro", m_driveTrain.getGyroAngle());
-    SmartDashboard.putNumber("Drive/Right Front Encoder", m_driveTrain.getRightFrontEnc().getDistance());
-    SmartDashboard.putNumber("Drive/Left Front Encoder", m_driveTrain.getLeftFrontEnc().getDistance());
-    SmartDashboard.putNumber("Drive/Right Back Encoder", m_driveTrain.getRightBackEnc().getDistance());
-    SmartDashboard.putNumber("Drive/Left Back Encoder", m_driveTrain.getLeftBackEnc().getDistance());
+    SmartDashboard.putNumber("Drive/Right Front Encoder", m_driveTrain.getRightFrontEncDistance());
+    SmartDashboard.putNumber("Drive/Left Front Encoder", m_driveTrain.getLeftFrontEncDistance());
+    SmartDashboard.putNumber("Drive/Right Back Encoder", m_driveTrain.getRightBackEncDistance());
+    SmartDashboard.putNumber("Drive/Left Back Encoder", m_driveTrain.getLeftBackEncDistance());
 
     //elevator initialization
     SmartDashboard.putNumber("Elevator/Height", m_elevator.getHeight());
 
     //outer intake
-    SmartDashboard.putNumber("Intake/Outer/Elbow Angle", m_intakeElbow.getPot());
+    SmartDashboard.putNumber("Intake/Outer/Elbow Angle", m_intakeElbow.getPos());
 
     //grabber
-    SmartDashboard.putNumber("Grabber/Grabber Arm/Position", m_grabberArm.getPot());
+    SmartDashboard.putNumber("Grabber/Grabber Arm/Position", m_grabberArm.getPos());
    }
 
   /**
@@ -184,19 +182,19 @@ public class Robot extends TimedRobot {
   public void updateSmartDashboard() {
     //Drive
     SmartDashboard.getEntry("Drive/Gyro").setDouble(m_driveTrain.getGyroAngle());
-    SmartDashboard.getEntry("Drive/Right Front Encoder").setDouble(m_driveTrain.getRightFrontEnc().getDistance());
-    SmartDashboard.getEntry("Drive/Left Front Encoder").setDouble(m_driveTrain.getLeftFrontEnc().getDistance());
-    SmartDashboard.getEntry("Drive/Right Back Encoder").setDouble(m_driveTrain.getRightBackEnc().getDistance());
-    SmartDashboard.getEntry("Drive/Left Back Encoder").setDouble(m_driveTrain.getLeftBackEnc().getDistance());
+    SmartDashboard.getEntry("Drive/Right Front Encoder").setDouble(m_driveTrain.getRightFrontEncDistance());
+    SmartDashboard.getEntry("Drive/Left Front Encoder").setDouble(m_driveTrain.getLeftFrontEncDistance());
+    SmartDashboard.getEntry("Drive/Right Back Encoder").setDouble(m_driveTrain.getRightBackEncDistance());
+    SmartDashboard.getEntry("Drive/Left Back Encoder").setDouble(m_driveTrain.getLeftBackEncDistance());;
 
     //Elevator
     SmartDashboard.getEntry("Elevator/Height").setDouble(m_elevator.getHeight());
 
     //Outer intake
-    SmartDashboard.getEntry("Intake/Outer/Elbow Angle").setDouble(m_intakeElbow.getPot());
+    SmartDashboard.getEntry("Intake/Outer/Elbow Angle").setDouble(m_intakeElbow.getPos());
 
     //grabber
-    SmartDashboard.getEntry("Grabber/Grabber Arm/Position").setDouble(m_grabberArm.getPot());
+    SmartDashboard.getEntry("Grabber/Grabber Arm/Position").setDouble(m_grabberArm.getPos());
   }
 
 }
