@@ -29,7 +29,7 @@ public class GrabberArm extends Subsystem {
   /**
    * Gets the value of the analog potentiometer
    */
-  public double getPot() {
+  public double getPos() {
     return m_armPot.get();
   }
 

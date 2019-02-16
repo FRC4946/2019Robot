@@ -72,7 +72,7 @@ public class DriveStraightPID extends PIDCommand {
 
   @Override
   public double returnPIDInput() {
-    return Robot.m_driveTrain.AvgStraightDist();
+    return Robot.m_driveTrain.getAvgStraightDist();
   }
 
   @Override

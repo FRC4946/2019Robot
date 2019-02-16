@@ -106,24 +106,20 @@ public class DriveTrain extends Subsystem {
   public AHRS getGyro(){
     return m_gyro;
   }
-  
-  public double AvgStraightDist() {
-    return ((m_leftFrontEnc.getDistance() + m_rightFrontEnc.getDistance() + m_leftBackEnc.getDistance() + m_rightBackEnc.getDistance())/4.0);
-  }
 
-  public double leftBackEncDistance(){
+  public double getLeftBackEncDistance(){
    return m_leftBackEnc.getDistance();
   }
 
-  public double leftFrontEncDistance(){
+  public double getLeftFrontEncDistance(){
     return m_leftFrontEnc.getDistance();
   }
 
-  public double rightBackEncDistance(){
+  public double getRightBackEncDistance(){
     return  m_rightBackEnc.getDistance();
   }
 
-  public double rightFrontEncDistance(){
+  public double getRightFrontEncDistance(){
     return m_rightFrontEnc.getDistance();
   }
 
