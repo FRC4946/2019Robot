@@ -7,6 +7,8 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -20,14 +22,14 @@ import frc.robot.RobotMap;
  */
 public class Intake extends Subsystem {
 
-  private CANSparkMax m_outer, m_innerLeft, m_innerRight;
+  private TalonSRX m_outer, m_innerLeft, m_innerRight;
   private DigitalInput m_bannerSensor;
 
   public Intake() {
     
-    m_outer = new CANSparkMax(RobotMap.CAN_SPARK_INTAKE_OUTER, MotorType.kBrushless);
-    m_innerLeft = new CANSparkMax(RobotMap.CAN_SPARK_INTAKE_INNER_LEFT, MotorType.kBrushless);
-    m_innerRight = new CANSparkMax(RobotMap.CAN_SPARK_INTAKE_INNER_RIGHT, MotorType.kBrushless);
+    m_outer = new TalonSRX(RobotMap.CAN_TALON_INTAKE_OUTER);
+    m_innerLeft = new TalonSRX(RobotMap.CAN_TALON_INTAKE_INNER_LEFT);
+    m_innerRight = new TalonSRX(RobotMap.CAN_TALON_INTAKE_INNER_RIGHT);
 
     m_bannerSensor = new DigitalInput(RobotMap.DIO_INTAKE_BANNER_SENSOR);
   }
@@ -39,7 +41,7 @@ public class Intake extends Subsystem {
    *              speed negative is inwards positive is outwards
    */
   public void runOuter(double speed) {
-    m_outer.set(speed);
+    m_outer.set(ControlMode.PercentOutput, speed);
   }
 
   /**
@@ -49,8 +51,8 @@ public class Intake extends Subsystem {
    *              speed negative is inwards positive is outwards
    */
   public void runInner(double speed) {
-    m_innerLeft.set(speed);
-    m_innerRight.set(-speed);
+    m_innerLeft.set(ControlMode.PercentOutput, speed);
+    m_innerRight.set(ControlMode.PercentOutput, -speed);
   }
 
   /**

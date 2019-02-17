@@ -26,8 +26,8 @@ public class Climber extends Subsystem {
     m_front = new CANSparkMax(RobotMap.CAN_SPARK_LIFT_FRONT, MotorType.kBrushed);
     m_back = new CANSparkMax(RobotMap.CAN_SPARK_LIFT_BACK, MotorType.kBrushed);
 
-    frontLimitSwitch = new DigitalInput(1); // Currently Arbitrary numbers
-    backLimitSwitch = new DigitalInput(2);
+    frontLimitSwitch = new DigitalInput(RobotMap.DIO_CLIMBER_UP_FRONT); // Currently Arbitrary numbers
+    backLimitSwitch = new DigitalInput(RobotMap.DIO_CLIMBER_UP_BACK);
   }
   /**
    * Sets the climber motors to the desired speed
