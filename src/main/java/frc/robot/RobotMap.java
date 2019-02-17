@@ -42,7 +42,6 @@ public class RobotMap {
   public static final int DIO_DRIVE_RIGHT_FRONT_ENCB = 5;
   public static final int DIO_DRIVE_RIGHT_BACK_ENCA = 6;
   public static final int DIO_DRIVE_RIGHT_BACK_ENCB = 7;
-  public static final int DIO_INTAKE_BANNER_SENSOR = 8;
   public static final int DIO_GRABBER_IN = 10;
   public static final int DIO_GRABBER_OUT = 11;
   public static final int DIO_CLIMBER_UP_FRONT = 12;

@@ -30,8 +30,6 @@ public class Intake extends Subsystem {
     m_outer = new TalonSRX(RobotMap.CAN_TALON_INTAKE_OUTER);
     m_innerLeft = new TalonSRX(RobotMap.CAN_TALON_INTAKE_INNER_LEFT);
     m_innerRight = new TalonSRX(RobotMap.CAN_TALON_INTAKE_INNER_RIGHT);
-
-    m_bannerSensor = new DigitalInput(RobotMap.DIO_INTAKE_BANNER_SENSOR);
   }
 
   /**
@@ -86,15 +84,6 @@ public class Intake extends Subsystem {
   public void stopAll() {
     stopInner();
     stopOuter();
-  }
-
-  /**
-   * Returns the state of the banner sensor on the intake
-   *
-   * @return false if no ball is detected, true if a ball is detected
-   */
-  public boolean getIsBall() {
-    return !m_bannerSensor.get();
   }
 
   @Override
