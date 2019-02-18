@@ -33,9 +33,9 @@ public class RobotConstants {
   public static final double INTAKE_POT_SCALING = 3600;
   public static final double INTAKE_POT_OFFSET = 1664.0;
 
-  public static final double GRABBER_ARM_OUT = 1000.0;
-  public static final double GRABBER_ARM_HOLD_HATCH = 900.0;
-  public static final double GRABBER_ARM_IN = 0.0;
+  public static final double GRABBER_ARM_OUT = 9.539;
+  public static final double GRABBER_ARM_HOLD_HATCH = 9.0;
+  public static final double GRABBER_ARM_IN = 9.242;
 
   public static final double CLIMBER_MIN_HEIGHT = 0.0;
   public static final double CLIMBER_MAX_HEIGHT = 40.0;

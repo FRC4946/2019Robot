@@ -61,7 +61,7 @@ public class Intake extends Subsystem {
    */
   public void runAll(double speed) {
     runOuter(speed);
-    runInner(speed);
+    runInner(0.7*speed);
   }
 
   /**

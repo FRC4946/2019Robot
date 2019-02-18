@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.climber.LiftRobot;
-import frc.robot.commands.elevator.SetElevator;
 import frc.robot.commands.grabber.SetGrabberSpeed;
 import frc.robot.commands.grabberarm.SetArmSpeed;
 import frc.robot.commands.intakeelbow.SetElbowSpeed;
@@ -52,20 +51,25 @@ public class OI {
   }
 
   //NEGATIVE IS DOWN ON THE ELEVATOR
-  //NEGATIVE IS IN ON THE GRABBER ARM
+  //NEGATIVE IS OUT ON THE GRABBER ARM
   //NEGATIVE IS TOWARDS THE GROUND ON THE CLIMBER
   //NEGATIVE IS DOWN ON THE ELBOW
   //NEGATIVE IS IN ON THE GRABBER (POSITIVE WILL MAKE IT GRAB THE HATCH)
+  //NEGATIVE IS IN ON THE INTAKE
+
+  //TODO: CLIMBER LIM SWITCHES NORMALLY CLOSED
 
   public OI() {
 
     // TODO: Bind buttons to commands
-    m_AButton.whileHeld(new LiftRobot(-0.2)); 
-    m_YButton.whileHeld(new LiftRobot(0.2));
+    m_AButton.whileHeld(new SetArmSpeed(-0.7)); 
+    m_YButton.whileHeld(new SetArmSpeed(0.7));
     m_RBButton.whileHeld(new SetElbowSpeed(0.1));
     m_LBButton.whileHeld(new SetElbowSpeed(-0.1)); 
     m_XButton.whileHeld(new SetGrabberSpeed(-0.8));
     m_BButton.whileHeld(new SetGrabberSpeed(0.8));
+    m_LeftStickButton.whileHeld(new LiftRobot(-0.4));
+    m_RightStickButton.whileHeld(new LiftRobot(0.4));
     m_StartButton.whenPressed(new ToggleLimelightLED());
   }
 }

@@ -54,7 +54,7 @@ public class Climber extends Subsystem {
    * @return
    */
   public boolean isClimberTopped() {
-    return (frontLimitSwitch.get() || backLimitSwitch.get());
+    return (!frontLimitSwitch.get() || !backLimitSwitch.get());
   }
 
   public double getClimberHeight() {

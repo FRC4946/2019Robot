@@ -39,8 +39,8 @@ public class GrabberArm extends Subsystem {
    * @param speed The speed that the motor runs at
    */
   public void setArm(double speed) {
-    //if(getPos() >= RobotConstants.GRABBER_ARM_IN && speed < 0
-    //|| getPos() <= RobotConstants.GRABBER_ARM_OUT && speed > 0) {
+    //if(getPos() <= RobotConstants.GRABBER_ARM_IN && speed > 0
+      //|| getPos() >= RobotConstants.GRABBER_ARM_OUT && speed < 0) {
       //m_armMotor.set(ControlMode.PercentOutput, 0);
     //} else {
       m_armMotor.set(ControlMode.PercentOutput, speed);

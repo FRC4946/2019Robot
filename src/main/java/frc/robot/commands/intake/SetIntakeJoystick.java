@@ -33,7 +33,7 @@ public class SetIntakeJoystick extends Command {
   protected void execute() {
     
     Robot.m_intake.runAll(Utilities.deadzone
-      (Robot.m_oi.getDriveStick().getRawAxis(2) - Robot.m_oi.getDriveStick().getRawAxis(3)));
+      ((Robot.m_oi.getDriveStick().getRawAxis(2) - Robot.m_oi.getDriveStick().getRawAxis(3))*0.6));
   }
 
   // Make this return true when this Command no longer needs to run execute()
