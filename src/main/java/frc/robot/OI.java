@@ -11,11 +11,10 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.climber.LiftRobot;
-import frc.robot.commands.drivetrain.StrafeToTarget;
-import frc.robot.commands.drivetrain.JoystickDriveAbs;
-import frc.robot.commands.grabber.SetGrabber;
-import frc.robot.commands.intake.IntakeUntilBall;
-import frc.robot.commands.intake.SetIntakeSpeed;
+import frc.robot.commands.elevator.SetElevator;
+import frc.robot.commands.grabber.SetGrabberSpeed;
+import frc.robot.commands.grabberarm.SetArmSpeed;
+import frc.robot.commands.intakeelbow.SetElbowSpeed;
 import frc.robot.commands.limelight.ToggleLimelightLED;
 
 /**
@@ -52,19 +51,21 @@ public class OI {
     return m_driveStick;
   }
 
+  //NEGATIVE IS DOWN ON THE ELEVATOR
+  //NEGATIVE IS IN ON THE GRABBER ARM
+  //NEGATIVE IS TOWARDS THE GROUND ON THE CLIMBER
+  //NEGATIVE IS DOWN ON THE ELBOW
+  //NEGATIVE IS IN ON THE GRABBER (POSITIVE WILL MAKE IT GRAB THE HATCH)
+
   public OI() {
 
     // TODO: Bind buttons to commands
-    m_BButton.whileHeld(new JoystickDriveAbs());
+    m_AButton.whileHeld(new LiftRobot(-0.2)); 
+    m_YButton.whileHeld(new LiftRobot(0.2));
+    m_RBButton.whileHeld(new SetElbowSpeed(0.1));
+    m_LBButton.whileHeld(new SetElbowSpeed(-0.1)); 
+    m_XButton.whileHeld(new SetGrabberSpeed(-0.8));
+    m_BButton.whileHeld(new SetGrabberSpeed(0.8));
     m_StartButton.whenPressed(new ToggleLimelightLED());
-    m_XButton.whenPressed(new StrafeToTarget()); //consider this as a whileHeld?? idk - zheng
-    m_RBButton.whileHeld(new IntakeUntilBall());
-    m_LBButton.whileHeld(new SetIntakeSpeed(0.1));
-    m_AButton.whileHeld(new SetGrabber(true, 0.1));
-    m_YButton.whileHeld(new SetGrabber(false, 0.1));
-    m_LeftStickButton.whileHeld(new LiftRobot(0.2));
-    m_RightStickButton.whileHeld(new LiftRobot(-0.2));
-    //m_LeftStickButton.whileHeld(new ClimbOnPlatform(0.2, 0.15, RobotConstants.LOWER_PLATFORM_HEIGHT));
-    //m_RightStickButton.whileHeld(new ClimbOnPlatform(0.2, 0.15, RobotConstants.UPPER_PLATFORM_HEIGHT));
   }
 }

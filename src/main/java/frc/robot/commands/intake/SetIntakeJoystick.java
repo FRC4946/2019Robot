@@ -5,18 +5,22 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.climber;
+package frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.Utilities;
 
-public class LiftRobot extends Command {
+public class SetIntakeJoystick extends Command {
 
-  private double m_speed;
-
-  public LiftRobot(double climberSpeed) {
-    requires(Robot.m_climber);
-    m_speed = climberSpeed;
+  /**
+   * Runs the intake at the desired speed for the desired amount of time
+   *
+   * @param speed the speed to run the intake at as a fraction of its max speed
+   * @param time  the time to run the intake for in seconds
+   */
+  public SetIntakeJoystick() {
+    requires(Robot.m_intake);
   }
 
   // Called just before this Command runs the first time
@@ -27,7 +31,9 @@ public class LiftRobot extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-      Robot.m_climber.setClimber(m_speed);
+    
+    Robot.m_intake.runAll(Utilities.deadzone
+      (Robot.m_oi.getDriveStick().getRawAxis(2) - Robot.m_oi.getDriveStick().getRawAxis(3)));
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -39,7 +45,7 @@ public class LiftRobot extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.m_climber.stopClimber();
+    Robot.m_intake.stopAll();
   }
 
   // Called when another command which requires one or more of the same

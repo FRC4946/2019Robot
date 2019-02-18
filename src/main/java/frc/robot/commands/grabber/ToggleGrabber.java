@@ -31,9 +31,9 @@ public class ToggleGrabber extends Command {
   @Override
   protected void execute() {
     if(m_initIsIn) { //if grabber is in
-      Robot.m_grabber.setGrabber(-m_speed);
-    } else {
       Robot.m_grabber.setGrabber(m_speed);
+    } else {
+      Robot.m_grabber.setGrabber(-m_speed);
     }
   }
 

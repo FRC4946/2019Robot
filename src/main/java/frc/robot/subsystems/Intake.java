@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import frc.robot.commands.intake.SetIntakeJoystick;
 
 /**
  * Intake subsystem
@@ -23,7 +24,6 @@ import frc.robot.RobotMap;
 public class Intake extends Subsystem {
 
   private TalonSRX m_outer, m_innerLeft, m_innerRight;
-  private DigitalInput m_bannerSensor;
 
   public Intake() {
     
@@ -88,5 +88,6 @@ public class Intake extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
+    setDefaultCommand(new SetIntakeJoystick());
   }
 }

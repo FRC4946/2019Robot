@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotConstants;
 import frc.robot.RobotMap;
 
 /**
@@ -30,15 +31,24 @@ public class GrabberArm extends Subsystem {
    * Gets the value of the analog potentiometer
    */
   public double getPos() {
-    return m_armPot.get();
+    return RobotConstants.GRABBER_ARM_OUT - m_armPot.get();
   }
 
   /**
    * Sets the arm's motor to the desired speed
    * @param speed The speed that the motor runs at
    */
-  public void setArm(double speed) { 
-    m_armMotor.set(ControlMode.PercentOutput, speed);
+  public void setArm(double speed) {
+    //if(getPos() >= RobotConstants.GRABBER_ARM_IN && speed < 0
+    //|| getPos() <= RobotConstants.GRABBER_ARM_OUT && speed > 0) {
+      //m_armMotor.set(ControlMode.PercentOutput, 0);
+    //} else {
+      m_armMotor.set(ControlMode.PercentOutput, speed);
+    //}
+  }
+
+  public void stop() {
+    setArm(0);
   }
 
   @Override

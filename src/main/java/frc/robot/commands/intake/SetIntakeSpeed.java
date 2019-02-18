@@ -11,26 +11,16 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class SetIntakeSpeed extends Command {
-
-  private double m_speed;
-
-
-  /**
-   * Runs the intake at the desired speed for the desired amount of time
-   *
-   * @param speed the speed to run the intake at as a fraction of its max speed
-   * @param time  the time to run the intake for in seconds
-   */
+  double m_speed;
   public SetIntakeSpeed(double speed) {
     requires(Robot.m_intake);
+
     m_speed = speed;
-    
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-  
   }
 
   // Called repeatedly when this Command is scheduled to run

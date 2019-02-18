@@ -42,7 +42,7 @@ public class SetElevator extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.m_elevator.setElevator(0);
+    Robot.m_elevator.stop();
   }
   
   // Called when another command which requires one or more of the same

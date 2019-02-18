@@ -16,26 +16,22 @@ public class RobotConstants {
 
   public static final int ENC_PPR = 128;
 
-  public static final double DEFAULT_DEADZONE = 0.05;
+  public static final double DEFAULT_DEADZONE = 0.15;
   public static final double WHEEL_DIAMETER = 6.0;
   public static final double ENC_DIST_PER_PULSE = Math.PI*WHEEL_DIAMETER / (double) ENC_PPR;
 
-  public static final double ELEVATOR_SCALING_VALUE = 0.0;
+  public static final double ELEVATOR_SCALING_VALUE = 10.0;
   public static final double ELEVATOR_OFFSET_VALUE = 0.0;
 
   public static final double ELEVATOR_MINIMUM_HEIGHT = 0.0;
-  public static final double ELEVATOR_MAXIMUM_HEIGHT = 0.0;
-  public static final double ELEVATOR_INTERFERE_MIN = 0.0;
-  public static final double ELEVATOR_INTERFERE_MAX = 0.0;
-  public static final double ELEVATOR_SWITCH_HEIGHT = 0.0;
-  public static final double ELEVATOR_SCALE_LOWHEIGHT = 0.0;
-  public static final double ELEVATOR_SCALE_HIGHHEIGHT = 0.0;
-  public static final double ELEVATOR_RUNG_HEIGHT = 0.0;
+  public static final double ELEVATOR_MAXIMUM_HEIGHT = 10.0;
+  public static final double ELEVATOR_NO_CONFLICT_HEIGHT = 5.0;
 
-  public static final double UPWARDS_ELBOW_ANGLE = 90;
-  public static final double STARTING_ELBOW_ANGLE = 30;
-  public static final double INTAKE_POT_MIN = 0.0;
-  public static final double INTAKE_POT_MAX = 1000.0;
+  public static final double INTAKE_POT_UP = 0.0;
+  public static final double INTAKE_POT_DOWN = 1000.0;
+  public static final double INTAKE_POT_BALL_HEIGHT = 500;
+  public static final double INTAKE_POT_SCALING = 3600;
+  public static final double INTAKE_POT_OFFSET = 1664.0;
 
   public static final double GRABBER_ARM_OUT = 1000.0;
   public static final double GRABBER_ARM_HOLD_HATCH = 900.0;
