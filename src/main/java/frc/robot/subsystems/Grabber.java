@@ -35,7 +35,7 @@ public class Grabber extends Subsystem {
   * 
   * @param speed Sets the speed of the graber to the desired speed
   */ 
-  public void setGrabber(double speed) {
+  public void setGrabber(double speed) { 
     m_grabberMotor.set(ControlMode.PercentOutput, ((speed > 0 && getGrabberOut()) || (speed < 0 && getGrabberIn()) ? 0 : speed));
   }
 

@@ -1,3 +1,4 @@
+
 /*----------------------------------------------------------------------------*/
 /* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
@@ -5,20 +6,18 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.intakeelbow;
+package frc.robot.commands.grabber;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc.robot.Robot;
 import frc.robot.RobotConstants;
-import frc.robot.commands.elevator.MoveToHeight;
+import frc.robot.commands.grabberarm.SetArmToPos;
 
-public class ToggleElbow extends CommandGroup {
+public class ReleaseHatch extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public ToggleElbow(double speed) {
-    addSequential(new MoveToHeight(RobotConstants.ELEVATOR_MINIMUM_HEIGHT + 5.0, speed)); //inches
-    addSequential(new SetIntakeElbow(!Robot.m_intakeElbow.isUp(), speed));
-    addSequential(new MoveToHeight(RobotConstants.ELEVATOR_MINIMUM_HEIGHT, speed));
+  public ReleaseHatch() {
+    addSequential(new SetArmToPos(RobotConstants.GRABBER_ARM_OUT, 0.7), 0.4);
+    addSequential(new SetGrabber(true, 0.8)); //Goes in to release the hatch
   }
 }

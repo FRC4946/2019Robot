@@ -5,41 +5,46 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.intake;
+package frc.robot.commands.intakeelbow;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotConstants;
 
-public class IntakeUntilBall extends Command {
+public class SetIntakePos extends Command {
 
-  /**
-   * Runs the intake backwards (intakes) until a ball is detected
-   */
-  public IntakeUntilBall() {
-    requires(Robot.m_intake);
+  double m_desiredPos, m_speed;
+
+  public SetIntakePos(double desiredPos, double speed) {
+    requires(Robot.m_intakeElbow);
+    m_desiredPos = desiredPos;
+    m_speed = speed;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    m_desiredPos = Math.min(m_desiredPos, RobotConstants.INTAKE_POT_UP);
+    m_desiredPos = Math.max(m_desiredPos, RobotConstants.INTAKE_POT_DOWN);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_intake.runAll(-0.8); // not max speed (yet?)
+    Robot.m_intakeElbow.setElbow
+      (Math.signum(Robot.m_intakeElbow.getPos() - m_desiredPos)*m_speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Robot.m_intake.getIsBall();
+    return Math.abs(Robot.m_intakeElbow.getPos() - m_desiredPos) < 2;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.m_intake.stopAll();
+    Robot.m_intakeElbow.stop();
   }
 
   // Called when another command which requires one or more of the same

@@ -5,18 +5,18 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.climber;
+package frc.robot.commands.intakeelbow;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class LiftRobot extends Command {
+public class SetElbowSpeed extends Command {
 
-  private double m_speed;
+  double m_speed;
 
-  public LiftRobot(double climberSpeed) {
-    requires(Robot.m_climber);
-    m_speed = climberSpeed;
+  public SetElbowSpeed(double speed) {
+    requires(Robot.m_intakeElbow);
+    m_speed = speed;
   }
 
   // Called just before this Command runs the first time
@@ -27,7 +27,7 @@ public class LiftRobot extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-      Robot.m_climber.setClimber(m_speed);
+    Robot.m_intakeElbow.setElbow(m_speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -39,7 +39,7 @@ public class LiftRobot extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.m_climber.stopClimber();
+    Robot.m_intakeElbow.stop();
   }
 
   // Called when another command which requires one or more of the same

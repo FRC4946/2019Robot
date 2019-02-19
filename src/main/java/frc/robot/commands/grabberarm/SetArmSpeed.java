@@ -34,14 +34,13 @@ public class SetArmSpeed extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return (Robot.m_grabberArm.getPos() <= RobotConstants.GRABBER_ARM_IN && m_speed < 0)
-      || (Robot.m_grabberArm.getPos() <= RobotConstants.GRABBER_ARM_OUT && m_speed > 0);
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.m_grabberArm.setArm(0.0);
+    Robot.m_grabberArm.stop();
   }
 
   // Called when another command which requires one or more of the same

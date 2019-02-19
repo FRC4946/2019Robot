@@ -11,21 +11,17 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.RobotConstants;
 import frc.robot.commands.elevator.MoveToHeight;
 
-public class SetElbow extends CommandGroup {
-  
+public class SetIntakeStage extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public SetElbow(boolean setToUp, double speed) {
-
-    if(setToUp) {
-      addSequential(new MoveToHeight(RobotConstants.ELEVATOR_MINIMUM_HEIGHT + 5.0, speed)); //inches
-      addSequential(new SetIntakeElbow(true, speed));
-      addSequential(new MoveToHeight(RobotConstants.ELEVATOR_MINIMUM_HEIGHT, speed));
-    } else {
-      addSequential(new MoveToHeight(RobotConstants.ELEVATOR_MINIMUM_HEIGHT + 5.0, speed)); //inches
-      addSequential(new SetIntakeElbow(false, speed));
-      addSequential(new MoveToHeight(RobotConstants.ELEVATOR_MINIMUM_HEIGHT, speed));
+  public SetIntakeStage(double intakeStage) {
+    if (!(intakeStage == RobotConstants.INTAKE_POT_BALL_HEIGHT || intakeStage == RobotConstants.INTAKE_POT_DOWN || intakeStage == RobotConstants.INTAKE_POT_UP)) {
+      intakeStage = RobotConstants.INTAKE_POT_BALL_HEIGHT;
     }
+    if (intakeStage == RobotConstants.INTAKE_POT_UP) {
+      addSequential(new MoveToHeight(RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT, 0.5));
+    }
+    addSequential(new SetIntakePos(intakeStage, 0.5));
   }
 }

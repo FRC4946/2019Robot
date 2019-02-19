@@ -16,9 +16,9 @@ public class ClimbOnPlatform extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public ClimbOnPlatform(double climbSpeed, double boardingSpeed, double height) {
+  public ClimbOnPlatform(double boardingSpeed, double height) {
 
-    addSequential(new SetClimberHeight(height, climbSpeed));
+    addSequential(new SetClimberHeight(height));
     addParallel(new SetIntakeSpeed(boardingSpeed), 3.0);
     addSequential(new SetDriveTrain(boardingSpeed), 3.0);
   }

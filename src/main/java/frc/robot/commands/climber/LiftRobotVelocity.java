@@ -7,27 +7,34 @@
 
 package frc.robot.commands.climber;
 
+import com.revrobotics.ControlType;
+
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotConstants;
 
-public class LiftRobot extends Command {
-
-  private double m_speed;
-
-  public LiftRobot(double climberSpeed) {
+public class LiftRobotVelocity extends Command {
+  double m_velocity;
+  public LiftRobotVelocity(double velocity) {
     requires(Robot.m_climber);
-    m_speed = climberSpeed;
+
+    m_velocity = velocity;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.m_climber.setFrontPIDController(RobotConstants.PID_CLIMBER_FRONT_VELOCITY_P, RobotConstants.PID_CLIMBER_FRONT_VELOCITY_I, RobotConstants.PID_CLIMBER_FRONT_VELOCITY_D);
+    Robot.m_climber.setBackPIDController(RobotConstants.PID_CLIMBER_VELOCITY_P, RobotConstants.PID_CLIMBER_VELOCITY_I, RobotConstants.PID_CLIMBER_VELOCITY_D);
+    Robot.m_climber.getFrontPIDController().setOutputRange(-0.4, 0.4);
+    Robot.m_climber.getBackPIDController().setOutputRange(-0.4, 0.4);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-      Robot.m_climber.setClimber(m_speed);
+    Robot.m_climber.getFrontPIDController().setReference(m_velocity, ControlType.kVelocity);
+    Robot.m_climber.getBackPIDController().setReference(m_velocity, ControlType.kVelocity);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -40,12 +47,5 @@ public class LiftRobot extends Command {
   @Override
   protected void end() {
     Robot.m_climber.stopClimber();
-  }
-
-  // Called when another command which requires one or more of the same
-  // subsystems is scheduled to run
-  @Override
-  protected void interrupted() {
-    end();
   }
 }

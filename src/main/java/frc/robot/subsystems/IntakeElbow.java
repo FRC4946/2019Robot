@@ -24,8 +24,8 @@ public class IntakeElbow extends Subsystem {
   private AnalogPotentiometer m_outerIntakePot;
 
   public IntakeElbow() {
-    m_outerElbow = new CANSparkMax(RobotMap.CAN_TALON_INTAKE_ELBOW, MotorType.kBrushless);
-    m_outerIntakePot = new AnalogPotentiometer(RobotMap.ANALOG_INTAKE_POT, 3600, RobotConstants.STARTING_ELBOW_ANGLE); //scale value of 3600 because this is a 10 turn pot
+    m_outerElbow = new CANSparkMax(RobotMap.CAN_SPARK_INTAKE_ELBOW, MotorType.kBrushless);
+    m_outerIntakePot = new AnalogPotentiometer(RobotMap.ANALOG_INTAKE_POT, RobotConstants.INTAKE_POT_SCALING, RobotConstants.INTAKE_POT_OFFSET); //scale value of 3600 because this is a 10 turn pot
   }
 
 
@@ -37,12 +37,16 @@ public class IntakeElbow extends Subsystem {
     m_outerElbow.set(speed);
   }
 
+  public void stop() {
+    m_outerElbow.set(0);
+  }
+
   /**
    * Returns the elbow position
    * @return True if the intake elbow is in the down position 
    */
   public boolean isDown() {
-    return getPos() < 2; //within 2 degrees of 0
+    return getPos() > RobotConstants.INTAKE_POT_DOWN; //within 2 degrees of 0
   }
 
   /**
@@ -50,7 +54,11 @@ public class IntakeElbow extends Subsystem {
    * @return True if the intake elbow is in the up position
    */
   public boolean isUp() {
-    return getPos() > (RobotConstants.UPWARDS_ELBOW_ANGLE-2); //within 2 degrees of upper height
+    return getPos() < (RobotConstants.INTAKE_POT_UP-2); //within 2 degrees of upper height
+  }
+
+  public boolean isAtBallHeight() {
+    return Math.abs(getPos() - RobotConstants.INTAKE_POT_BALL_HEIGHT) < 2;
   }
 
   @Override

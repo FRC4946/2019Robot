@@ -105,11 +105,18 @@ public class Limelight extends Subsystem{
    */
   public void setLED(boolean on) {
     if (on) {
-      m_networkTable.getEntry("ledMode").setNumber(0);
+      m_networkTable.getEntry("ledMode").setNumber(3);
     } else {
       m_networkTable.getEntry("ledMode").setNumber(1);
     }
 
+  }
+
+  /**
+   * Sets the leds on the limelight to the pipeline default
+   */
+  public void setLEDDefault() {
+    m_networkTable.getEntry("ledMode").setNumber(0);
   }
 
   /**

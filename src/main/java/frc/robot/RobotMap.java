@@ -18,22 +18,21 @@ public class RobotMap {
   public static final int USB_DS_DRIVESTICK = 0;
   public static final int USB_DS_OPERATORSTICK = 1;
 
-  public static final int CAN_SPARK_DRIVE_LEFT_BACK = 0;
-  public static final int CAN_SPARK_DRIVE_LEFT_FRONT = 1;
-  public static final int CAN_SPARK_DRIVE_RIGHT_FRONT = 2;
-  public static final int CAN_SPARK_DRIVE_RIGHT_BACK = 3;
-  public static final int CAN_SPARK_LIFT_FRONT = 4;
-  public static final int CAN_SPARK_LIFT_BACK = 5;
-  public static final int CAN_SPARK_INTAKE_OUTER = 6;
+  public static final int CAN_SPARK_DRIVE_LEFT_BACK = 1;
+  public static final int CAN_SPARK_DRIVE_LEFT_FRONT = 2;
+  public static final int CAN_SPARK_DRIVE_RIGHT_FRONT = 3;
+  public static final int CAN_SPARK_DRIVE_RIGHT_BACK = 4;
+  public static final int CAN_SPARK_LIFT_FRONT = 5;
+  public static final int CAN_SPARK_LIFT_BACK = 6;
+  public static final int CAN_SPARK_INTAKE_ELBOW = 7;
 
-  public static final int CAN_SPARK_INTAKE_INNER_LEFT = 7;
-  public static final int CAN_SPARK_INTAKE_INNER_RIGHT = 8;
-  public static final int CAN_SPARK_ELEVATOR = 9; 
+  public static final int CAN_SPARK_ELEVATOR = 8; 
 
-  public static final int CAN_TALON_GRABBER_MOTOR = 0;
-  public static final int CAN_TALON_GRABBER_ARM = 1;
-  public static final int CAN_TALON_INTAKE_ELBOW = 2;
-  public static final int CAN_TALON_SLIDER_MOTOR = 3;
+  public static final int CAN_TALON_GRABBER_MOTOR = 9;
+  public static final int CAN_TALON_GRABBER_ARM = 10;
+  public static final int CAN_TALON_INTAKE_OUTER = 11;
+  public static final int CAN_TALON_INTAKE_INNER_LEFT = 12;
+  public static final int CAN_TALON_INTAKE_INNER_RIGHT = 13;
 
   public static final int DIO_DRIVE_LEFT_FRONT_ENCA = 0;
   public static final int DIO_DRIVE_LEFT_FRONT_ENCB = 1;
@@ -43,9 +42,10 @@ public class RobotMap {
   public static final int DIO_DRIVE_RIGHT_FRONT_ENCB = 5;
   public static final int DIO_DRIVE_RIGHT_BACK_ENCA = 6;
   public static final int DIO_DRIVE_RIGHT_BACK_ENCB = 7;
-  public static final int DIO_INTAKE_BANNER_SENSOR = 8;
   public static final int DIO_GRABBER_IN = 10;
   public static final int DIO_GRABBER_OUT = 11;
+  public static final int DIO_CLIMBER_UP_FRONT = 12;
+  public static final int DIO_CLIMBER_UP_BACK = 13;
 
   public static final int ANALOG_ELEVATOR_POT = 0;
   public static final int ANALOG_INTAKE_POT = 1;

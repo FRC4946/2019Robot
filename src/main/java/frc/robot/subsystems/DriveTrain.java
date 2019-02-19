@@ -144,4 +144,12 @@ public class DriveTrain extends Subsystem {
   public void setPIDSetpoint(CANSparkMax controller, double setpoint) {
     controller.pidWrite(setpoint);
   }
+
+  public void setPIDSetpoints(double output, double[] fractionalSpeeds) {
+    
+    m_rightFront.pidWrite(-output*fractionalSpeeds[0]);
+    m_leftFront.pidWrite(-output*fractionalSpeeds[1]);
+    m_rightBack.pidWrite(-output*fractionalSpeeds[2]);
+    m_leftBack.pidWrite(-output*fractionalSpeeds[3]);
+  }
 }
