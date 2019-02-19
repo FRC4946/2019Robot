@@ -22,8 +22,8 @@ public class JoystickDrive extends Command {
   public JoystickDrive() {
     requires(Robot.m_driveTrain);
     isSidewaysStrafing = false;
-    m_gyroController = new PIDController(0.1, 
-      0.00001, 0.0, 
+    m_gyroController = new PIDController(0.0125, 
+      0.0, 0.00001, 
       Robot.m_driveTrain.getGyro(), new DummyPIDOutput());
   }
 
@@ -45,14 +45,14 @@ public class JoystickDrive extends Command {
 
       isSidewaysStrafing = false;
       Robot.m_driveTrain.mecanumDrive(0.6, 0, 0);
-      
+
     } else if (Robot.m_oi.getDriveStick().getPOV() == 90) {
 
       if(!isSidewaysStrafing) {
         m_gyroController.setSetpoint(Robot.m_driveTrain.getGyroAngle());
         isSidewaysStrafing = true;
       }
-      Robot.m_driveTrain.mecanumDrive(0, 0.6, m_gyroController.get()*0.8);
+      Robot.m_driveTrain.mecanumDrive(0, 0.6, m_gyroController.get() - 0.01);
 
     } else if (Robot.m_oi.getDriveStick().getPOV() == 180) {
 
@@ -65,7 +65,7 @@ public class JoystickDrive extends Command {
         m_gyroController.setSetpoint(Robot.m_driveTrain.getGyroAngle());
         isSidewaysStrafing = true;
       }
-      Robot.m_driveTrain.mecanumDrive(0, -0.6, m_gyroController.get()*0.8);
+      Robot.m_driveTrain.mecanumDrive(0, -0.6, m_gyroController.get()*0.8 - 0.01);
 
     } else {
 
