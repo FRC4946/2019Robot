@@ -18,22 +18,23 @@ public class SetGrabber extends Command {
   public SetGrabber(boolean setIn, double speed) {
     requires(Robot.m_grabber);
     m_setIn = setIn;
-    m_speed = Math.abs(speed);
+    m_speed = speed;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
     this.setTimeout(0.5);
+    m_speed = Math.abs(m_speed);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
     if(m_setIn) {
-      Robot.m_grabber.setGrabber(m_speed);
-    } else {
       Robot.m_grabber.setGrabber(-m_speed);
+    } else {
+      Robot.m_grabber.setGrabber(m_speed);
     }
   }
 

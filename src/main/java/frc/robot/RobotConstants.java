@@ -16,7 +16,7 @@ public class RobotConstants {
 
   public static final int ENC_PPR = 128;
 
-  public static final double DEFAULT_DEADZONE = 0.15;
+  public static final double DEFAULT_DEADZONE = 0.1;
   public static final double WHEEL_DIAMETER = 6.0;
   public static final double ENC_DIST_PER_PULSE = Math.PI*WHEEL_DIAMETER / (double) ENC_PPR;
 
@@ -33,10 +33,13 @@ public class RobotConstants {
   public static final double INTAKE_POT_SCALING = 3600;
   public static final double INTAKE_POT_OFFSET = 1664.0;
 
-  public static final double GRABBER_ARM_OUT = 9.539;
-  public static final double GRABBER_ARM_HOLD_HATCH = 9.0;
-  public static final double GRABBER_ARM_IN = 9.242;
+  public static final double GRABBER_ARM_OUT = 5.45;
+  public static final double GRABBER_ARM_HOLD_HATCH = 3.29;
+  public static final double GRABBER_ARM_HOLD_BALL = 2.56;
+  public static final double GRABBER_ARM_IN = 2.34;
+  public static final double GRABBER_ARM_SCALING_VALUE = 10.0;
 
+  public static final double CLIMBER_OFFSET = 1.63; //enc ticks
   public static final double CLIMBER_MIN_HEIGHT = 0.0;
   public static final double CLIMBER_MAX_HEIGHT = 40.0;
   public static final double LOWER_PLATFORM_HEIGHT = 6.0; //inches
@@ -76,6 +79,22 @@ public class RobotConstants {
   public static double PID_ELEVATOR_MOVE_TO_HEIGHT_I = 0.0;
   public static double PID_ELEVATOR_MOVE_TO_HEIGHT_D = 0.0;
 
+  public static double PID_CLIMBER_POSITION_P = 0.1;
+  public static double PID_CLIMBER_POSITION_I = 0.0004;
+  public static double PID_CLIMBER_POSITION_D = 1.0;
+
+  public static double PID_CLIMBER_FRONT_POSITION_P = 0.1;
+  public static double PID_CLIMBER_FRONT_POSITION_I = 0.0004;
+  public static double PID_CLIMBER_FRONT_POSITION_D = 1.0;
+  
+  public static double PID_CLIMBER_VELOCITY_P = 0.00005;
+  public static double PID_CLIMBER_VELOCITY_I = 0.00001;
+  public static double PID_CLIMBER_VELOCITY_D = 0.0;
+
+  public static double PID_CLIMBER_FRONT_VELOCITY_P = 0.00005;
+  public static double PID_CLIMBER_FRONT_VELOCITY_I = 0.00001;
+  public static double PID_CLIMBER_FRONT_VELOCITY_D = 0.0;
+
   /* -------------- deprecated time :(
 
   public static final double MIN_AIM_COMMAND = 0.05;
@@ -110,6 +129,10 @@ public class RobotConstants {
     PID_ELEVATOR_MOVE_TO_HEIGHT_P = prefs.getDouble("Elevator P", 0.02);
     PID_ELEVATOR_MOVE_TO_HEIGHT_I = prefs.getDouble("Elevator I", 0.0);
     PID_ELEVATOR_MOVE_TO_HEIGHT_D = prefs.getDouble("Elevator D", 0.0);
+
+    PID_CLIMBER_POSITION_P = prefs.getDouble("Climber P", 0.1);
+    PID_CLIMBER_POSITION_I = prefs.getDouble("Climber I", 0.0004);
+    PID_CLIMBER_POSITION_D = prefs.getDouble("Climber D", 1.0);
   }
 
   public static void  repopulatePrefs(Preferences prefs) {
@@ -140,6 +163,10 @@ public class RobotConstants {
     prefs.putDouble("Elevator P", PID_ELEVATOR_MOVE_TO_HEIGHT_P);
     prefs.putDouble("Elevator I", PID_ELEVATOR_MOVE_TO_HEIGHT_I);
     prefs.putDouble("Elevator D", PID_ELEVATOR_MOVE_TO_HEIGHT_D);
+
+    prefs.putDouble("Climber P", PID_CLIMBER_POSITION_P);
+    prefs.putDouble("Climber I", PID_CLIMBER_POSITION_I);
+    prefs.putDouble("Climber D", PID_CLIMBER_POSITION_D);
   }
 
   public static void updatePrefs(Preferences prefs) {

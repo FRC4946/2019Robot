@@ -11,8 +11,13 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.climber.LiftRobot;
+import frc.robot.commands.climber.LiftRobotVelocity;
+import frc.robot.commands.climber.SetClimberHeight;
+import frc.robot.commands.grabber.ReleaseHatch;
+import frc.robot.commands.grabber.SetGrabber;
 import frc.robot.commands.grabber.SetGrabberSpeed;
 import frc.robot.commands.grabberarm.SetArmSpeed;
+import frc.robot.commands.grabberarm.SetArmToPos;
 import frc.robot.commands.intakeelbow.SetElbowSpeed;
 import frc.robot.commands.limelight.ToggleLimelightLED;
 
@@ -60,16 +65,14 @@ public class OI {
   //TODO: CLIMBER LIM SWITCHES NORMALLY CLOSED
 
   public OI() {
-
     // TODO: Bind buttons to commands
-    m_AButton.whileHeld(new SetArmSpeed(-0.7)); 
-    m_YButton.whileHeld(new SetArmSpeed(0.7));
+    m_YButton.whenPressed(new SetArmToPos(RobotConstants.GRABBER_ARM_OUT, 0.7));
+    m_AButton.whenPressed(new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_HATCH, 0.7));
     m_RBButton.whileHeld(new SetElbowSpeed(0.1));
     m_LBButton.whileHeld(new SetElbowSpeed(-0.1)); 
-    m_XButton.whileHeld(new SetGrabberSpeed(-0.8));
-    m_BButton.whileHeld(new SetGrabberSpeed(0.8));
-    m_LeftStickButton.whileHeld(new LiftRobot(-0.4));
-    m_RightStickButton.whileHeld(new LiftRobot(0.4));
-    m_StartButton.whenPressed(new ToggleLimelightLED());
+    m_XButton.whenPressed(new ReleaseHatch()); 
+    m_BButton.whenPressed(new SetGrabber(false, 0.8));
+    m_StartButton.whileHeld(new SetClimberHeight(-120));
+    m_ViewButton.whileHeld(new LiftRobotVelocity(120));
   }
 }
