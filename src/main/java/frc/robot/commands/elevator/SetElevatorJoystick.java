@@ -26,7 +26,7 @@ public class SetElevatorJoystick extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-
+    /*
     if(Robot.m_elevator.getHeight() >= RobotConstants.ELEVATOR_MAXIMUM_HEIGHT && 
         Robot.m_oi.getDriveStick().getRawAxis(1) >= 0 
       || Robot.m_elevator.getHeight() <= RobotConstants.ELEVATOR_MINIMUM_HEIGHT &&
@@ -34,8 +34,10 @@ public class SetElevatorJoystick extends Command {
          
       Robot.m_elevator.setElevator(0);
     } else { 
-      Robot.m_elevator.setElevator(Utilities.deadzone(Math.pow(Robot.m_oi.getDriveStick().getRawAxis(1)*0.5, 2)));
+      
     }
+    */
+    Robot.m_elevator.setElevator(Utilities.deadzone(-Robot.m_oi.getDriveStick().getRawAxis(1)*0.4));
   }
 
   // Make this return true when this Command no longer needs to run execute()

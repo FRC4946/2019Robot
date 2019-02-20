@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotConstants;
 import frc.robot.RobotMap;
+import frc.robot.commands.elevator.SetElevatorJoystick;
 
 /**
  * Add your docs here.
@@ -35,8 +36,8 @@ public class Elevator extends Subsystem {
   }
 
   @Override
-  public void initDefaultCommand() {
-
+  public void initDefaultCommand() { 
+    setDefaultCommand(new SetElevatorJoystick());
   }
 
   /**

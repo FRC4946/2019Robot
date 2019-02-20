@@ -20,7 +20,7 @@ public class RobotConstants {
   public static final double WHEEL_DIAMETER = 6.0;
   public static final double ENC_DIST_PER_PULSE = Math.PI*WHEEL_DIAMETER / (double) ENC_PPR;
 
-  public static final double ELEVATOR_SCALING_VALUE = 10.0;
+  public static final double ELEVATOR_SCALING_VALUE = 10.0; //86.25
   public static final double ELEVATOR_OFFSET_VALUE = 0.0;
 
   public static final double ELEVATOR_MINIMUM_HEIGHT = 0.0;
@@ -79,9 +79,9 @@ public class RobotConstants {
   public static double PID_ELEVATOR_MOVE_TO_HEIGHT_I = 0.0;
   public static double PID_ELEVATOR_MOVE_TO_HEIGHT_D = 0.0;
 
-  public static double PID_CLIMBER_POSITION_P = 0.1;
-  public static double PID_CLIMBER_POSITION_I = 0.0004;
-  public static double PID_CLIMBER_POSITION_D = 1.0;
+  public static double PID_CLIMBER_POSITION_P = 0.1; //0.005
+  public static double PID_CLIMBER_POSITION_I = 0.0004; //0.00004
+  public static double PID_CLIMBER_POSITION_D = 1.0; //0.01
 
   public static double PID_CLIMBER_FRONT_POSITION_P = 0.1;
   public static double PID_CLIMBER_FRONT_POSITION_I = 0.0004;
@@ -133,6 +133,18 @@ public class RobotConstants {
     PID_CLIMBER_POSITION_P = prefs.getDouble("Climber P", 0.1);
     PID_CLIMBER_POSITION_I = prefs.getDouble("Climber I", 0.0004);
     PID_CLIMBER_POSITION_D = prefs.getDouble("Climber D", 1.0);
+
+    PID_CLIMBER_FRONT_POSITION_P = prefs.getDouble("Climber Front P", 0.1);
+    PID_CLIMBER_FRONT_POSITION_I = prefs.getDouble("Climber Front I", 0.0004);
+    PID_CLIMBER_FRONT_POSITION_D = prefs.getDouble("Climber Front D", 1.0);
+
+    PID_CLIMBER_VELOCITY_P = prefs.getDouble("Climber Velocity P", 0.00005);
+    PID_CLIMBER_VELOCITY_I = prefs.getDouble("Climber Velocity I", 0.00001);
+    PID_CLIMBER_VELOCITY_D = prefs.getDouble("Climber Velocity D", 0);
+
+    PID_CLIMBER_FRONT_VELOCITY_P = prefs.getDouble("Climber Front Velocity P", 0.00005);
+    PID_CLIMBER_FRONT_VELOCITY_I = prefs.getDouble("Climber Front Velocity I", 0.00001);
+    PID_CLIMBER_FRONT_VELOCITY_D = prefs.getDouble("Climber Front Velocity D", 0);
   }
 
   public static void  repopulatePrefs(Preferences prefs) {
@@ -167,6 +179,18 @@ public class RobotConstants {
     prefs.putDouble("Climber P", PID_CLIMBER_POSITION_P);
     prefs.putDouble("Climber I", PID_CLIMBER_POSITION_I);
     prefs.putDouble("Climber D", PID_CLIMBER_POSITION_D);
+
+    prefs.putDouble("Climber Front P", PID_CLIMBER_FRONT_POSITION_P);
+    prefs.putDouble("Cllimber Front I", PID_CLIMBER_FRONT_POSITION_I);
+    prefs.putDouble("Climber Front D", PID_CLIMBER_FRONT_POSITION_D);
+
+    prefs.putDouble("Climber Velocity P", PID_CLIMBER_VELOCITY_P);
+    prefs.putDouble("Climber Velocity I", PID_CLIMBER_VELOCITY_I);
+    prefs.putDouble("Climber Velocity D", PID_CLIMBER_VELOCITY_D);
+
+    prefs.putDouble("Climber Front Velocity P", PID_CLIMBER_FRONT_VELOCITY_P);
+    prefs.putDouble("Climber Front Velocity I", PID_CLIMBER_FRONT_VELOCITY_I);
+    prefs.putDouble("Climber Front Velocity D", PID_CLIMBER_FRONT_VELOCITY_D);
   }
 
   public static void updatePrefs(Preferences prefs) {
