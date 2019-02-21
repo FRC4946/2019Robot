@@ -14,6 +14,6 @@ public class ClimberSeries extends CommandGroup {
    * Add your docs here.
    */
   public ClimberSeries() {
-    addSequential(new SetClimberHeight(15), 3.0);
+    addSequential(new SetClimberHeight(30), 6.0);
   }
 }

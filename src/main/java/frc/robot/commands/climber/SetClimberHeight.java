@@ -25,16 +25,19 @@ public class SetClimberHeight extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    //Robot.m_climber.getFrontPIDController().setOutputRange(-(0.2 + 0.0045*Math.abs(m_height - 15)), 0.2 + 0.0045*Math.abs(m_height - 15));
+    Robot.m_climber.getFrontPIDController().setOutputRange(-0.2, 0.2);
+    Robot.m_climber.getBackPIDController().setOutputRange(-0.2, 0.2);
+
     Robot.m_climber.setFrontPIDController(RobotConstants.PID_CLIMBER_FRONT_POSITION_P, RobotConstants.PID_CLIMBER_FRONT_POSITION_I, RobotConstants.PID_CLIMBER_FRONT_POSITION_D);
     Robot.m_climber.setBackPIDController(RobotConstants.PID_CLIMBER_POSITION_P, RobotConstants.PID_CLIMBER_POSITION_I, RobotConstants.PID_CLIMBER_POSITION_D);
-    Robot.m_climber.getFrontPIDController().setOutputRange(-(0.2 + 0.0045*Math.abs(m_height - 15)), 0.2 + 0.0045*Math.abs(m_height - 15));
-    Robot.m_climber.getBackPIDController().setOutputRange(-0.2, 0.2);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    System.out.println(m_height - Robot.m_climber.getFrontClimberHeight());
+    System.out.println("Front Error " + (m_height - Robot.m_climber.getFrontClimberHeight()));
+    System.out.println("Back Error " + (m_height - Robot.m_climber.getBackClimberHeight()));
 
     Robot.m_climber.getFrontPIDController().setReference(m_height, ControlType.kPosition);
     Robot.m_climber.getBackPIDController().setReference(m_height + RobotConstants.CLIMBER_OFFSET, ControlType.kPosition);

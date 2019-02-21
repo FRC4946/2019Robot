@@ -79,11 +79,11 @@ public class RobotConstants {
   public static double PID_ELEVATOR_MOVE_TO_HEIGHT_I = 0.0;
   public static double PID_ELEVATOR_MOVE_TO_HEIGHT_D = 0.0;
 
-  public static double PID_CLIMBER_POSITION_P = 0.005; //0.005
-  public static double PID_CLIMBER_POSITION_I = 0.000004; //0.00004
-  public static double PID_CLIMBER_POSITION_D = 0.01; //0.01
+  public static double PID_CLIMBER_POSITION_P = 0.0; //0.005
+  public static double PID_CLIMBER_POSITION_I = 0.0; //0.00004
+  public static double PID_CLIMBER_POSITION_D = 0.0; //0.01
 
-  public static double PID_CLIMBER_FRONT_POSITION_P = 0.2;
+  public static double PID_CLIMBER_FRONT_POSITION_P = 0.0;
   public static double PID_CLIMBER_FRONT_POSITION_I = 0.0;
   public static double PID_CLIMBER_FRONT_POSITION_D = 0.0;
   
