@@ -32,6 +32,7 @@ public class Climber extends Subsystem {
     frontLimitSwitch = new DigitalInput(RobotMap.DIO_CLIMBER_UP_FRONT);
     backLimitSwitch = new DigitalInput(RobotMap.DIO_CLIMBER_UP_BACK);
   }
+
   /**
    * Sets the climber motors to the desired speed
    * @param climberSpeed The desired speed for the climber motors

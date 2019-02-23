@@ -20,6 +20,7 @@ import frc.robot.RobotConstants;
 import frc.robot.RobotMap;
 import frc.robot.Utilities;
 import frc.robot.commands.drivetrain.JoystickDrive;
+import frc.robot.commands.drivetrain.SetDriveTrain;
 
 /**
  * TODO: Document
@@ -54,7 +55,8 @@ public class DriveTrain extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new JoystickDrive());
+    //setDefaultCommand(new JoystickDrive()); 
+    setDefaultCommand(new SetDriveTrain(0));
   }
 
   /**

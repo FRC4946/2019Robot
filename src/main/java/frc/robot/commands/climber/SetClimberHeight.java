@@ -15,7 +15,7 @@ import frc.robot.RobotConstants;
 
 public class SetClimberHeight extends Command {
   
-  double m_height;
+  double m_height, m_initHeight;
 
   public SetClimberHeight(double height) {
     requires(Robot.m_climber);
@@ -25,6 +25,7 @@ public class SetClimberHeight extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    m_initHeight = (Robot.m_climber.getBackClimberHeight() + Robot.m_climber.getFrontClimberHeight())/2;
     Robot.m_climber.setFrontPIDController(RobotConstants.PID_CLIMBER_FRONT_POSITION_P, RobotConstants.PID_CLIMBER_FRONT_POSITION_I, RobotConstants.PID_CLIMBER_FRONT_POSITION_D);
     Robot.m_climber.setBackPIDController(RobotConstants.PID_CLIMBER_POSITION_P, RobotConstants.PID_CLIMBER_POSITION_I, RobotConstants.PID_CLIMBER_POSITION_D);
     Robot.m_climber.getFrontPIDController().setOutputRange(-0.4, 0.4);
@@ -41,7 +42,7 @@ public class SetClimberHeight extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return (m_initHeight > m_height && Robot.m_climber.isClimberTopped());
   }
 
   // Called once after isFinished returns true
