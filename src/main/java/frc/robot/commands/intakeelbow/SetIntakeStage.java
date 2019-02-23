@@ -16,12 +16,14 @@ public class SetIntakeStage extends CommandGroup {
    * Add your docs here.
    */
   public SetIntakeStage(double intakeStage) {
+    
     if (!(intakeStage == RobotConstants.INTAKE_POT_BALL_HEIGHT || intakeStage == RobotConstants.INTAKE_POT_DOWN || intakeStage == RobotConstants.INTAKE_POT_UP)) {
       intakeStage = RobotConstants.INTAKE_POT_BALL_HEIGHT;
     }
+    /*
     if (intakeStage == RobotConstants.INTAKE_POT_UP) {
-      addSequential(new MoveToHeight(RobotConstants.ELEVATOR_CONFLICT_HEIGHT, 0.5));
-    }
+      addSequential(new MoveToHeight(RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT, 0.5));
+    }*/
     addSequential(new SetIntakePos(intakeStage, 0.5));
   }
 }

@@ -10,6 +10,8 @@ package frc.robot.commands.elevator;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import frc.robot.Robot;
 import frc.robot.RobotConstants;
+import frc.robot.commands.grabberarm.SetArmToPos;
+import frc.robot.commands.intakeelbow.SetIntakeStage;
 
 public class MoveToHeight extends PIDCommand {
   
@@ -27,7 +29,7 @@ public class MoveToHeight extends PIDCommand {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    getPIDController().setInputRange(RobotConstants.ELEVATOR_MINIMUM_HEIGHT, RobotConstants.ELEVATOR_MAXIMUM_HEIGHT);
+    getPIDController().setInputRange(RobotConstants.ELEVATOR_AT_BOTTOM, RobotConstants.ELEVATOR_AT_TOP);
     getPIDController().setOutputRange(-m_maxSpeed, m_maxSpeed);
     getPIDController().setAbsoluteTolerance(1.0);
     getPIDController().setSetpoint(m_height);
@@ -65,6 +67,29 @@ public class MoveToHeight extends PIDCommand {
 
   @Override
   protected void usePIDOutput(double output) {
+
     Robot.m_elevator.setElevator(output);
+
+    if(Robot.m_elevator.getHeight() >= RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT - 0.1 
+    && output > 0) {
+
+      if(Robot.m_grabber.getGrabberIn() 
+        && Math.abs(Robot.m_grabberArm.getPos() - RobotConstants.GRABBER_ARM_HOLD_BALL) > 0.1) {
+
+        new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_BALL, 0.8).start();
+
+      } else if (Robot.m_grabber.getGrabberOut()
+        && Math.abs(Robot.m_grabberArm.getPos() - RobotConstants.GRABBER_ARM_HOLD_HATCH) > 0.1) {
+
+        new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_HATCH, 0.8).start();
+      }
+
+      new SetIntakeStage(RobotConstants.INTAKE_POT_UP).start();
+
+    } else if(Robot.m_elevator.getHeight() <= RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT + 0.1 
+      &&  output < 0) {
+
+      new SetIntakeStage(RobotConstants.INTAKE_POT_BALL_HEIGHT).start();
+    }
   }
 }

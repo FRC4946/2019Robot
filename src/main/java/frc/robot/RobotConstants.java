@@ -23,9 +23,9 @@ public class RobotConstants {
   public static final double ELEVATOR_SCALING_VALUE = 10.0; //86.25
   public static final double ELEVATOR_OFFSET_VALUE = 0.0;
 
-  public static final double ELEVATOR_MINIMUM_HEIGHT = 0.0;
-  public static final double ELEVATOR_MAXIMUM_HEIGHT = 10.0;
-  public static final double ELEVATOR_CONFLICT_HEIGHT = 5.0;
+  public static final double ELEVATOR_AT_BOTTOM = 0.0;
+  public static final double ELEVATOR_AT_TOP = 10.0;
+  public static final double ELEVATOR_NO_CONFLICT_HEIGHT = 5.0; //elbow 
 
   public static final double INTAKE_POT_UP = 0.0;
   public static final double INTAKE_POT_DOWN = 1000.0;
@@ -108,6 +108,8 @@ public class RobotConstants {
   public static final double MIN_AIM_COMMAND = 0.05;
 
   */
+
+  //preferences time ; ^ )
 
   public static void loadPrefs(Preferences prefs) {
 		PID_DRIVE_STRAIGHT_P = prefs.getDouble("Drive Straight P", 0.005875);

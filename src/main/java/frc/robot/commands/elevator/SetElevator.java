@@ -10,7 +10,8 @@ package frc.robot.commands.elevator;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotConstants;
-import frc.robot.commands.intakeelbow.SetIntakePos;
+import frc.robot.commands.grabberarm.SetArmToPos;
+import frc.robot.commands.intakeelbow.SetIntakeStage;
 
 public class SetElevator extends Command {
 
@@ -30,19 +31,37 @@ public class SetElevator extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (((Robot.m_elevator.getHeight() < RobotConstants.ELEVATOR_CONFLICT_HEIGHT && m_speed > 0) || (Robot.m_elevator.getHeight() > RobotConstants.ELEVATOR_CONFLICT_HEIGHT && m_speed < 0)) && !(Math.abs(Robot.m_intakeElbow.getPos() - RobotConstants.INTAKE_POT_DOWN) < 0.2)) { //elevator is moving towards the conflict zone and intake is not down
-      new SetIntakePos(RobotConstants.INTAKE_POT_DOWN, 0.5).start();
-      Robot.m_elevator.setElevator(m_speed*0.2);
-    } else {
-      Robot.m_elevator.setElevator(m_speed);
+    
+    Robot.m_elevator.setElevator(m_speed);
+    
+    if(Robot.m_elevator.getHeight() >= RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT - 0.1 
+      && m_speed > 0) {
+
+      if(Robot.m_grabber.getGrabberIn() 
+        && Math.abs(Robot.m_grabberArm.getPos() - RobotConstants.GRABBER_ARM_HOLD_BALL) > 0.1) {
+
+        new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_BALL, 0.8).start();
+
+      } else if (Robot.m_grabber.getGrabberOut()
+        && Math.abs(Robot.m_grabberArm.getPos() - RobotConstants.GRABBER_ARM_HOLD_HATCH) > 0.1) {
+
+        new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_HATCH, 0.8).start();
+      }
+
+      new SetIntakeStage(RobotConstants.INTAKE_POT_UP).start();
+
+    } else if(Robot.m_elevator.getHeight() <= RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT + 0.1 
+      &&  m_speed < 0) {
+
+      new SetIntakeStage(RobotConstants.INTAKE_POT_BALL_HEIGHT).start();
     }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Robot.m_elevator.getHeight() < RobotConstants.ELEVATOR_MINIMUM_HEIGHT && m_speed < 0
-    || Robot.m_elevator.getHeight() > RobotConstants.ELEVATOR_MAXIMUM_HEIGHT && m_speed > 0;
+    return Robot.m_elevator.getHeight() <= RobotConstants.ELEVATOR_AT_BOTTOM && m_speed < 0
+    || Robot.m_elevator.getHeight() >= RobotConstants.ELEVATOR_AT_TOP && m_speed > 0;
   }
 
   // Called once after isFinished returns true

@@ -12,6 +12,7 @@ import frc.robot.Robot;
 import frc.robot.RobotConstants;
 import frc.robot.Utilities;
 import frc.robot.commands.grabberarm.SetArmToPos;
+import frc.robot.commands.intakeelbow.SetIntakeStage;
 
 public class SetElevatorJoystick extends Command {
 
@@ -27,29 +28,29 @@ public class SetElevatorJoystick extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Robot.m_elevator.getHeight() <= RobotConstants.ELEVATOR_MAXIMUM_HEIGHT && 
-      Robot.m_oi.getDriveStick().getRawAxis(1) > 0 
-      || Robot.m_elevator.getHeight() >= RobotConstants.ELEVATOR_MINIMUM_HEIGHT &&
-      Robot.m_oi.getDriveStick().getRawAxis(1) <= 0) {
-     
-    Robot.m_elevator.setElevator(0);
 
-  } else { 
-  
     Robot.m_elevator.setElevator(Utilities.deadzone(-Robot.m_oi.getDriveStick().getRawAxis(1)*1.0));
 
-    if(Robot.m_elevator.getHeight() >= RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT - 0.1 && Robot.m_oi.getDriveStick().getRawAxis(1) > 0
-      && (Robot.m_grabberArm.getPos() < RobotConstants.GRABBER_ARM_HOLD_BALL || Robot.m_grabberArm.getPos() > RobotConstants.GRABBER_ARM_HOLD_HATCH)
-      && Robot.m_grabber.getGrabberIn()) {
+    if(Robot.m_elevator.getHeight() >= RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT - 0.1 
+      && Robot.m_oi.getDriveStick().getRawAxis(1) > 0) {
+
+      if(Robot.m_grabber.getGrabberIn() 
+        && Math.abs(Robot.m_grabberArm.getPos() - RobotConstants.GRABBER_ARM_HOLD_BALL) > 0.1) {
 
         new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_BALL, 0.8).start();
 
-    } else if (Robot.m_elevator.getHeight() >= RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT - 0.1 && Robot.m_oi.getDriveStick().getRawAxis(1) > 0
-      && (Robot.m_grabberArm.getPos() < RobotConstants.GRABBER_ARM_HOLD_HATCH || Robot.m_grabberArm.getPos() > RobotConstants.GRABBER_ARM_OUT - 1.5)
-      && Robot.m_grabber.getGrabberOut()) {
+      } else if (Robot.m_grabber.getGrabberOut()
+        && Math.abs(Robot.m_grabberArm.getPos() - RobotConstants.GRABBER_ARM_HOLD_HATCH) > 0.1) {
 
         new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_HATCH, 0.8).start();
       }
+
+      new SetIntakeStage(RobotConstants.INTAKE_POT_UP).start();
+
+    } else if(Robot.m_elevator.getHeight() <= RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT + 0.1 
+      && Robot.m_oi.getDriveStick().getRawAxis(1) < 0) {
+
+      new SetIntakeStage(RobotConstants.INTAKE_POT_BALL_HEIGHT).start();
     }
   }
 
