@@ -1,0 +1,104 @@
+[33md77201d[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{0}: checkout: moving from jacob to master
+[33m3b52f7b[m[33m ([m[1;32mjacob[m[33m)[m HEAD@{1}: reset: moving to HEAD
+[33m3b52f7b[m[33m ([m[1;32mjacob[m[33m)[m HEAD@{2}: commit: other changes
+[33m2e7e578[m HEAD@{3}: commit: changes to robotMap
+[33md77201d[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{4}: checkout: moving from master to jacob
+[33md77201d[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{5}: reset: moving to HEAD
+[33md77201d[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{6}: merge general: Merge made by the 'recursive' strategy.
+[33md496d97[m HEAD@{7}: checkout: moving from general to master
+[33m4966c41[m[33m ([m[1;31morigin/general[m[33m, [m[1;32mgeneral[m[33m)[m HEAD@{8}: commit: omg rak whyyy
+[33m268ab2c[m HEAD@{9}: commit: omg rakshaa why
+[33md496d97[m HEAD@{10}: rebase finished: returning to refs/heads/general
+[33md496d97[m HEAD@{11}: pull --rebase: checkout d496d9732d5ebd7b9eaecabf9c33971d942121e9
+[33mfac9528[m HEAD@{12}: checkout: moving from general to general
+[33mfac9528[m HEAD@{13}: rebase: updating HEAD
+[33md496d97[m HEAD@{14}: rebase: checkout master
+[33mfac9528[m HEAD@{15}: commit: deleted slider fr
+[33mb15e29b[m HEAD@{16}: checkout: moving from master to general
+[33md496d97[m HEAD@{17}: merge climber: Merge made by the 'recursive' strategy.
+[33mb37ddbb[m HEAD@{18}: checkout: moving from climber to master
+[33me652742[m[33m ([m[1;31morigin/climber[m[33m, [m[1;32mclimber[m[33m)[m HEAD@{19}: rebase finished: returning to refs/heads/climber
+[33me652742[m[33m ([m[1;31morigin/climber[m[33m, [m[1;32mclimber[m[33m)[m HEAD@{20}: rebase: removed extra import
+[33m04ebeb6[m HEAD@{21}: rebase: dum2
+[33mda6c304[m HEAD@{22}: rebase: dum
+[33mb37ddbb[m HEAD@{23}: rebase: checkout master
+[33mee6ae80[m[33m ([m[1;31morigin/climber_backup[m[33m, [m[1;32mclimber_backup[m[33m)[m HEAD@{24}: pull --rebase: Fast-forward
+[33mc99124c[m HEAD@{25}: checkout: moving from master to climber
+[33mb37ddbb[m HEAD@{26}: checkout: moving from master to master
+[33mb37ddbb[m HEAD@{27}: merge intakeelbow: Merge made by the 'recursive' strategy.
+[33mf3e35c8[m HEAD@{28}: checkout: moving from intakeelbow to master
+[33ma9446cb[m[33m ([m[1;31morigin/intakeelbow[m[33m, [m[1;32mintakeelbow[m[33m)[m HEAD@{29}: rebase finished: returning to refs/heads/intakeelbow
+[33ma9446cb[m[33m ([m[1;31morigin/intakeelbow[m[33m, [m[1;32mintakeelbow[m[33m)[m HEAD@{30}: rebase: fixed intake elbow
+[33mf3e35c8[m HEAD@{31}: rebase: checkout master
+[33mca37795[m HEAD@{32}: checkout: moving from master to intakeelbow
+[33mf3e35c8[m HEAD@{33}: checkout: moving from master to master
+[33mf3e35c8[m HEAD@{34}: merge slider: Merge made by the 'recursive' strategy.
+[33mbc94508[m HEAD@{35}: checkout: moving from slider to master
+[33m21359c1[m[33m ([m[1;31morigin/slider[m[33m, [m[1;32mslider[m[33m)[m HEAD@{36}: rebase finished: returning to refs/heads/slider
+[33m21359c1[m[33m ([m[1;31morigin/slider[m[33m, [m[1;32mslider[m[33m)[m HEAD@{37}: rebase: Removed slider
+[33mbc94508[m HEAD@{38}: rebase: checkout master
+[33md99f132[m HEAD@{39}: checkout: moving from master to slider
+[33mbc94508[m HEAD@{40}: checkout: moving from master to master
+[33mbc94508[m HEAD@{41}: merge grabberarm: Merge made by the 'recursive' strategy.
+[33m8184657[m HEAD@{42}: checkout: moving from grabberarm to master
+[33me287255[m[33m ([m[1;31morigin/grabberarm[m[33m, [m[1;32mgrabberarm[m[33m)[m HEAD@{43}: rebase finished: returning to refs/heads/grabberarm
+[33me287255[m[33m ([m[1;31morigin/grabberarm[m[33m, [m[1;32mgrabberarm[m[33m)[m HEAD@{44}: rebase: grabberArm changes as per notes feb 12
+[33m8184657[m HEAD@{45}: rebase: checkout master
+[33m518f427[m HEAD@{46}: checkout: moving from master to grabberarm
+[33m8184657[m HEAD@{47}: checkout: moving from master to master
+[33m8184657[m HEAD@{48}: merge intake: Merge made by the 'recursive' strategy.
+[33m28fedd8[m HEAD@{49}: checkout: moving from intake to master
+[33m49d084d[m[33m ([m[1;31morigin/intake[m[33m, [m[1;32mintake[m[33m)[m HEAD@{50}: rebase finished: returning to refs/heads/intake
+[33m49d084d[m[33m ([m[1;31morigin/intake[m[33m, [m[1;32mintake[m[33m)[m HEAD@{51}: rebase: Changes to Intake as per notes
+[33m28fedd8[m HEAD@{52}: rebase: checkout master
+[33medd7637[m HEAD@{53}: checkout: moving from master to intake
+[33m28fedd8[m HEAD@{54}: checkout: moving from master to master
+[33m28fedd8[m HEAD@{55}: merge grabber: Merge made by the 'recursive' strategy.
+[33m57931e0[m HEAD@{56}: checkout: moving from grabber to master
+[33m6ba752d[m[33m ([m[1;31morigin/grabber[m[33m, [m[1;32mgrabber[m[33m)[m HEAD@{57}: rebase finished: returning to refs/heads/grabber
+[33m6ba752d[m[33m ([m[1;31morigin/grabber[m[33m, [m[1;32mgrabber[m[33m)[m HEAD@{58}: rebase: changes to grabber
+[33m57931e0[m HEAD@{59}: rebase: checkout master
+[33m6ef5ee4[m HEAD@{60}: checkout: moving from master to grabber
+[33m57931e0[m HEAD@{61}: checkout: moving from master to master
+[33m57931e0[m HEAD@{62}: merge elevator: Merge made by the 'recursive' strategy.
+[33ma07e57d[m[33m ([m[1;32mdrivetrain[m[33m)[m HEAD@{63}: checkout: moving from elevator to master
+[33m12c7a61[m[33m ([m[1;31morigin/elevator[m[33m, [m[1;32melevator[m[33m)[m HEAD@{64}: rebase finished: returning to refs/heads/elevator
+[33m12c7a61[m[33m ([m[1;31morigin/elevator[m[33m, [m[1;32melevator[m[33m)[m HEAD@{65}: rebase: squared elevator joystick
+[33ma07e57d[m[33m ([m[1;32mdrivetrain[m[33m)[m HEAD@{66}: rebase: checkout master
+[33m85df632[m HEAD@{67}: checkout: moving from master to elevator
+[33ma07e57d[m[33m ([m[1;32mdrivetrain[m[33m)[m HEAD@{68}: checkout: moving from grabber to master
+[33m6ef5ee4[m HEAD@{69}: commit: changes to grabber
+[33m59bbd56[m HEAD@{70}: checkout: moving from documentation-rak to grabber
+[33m1620f3f[m[33m ([m[1;31morigin/documentation-rak[m[33m, [m[1;31morigin/documentation[m[33m, [m[1;32mdocumentation-rak[m[33m)[m HEAD@{71}: rebase finished: returning to refs/heads/documentation-rak
+[33m1620f3f[m[33m ([m[1;31morigin/documentation-rak[m[33m, [m[1;31morigin/documentation[m[33m, [m[1;32mdocumentation-rak[m[33m)[m HEAD@{72}: rebase: Finished the documentation for most of the commands
+[33ma315db2[m HEAD@{73}: rebase: Finished most of the subsystem documentation
+[33m2923d85[m[33m ([m[1;32mdocumentation[m[33m)[m HEAD@{74}: rebase: checkout documentation
+[33me3edbe0[m HEAD@{75}: checkout: moving from documentation to documentation-rak
+[33m2923d85[m[33m ([m[1;32mdocumentation[m[33m)[m HEAD@{76}: pull --rebase: Fast-forward
+[33m44d8e2d[m HEAD@{77}: checkout: moving from documentation-rak to documentation
+[33me3edbe0[m HEAD@{78}: checkout: moving from master to documentation-rak
+[33ma07e57d[m[33m ([m[1;32mdrivetrain[m[33m)[m HEAD@{79}: merge drivetrain: Fast-forward
+[33mb15e29b[m HEAD@{80}: checkout: moving from drivetrain to master
+[33ma07e57d[m[33m ([m[1;32mdrivetrain[m[33m)[m HEAD@{81}: rebase finished: returning to refs/heads/drivetrain
+[33ma07e57d[m[33m ([m[1;32mdrivetrain[m[33m)[m HEAD@{82}: rebase: changed params in TestAuto
+[33m02a8a21[m HEAD@{83}: rebase: combined Abs and relative PIDTurn
+[33mdd2cc27[m HEAD@{84}: rebase: reversed unnecessary commenting out in cmds
+[33m411a920[m HEAD@{85}: rebase: Fixed the drivatrain according to the notes
+[33mb15e29b[m HEAD@{86}: rebase: checkout master
+[33mae050b6[m HEAD@{87}: checkout: moving from master to drivetrain
+[33mb15e29b[m HEAD@{88}: checkout: moving from drivetrain to master
+[33mae050b6[m HEAD@{89}: commit: changed params in TestAuto
+[33m79c62d7[m HEAD@{90}: commit: combined Abs and relative PIDTurn
+[33mabf9ede[m HEAD@{91}: commit: reversed unnecessary commenting out in cmds
+[33m6560764[m HEAD@{92}: checkout: moving from master to drivetrain
+[33mb15e29b[m HEAD@{93}: pull --rebase: Fast-forward
+[33m59bbd56[m HEAD@{94}: checkout: moving from grabber to master
+[33m59bbd56[m HEAD@{95}: checkout: moving from climber_backup to grabber
+[33mee6ae80[m[33m ([m[1;31morigin/climber_backup[m[33m, [m[1;32mclimber_backup[m[33m)[m HEAD@{96}: checkout: moving from documentation to climber_backup
+[33m44d8e2d[m HEAD@{97}: commit (cherry-pick): sad boi
+[33m59bbd56[m HEAD@{98}: reset: moving to origin/master
+[33m28159db[m[33m ([m[1;31morigin/documentation_backup[m[33m)[m HEAD@{99}: checkout: moving from climber_backup to documentation
+[33mee6ae80[m[33m ([m[1;31morigin/climber_backup[m[33m, [m[1;32mclimber_backup[m[33m)[m HEAD@{100}: checkout: moving from climber to climber_backup
+[33mc99124c[m HEAD@{101}: checkout: moving from climber_backup to climber
+[33mee6ae80[m[33m ([m[1;31morigin/climber_backup[m[33m, [m[1;32mclimber_backup[m[33m)[m HEAD@{102}: checkout: moving from master to climber_backup
+[33m59bbd56[m HEAD@{103}: clone: from https://github.com/FRC4946/2019Robot.git

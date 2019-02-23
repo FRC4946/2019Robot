@@ -38,7 +38,7 @@ public class Climber extends Subsystem {
    * @param climberSpeed The desired speed for the climber motors
    */
   public void setClimber(double climberSpeed) { //negative is down
-    if (climberSpeed < 0 && isClimberTopped()) {
+    if (climberSpeed > 0 && isClimberTopped()) {
       stopClimber();
     } else {
       m_front.set(climberSpeed);

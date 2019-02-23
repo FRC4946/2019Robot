@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.climber.ClimberSeries;
 import frc.robot.commands.climber.LiftRobot;
 import frc.robot.commands.climber.LiftRobotVelocity;
 import frc.robot.commands.climber.SetClimberHeight;
@@ -65,14 +66,15 @@ public class OI {
 
   //TODO: CLIMBER LIM SWITCHES NORMALLY CLOSED
 
-  public OI() {
+  public OI() { 
     // TODO: Bind buttons to commands
-    m_YButton.whenPressed(new SetArmToPos(RobotConstants.GRABBER_ARM_OUT, 0.7));
+    m_YButton.whenPressed(new ClimberSeries());
     m_AButton.whenPressed(new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_HATCH, 0.7));
     m_RBButton.whileHeld(new SetElbowSpeed(0.1));
     m_LBButton.whileHeld(new SetElbowSpeed(-0.1)); 
     m_XButton.whenPressed(new ReleaseHatch()); 
     m_BButton.whenPressed(new SetGrabber(false, 0.8));
-    m_StartButton.whenPressed(new ToggleLimelightLED());
+    m_StartButton.whileHeld(new LiftRobot(-0.1));
+    m_ViewButton.whileHeld(new LiftRobot(0.2));
   }
 }

@@ -19,10 +19,11 @@ public class TestAuto extends CommandGroup {
    * Add your docs here.
    */
   public TestAuto() {
+    /*
     addSequential(new SetLimelightLED(false));
     addSequential(new TurnPID(180, 0.3, false));
     addSequential(new DriveStraightPID(60));
     addSequential(new TurnPID(-90, 0.3, false));
-    addSequential(new DriveStraightPID(-24));
+    addSequential(new DriveStraightPID(-24));*/
   }
 }

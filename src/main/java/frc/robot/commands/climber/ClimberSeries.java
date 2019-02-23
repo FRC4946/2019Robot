@@ -13,9 +13,7 @@ public class ClimberSeries extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public ClimberSeries(double incSize, int incs) {
-    for  (int i = 0; i < incs; i++) {
-      addSequential(new LiftRobot((i+1)*incSize));
-    }
+  public ClimberSeries() {
+    addSequential(new SetClimberHeight(30), 6.0);
   }
 }
