@@ -13,7 +13,7 @@ import frc.robot.RobotConstants;
 
 public class SetArmToPos extends Command {
 
-  double m_speed, m_desiredPos;
+  double m_speed, m_desiredPos, m_desiredPosInit;
   
   public SetArmToPos(double desiredPos, double speed) {
     requires(Robot.m_grabberArm);
@@ -24,16 +24,18 @@ public class SetArmToPos extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() { //pressing a button calls this everytime not constructor - mao
-    m_speed = Math.signum(Robot.m_grabberArm.getPos() - m_desiredPos)*Math.abs(m_speed);
     
-    if(m_speed > 0 && m_desiredPos < RobotConstants.GRABBER_ARM_HOLD_HATCH) {
-      m_desiredPos = RobotConstants.GRABBER_ARM_HOLD_HATCH;
+    if(Robot.m_grabber.getGrabberOut() && m_desiredPos < RobotConstants.GRABBER_ARM_HOLD_HATCH) {
+      m_desiredPosInit = RobotConstants.GRABBER_ARM_HOLD_HATCH;
+    } else {
+      m_desiredPosInit = m_desiredPos;
     }
+    m_speed = Math.signum(Robot.m_grabberArm.getPos() - m_desiredPos)*Math.abs(m_speed);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute() {
+  protected void execute() { 
     Robot.m_grabberArm.setArm(m_speed);
   }
 
@@ -41,9 +43,10 @@ public class SetArmToPos extends Command {
   @Override
   protected boolean isFinished() {
     if(m_speed < 0) { //moving out
-      return Robot.m_grabberArm.getPos() >= m_desiredPos;
+      return Robot.m_grabberArm.getPos() >= m_desiredPosInit;
     } else {
-      return Robot.m_grabberArm.getPos() <= m_desiredPos;
+      //return Robot.m_grabber.getGrabberOut() && Robot.m_grabberArm.getPos() <= RobotConstants.GRABBER_ARM_HOLD_HATCH || Robot.m_grabberArm.getPos() <= m_desiredPos;
+      return Robot.m_grabberArm.getPos() <= m_desiredPosInit;
     }
   }
 
