@@ -12,12 +12,12 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.RobotConstants;
 import frc.robot.commands.grabberarm.SetArmToPos;
 
-public class ReleaseHatch extends CommandGroup {
+public class SetGrabberAndArm extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public ReleaseHatch() {
-    addSequential(new SetArmToPos(RobotConstants.GRABBER_ARM_OUT, 0.7), 0.4);
-    addSequential(new SetGrabber(true, 0.8)); //Goes in to release the hatch
+  public SetGrabberAndArm(boolean grabberIn, double armPosition) {
+    addSequential(new SetArmToPos(armPosition, 0.7), 0.4);
+    addSequential(new SetGrabber(grabberIn, 0.8)); //Goes in to release the hatch
   }
 }

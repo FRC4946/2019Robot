@@ -14,7 +14,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.climber.SetClimberHeight;
+import frc.robot.commands.climber.ZeroClimber;
 
 //TODO : find out if these motors are brushless or brushed
 
@@ -96,6 +96,6 @@ public class Climber extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    //setDefaultCommand(new HoldPosition());
+    //setDefaultCommand(new ZeroClimber());
   }
 } 

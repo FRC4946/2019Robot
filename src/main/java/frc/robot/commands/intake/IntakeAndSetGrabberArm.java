@@ -25,7 +25,7 @@ public class IntakeAndSetGrabberArm extends CommandGroup {
 
   @Override
   protected void initialize() {
-    if(Robot.m_elevator.getHeight() < RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT && m_speed < 0) {
+    if(Robot.m_elevator.getHeight() < RobotConstants.ELEVATOR_CONFLICT_HEIGHT && m_speed < 0) {
       addSequential(new SetArmToPos(RobotConstants.GRABBER_ARM_IN, 0.6), 0.5); 
     }
   }

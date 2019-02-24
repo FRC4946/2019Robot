@@ -20,7 +20,7 @@ public class SetIntakeStage extends CommandGroup {
       intakeStage = RobotConstants.INTAKE_POT_BALL_HEIGHT;
     }
     if (intakeStage == RobotConstants.INTAKE_POT_UP) {
-      addSequential(new MoveToHeight(RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT, 0.5));
+      addSequential(new MoveToHeight(RobotConstants.ELEVATOR_CONFLICT_HEIGHT, 0.5));
     }
     addSequential(new SetIntakePos(intakeStage, 0.5));
   }

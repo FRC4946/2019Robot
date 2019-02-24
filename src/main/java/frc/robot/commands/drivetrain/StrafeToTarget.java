@@ -32,12 +32,12 @@ public class StrafeToTarget extends PIDCommand {
       Robot.m_driveTrain.getGyro(), new DummyOutput());
     gyroController.setInputRange(0, 360.0);
     gyroController.setContinuous(true);
-    gyroController.setOutputRange(-0.2, 0.2);
+    gyroController.setOutputRange(-0.3, 0.3);
     gyroController.setSetpoint(Robot.m_driveTrain.getGyroAngle());
     gyroController.setAbsoluteTolerance(4);
 
-    getPIDController().setInputRange(-20.5, 20.5);
-    getPIDController().setOutputRange(-0.2, 0.2); 
+    getPIDController().setInputRange(-59.6, 59.6);
+    getPIDController().setOutputRange(-0.3, 0.3); 
     getPIDController().setContinuous(false);
     getPIDController().setAbsoluteTolerance(1.0);
     getPIDController().setSetpoint(0.0);
@@ -83,7 +83,7 @@ public class StrafeToTarget extends PIDCommand {
 
   @Override
   public void usePIDOutput(double output) {
-    Robot.m_driveTrain.mecanumDrive(0.0, -output, 0.0);
+    Robot.m_driveTrain.mecanumDrive(0.0, -output, gyroController.get());
   }
 }
 

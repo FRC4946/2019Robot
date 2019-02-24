@@ -13,19 +13,14 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotConstants;
 
-public class SetClimberHeight extends Command {
-  
-  double m_height, m_initHeight;
-
-  public SetClimberHeight(double height) {
+public class ZeroClimber extends Command {
+  public ZeroClimber() {
     requires(Robot.m_climber);
-    m_height = height;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    m_initHeight = (Robot.m_climber.getBackClimberHeight() + Robot.m_climber.getFrontClimberHeight())/2;
     Robot.m_climber.getFrontPIDController().setOutputRange(-0.4, 0.4);
     Robot.m_climber.getBackPIDController().setOutputRange(-0.4, 0.4);
     Robot.m_climber.setFrontPIDController(RobotConstants.PID_CLIMBER_FRONT_POSITION_P, RobotConstants.PID_CLIMBER_FRONT_POSITION_I, RobotConstants.PID_CLIMBER_FRONT_POSITION_D);
@@ -35,14 +30,16 @@ public class SetClimberHeight extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_climber.getFrontPIDController().setReference(m_height, ControlType.kPosition);
-    Robot.m_climber.getBackPIDController().setReference(m_height + RobotConstants.CLIMBER_OFFSET, ControlType.kPosition);
+    if (Robot.m_climber.getFrontClimberHeight() <= 10.0 && Robot.m_climber.getBackClimberHeight() <= 10.0) {
+      Robot.m_climber.getFrontPIDController().setReference(4, ControlType.kPosition);
+      Robot.m_climber.getBackPIDController().setReference(4 + RobotConstants.CLIMBER_OFFSET, ControlType.kPosition);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return (m_initHeight > m_height && Robot.m_climber.isClimberTopped());
+    return false;
   }
 
   // Called once after isFinished returns true

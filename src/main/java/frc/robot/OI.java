@@ -10,17 +10,14 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.climber.ClimberSeries;
+import frc.robot.commands.AbortAuto;
 import frc.robot.commands.climber.LiftRobot;
 import frc.robot.commands.climber.LiftRobotVelocity;
-import frc.robot.commands.climber.SetClimberHeight;
-import frc.robot.commands.grabber.ReleaseHatch;
+import frc.robot.commands.drivetrain.StrafeToTarget;
+import frc.robot.commands.drivetrain.TargetLine;
 import frc.robot.commands.grabber.SetGrabber;
-import frc.robot.commands.grabber.SetGrabberSpeed;
-import frc.robot.commands.grabberarm.SetArmSpeed;
-import frc.robot.commands.grabberarm.SetArmToPos;
+import frc.robot.commands.grabber.SetGrabberAndArm;
 import frc.robot.commands.intakeelbow.SetElbowSpeed;
-import frc.robot.commands.limelight.ToggleLimelightLED;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -68,13 +65,14 @@ public class OI {
 
   public OI() { 
     // TODO: Bind buttons to commands
-    m_YButton.whenPressed(new ClimberSeries());
-    m_AButton.whenPressed(new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_HATCH, 0.7));
+    //m_YButton.whenPressed(new AbortAuto());
+    //m_AButton.whenPressed(new StrafeToTarget());
     m_RBButton.whileHeld(new SetElbowSpeed(0.1));
     m_LBButton.whileHeld(new SetElbowSpeed(-0.1)); 
-    m_XButton.whenPressed(new ReleaseHatch()); 
-    m_BButton.whenPressed(new SetGrabber(false, 0.8));
-    m_StartButton.whileHeld(new LiftRobot(-0.1));
-    m_ViewButton.whileHeld(new LiftRobot(0.2));
+    m_XButton.whenPressed(new SetGrabberAndArm(true, RobotConstants.GRABBER_ARM_OUT)); 
+    m_BButton.whenPressed(new StrafeToTarget());
+    m_AButton.whileHeld(new LiftRobotVelocity(-3000));
+    m_YButton.whileHeld(new LiftRobotVelocity(3000));
+    m_StartButton.whileHeld(new LiftRobot(-0.2));
   }
 }

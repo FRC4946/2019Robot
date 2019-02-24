@@ -24,8 +24,14 @@ public class LiftRobotVelocity extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.m_climber.setFrontPIDController(RobotConstants.PID_CLIMBER_FRONT_VELOCITY_P, RobotConstants.PID_CLIMBER_FRONT_VELOCITY_I, RobotConstants.PID_CLIMBER_FRONT_VELOCITY_D);
-    Robot.m_climber.setBackPIDController(RobotConstants.PID_CLIMBER_VELOCITY_P, RobotConstants.PID_CLIMBER_VELOCITY_I, RobotConstants.PID_CLIMBER_VELOCITY_D);
+    if (m_velocity < 0) {
+      Robot.m_climber.setFrontPIDController(RobotConstants.PID_CLIMBER_FRONT_DOWN_VELOCITY_P, RobotConstants.PID_CLIMBER_FRONT_DOWN_VELOCITY_I, RobotConstants.PID_CLIMBER_FRONT_DOWN_VELOCITY_D);
+      Robot.m_climber.setBackPIDController(RobotConstants.PID_CLIMBER_DOWN_VELOCITY_P, RobotConstants.PID_CLIMBER_DOWN_VELOCITY_I, RobotConstants.PID_CLIMBER_DOWN_VELOCITY_D);
+    } else {
+      Robot.m_climber.setFrontPIDController(RobotConstants.PID_CLIMBER_FRONT_VELOCITY_P, RobotConstants.PID_CLIMBER_FRONT_VELOCITY_I, RobotConstants.PID_CLIMBER_FRONT_VELOCITY_D);
+      Robot.m_climber.setBackPIDController(RobotConstants.PID_CLIMBER_VELOCITY_P, RobotConstants.PID_CLIMBER_VELOCITY_I, RobotConstants.PID_CLIMBER_VELOCITY_D);
+    }
+
     Robot.m_climber.getFrontPIDController().setOutputRange(-0.4, 0.4);
     Robot.m_climber.getBackPIDController().setOutputRange(-0.4, 0.4);
   }
@@ -35,12 +41,13 @@ public class LiftRobotVelocity extends Command {
   protected void execute() {
     Robot.m_climber.getFrontPIDController().setReference(m_velocity, ControlType.kVelocity);
     Robot.m_climber.getBackPIDController().setReference(m_velocity, ControlType.kVelocity);
+    System.out.println("output" + Robot.m_climber.getFrontClimberHeight());
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return (m_velocity < 0 && Robot.m_climber.isClimberTopped());
+    return (m_velocity > 0 && Robot.m_climber.isClimberTopped() || (m_velocity < 0 && (Robot.m_climber.getFrontClimberHeight() < 1.5 && Robot.m_climber.getBackClimberHeight() < 1.5)));
   }
 
   // Called once after isFinished returns true
