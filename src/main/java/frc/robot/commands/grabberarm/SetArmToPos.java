@@ -9,6 +9,7 @@ package frc.robot.commands.grabberarm;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotConstants;
 
 public class SetArmToPos extends Command {
 
@@ -24,7 +25,10 @@ public class SetArmToPos extends Command {
   @Override
   protected void initialize() { //pressing a button calls this everytime not constructor - mao
     m_speed = Math.signum(Robot.m_grabberArm.getPos() - m_desiredPos)*Math.abs(m_speed);
-
+    
+    if(m_speed > 0 && m_desiredPos < RobotConstants.GRABBER_ARM_HOLD_HATCH) {
+      m_desiredPos = RobotConstants.GRABBER_ARM_HOLD_HATCH;
+    }
   }
 
   // Called repeatedly when this Command is scheduled to run
