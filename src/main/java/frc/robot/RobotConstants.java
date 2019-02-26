@@ -91,7 +91,7 @@ public class RobotConstants {
   public static double PID_CLIMBER_VELOCITY_I = 0.0;
   public static double PID_CLIMBER_VELOCITY_D = 0.0;
 
-  public static double PID_CLIMBER_FRONT_VELOCITY_P = 0.003; //0.00075
+  public static double PID_CLIMBER_FRONT_VELOCITY_P = 0.005; //0.00075
   public static double PID_CLIMBER_FRONT_VELOCITY_I = 0.0;
   public static double PID_CLIMBER_FRONT_VELOCITY_D = 0.0;
 

@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.climber.LiftRobot;
 import frc.robot.commands.climber.LiftRobotVelocity;
+import frc.robot.commands.climber.SetFrontClimber;
 import frc.robot.commands.grabber.SetGrabber;
 import frc.robot.commands.grabber.SetGrabberAndArm;
 import frc.robot.commands.grabberarm.SetArmToPos;
@@ -73,8 +74,11 @@ public class OI {
     m_LBButton.whileHeld(new SetElbowSpeed(-0.1)); 
     m_XButton.whenPressed(new SetGrabberAndArm(true, RobotConstants.GRABBER_ARM_OUT)); 
     m_BButton.whenPressed(new SetGrabber(false, 0.8));
-    m_AButton.whileHeld(new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_HATCH, 0.8));
-    m_YButton.whileHeld(new SetArmToPos(RobotConstants.GRABBER_ARM_OUT, 0.8));
-    m_StartButton.whileHeld(new LiftRobot(-0.2));
+   // m_AButton.whileHeld(new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_HATCH, 0.8));
+    //m_YButton.whileHeld(new SetArmToPos(RobotConstants.GRABBER_ARM_OUT, 0.8));
+    m_AButton.whileHeld(new LiftRobotVelocity(3000));
+    m_YButton.whileHeld(new LiftRobotVelocity(-3000));
+    m_StartButton.whileHeld(new SetFrontClimber(-0.2));
+    m_ViewButton.whileHeld(new SetFrontClimber(0.2));                                                                                         
   }
 }

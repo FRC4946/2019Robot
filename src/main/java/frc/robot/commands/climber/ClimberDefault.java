@@ -21,15 +21,12 @@ public class ClimberDefault extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    /*
+  
     Robot.m_climber.getFrontPIDController().setOutputRange(-0.4, 0.4);
     Robot.m_climber.getBackPIDController().setOutputRange(-0.4, 0.4);
-    Robot.m_climber.setFrontPIDController(RobotConstants.PID_CLIMBER_FRONT_POSITION_P, RobotConstants.PID_CLIMBER_FRONT_POSITION_I, RobotConstants.PID_CLIMBER_FRONT_POSITION_D);
-    Robot.m_climber.setBackPIDController(RobotConstants.PID_CLIMBER_POSITION_P, RobotConstants.PID_CLIMBER_POSITION_I, RobotConstants.PID_CLIMBER_POSITION_D);
-    */
-
-
-
+    Robot.m_climber.setFrontPIDController(0.2, 0.0, 0.0);
+    Robot.m_climber.setBackPIDController(0.2, 0.0, 0.0);
+  
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -41,17 +38,16 @@ public class ClimberDefault extends Command {
     } else if (Robot.m_oi.getOperatorStick().getPOV() == 270) {
       Robot.m_climber.setFront(-0.5);
     } else {
-    /*
-    if (Robot.m_climber.getFrontClimberHeight() <= 10.0 && Robot.m_climber.getBackClimberHeight() <= 10.0) {
-      Robot.m_climber.getFrontPIDController().setReference(4, ControlType.kPosition);
-      Robot.m_climber.getBackPIDController().setReference(4 + RobotConstants.CLIMBER_OFFSET, ControlType.kPosition);
-    } else {
+      
+      /*
+      if (Robot.m_climber.getFrontClimberHeight() < 7 && Robot.m_climber.getBackClimberHeight() < 7) {
+        Robot.m_climber.getFrontPIDController().setReference(6, ControlType.kPosition);
+        Robot.m_climber.getBackPIDController().setReference(6 + RobotConstants.CLIMBER_OFFSET, ControlType.kPosition);
+      } else {
+        Robot.m_climber.stopClimber();
+      }*/
       Robot.m_climber.stopClimber();
     }
-    */
-      Robot.m_climber.stopClimber();
-    }
-
   }
 
   // Make this return true when this Command no longer needs to run execute()

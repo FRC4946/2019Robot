@@ -15,9 +15,9 @@ import frc.robot.RobotConstants;
 
 public class LiftRobotVelocity extends Command {
   double m_velocity;
+
   public LiftRobotVelocity(double velocity) {
     requires(Robot.m_climber);
-
     m_velocity = velocity;
   }
 
@@ -40,7 +40,7 @@ public class LiftRobotVelocity extends Command {
   @Override
   protected void execute() {
     Robot.m_climber.getFrontPIDController().setReference(m_velocity, ControlType.kVelocity);
-    Robot.m_climber.getBackPIDController().setReference(m_velocity, ControlType.kVelocity);
+    Robot.m_climber.getBackPIDController().setReference(m_velocity + (Robot.m_climber.getFrontClimberHeight() - Robot.m_climber.getBackClimberHeight()) * 30, ControlType.kVelocity);
     System.out.println("output" + Robot.m_climber.getFrontClimberHeight());
   }
 
