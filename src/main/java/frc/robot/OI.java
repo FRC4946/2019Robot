@@ -10,13 +10,11 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.AbortAuto;
 import frc.robot.commands.climber.LiftRobot;
 import frc.robot.commands.climber.LiftRobotVelocity;
-import frc.robot.commands.drivetrain.StrafeToTarget;
-import frc.robot.commands.drivetrain.TargetLine;
 import frc.robot.commands.grabber.SetGrabber;
 import frc.robot.commands.grabber.SetGrabberAndArm;
+import frc.robot.commands.grabberarm.SetArmToPos;
 import frc.robot.commands.intakeelbow.SetElbowSpeed;
 
 /**
@@ -53,6 +51,10 @@ public class OI {
     return m_driveStick;
   }
 
+  public Joystick getOperatorStick() {
+    return m_operatorStick;
+  }
+
   //NEGATIVE IS DOWN ON THE ELEVATOR
   //NEGATIVE IS OUT ON THE GRABBER ARM
   //NEGATIVE IS TOWARDS THE GROUND ON THE CLIMBER
@@ -70,9 +72,9 @@ public class OI {
     m_RBButton.whileHeld(new SetElbowSpeed(0.1));
     m_LBButton.whileHeld(new SetElbowSpeed(-0.1)); 
     m_XButton.whenPressed(new SetGrabberAndArm(true, RobotConstants.GRABBER_ARM_OUT)); 
-    m_BButton.whenPressed(new StrafeToTarget());
-    m_AButton.whileHeld(new LiftRobotVelocity(-3000));
-    m_YButton.whileHeld(new LiftRobotVelocity(3000));
+    m_BButton.whenPressed(new SetGrabber(false, 0.8));
+    m_AButton.whileHeld(new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_HATCH, 0.8));
+    m_YButton.whileHeld(new SetArmToPos(RobotConstants.GRABBER_ARM_OUT, 0.8));
     m_StartButton.whileHeld(new LiftRobot(-0.2));
   }
 }

@@ -14,9 +14,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.climber.ZeroClimber;
-
-//TODO : find out if these motors are brushless or brushed
+import frc.robot.commands.climber.ClimberDefault;;
 
 /**
  * Climber subsystem
@@ -38,10 +36,31 @@ public class Climber extends Subsystem {
    * @param climberSpeed The desired speed for the climber motors
    */
   public void setClimber(double climberSpeed) { //negative is down
-    if (climberSpeed > 0 && isClimberTopped()) {
-      stopClimber();
+    if (climberSpeed > 0 && frontIsTopped()) {
+      m_front.set(0.0);
     } else {
       m_front.set(climberSpeed);
+    }
+
+    if (climberSpeed > 0 && backIsTopped()) {
+      m_back.set(0.0);
+    } else {
+      m_back.set(climberSpeed);
+    }
+  }
+
+  public void setFront(double climberSpeed) {
+    if (climberSpeed > 0 && frontIsTopped()) {
+      m_front.set(0.0);
+    } else {
+      m_front.set(climberSpeed);
+    }
+  }
+
+  public void setBack(double climberSpeed) {
+    if (climberSpeed > 0 && backIsTopped()) {
+      m_back.set(0.0);
+    } else {
       m_back.set(climberSpeed);
     }
   }
@@ -59,6 +78,14 @@ public class Climber extends Subsystem {
    */
   public boolean isClimberTopped() {
     return (!frontLimitSwitch.get() || !backLimitSwitch.get());
+  }
+
+  public boolean frontIsTopped() {
+    return !frontLimitSwitch.get();
+  }
+
+  public boolean backIsTopped() {
+    return !backLimitSwitch.get();
   }
 
   public double getFrontClimberHeight() {
@@ -96,6 +123,6 @@ public class Climber extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    //setDefaultCommand(new ZeroClimber());
+    //setDefaultCommand(new ClimberDefault());
   }
 } 

@@ -47,7 +47,7 @@ public class LiftRobotVelocity extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return (m_velocity > 0 && Robot.m_climber.isClimberTopped() || (m_velocity < 0 && (Robot.m_climber.getFrontClimberHeight() < 1.5 && Robot.m_climber.getBackClimberHeight() < 1.5)));
+    return (m_velocity > 0 && Robot.m_climber.isClimberTopped() || (m_velocity < 0 && (Robot.m_climber.getFrontClimberHeight() < 1.5 || Robot.m_climber.getBackClimberHeight() < 1.5)));
   }
 
   // Called once after isFinished returns true

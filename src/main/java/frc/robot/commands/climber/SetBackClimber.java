@@ -5,17 +5,16 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.elevator;
+package frc.robot.commands.climber;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.RobotConstants;
-import frc.robot.Utilities;
 
-public class SetElevatorJoystick extends Command {
-
-  public SetElevatorJoystick() {
-    requires(Robot.m_elevator);
+public class SetBackClimber extends Command {
+  double m_speed;
+  public SetBackClimber(double speed) {
+    requires(Robot.m_climber);
+    m_speed = speed;
   }
 
   // Called just before this Command runs the first time
@@ -26,18 +25,7 @@ public class SetElevatorJoystick extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    /*
-    if(Robot.m_elevator.getHeight() >= RobotConstants.ELEVATOR_MAXIMUM_HEIGHT && 
-        Robot.m_oi.getDriveStick().getRawAxis(1) >= 0 
-      || Robot.m_elevator.getHeight() <= RobotConstants.ELEVATOR_MINIMUM_HEIGHT &&
-        Robot.m_oi.getDriveStick().getRawAxis(1) <= 0) {
-         
-      Robot.m_elevator.setElevator(0);
-    } else { 
-      
-    }
-    */
-    Robot.m_elevator.setElevator(Utilities.deadzone(-Robot.m_oi.getOperatorStick().getRawAxis(1)*1.0));
+    Robot.m_climber.setBack(m_speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -49,7 +37,7 @@ public class SetElevatorJoystick extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.m_elevator.stop();
+    Robot.m_climber.setFront(0.0);
   }
 
   // Called when another command which requires one or more of the same
