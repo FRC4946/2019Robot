@@ -7,44 +7,70 @@
 
 package frc.robot.commands.elevator;
 
-import edu.wpi.first.wpilibj.command.PIDCommand;
+import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotConstants;
 import frc.robot.commands.grabberarm.SetArmToPos;
-import frc.robot.commands.intakeelbow.SetIntakeStage;
+import frc.robot.commands.intakeelbow.SetIntakePos;
 
-public class MoveToHeight extends PIDCommand {
+public class MoveToHeight extends Command {
   
-  double m_height, m_maxSpeed;
+  boolean isBelowConflict;
+  double m_height, m_speed, m_speedInit;
 
-  public MoveToHeight(double height, double maxSpeed) {
+  public MoveToHeight(double height, double speed) {
+    requires(Robot.m_elevator);
 
-    super(RobotConstants.PID_ELEVATOR_MOVE_TO_HEIGHT_P, 
-      RobotConstants.PID_ELEVATOR_MOVE_TO_HEIGHT_I, RobotConstants.PID_ELEVATOR_MOVE_TO_HEIGHT_D);
-    requires (Robot.m_elevator);
     m_height = height;
-    m_maxSpeed = maxSpeed;
+    m_speed = Math.min(Math.abs(speed), 0.9);
+
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    getPIDController().setInputRange(RobotConstants.ELEVATOR_AT_BOTTOM, RobotConstants.ELEVATOR_AT_TOP);
-    getPIDController().setOutputRange(-m_maxSpeed, m_maxSpeed);
-    getPIDController().setAbsoluteTolerance(1.0);
-    getPIDController().setSetpoint(m_height);
+
+    m_speedInit = m_speed;
+    m_speedInit *= Math.signum(m_height - Robot.m_elevator.getHeight());
+
+
+    if(m_speedInit < 0) {
+      m_speedInit *= 0.45;
+    }
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute() {
+  protected void execute() { 
+    
+    Robot.m_elevator.setElevator(m_speedInit);
 
+    if(isBelowConflict != Robot.m_elevator.getHeight() < RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT) {
+     
+      if (Robot.m_elevator.getHeight() < RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT 
+        && m_speedInit < 0) {
+
+        if(Math.abs(Robot.m_intakeElbow.getPos() - RobotConstants.INTAKE_POT_BALL_HEIGHT) > 10) {
+          new SetIntakePos(RobotConstants.INTAKE_POT_BALL_HEIGHT, 0.3).start(); 
+        } 
+
+        if(Math.abs(Robot.m_grabberArm.getPos() - RobotConstants.GRABBER_ARM_HOLD_BALL) > 0.2) {
+          new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_BALL, 0.8).start();
+        }
+      }
+
+      isBelowConflict = !isBelowConflict;
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return getPIDController().onTarget();
+    if(m_speedInit < 0) {
+      return Robot.m_elevator.getHeight() <= m_height + 0.02;
+    } else {
+      return Robot.m_elevator.getHeight() >= m_height - 0.02;
+    }
   }
 
   // Called once after isFinished returns true
@@ -58,43 +84,5 @@ public class MoveToHeight extends PIDCommand {
   @Override
   protected void interrupted() {
     end();
-  }
-
-  @Override 
-  protected double returnPIDInput() {
-    return Robot.m_elevator.getHeight();
-  }
-
-  @Override
-  protected void usePIDOutput(double output) {
-
-    Robot.m_elevator.setElevator(output);
-
-    if(Robot.m_elevator.getHeight() >= RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT - 0.1 
-      && output > 0) {
-
-      if(Robot.m_grabberArm.getPos() < RobotConstants.GRABBER_ARM_HOLD_BALL) {
-        if(Robot.m_grabber.getGrabberIn()) {
-          new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_BALL, 0.8).start();
-        } else {
-          new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_HATCH, 0.8).start();
-        }
-      }
-
-      if(Math.abs(Robot.m_intakeElbow.getPos() - RobotConstants.INTAKE_POT_UP) > 10) {
-        new SetIntakeStage(RobotConstants.INTAKE_POT_UP).start();
-      } 
-
-    } else if(Robot.m_elevator.getHeight() <= RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT + 0.1 
-      && output < 0) {
-
-      if(Math.abs(Robot.m_intakeElbow.getPos() - RobotConstants.INTAKE_POT_BALL_HEIGHT) > 10) {
-        new SetIntakeStage(RobotConstants.INTAKE_POT_BALL_HEIGHT).start();
-      } 
-
-      if(Math.abs(Robot.m_grabberArm.getPos() - RobotConstants.GRABBER_ARM_HOLD_BALL) > 0.1) {
-        new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_BALL, 0.8).start();
-      }
-    }
   }
 }

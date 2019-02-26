@@ -27,13 +27,19 @@ public class SetElevatorJoystick extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+
+    
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() { 
 
-    Robot.m_elevator.setElevator(Utilities.deadzone(-Robot.m_oi.getDriveStick().getRawAxis(1)*0.8));
+    if(-Robot.m_oi.getDriveStick().getRawAxis(1) < 0 && Robot.m_elevator.getHeight() <= RobotConstants.ELEVATOR_RIGHT_ABOVE_ELBOW) {
+      Robot.m_elevator.setElevator(0);
+    } else {
+      Robot.m_elevator.setElevator(Utilities.deadzone(-Robot.m_oi.getDriveStick().getRawAxis(1)*0.8));
+    }
       
     if(isBelowConflict != Robot.m_elevator.getHeight() < RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT) {
      
@@ -46,18 +52,7 @@ public class SetElevatorJoystick extends Command {
         if(Math.abs(Robot.m_intakeElbow.getPos() - RobotConstants.INTAKE_POT_UP) > 5) {
           new SetIntakePos(RobotConstants.INTAKE_POT_UP, 0.3).start(); 
         } 
-
-      } else if (Robot.m_elevator.getHeight() < RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT) {
-
-        if(Math.abs(Robot.m_intakeElbow.getPos() - RobotConstants.INTAKE_POT_BALL_HEIGHT) > 5) {
-          new SetIntakePos(RobotConstants.INTAKE_POT_BALL_HEIGHT, 0.3).start(); 
-        } 
-
-        if(Math.abs(Robot.m_grabberArm.getPos() - RobotConstants.GRABBER_ARM_HOLD_BALL) > 0.2) {
-          new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_BALL, 0.8).start();
-        }
       }
-
       isBelowConflict = !isBelowConflict;
     }
   }

@@ -27,9 +27,12 @@ public class RobotConstants {
   public static final double ELEVATOR_AT_MAX = 8.0;
   public static final double ELEVATOR_AT_BOTTOM = 1.07;
   public static final double ELEVATOR_AT_MIN = 0.88;
-  public static final double ELEVATOR_NO_CONFLICT_HEIGHT = 2.2; //elbow 
+  public static final double ELEVATOR_NO_CONFLICT_HEIGHT = 2.3; //elbow 
+  public static final double ELEVATOR_RIGHT_ABOVE_ELBOW = 2.2;
+  public static final double ELEVATOR_LEVEL_2_ROCKET = 4.65;
+  public static final double ELEVATOR_LEVEL_3_ROCKET = 6.87;
 
-  public static final double INTAKE_POT_UP = 3468;
+  public static final double INTAKE_POT_UP = 3438;
   public static final double INTAKE_POT_DOWN = 3319;
   public static final double INTAKE_POT_BALL_HEIGHT = 3384;
   public static final double INTAKE_POT_SCALING = 3600;
