@@ -68,10 +68,10 @@ public class OI {
 
   public OI() { 
     // TODO: Bind buttons to commands
-    m_YButton.whenPressed(new SetArmToPos(RobotConstants.GRABBER_ARM_OUT, 0.7));
-    m_AButton.whenPressed(new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_HATCH, 0.7));
-    m_RBButton.whenPressed(new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_BALL, 0.7));
-    //m_RBButton.whileHeld(new SetElbowSpeed(0.1));
+    //m_YButton.whenPressed(new SetArmToPos(RobotConstants.GRABBER_ARM_OUT, 0.7));
+    m_YButton.whenPressed(new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_HATCH, 0.7));
+    m_AButton.whenPressed(new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_BALL, 0.7));
+    m_RBButton.whileHeld(new SetElbowSpeed(0.1));
     m_LBButton.whileHeld(new SetElbowSpeed(-0.1)); 
     m_XButton.whenPressed(new SetGrabberAndArm(true, RobotConstants.GRABBER_ARM_OUT)); 
     m_BButton.whenPressed(new SetGrabber(false, 0.8));
