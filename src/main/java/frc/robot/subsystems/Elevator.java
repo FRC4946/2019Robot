@@ -45,7 +45,8 @@ public class Elevator extends Subsystem {
    * @return the analog potentiometer's value
    */
   public double getHeight() {
-    return RobotConstants.ELEVATOR_MAXIMUM_HEIGHT - m_analogPot.get();
+    //return RobotConstants.ELEVATOR_AT_TOP - m_analogPot.get();
+    return m_analogPot.get();
   }
 
   /**
@@ -53,10 +54,17 @@ public class Elevator extends Subsystem {
    * @param speed The speed that elevator motor runs at
    */
   public void setElevator(double speed) {
-    if (speed < 0 && getHeight() <= RobotConstants.ELEVATOR_MINIMUM_HEIGHT) {
+    
+    if(speed < 0) {
+      speed *= 0.75;
+    }
+
+    if (speed < 0 && getHeight() <= RobotConstants.ELEVATOR_AT_MIN + 0.05*(-speed)) {
       stop();
-    } else if (speed > 0 && getHeight() >= RobotConstants.ELEVATOR_MAXIMUM_HEIGHT) {
+    } else if (speed > 0 && getHeight() >= RobotConstants.ELEVATOR_AT_MAX) {
       stop();
+    } else if (Math.abs(getHeight() - RobotConstants.ELEVATOR_AT_BOTTOM) <= 0.5) {
+      m_elevatorMotor.set(0.4*speed);
     } else {
       m_elevatorMotor.set(speed);
     }

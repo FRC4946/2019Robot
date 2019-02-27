@@ -11,33 +11,50 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotConstants;
 import frc.robot.Utilities;
+import frc.robot.commands.grabberarm.SetArmToPos;
+import frc.robot.commands.intakeelbow.SetIntakePos;
+import frc.robot.commands.intakeelbow.SetIntakeStage;
 
 public class SetElevatorJoystick extends Command {
 
+  boolean isBelowConflict;
+
   public SetElevatorJoystick() {
     requires(Robot.m_elevator);
+    isBelowConflict = Robot.m_elevator.getHeight() < RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+
+    
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute() {
-    /*
-    if(Robot.m_elevator.getHeight() >= RobotConstants.ELEVATOR_MAXIMUM_HEIGHT && 
-        Robot.m_oi.getDriveStick().getRawAxis(1) >= 0 
-      || Robot.m_elevator.getHeight() <= RobotConstants.ELEVATOR_MINIMUM_HEIGHT &&
-        Robot.m_oi.getDriveStick().getRawAxis(1) <= 0) {
-         
+  protected void execute() { 
+
+    if(-Robot.m_oi.getDriveStick().getRawAxis(1) < 0 && Robot.m_elevator.getHeight() <= RobotConstants.ELEVATOR_RIGHT_ABOVE_ELBOW) {
       Robot.m_elevator.setElevator(0);
-    } else { 
-      
+    } else {
+      Robot.m_elevator.setElevator(Utilities.deadzone(-Robot.m_oi.getDriveStick().getRawAxis(1)*0.8));
     }
-    */
-    Robot.m_elevator.setElevator(Utilities.deadzone(-Robot.m_oi.getOperatorStick().getRawAxis(1)*1.0));
+      
+    if(isBelowConflict != Robot.m_elevator.getHeight() < RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT) {
+     
+      if(Robot.m_elevator.getHeight() >= RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT) {
+
+        if(Math.abs(Robot.m_grabberArm.getPos() - RobotConstants.GRABBER_ARM_HOLD_HATCH) > 0.2) {
+          new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_HATCH, 0.8).start();
+        }
+
+        if(Math.abs(Robot.m_intakeElbow.getPos() - RobotConstants.INTAKE_POT_UP) > 5) {
+          new SetIntakePos(RobotConstants.INTAKE_POT_UP, 0.3).start(); 
+        } 
+      }
+      isBelowConflict = !isBelowConflict;
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

@@ -5,25 +5,20 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.intakeelbow;
+package frc.robot.commands.elevator;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.RobotConstants;
 import frc.robot.commands.elevator.MoveToHeight;
+import frc.robot.commands.intakeelbow.SetIntakePos;
 
-public class SetIntakeStage extends CommandGroup {
+public class MoveToLowHeight extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public SetIntakeStage(double intakeStage) {
-    
-    if (!(intakeStage == RobotConstants.INTAKE_POT_BALL_HEIGHT || intakeStage == RobotConstants.INTAKE_POT_DOWN || intakeStage == RobotConstants.INTAKE_POT_UP)) {
-      intakeStage = RobotConstants.INTAKE_POT_BALL_HEIGHT;
-    }
-    /*
-    if (intakeStage == RobotConstants.INTAKE_POT_UP) {
-      addSequential(new MoveToHeight(RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT, 0.5));
-    }*/
-    addSequential(new SetIntakePos(intakeStage, 0.5));
+  public MoveToLowHeight() { 
+    addSequential(new MoveToHeight(RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT + 0.2, 0.2), 2.0);
+    addSequential(new SetIntakePos(RobotConstants.INTAKE_POT_BALL_HEIGHT, 0.3), 2.0);
+    addSequential(new MoveToHeight(RobotConstants.ELEVATOR_AT_MIN + 0.1, 0.5), 2.0);
   }
 }

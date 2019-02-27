@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.CANEncoder;
 import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -20,9 +21,12 @@ import frc.robot.commands.climber.ClimberDefault;;
  * Climber subsystem
  */
 public class Climber extends Subsystem {
+
   private CANSparkMax m_front, m_back;
   private DigitalInput frontLimitSwitch, backLimitSwitch;
+
   public Climber() {
+
     m_front = new CANSparkMax(RobotMap.CAN_SPARK_LIFT_FRONT, MotorType.kBrushless);
     m_back = new CANSparkMax(RobotMap.CAN_SPARK_LIFT_BACK, MotorType.kBrushless);
     m_back.setInverted(true);
@@ -65,6 +69,22 @@ public class Climber extends Subsystem {
     }
   }
 
+  public void setClimberFront(double speed) {
+    if (speed > 0 && isClimberTopped()) {
+      stopClimber();
+    } else {
+      m_front.set(speed);
+    }
+  } 
+
+  public void setClimberBack(double speed) {
+    if (speed > 0 && isClimberTopped()) {
+      stopClimber();
+    } else {
+      m_back.set(speed);
+    }
+  } 
+
   /**
    * Stops the climber motors
    */
@@ -86,6 +106,14 @@ public class Climber extends Subsystem {
 
   public boolean backIsTopped() {
     return !backLimitSwitch.get();
+  }
+  
+  public CANEncoder getFrontEncoder() {
+    return m_front.getEncoder();
+  }
+
+  public CANEncoder getBackEncoder() {
+    return m_back.getEncoder();
   }
 
   public double getFrontClimberHeight() {
