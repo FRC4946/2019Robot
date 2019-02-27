@@ -10,16 +10,14 @@ package frc.robot.commands.elevator;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
 import frc.robot.RobotConstants;
-import frc.robot.commands.elevator.MoveToHeight;
-import frc.robot.commands.intakeelbow.SetIntakePos;
 
-public class MoveToLowHeight extends CommandGroup {
+public class SetElevatorToAboveElbow extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public MoveToLowHeight() { 
-    addSequential(new MoveToHeight(RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT + 0.5, 0.4), 2.0);
-    addSequential(new SetIntakePos(RobotConstants.INTAKE_POT_BALL_HEIGHT, 0.3), 2.0);
-    addSequential(new MoveToHeight(RobotConstants.ELEVATOR_AT_MIN + 0.1, 0.4), 2.0); 
+  public SetElevatorToAboveElbow() {
+    addSequential(new MoveToHeight(RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT, 0.4));
+    addSequential(new WaitCommand(1.0)); 
+    addSequential(new MoveToHeight(RobotConstants.ELEVATOR_RIGHT_ABOVE_ELBOW, 0.1));
   }
 }

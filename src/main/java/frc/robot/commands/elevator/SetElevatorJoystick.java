@@ -35,12 +35,12 @@ public class SetElevatorJoystick extends Command {
   @Override
   protected void execute() { 
 
-    if(-Robot.m_oi.getOperatorStick().getRawAxis(1) < 0 && Robot.m_elevator.getHeight() <= RobotConstants.ELEVATOR_RIGHT_ABOVE_ELBOW) {
+    if(-Robot.m_oi.getDriveStick().getRawAxis(1) < 0 && Robot.m_elevator.getHeight() <= RobotConstants.ELEVATOR_RIGHT_ABOVE_ELBOW) {
       Robot.m_elevator.setElevator(0);
     } else {
-      Robot.m_elevator.setElevator(Utilities.deadzone(-Robot.m_oi.getOperatorStick().getRawAxis(1)*0.8));
+      Robot.m_elevator.setElevator(Utilities.deadzone(-Robot.m_oi.getDriveStick().getRawAxis(1)*0.8));
     }
-      
+    
     if(isBelowConflict != Robot.m_elevator.getHeight() < RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT) {
      
       if(Robot.m_elevator.getHeight() >= RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT) {
@@ -48,8 +48,8 @@ public class SetElevatorJoystick extends Command {
         if(Math.abs(Robot.m_grabberArm.getPos() - RobotConstants.GRABBER_ARM_HOLD_HATCH) > 0.2) {
           new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_HATCH, 0.8).start();
         }
-
-        if(Math.abs(Robot.m_intakeElbow.getPos() - RobotConstants.INTAKE_POT_UP) > 5) {
+        
+        if(Math.abs(Robot.m_intakeElbow.getPos() - RobotConstants.INTAKE_POT_UP) > 10) {
           new SetIntakePos(RobotConstants.INTAKE_POT_UP, 0.3).start(); 
         } 
       }

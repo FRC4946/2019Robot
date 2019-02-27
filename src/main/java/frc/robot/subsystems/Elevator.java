@@ -59,12 +59,12 @@ public class Elevator extends Subsystem {
       speed *= 0.75;
     }
 
-    if (speed < 0 && getHeight() <= RobotConstants.ELEVATOR_AT_MIN + 0.05*(-speed)) {
+    if (speed < 0 && getHeight() <= RobotConstants.ELEVATOR_AT_MIN + 0.05) {
       stop();
     } else if (speed > 0 && getHeight() >= RobotConstants.ELEVATOR_AT_MAX) {
       stop();
     } else if (Math.abs(getHeight() - RobotConstants.ELEVATOR_AT_BOTTOM) <= 0.5) {
-      m_elevatorMotor.set(0.4*speed);
+      m_elevatorMotor.set(Math.min(0.4, speed));
     } else {
       m_elevatorMotor.set(speed);
     }
