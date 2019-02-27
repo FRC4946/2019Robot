@@ -13,13 +13,12 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.climber.LiftRobot;
 import frc.robot.commands.climber.LiftRobotVelocity;
 import frc.robot.commands.climber.SetClimberHeight;
-import frc.robot.commands.grabber.ReleaseHatch;
+import frc.robot.commands.elevator.MoveToHeight;
+import frc.robot.commands.elevator.MoveToLowHeight;
 import frc.robot.commands.grabber.SetGrabber;
-import frc.robot.commands.grabber.SetGrabberSpeed;
-import frc.robot.commands.grabberarm.SetArmSpeed;
+import frc.robot.commands.grabber.SetGrabberAndArm;
 import frc.robot.commands.grabberarm.SetArmToPos;
 import frc.robot.commands.intakeelbow.SetElbowSpeed;
-import frc.robot.commands.limelight.ToggleLimelightLED;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -55,23 +54,39 @@ public class OI {
     return m_driveStick;
   }
 
+  public Joystick getOperatorStick() {
+    return m_operatorStick;
+  }
+
   //NEGATIVE IS DOWN ON THE ELEVATOR
   //NEGATIVE IS OUT ON THE GRABBER ARM
   //NEGATIVE IS TOWARDS THE GROUND ON THE CLIMBER
   //NEGATIVE IS DOWN ON THE ELBOW
   //NEGATIVE IS IN ON THE GRABBER (POSITIVE WILL MAKE IT GRAB THE HATCH)
   //NEGATIVE IS IN ON THE INTAKE
+  //WITHOUT NEGATION, DOWN ON THE LEFT JOYSTICK ANALOG IS UP ON THE ELEVATOR
 
   //TODO: CLIMBER LIM SWITCHES NORMALLY CLOSED
 
-  public OI() {
+  public OI() { 
     // TODO: Bind buttons to commands
-    m_YButton.whenPressed(new SetArmToPos(RobotConstants.GRABBER_ARM_OUT, 0.7));
-    m_AButton.whenPressed(new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_HATCH, 0.7));
+    //m_YButton.whenPressed(new SetArmToPos(RobotConstants.GRABBER_ARM_OUT, 0.7));
+    m_YButton.whenPressed(new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_HATCH, 0.7));
+    m_AButton.whenPressed(new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_BALL, 0.7));
     m_RBButton.whileHeld(new SetElbowSpeed(0.1));
     m_LBButton.whileHeld(new SetElbowSpeed(-0.1)); 
-    m_XButton.whenPressed(new ReleaseHatch()); 
+    m_XButton.whenPressed(new SetGrabberAndArm(true, RobotConstants.GRABBER_ARM_OUT)); 
     m_BButton.whenPressed(new SetGrabber(false, 0.8));
-    m_StartButton.whenPressed(new ToggleLimelightLED());
+    m_XButton.whenPressed(new MoveToHeight(RobotConstants.ELEVATOR_LEVEL_2_ROCKET, 0.8));
+    m_ViewButton.whenPressed(new MoveToHeight(RobotConstants.ELEVATOR_LEVEL_3_ROCKET, 0.8));
+    //m_StartButton.whileHeld(new LiftRobot(-0.1));
+    //m_ViewButton.whileHeld(new LiftRobot(0.2));
+    m_StartButton.whenPressed(new MoveToLowHeight());
+      //m_AButton.whileHeld(new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_HATCH, 0.8));
+    //m_YButton.whileHeld(new SetArmToPos(RobotConstants.GRABBER_ARM_OUT, 0.8));
+    //m_AButton.whileHeld(new LiftRobotVelocity(3000));
+    //m_YButton.whileHeld(new LiftRobotVelocity(-3000));
+    //m_StartButton.whileHeld(new SetFrontClimber(-0.2));
+    //m_ViewButton.whileHeld(new SetFrontClimber(0.2));    
   }
 }

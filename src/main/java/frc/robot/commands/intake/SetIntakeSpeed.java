@@ -9,6 +9,8 @@ package frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotConstants;
+import frc.robot.commands.grabberarm.SetArmToPos;
 
 public class SetIntakeSpeed extends Command {
   double m_speed;
@@ -27,6 +29,13 @@ public class SetIntakeSpeed extends Command {
   @Override
   protected void execute() {
     Robot.m_intake.runAll(m_speed);
+
+    if(Robot.m_elevator.getHeight() < RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT
+      && m_speed < 0 && Robot.m_grabberArm.getPos() < RobotConstants.GRABBER_ARM_HOLD_BALL) {
+
+        new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_BALL, 0.8);
+    }
+
   }
 
   // Make this return true when this Command no longer needs to run execute()

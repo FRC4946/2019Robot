@@ -1,3 +1,4 @@
+
 /*----------------------------------------------------------------------------*/
 /* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
@@ -5,25 +6,18 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.autonomous;
+package frc.robot.commands.grabber;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc.robot.commands.drivetrain.DriveStraightPID;
-import frc.robot.commands.drivetrain.TargetLine;
-import frc.robot.commands.drivetrain.TurnPID;
-import frc.robot.commands.limelight.SetLimelightLED;
+import frc.robot.RobotConstants;
+import frc.robot.commands.grabberarm.SetArmToPos;
 
-public class TestAuto extends CommandGroup {
-
+public class SetGrabberAndArm extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public TestAuto() {
-    /*
-    addSequential(new SetLimelightLED(false));
-    addSequential(new TurnPID(180, 0.3, false));
-    addSequential(new DriveStraightPID(60));
-    addSequential(new TurnPID(-90, 0.3, false));
-    addSequential(new DriveStraightPID(-24));*/
+  public SetGrabberAndArm(boolean grabberIn, double armPosition) {
+    addSequential(new SetArmToPos(armPosition, 0.7), 0.4);
+    addSequential(new SetGrabber(grabberIn, 0.8)); //Goes in to release the hatch
   }
 }

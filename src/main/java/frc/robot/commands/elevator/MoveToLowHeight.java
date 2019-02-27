@@ -1,4 +1,3 @@
-
 /*----------------------------------------------------------------------------*/
 /* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
@@ -6,18 +5,20 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.grabber;
+package frc.robot.commands.elevator;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.RobotConstants;
-import frc.robot.commands.grabberarm.SetArmToPos;
+import frc.robot.commands.elevator.MoveToHeight;
+import frc.robot.commands.intakeelbow.SetIntakePos;
 
-public class ReleaseHatch extends CommandGroup {
+public class MoveToLowHeight extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public ReleaseHatch() {
-    addSequential(new SetArmToPos(RobotConstants.GRABBER_ARM_OUT, 0.7), 0.4);
-    addSequential(new SetGrabber(true, 0.8)); //Goes in to release the hatch
+  public MoveToLowHeight() { 
+    addSequential(new MoveToHeight(RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT + 0.2, 0.2), 2.0);
+    addSequential(new SetIntakePos(RobotConstants.INTAKE_POT_BALL_HEIGHT, 0.3), 2.0);
+    addSequential(new MoveToHeight(RobotConstants.ELEVATOR_AT_MIN + 0.1, 0.5), 2.0);
   }
 }

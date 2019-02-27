@@ -177,7 +177,7 @@ public class Robot extends TimedRobot {
     //grabber
     SmartDashboard.putNumber("Grabber/Grabber Arm/Position", m_grabberArm.getPos());
     SmartDashboard.putBoolean("Grabber/Grabber In", m_grabber.getGrabberIn());
-    SmartDashboard.putBoolean("Grabber/Grabber Out", m_grabber.getGrabberOut());
+    SmartDashboard.putBoolean("Grabber/Has Hatch", m_grabber.getGrabberOut());
 
     //climber
     SmartDashboard.putNumber("Climber/Front Climber Position", m_climber.getFrontClimberHeight());
@@ -204,7 +204,7 @@ public class Robot extends TimedRobot {
     //grabber
     SmartDashboard.getEntry("Grabber/Grabber Arm/Position").setDouble(m_grabberArm.getPos());
     SmartDashboard.getEntry("Grabber/Grabber In").setBoolean(m_grabber.getGrabberIn());
-    SmartDashboard.getEntry("Grabber/Grabber Out").setBoolean(m_grabber.getGrabberOut());
+    SmartDashboard.getEntry("Grabber/Has Hatch").setBoolean(m_grabber.getGrabberOut());
 
     //climber
     SmartDashboard.getEntry("Climber/Front Climber Position").setDouble(m_climber.getFrontClimberHeight());

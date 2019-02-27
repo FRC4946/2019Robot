@@ -5,25 +5,15 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.autonomous;
+package frc.robot.commands.climber;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc.robot.commands.drivetrain.DriveStraightPID;
-import frc.robot.commands.drivetrain.TargetLine;
-import frc.robot.commands.drivetrain.TurnPID;
-import frc.robot.commands.limelight.SetLimelightLED;
 
-public class TestAuto extends CommandGroup {
-
+public class ClimberSeries extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public TestAuto() {
-    /*
-    addSequential(new SetLimelightLED(false));
-    addSequential(new TurnPID(180, 0.3, false));
-    addSequential(new DriveStraightPID(60));
-    addSequential(new TurnPID(-90, 0.3, false));
-    addSequential(new DriveStraightPID(-24));*/
+  public ClimberSeries() {
+    addSequential(new SetClimberHeight(30), 6.0);
   }
 }

@@ -33,7 +33,7 @@ public class SetIntakeJoystick extends Command {
   protected void execute() {
     
     if(Math.abs(Robot.m_oi.getDriveStick().getRawAxis(2) - Robot.m_oi.getDriveStick().getRawAxis(3))*0.8 <= 0.1) {
-      Robot.m_intake.runInner(-0.1);
+      Robot.m_intake.runAll(0);
     } else {
       Robot.m_intake.runAll(Utilities.deadzone
       ((Robot.m_oi.getDriveStick().getRawAxis(2) - Robot.m_oi.getDriveStick().getRawAxis(3))*0.8));

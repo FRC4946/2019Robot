@@ -7,48 +7,37 @@
 
 package frc.robot.commands.climber;
 
-import com.revrobotics.ControlType;
-
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.RobotConstants;
 
-public class SetClimberHeight extends Command {
-  
-  double m_height, m_initHeight;
-
-  public SetClimberHeight(double height) {
+public class SetFrontClimber extends Command {
+  double m_speed;
+  public SetFrontClimber(double speed) {
     requires(Robot.m_climber);
-    m_height = height;
+    m_speed = speed;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    m_initHeight = (Robot.m_climber.getBackClimberHeight() + Robot.m_climber.getFrontClimberHeight())/2;
-    Robot.m_climber.getFrontPIDController().setOutputRange(-0.4, 0.4);
-    Robot.m_climber.getBackPIDController().setOutputRange(-0.4, 0.4);
-    Robot.m_climber.setFrontPIDController(RobotConstants.PID_CLIMBER_FRONT_POSITION_P, RobotConstants.PID_CLIMBER_FRONT_POSITION_I, RobotConstants.PID_CLIMBER_FRONT_POSITION_D);
-    Robot.m_climber.setBackPIDController(RobotConstants.PID_CLIMBER_POSITION_P, RobotConstants.PID_CLIMBER_POSITION_I, RobotConstants.PID_CLIMBER_POSITION_D);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_climber.getFrontPIDController().setReference(m_height, ControlType.kPosition);
-    Robot.m_climber.getBackPIDController().setReference(m_height + RobotConstants.CLIMBER_OFFSET, ControlType.kPosition);
+    Robot.m_climber.setFront(m_speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return (m_initHeight > m_height && Robot.m_climber.isClimberTopped());
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.m_climber.stopClimber();
+    Robot.m_climber.setFront(0.0);
   }
 
   // Called when another command which requires one or more of the same

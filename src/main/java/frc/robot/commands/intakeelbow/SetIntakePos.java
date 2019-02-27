@@ -18,7 +18,7 @@ public class SetIntakePos extends Command {
   public SetIntakePos(double desiredPos, double speed) {
     requires(Robot.m_intakeElbow);
     m_desiredPos = desiredPos;
-    m_speed = speed;
+    m_speed = Math.abs(speed);
   }
 
   // Called just before this Command runs the first time
@@ -26,19 +26,23 @@ public class SetIntakePos extends Command {
   protected void initialize() {
     m_desiredPos = Math.min(m_desiredPos, RobotConstants.INTAKE_POT_UP);
     m_desiredPos = Math.max(m_desiredPos, RobotConstants.INTAKE_POT_DOWN);
+    m_speed *= Math.signum(m_desiredPos - Robot.m_intakeElbow.getPos());
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_intakeElbow.setElbow
-      (Math.signum(Robot.m_intakeElbow.getPos() - m_desiredPos)*m_speed);
+    Robot.m_intakeElbow.setElbow(m_speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Math.abs(Robot.m_intakeElbow.getPos() - m_desiredPos) < 2;
+    if(m_speed > 0) {
+      return Robot.m_intakeElbow.getPos() >= m_desiredPos + 20;
+    } else {
+      return Robot.m_intakeElbow.getPos() <= m_desiredPos - 20;
+    }
   }
 
   // Called once after isFinished returns true
