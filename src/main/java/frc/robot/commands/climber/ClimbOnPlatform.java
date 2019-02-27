@@ -8,18 +8,25 @@
 package frc.robot.commands.climber;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import frc.robot.RobotConstants;
 import frc.robot.commands.drivetrain.SetDriveTrain;
 import frc.robot.commands.intake.SetIntakeSpeed;
+import frc.robot.commands.intakeelbow.SetIntakePos;
 
 public class ClimbOnPlatform extends CommandGroup {
   
   /**
    * Add your docs here.
    */
-  public ClimbOnPlatform(double boardingSpeed, double height) {
+  public ClimbOnPlatform(double height, double boardingSpeed) {
 
-    addSequential(new SetClimberHeight(height));
-    addParallel(new SetIntakeSpeed(boardingSpeed), 3.0);
-    addSequential(new SetDriveTrain(boardingSpeed), 3.0);
+    addSequential(new SetClimberHeight(height, boardingSpeed), 5.0);
+    addParallel(new SetIntakePos(RobotConstants.INTAKE_POT_DOWN, 0.3), 2.0);
+    addParallel(new SetIntakeSpeed(boardingSpeed), 6.0);
+    addParallel(new SetDriveTrain(boardingSpeed), 6.0);
+    addSequential(new SetClimberHeight(height, boardingSpeed), 5.0);
+    addSequential(new SetDriveTrain(0));
+    addSequential(new SetIntakeSpeed(0));
+    addSequential(new LiftRobot(0));
   }
 }

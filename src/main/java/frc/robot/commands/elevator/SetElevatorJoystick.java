@@ -35,10 +35,10 @@ public class SetElevatorJoystick extends Command {
   @Override
   protected void execute() { 
 
-    if(-Robot.m_oi.getDriveStick().getRawAxis(1) < 0 && Robot.m_elevator.getHeight() <= RobotConstants.ELEVATOR_RIGHT_ABOVE_ELBOW) {
+    if(-Robot.m_oi.getOperatorStick().getRawAxis(1) < 0 && Robot.m_elevator.getHeight() <= RobotConstants.ELEVATOR_RIGHT_ABOVE_ELBOW) {
       Robot.m_elevator.setElevator(0);
     } else {
-      Robot.m_elevator.setElevator(Utilities.deadzone(-Robot.m_oi.getDriveStick().getRawAxis(1)*0.8));
+      Robot.m_elevator.setElevator(Utilities.deadzone(-Robot.m_oi.getOperatorStick().getRawAxis(1)*0.8));
     }
       
     if(isBelowConflict != Robot.m_elevator.getHeight() < RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT) {

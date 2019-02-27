@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.climber;
+package frc.robot.deprecated;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -14,6 +14,6 @@ public class ClimberSeries extends CommandGroup {
    * Add your docs here.
    */
   public ClimberSeries() {
-    addSequential(new SetClimberHeight(30), 6.0);
+    //addSequential(new SetClimberHeight(30), 6.0);
   }
 }
