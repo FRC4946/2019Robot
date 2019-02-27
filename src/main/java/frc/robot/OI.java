@@ -15,7 +15,6 @@ import frc.robot.commands.climber.LiftRobotVelocity;
 import frc.robot.commands.climber.SetClimberHeight;
 import frc.robot.commands.elevator.MoveToHeight;
 import frc.robot.commands.elevator.MoveToLowHeight;
-import frc.robot.commands.grabber.ReleaseHatch;
 import frc.robot.commands.grabber.SetGrabber;
 import frc.robot.commands.grabber.SetGrabberAndArm;
 import frc.robot.commands.grabberarm.SetArmToPos;
@@ -76,7 +75,7 @@ public class OI {
     m_AButton.whenPressed(new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_BALL, 0.7));
     m_RBButton.whileHeld(new SetElbowSpeed(0.1));
     m_LBButton.whileHeld(new SetElbowSpeed(-0.1)); 
-    m_XButton.whenPressed(new ReleaseHatch()); 
+    m_XButton.whenPressed(new SetGrabberAndArm(true, RobotConstants.GRABBER_ARM_OUT)); 
     m_BButton.whenPressed(new SetGrabber(false, 0.8));
     m_XButton.whenPressed(new MoveToHeight(RobotConstants.ELEVATOR_LEVEL_2_ROCKET, 0.8));
     m_ViewButton.whenPressed(new MoveToHeight(RobotConstants.ELEVATOR_LEVEL_3_ROCKET, 0.8));
