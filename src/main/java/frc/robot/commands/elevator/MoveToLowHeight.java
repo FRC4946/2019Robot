@@ -17,8 +17,8 @@ public class MoveToLowHeight extends CommandGroup {
    * Add your docs here.
    */
   public MoveToLowHeight() { 
-    addSequential(new MoveToHeight(RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT + 0.2, 0.2));
-    addSequential(new SetIntakePos(RobotConstants.INTAKE_POT_BALL_HEIGHT, 0.3));
-    addSequential(new MoveToHeight(RobotConstants.ELEVATOR_AT_MIN + 0.1, 0.4));
+    addSequential(new MoveToHeight(RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT + 0.2, 0.2), 2.0);
+    addSequential(new SetIntakePos(RobotConstants.INTAKE_POT_BALL_HEIGHT, 0.3), 2.0);
+    addSequential(new MoveToHeight(RobotConstants.ELEVATOR_AT_MIN + 0.1, 0.5), 2.0);
   }
 }
