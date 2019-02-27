@@ -50,7 +50,8 @@ public class MoveToHeight extends Command {
   @Override
   protected void execute() { 
     
-    if(m_height >= RobotConstants.ELEVATOR_RIGHT_ABOVE_ELBOW && Robot.m_elevator.getHeight() <= RobotConstants.ELEVATOR_RIGHT_ABOVE_ELBOW) {
+    if(m_height >= RobotConstants.ELEVATOR_RIGHT_ABOVE_ELBOW && Robot.m_elevator.getHeight() <= RobotConstants.ELEVATOR_RIGHT_ABOVE_ELBOW
+      && m_speedInit < 0) {
       Robot.m_elevator.setElevator(0);
     } else {
       Robot.m_elevator.setElevator(m_speedInit);

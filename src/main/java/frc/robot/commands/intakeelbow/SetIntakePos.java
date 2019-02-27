@@ -39,7 +39,7 @@ public class SetIntakePos extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if(m_speed > 0) {
+    if(m_speedInit > 0) {
       return Robot.m_intakeElbow.getPos() >= m_desiredPosInit;
     } else {
       return Robot.m_intakeElbow.getPos() <= m_desiredPosInit;

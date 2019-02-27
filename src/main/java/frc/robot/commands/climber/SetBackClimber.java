@@ -37,7 +37,7 @@ public class SetBackClimber extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.m_climber.setFront(0.0);
+    Robot.m_climber.setBack(0.0);
   }
 
   // Called when another command which requires one or more of the same

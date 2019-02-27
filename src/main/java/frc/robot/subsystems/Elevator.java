@@ -37,7 +37,7 @@ public class Elevator extends Subsystem {
 
   @Override
   public void initDefaultCommand() { 
-    setDefaultCommand(new SetElevatorJoystick());
+    //setDefaultCommand(new SetElevatorJoystick());
   }
 
   /**

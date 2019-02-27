@@ -16,8 +16,8 @@ public class SetElevatorToAboveElbow extends CommandGroup {
    * Add your docs here.
    */
   public SetElevatorToAboveElbow() {
-    addSequential(new MoveToHeight(RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT, 0.4));
-    addSequential(new WaitCommand(1.0)); 
-    addSequential(new MoveToHeight(RobotConstants.ELEVATOR_RIGHT_ABOVE_ELBOW, 0.1));
+    addSequential(new MoveToHeight(RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT+0.5, 0.6));
+    addSequential(new WaitCommand(0.5)); 
+    addSequential(new MoveToHeight(RobotConstants.ELEVATOR_RIGHT_ABOVE_ELBOW+0.05, 0.4), 1.0);
   }
 }

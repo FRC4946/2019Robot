@@ -33,9 +33,9 @@ public class ClimberDefault extends Command {
   @Override
   protected void execute() {
 
-    if (Robot.m_oi.getOperatorStick().getPOV() == 90) {
-      Robot.m_climber.setBack(0.5);
-    } else if (Robot.m_oi.getOperatorStick().getPOV() == 270) {
+    if (Robot.m_oi.getDriveStick().getPOV() == 90) {
+      Robot.m_climber.setBack(-0.5);
+    } else if (Robot.m_oi.getDriveStick().getPOV() == 270) {
       Robot.m_climber.setFront(-0.5);
     } else {
       

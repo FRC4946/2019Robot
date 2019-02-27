@@ -40,7 +40,7 @@ public class JoystickDrive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-
+/*
     if(Robot.m_oi.getDriveStick().getPOV() == 0) {
 
       isSidewaysStrafing = false;
@@ -67,8 +67,9 @@ public class JoystickDrive extends Command {
       }
       Robot.m_driveTrain.mecanumDrive(0, -0.6, m_gyroController.get()*0.8 - 0.01);
 
+      
     } else {
-
+      */
       isSidewaysStrafing = false;
       Robot.m_driveTrain.mecanumDrive(
         Utilities.deadzone(-Robot.m_oi.getDriveStick().getRawAxis(1), 
@@ -77,7 +78,7 @@ public class JoystickDrive extends Command {
           Math.abs(0.2*Robot.m_oi.getDriveStick().getRawAxis(1)) + RobotConstants.DEFAULT_DEADZONE),
         Utilities.deadzone(Robot.m_oi.getDriveStick().getRawAxis(4),
           RobotConstants.DEFAULT_DEADZONE));
-    }
+    //}
   }
 
   // Make this return true when this Command no longer needs to run execute()
