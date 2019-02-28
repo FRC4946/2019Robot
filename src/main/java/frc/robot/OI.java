@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.climber.LiftRobot;
+import frc.robot.commands.climber.LiftRobotPosition;
 import frc.robot.commands.climber.LiftRobotVelocity;
 import frc.robot.commands.climber.SetBackClimber;
 import frc.robot.commands.climber.SetClimberHeight;
@@ -78,12 +79,15 @@ public class OI {
     m_BButton.whenPressed(new MoveToHeight(RobotConstants.ELEVATOR_LEVEL_2_ROCKET, 0.8));
     m_YButton.whenPressed(new MoveToHeight(RobotConstants.ELEVATOR_LEVEL_3_ROCKET, 0.8));*/
 
-    m_AButton.whileHeld(new LiftRobotVelocity(3000));
-    m_YButton.whileHeld(new LiftRobotVelocity(-3000));
+    m_AButton.whileHeld(new LiftRobotPosition(20, 3000));
+    m_YButton.whileHeld(new LiftRobotPosition(0, 3000));
 
-    m_RBButton.whileHeld(new SetElbowSpeed(0.2));
-    m_LBButton.whileHeld(new SetElbowSpeed(-0.2));
-    m_XButton.whileHeld(new SetBackClimber(0.3));
-    m_BButton.whileHeld(new SetBackClimber(-0.3));
+    m_RBButton.whileHeld(new LiftRobotVelocity(3000));
+    m_LBButton.whileHeld(new LiftRobotVelocity(-3000));
+    m_StartButton.whileHeld(new LiftRobotPosition(40, 3000));
+    //m_ViewButton.whileHeld(new SetElbowSpeed(0.2));
+    m_XButton.whileHeld(new LiftRobot(0.2));
+    m_BButton.whileHeld(new LiftRobot(-0.2));
+
   }
 }

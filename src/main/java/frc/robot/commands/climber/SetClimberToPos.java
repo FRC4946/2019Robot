@@ -32,16 +32,16 @@ public class SetClimberToPos extends PIDCommand {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() { 
-    m_front = new PIDController(0.0, 0.0, 0.0, m_frontSource, new DummyPIDOutput());
+    m_front = new PIDController(0.2, 0.0, 0.0, m_frontSource, new DummyPIDOutput());
     m_front.setAbsoluteTolerance(2);
     m_front.setContinuous(false);
 
-    m_back = new PIDController(0.0, 0.0, 0.0, m_backSource, new DummyPIDOutput());
+    m_back = new PIDController(0.1, 0.0, 0.0, m_backSource, new DummyPIDOutput());
     m_back.setAbsoluteTolerance(2);
     m_back.setContinuous(false);
 
     m_front.setSetpoint(m_pos);
-    m_back.setSetpoint(m_pos + RobotConstants.CLIMBER_OFFSET);
+    m_back.setSetpoint(m_pos);
   }
 
   // Called repeatedly when this Command is scheduled to run

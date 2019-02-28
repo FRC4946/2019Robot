@@ -41,7 +41,6 @@ public class LiftRobotVelocity extends Command {
   protected void execute() {
     Robot.m_climber.getFrontPIDController().setReference(m_velocity, ControlType.kVelocity);
     Robot.m_climber.getBackPIDController().setReference(m_velocity + (Robot.m_climber.getFrontClimberHeight() - Robot.m_climber.getBackClimberHeight()) * 30, ControlType.kVelocity);
-    System.out.println("output" + Robot.m_climber.getFrontClimberHeight());
   }
 
   // Make this return true when this Command no longer needs to run execute()

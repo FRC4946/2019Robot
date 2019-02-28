@@ -84,27 +84,37 @@ public class RobotConstants {
   public static double PID_ELEVATOR_MOVE_TO_HEIGHT_I = 0.0;
   public static double PID_ELEVATOR_MOVE_TO_HEIGHT_D = 0.0;
 
-  public static double PID_CLIMBER_POSITION_P = 0.0; //0.005
-  public static double PID_CLIMBER_POSITION_I = 0.0; //0.00004
+  public static double PID_CLIMBER_POSITION_P = 0; //0.005
+  public static double PID_CLIMBER_POSITION_I = 0.0; //000004
   public static double PID_CLIMBER_POSITION_D = 0.0; //0.01
+  public static double PID_CLIMBER_POSITION_FF = 200000;
 
-  public static double PID_CLIMBER_FRONT_POSITION_P = 0.0;
-  public static double PID_CLIMBER_FRONT_POSITION_I = 0.0;
-  public static double PID_CLIMBER_FRONT_POSITION_D = 0.0;
+  public static double PID_CLIMBER_FRONT_POSITION_P = 0;
+  public static double PID_CLIMBER_FRONT_POSITION_I = 0;
+  public static double PID_CLIMBER_FRONT_POSITION_D = 0.00;
+  public static double PID_CLIMBER_FRONT_POSITION_FF = 200000;
   
-  public static double PID_CLIMBER_VELOCITY_P = 0.0001365; //0.0005
+  public static double PID_CLIMBER_DOWN_POSITION_P = 0; //0.005
+  public static double PID_CLIMBER_DOWN_POSITION_I = 0.0; //0.00004
+  public static double PID_CLIMBER_DOWN_POSITION_D = 0.0; //0.01
+
+  public static double PID_CLIMBER_FRONT_DOWN_POSITION_P = 0;
+  public static double PID_CLIMBER_FRONT_DOWN_POSITION_I = 0.0;
+  public static double PID_CLIMBER_FRONT_DOWN_POSITION_D = 0.0;
+
+  public static double PID_CLIMBER_VELOCITY_P = 0.0001365; //0.0001365
   public static double PID_CLIMBER_VELOCITY_I = 0.0;
   public static double PID_CLIMBER_VELOCITY_D = 0.0;
 
-  public static double PID_CLIMBER_FRONT_VELOCITY_P = 0.005; //0.00075
+  public static double PID_CLIMBER_FRONT_VELOCITY_P = 0.005; //0.005
   public static double PID_CLIMBER_FRONT_VELOCITY_I = 0.0;
   public static double PID_CLIMBER_FRONT_VELOCITY_D = 0.0;
 
-  public static double PID_CLIMBER_DOWN_VELOCITY_P = 0.00028;
+  public static double PID_CLIMBER_DOWN_VELOCITY_P = 0.00028; //0.00028
   public static double PID_CLIMBER_DOWN_VELOCITY_I = 0.0;
   public static double PID_CLIMBER_DOWN_VELOCITY_D = 0.0;
 
-  public static double PID_CLIMBER_FRONT_DOWN_VELOCITY_P = 0.00025; //0.000225
+  public static double PID_CLIMBER_FRONT_DOWN_VELOCITY_P = 0.00025; //0.00025
   public static double PID_CLIMBER_FRONT_DOWN_VELOCITY_I = 0.0;
   public static double PID_CLIMBER_FRONT_DOWN_VELOCITY_D = 0.0;
 
