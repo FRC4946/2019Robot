@@ -12,11 +12,10 @@ import frc.robot.Robot;
 
 public class LiftRobot extends Command {
 
-  private double m_speed;
+  private double m_frontSpeed, m_backSpeed;
 
-  public LiftRobot(double climberSpeed) {
+  public LiftRobot() {
     requires(Robot.m_climber);
-    m_speed = climberSpeed;
   }
 
   // Called just before this Command runs the first time
@@ -27,13 +26,34 @@ public class LiftRobot extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_climber.setClimber(m_speed);
+
+    if(Robot.m_oi.getOperatorStick().getPOV() == 0) {
+
+      Robot.m_climber.setFront(0.4);
+      Robot.m_climber.setBack(0.3);
+
+    } else if (Robot.m_oi.getOperatorStick().getPOV() == 90) {
+
+      Robot.m_climber.setFront(-0.2);
+
+    } else if (Robot.m_oi.getOperatorStick().getPOV() == 180) {
+
+      Robot.m_climber.setFront(-0.2);
+      Robot.m_climber.setBack(-0.45);
+
+    } else if (Robot.m_oi.getOperatorStick().getPOV() == 270) {
+
+      Robot.m_climber.setBack(-0.45);
+
+    } else {
+      Robot.m_climber.setClimber(0);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return Robot.m_climber.isClimberTopped();
   }
 
   // Called once after isFinished returns true

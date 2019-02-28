@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.DummyPIDOutput;
 import frc.robot.PIDSourceEnc;
+import frc.robot.PIDSourceGyro;
 import frc.robot.Robot;
 import frc.robot.RobotConstants;
 
@@ -143,12 +144,13 @@ public class LiftRobotPosition extends Command {
 
     if(m_direction == 1) {
 
-      if (m_frontHeight < m_desiredPos - 2) {
+      if (m_frontHeight < m_desiredPos - 3) {
         m_frontPosPIDGet = m_frontPosPID.get() 
-        + m_direction*Math.sqrt(2*RobotConstants.PID_CLIMBER_FRONT_POSITION_FF*Math.abs(m_desiredPos - 1 - m_frontHeight));
-      } else if(m_desiredPos < m_frontHeight - 1) { 
+          + m_direction*Math.sqrt(2*(RobotConstants.PID_CLIMBER_FRONT_POSITION_FF + 500*(m_desiredPos - 30))*Math.abs(m_desiredPos - 1 - m_frontHeight));
+      } else if(m_desiredPos < m_frontHeight) { 
         m_frontPosPIDGet = 0;
-      }
+        m_frontPosPID.disable();
+      } 
 
       if(m_desiredPos + 2 < m_backHeight) {
         m_backPosPIDGet = 0;
@@ -186,7 +188,6 @@ public class LiftRobotPosition extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-
     return m_frontPosPID.onTarget() && m_backPosPID.onTarget();
   }
 

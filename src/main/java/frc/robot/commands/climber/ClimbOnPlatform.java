@@ -27,6 +27,5 @@ public class ClimbOnPlatform extends CommandGroup {
     addSequential(new SetClimberHeight(height, boardingSpeed), 5.0);
     addSequential(new SetDriveTrain(0));
     addSequential(new SetIntakeSpeed(0));
-    addSequential(new LiftRobot(0));
   }
 }

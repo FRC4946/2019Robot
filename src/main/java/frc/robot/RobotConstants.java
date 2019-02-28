@@ -91,8 +91,8 @@ public class RobotConstants {
 
   public static double PID_CLIMBER_FRONT_POSITION_P = 0;
   public static double PID_CLIMBER_FRONT_POSITION_I = 0;
-  public static double PID_CLIMBER_FRONT_POSITION_D = 0.00;
-  public static double PID_CLIMBER_FRONT_POSITION_FF = 200000;
+  public static double PID_CLIMBER_FRONT_POSITION_D = 0.0;
+  public static double PID_CLIMBER_FRONT_POSITION_FF = 150000;
   
   public static double PID_CLIMBER_DOWN_POSITION_P = 0; //0.005
   public static double PID_CLIMBER_DOWN_POSITION_I = 0.0; //0.00004
@@ -107,8 +107,8 @@ public class RobotConstants {
   public static double PID_CLIMBER_VELOCITY_D = 0.0;
 
   public static double PID_CLIMBER_FRONT_VELOCITY_P = 0.005; //0.005
-  public static double PID_CLIMBER_FRONT_VELOCITY_I = 0.0;
-  public static double PID_CLIMBER_FRONT_VELOCITY_D = 0.0;
+  public static double PID_CLIMBER_FRONT_VELOCITY_I = 0.0000001; //0.0000001
+  public static double PID_CLIMBER_FRONT_VELOCITY_D = 0.000001; //0.000001
 
   public static double PID_CLIMBER_DOWN_VELOCITY_P = 0.00028; //0.00028
   public static double PID_CLIMBER_DOWN_VELOCITY_I = 0.0;

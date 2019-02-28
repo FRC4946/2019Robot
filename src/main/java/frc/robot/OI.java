@@ -15,6 +15,8 @@ import frc.robot.commands.climber.LiftRobotPosition;
 import frc.robot.commands.climber.LiftRobotVelocity;
 import frc.robot.commands.climber.SetBackClimber;
 import frc.robot.commands.climber.SetClimberHeight;
+import frc.robot.commands.climber.SetFrontClimber;
+import frc.robot.commands.drivetrain.SetDriveTrain;
 import frc.robot.commands.elevator.MoveToHeight;
 import frc.robot.commands.elevator.MoveToLowHeight;
 import frc.robot.commands.elevator.SetElevatorToAboveElbow;
@@ -72,22 +74,23 @@ public class OI {
   //TODO: CLIMBER LIM SWITCHES NORMALLY CLOSED
 
   public OI() { 
-    // TODO: Bind buttons to commands
-    /*
-    m_AButton.whenPressed(new MoveToLowHeight());
-    m_XButton.whenPressed(new SetElevatorToAboveElbow()); 
-    m_BButton.whenPressed(new MoveToHeight(RobotConstants.ELEVATOR_LEVEL_2_ROCKET, 0.8));
-    m_YButton.whenPressed(new MoveToHeight(RobotConstants.ELEVATOR_LEVEL_3_ROCKET, 0.8));*/
+    //----- operator stick
+    m_YButtonOperator.whileHeld(new MoveToHeight(RobotConstants.ELEVATOR_LEVEL_3_ROCKET, 0.8));
+    m_BButtonOperator.whileHeld(new MoveToHeight(RobotConstants.ELEVATOR_LEVEL_2_ROCKET, 0.8));
+    m_XButtonOperator.whileHeld(new SetElevatorToAboveElbow());
+    m_AButtonOperator.whileHeld(new MoveToLowHeight());
 
-    m_AButton.whileHeld(new LiftRobotPosition(20, 3000));
-    m_YButton.whileHeld(new LiftRobotPosition(0, 3000));
+    m_LBButtonOperator.whileHeld(new SetDriveTrain(0.2));
+    m_RBButtonOperator.whileHeld(new SetDriveTrain(-0.2));
 
-    m_RBButton.whileHeld(new LiftRobotVelocity(3000));
-    m_LBButton.whileHeld(new LiftRobotVelocity(-3000));
-    m_StartButton.whileHeld(new LiftRobotPosition(40, 3000));
-    //m_ViewButton.whileHeld(new SetElbowSpeed(0.2));
-    m_XButton.whileHeld(new LiftRobot(0.2));
-    m_BButton.whileHeld(new LiftRobot(-0.2));
+    //----- driver stick
+    m_LBButton.whileHeld(new SetElbowSpeed(0.2));
+    m_RBButton.whileHeld(new SetElbowSpeed(-0.2));
 
+    m_XButton.whileHeld(new SetArmToPos(RobotConstants.GRABBER_ARM_OUT, 0.8));
+    m_BButton.whileHeld(new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_HATCH, 0.8));
+
+    m_YButton.whileHeld(new SetGrabber(false, 0.8));
+    m_AButton.whileHeld(new SetGrabber(true, 0.8));
   }
 }
