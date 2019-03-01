@@ -27,6 +27,7 @@ public class RobotConstants {
   public static final double ELEVATOR_AT_MAX = 8.0;
   public static final double ELEVATOR_AT_BOTTOM = 1.07;
   public static final double ELEVATOR_AT_MIN = 0.88;
+  public static final double ELEVATOR_NO_CONFLICT_GRABBER = 2.8;
   public static final double ELEVATOR_NO_CONFLICT_HEIGHT = 2.3; //elbow 
   public static final double ELEVATOR_RIGHT_ABOVE_ELBOW = 2.2;
   public static final double ELEVATOR_LEVEL_2_ROCKET = 4.65;
@@ -39,7 +40,7 @@ public class RobotConstants {
   public static final double INTAKE_POT_OFFSET = 1664.0;
 
   public static final double GRABBER_ARM_OUT = 5.45;
-  public static final double GRABBER_ARM_HOLD_HATCH = 3.29;
+  public static final double GRABBER_ARM_HOLD_HATCH = 3.4;
   public static final double GRABBER_ARM_HOLD_BALL = 2.56;
   public static final double GRABBER_ARM_IN = 2.34;
   public static final double GRABBER_ARM_SCALING_VALUE = 10.0;

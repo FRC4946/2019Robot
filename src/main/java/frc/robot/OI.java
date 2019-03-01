@@ -10,19 +10,14 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.climber.LiftRobot;
-import frc.robot.commands.climber.LiftRobotPosition;
-import frc.robot.commands.climber.LiftRobotVelocity;
-import frc.robot.commands.climber.SetBackClimber;
-import frc.robot.commands.climber.SetClimberHeight;
-import frc.robot.commands.climber.SetFrontClimber;
 import frc.robot.commands.drivetrain.SetDriveTrain;
+import frc.robot.commands.drivetrain.StrafeToTarget;
 import frc.robot.commands.elevator.MoveToHeight;
 import frc.robot.commands.elevator.MoveToLowHeight;
 import frc.robot.commands.elevator.SetElevatorToAboveElbow;
-import frc.robot.commands.grabber.SetGrabber;
-import frc.robot.commands.grabber.SetGrabberAndArm;
+import frc.robot.commands.grabber.ToggleGrabber;
 import frc.robot.commands.grabberarm.SetArmToPos;
+import frc.robot.commands.intake.SetIntakeSpeed;
 import frc.robot.commands.intakeelbow.SetElbowSpeed;
 
 /**
@@ -75,22 +70,24 @@ public class OI {
 
   public OI() { 
     //----- operator stick
-    m_YButtonOperator.whileHeld(new MoveToHeight(RobotConstants.ELEVATOR_LEVEL_3_ROCKET, 0.8));
-    m_BButtonOperator.whileHeld(new MoveToHeight(RobotConstants.ELEVATOR_LEVEL_2_ROCKET, 0.8));
-    m_XButtonOperator.whileHeld(new SetElevatorToAboveElbow());
-    m_AButtonOperator.whileHeld(new MoveToLowHeight());
+    m_YButtonOperator.whenPressed(new MoveToHeight(RobotConstants.ELEVATOR_LEVEL_3_ROCKET, 0.8));
+    m_BButtonOperator.whenPressed(new MoveToHeight(RobotConstants.ELEVATOR_LEVEL_2_ROCKET, 0.8));
+    m_XButtonOperator.whenPressed(new SetElevatorToAboveElbow());
+    m_AButtonOperator.whenPressed(new MoveToLowHeight());
 
     m_LBButtonOperator.whileHeld(new SetDriveTrain(0.2));
+    m_LBButtonOperator.whileHeld(new SetIntakeSpeed(-0.99));
     m_RBButtonOperator.whileHeld(new SetDriveTrain(-0.2));
+    m_RBButtonOperator.whileHeld(new SetDriveTrain(0.99));
 
     //----- driver stick
-    m_LBButton.whileHeld(new SetElbowSpeed(0.2));
-    m_RBButton.whileHeld(new SetElbowSpeed(-0.2));
+    m_AButton.whileHeld(new SetElbowSpeed(0.2));
+    m_YButton.whileHeld(new SetElbowSpeed(-0.2));
 
-    m_XButton.whileHeld(new SetArmToPos(RobotConstants.GRABBER_ARM_OUT, 0.8));
-    m_BButton.whileHeld(new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_HATCH, 0.8));
+    m_XButton.whenPressed(new SetArmToPos(RobotConstants.GRABBER_ARM_OUT, 0.6));
+    m_BButton.whenPressed(new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_HATCH, 0.6));
 
-    m_YButton.whileHeld(new SetGrabber(false, 0.8));
-    m_AButton.whileHeld(new SetGrabber(true, 0.8));
+    m_LBButton.whenPressed(new StrafeToTarget());
+    m_RBButton.whenPressed(new ToggleGrabber(0.8));
   }
 }

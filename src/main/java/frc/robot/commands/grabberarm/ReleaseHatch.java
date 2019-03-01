@@ -11,19 +11,12 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.RobotConstants;
 import frc.robot.commands.grabber.SetGrabber;
 
-public class ActuateArmAndSetGrabber extends CommandGroup {
+public class ReleaseHatch extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public ActuateArmAndSetGrabber(boolean setIn, double speed) {
-    
-    //note: .cancel() feature should be available??
-
-    if(setIn) {
-      addParallel(new SetArmToPos(RobotConstants.GRABBER_ARM_OUT, speed));
-      addSequential(new SetGrabber(true, speed));
-    } else {
-      addSequential(new SetGrabber(false, speed));
-    }
+  public ReleaseHatch() {
+    addSequential(new SetArmToPos(RobotConstants.GRABBER_ARM_OUT, 0.8), 1.5);
+    addSequential(new SetGrabber(true, 0.8), 2.0);
   }
 }

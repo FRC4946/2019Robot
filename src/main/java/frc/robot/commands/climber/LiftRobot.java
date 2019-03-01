@@ -34,7 +34,7 @@ public class LiftRobot extends Command {
 
     } else if (Robot.m_oi.getOperatorStick().getPOV() == 90) {
 
-      Robot.m_climber.setFront(-0.2);
+      Robot.m_climber.setFront(-0.5);
 
     } else if (Robot.m_oi.getOperatorStick().getPOV() == 180) {
 
@@ -43,7 +43,7 @@ public class LiftRobot extends Command {
 
     } else if (Robot.m_oi.getOperatorStick().getPOV() == 270) {
 
-      Robot.m_climber.setBack(-0.45);
+      Robot.m_climber.setBack(-0.5);
 
     } else {
       Robot.m_climber.setClimber(0);
@@ -53,7 +53,7 @@ public class LiftRobot extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Robot.m_climber.isClimberTopped();
+    return false;
   }
 
   // Called once after isFinished returns true

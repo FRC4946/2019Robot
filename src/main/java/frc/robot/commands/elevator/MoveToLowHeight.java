@@ -8,18 +8,15 @@
 package frc.robot.commands.elevator;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj.command.WaitCommand;
 import frc.robot.RobotConstants;
-import frc.robot.commands.elevator.MoveToHeight;
-import frc.robot.commands.intakeelbow.SetIntakePos;
+import frc.robot.commands.grabberarm.SetArmToPos;
 
 public class MoveToLowHeight extends CommandGroup {
   /**
    * Add your docs here.
    */
   public MoveToLowHeight() { 
-    addSequential(new MoveToHeight(RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT + 0.5, 0.4), 2.0);
-    addSequential(new SetIntakePos(RobotConstants.INTAKE_POT_BALL_HEIGHT, 0.3), 2.0);
+    addSequential(new MoveToHeight(RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT + 0.3, 0.4), 2.0);
     addSequential(new MoveToHeight(RobotConstants.ELEVATOR_AT_MIN + 0.05, 0.4), 4.0); 
   }
 }

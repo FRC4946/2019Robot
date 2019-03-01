@@ -10,12 +10,12 @@ package frc.robot.commands.elevator;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotConstants;
+import frc.robot.commands.grabber.SetGrabber;
 import frc.robot.commands.grabberarm.SetArmToPos;
 import frc.robot.commands.intakeelbow.SetIntakePos;
 
 public class MoveToHeight extends Command {
   
-  boolean isBelowConflict;
   double m_height, m_speed, m_speedInit;
 
   public MoveToHeight(double height, double speed) {
@@ -30,7 +30,6 @@ public class MoveToHeight extends Command {
   @Override
   protected void initialize() {
 
-    isBelowConflict = Robot.m_elevator.getHeight() < RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT;
     m_speedInit = m_speed;
     m_speedInit *= Math.signum(m_height - Robot.m_elevator.getHeight());
 
@@ -38,6 +37,7 @@ public class MoveToHeight extends Command {
     if(m_speedInit < 0) {
       m_speedInit *= 0.45;
     }
+
 
     if(m_height < RobotConstants.ELEVATOR_RIGHT_ABOVE_ELBOW) {
       if(Math.abs(Robot.m_intakeElbow.getPos() - RobotConstants.INTAKE_POT_BALL_HEIGHT) > 10) {
@@ -49,35 +49,29 @@ public class MoveToHeight extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() { 
-    
+
     if(m_height >= RobotConstants.ELEVATOR_RIGHT_ABOVE_ELBOW && Robot.m_elevator.getHeight() <= RobotConstants.ELEVATOR_RIGHT_ABOVE_ELBOW
       && m_speedInit < 0) {
       Robot.m_elevator.setElevator(0);
     } else {
       Robot.m_elevator.setElevator(m_speedInit);
     }
-
-    if(isBelowConflict != Robot.m_elevator.getHeight() < RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT) {
      
-      if(Robot.m_elevator.getHeight() >= RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT && m_speedInit > 0) {
+    if(Robot.m_elevator.getHeight() >= RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT + 0.5) {
+        
+      if(Math.abs(Robot.m_intakeElbow.getPos() - RobotConstants.INTAKE_POT_UP) > 30) {
+        new SetIntakePos(RobotConstants.INTAKE_POT_UP, 0.3).start(); 
+      } 
 
-        if(Math.abs(Robot.m_grabberArm.getPos() - RobotConstants.GRABBER_ARM_HOLD_HATCH) > 0.2) {
-          new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_HATCH, 0.8).start();
-        }
+    } else if (Robot.m_elevator.getHeight() < (RobotConstants.ELEVATOR_RIGHT_ABOVE_ELBOW-0.2)) {
 
-        if(Math.abs(Robot.m_intakeElbow.getPos() - RobotConstants.INTAKE_POT_UP) > 30) {
-          new SetIntakePos(RobotConstants.INTAKE_POT_UP, 0.3).start(); 
-        } 
-
-      } else if (Robot.m_elevator.getHeight() < RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT 
-        && m_speedInit < 0 && m_height < RobotConstants.ELEVATOR_RIGHT_ABOVE_ELBOW) {
-
-        if(Math.abs(Robot.m_grabberArm.getPos() - RobotConstants.GRABBER_ARM_HOLD_BALL) > 0.2) {
-          new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_BALL, 0.8).start();
-        }
+      if (Robot.m_grabber.getGrabberOut()) {
+        new SetGrabber(true, 0.8).start();
       }
 
-      isBelowConflict = !isBelowConflict;
+      if(Math.abs(Robot.m_grabberArm.getPos() - RobotConstants.GRABBER_ARM_HOLD_BALL) > 0.1) {
+        new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_BALL, 0.8).start();
+      }
     }
   }
 

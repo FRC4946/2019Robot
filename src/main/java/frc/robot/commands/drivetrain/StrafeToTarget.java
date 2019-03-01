@@ -10,6 +10,7 @@ package frc.robot.commands.drivetrain;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.command.PIDCommand;
+import frc.robot.DummyPIDOutput;
 import frc.robot.Robot;
 import frc.robot.RobotConstants;
 
@@ -18,7 +19,7 @@ import frc.robot.RobotConstants;
 public class StrafeToTarget extends PIDCommand {
   
   PIDController gyroController;
-  DummyOutput dummyOutput;
+  DummyPIDOutput dummyOutput;
 
   public StrafeToTarget() {
 
@@ -26,10 +27,10 @@ public class StrafeToTarget extends PIDCommand {
       RobotConstants.PID_STRAFE_TO_TARGET_I, RobotConstants.PID_STRAFE_TO_TARGET_D);
 
     requires(Robot.m_driveTrain);
-
+    
     gyroController = new PIDController(RobotConstants.PID_STRAFE_TO_TARGET_GYRO_P, 
       RobotConstants.PID_STRAFE_TO_TARGET_GYRO_I, RobotConstants.PID_STRAFE_TO_TARGET_GYRO_D, 
-      Robot.m_driveTrain.getGyro(), new DummyOutput());
+      Robot.m_driveTrain.getGyro(), new DummyPIDOutput()); 
     gyroController.setInputRange(0, 360.0);
     gyroController.setContinuous(true);
     gyroController.setOutputRange(-0.3, 0.3);
@@ -83,14 +84,6 @@ public class StrafeToTarget extends PIDCommand {
 
   @Override
   public void usePIDOutput(double output) {
-    Robot.m_driveTrain.mecanumDrive(0.0, -output, gyroController.get());
-  }
-}
-
-class DummyOutput implements PIDOutput {
-  
-  @Override
-  public void pidWrite(double output) {
-    //whatever
+    Robot.m_driveTrain.mecanumDrive(0.0, output, 0.0);
   }
 }

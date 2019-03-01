@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotConstants;
 import frc.robot.RobotMap;
+import frc.robot.commands.intakeelbow.SetElbowJoystick;
 
 /**
  * Add your docs here.
@@ -63,7 +64,7 @@ public class IntakeElbow extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-
+    setDefaultCommand(new SetElbowJoystick()); 
   }
 }
 

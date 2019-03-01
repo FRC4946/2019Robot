@@ -9,6 +9,7 @@ package frc.robot.commands.intakeelbow;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotConstants;
 
 public class SetElbowSpeed extends Command {
 
@@ -27,6 +28,12 @@ public class SetElbowSpeed extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    /*
+    if(Robot.m_intakeElbow.getPos() >= RobotConstants.INTAKE_POT_UP) {
+      Robot.m_intakeElbow.setElbow(0);
+    } else {
+      Robot.m_intakeElbow.setElbow(m_speed);
+    }*/
     Robot.m_intakeElbow.setElbow(m_speed);
   }
 

@@ -19,6 +19,7 @@ public class SetIntakePos extends Command {
     requires(Robot.m_intakeElbow);
     m_desiredPos = desiredPos;
     m_speed = Math.abs(speed);
+    this.setTimeout(2.5);
   }
 
   // Called just before this Command runs the first time

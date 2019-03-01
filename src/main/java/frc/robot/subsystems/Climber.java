@@ -15,7 +15,8 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.climber.ClimberDefault;;
+import frc.robot.commands.climber.ClimberDefault;
+import frc.robot.commands.climber.LiftRobot;;
 
 /**
  * Climber subsystem
@@ -151,6 +152,6 @@ public class Climber extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new ClimberDefault());
+    setDefaultCommand(new LiftRobot()); 
   }
 } 

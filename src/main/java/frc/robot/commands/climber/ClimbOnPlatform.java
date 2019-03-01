@@ -18,13 +18,11 @@ public class ClimbOnPlatform extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public ClimbOnPlatform(double height, double boardingSpeed) {
+  public ClimbOnPlatform() {
 
-    addSequential(new SetClimberHeight(height, boardingSpeed), 5.0);
-    addParallel(new SetIntakePos(RobotConstants.INTAKE_POT_DOWN, 0.3), 2.0);
-    addParallel(new SetIntakeSpeed(boardingSpeed), 6.0);
-    addParallel(new SetDriveTrain(boardingSpeed), 6.0);
-    addSequential(new SetClimberHeight(height, boardingSpeed), 5.0);
+    addSequential(new SetIntakePos(RobotConstants.INTAKE_POT_DOWN, 0.3), 2.0);
+    addSequential(new SetIntakeSpeed(0.99), 6.0);
+    addSequential(new SetDriveTrain(0.15), 6.0);
     addSequential(new SetDriveTrain(0));
     addSequential(new SetIntakeSpeed(0));
   }
