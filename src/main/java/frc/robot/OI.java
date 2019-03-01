@@ -14,6 +14,7 @@ import frc.robot.commands.drivetrain.SetDriveTrain;
 import frc.robot.commands.drivetrain.StrafeToTarget;
 import frc.robot.commands.elevator.MoveToHeight;
 import frc.robot.commands.elevator.MoveToLowHeight;
+import frc.robot.commands.elevator.OverrideElevator;
 import frc.robot.commands.elevator.SetElevatorToAboveElbow;
 import frc.robot.commands.grabber.ToggleGrabber;
 import frc.robot.commands.grabberarm.SetArmToPos;
@@ -74,6 +75,7 @@ public class OI {
     m_BButtonOperator.whenPressed(new MoveToHeight(RobotConstants.ELEVATOR_LEVEL_2_ROCKET, 0.8));
     m_XButtonOperator.whenPressed(new SetElevatorToAboveElbow());
     m_AButtonOperator.whenPressed(new MoveToLowHeight());
+    //m_LeftStickButtonOperator.whenPressed(new OverrideElevator());
 
     m_LBButtonOperator.whileHeld(new SetDriveTrain(0.2));
     m_LBButtonOperator.whileHeld(new SetIntakeSpeed(-0.99));
