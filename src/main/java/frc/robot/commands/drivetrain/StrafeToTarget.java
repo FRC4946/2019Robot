@@ -84,6 +84,6 @@ public class StrafeToTarget extends PIDCommand {
 
   @Override
   public void usePIDOutput(double output) {
-    Robot.m_driveTrain.mecanumDrive(0.0, output, 0.0);
+    Robot.m_driveTrain.mecanumDrive(0.0, -output, 0.0);
   }
 }
