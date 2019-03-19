@@ -10,6 +10,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.climber.SetBackClimber;
+import frc.robot.commands.climber.SetFrontClimber;
 import frc.robot.commands.drivetrain.SetDriveTrain;
 import frc.robot.commands.drivetrain.StrafeToTarget;
 import frc.robot.commands.elevator.MoveToHeight;
@@ -77,10 +79,13 @@ public class OI {
     m_AButtonOperator.whenPressed(new MoveToLowHeight());
     //m_LeftStickButtonOperator.whenPressed(new OverrideElevator());
 
-    m_LBButtonOperator.whileHeld(new SetDriveTrain(0.2));
-    m_LBButtonOperator.whileHeld(new SetIntakeSpeed(-0.99));
-    m_RBButtonOperator.whileHeld(new SetDriveTrain(-0.2));
-    m_RBButtonOperator.whileHeld(new SetIntakeSpeed(0.99));
+    //m_LBButtonOperator.whileHeld(new SetDriveTrain(0.2));
+    //m_LBButtonOperator.whileHeld(new SetIntakeSpeed(-0.99));
+    //m_RBButtonOperator.whileHeld(new SetDriveTrain(-0.2));
+    //m_RBButtonOperator.whileHeld(new SetDriveTrain(0.99));
+
+    m_LBButtonOperator.whileHeld(new SetBackClimber(0.4));
+    m_RBButtonOperator.whileHeld(new SetFrontClimber(0.3));
 
     //----- driver stick
     m_AButton.whileHeld(new SetElbowSpeed(0.2));
@@ -89,7 +94,7 @@ public class OI {
     m_XButton.whenPressed(new SetArmToPos(RobotConstants.GRABBER_ARM_OUT, 0.6));
     m_BButton.whenPressed(new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_HATCH, 0.6));
 
-    m_LBButton.whenPressed(new StrafeToTarget());
+    m_LBButton.whileHeld(new StrafeToTarget());
     m_RBButton.whenPressed(new ToggleGrabber(0.8));
   }
 }
