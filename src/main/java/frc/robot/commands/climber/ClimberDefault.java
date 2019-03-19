@@ -22,11 +22,6 @@ public class ClimberDefault extends Command {
   @Override
   protected void initialize() {
   
-    Robot.m_climber.getFrontPIDController().setOutputRange(-0.4, 0.4);
-    Robot.m_climber.getBackPIDController().setOutputRange(-0.4, 0.4);
-    Robot.m_climber.setFrontPIDController(0.2, 0.0, 0.0);
-    Robot.m_climber.setBackPIDController(0.2, 0.0, 0.0);
-  
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -39,13 +34,6 @@ public class ClimberDefault extends Command {
       Robot.m_climber.setFront(-0.5);
     } else {
       
-      /*
-      if (Robot.m_climber.getFrontClimberHeight() < 7 && Robot.m_climber.getBackClimberHeight() < 7) {
-        Robot.m_climber.getFrontPIDController().setReference(6, ControlType.kPosition);
-        Robot.m_climber.getBackPIDController().setReference(6 + RobotConstants.CLIMBER_OFFSET, ControlType.kPosition);
-      } else {
-        Robot.m_climber.stopClimber();
-      }*/
       Robot.m_climber.stopClimber();
     }
   }

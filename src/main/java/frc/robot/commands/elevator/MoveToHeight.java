@@ -8,6 +8,7 @@
 package frc.robot.commands.elevator;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.Robot;
 import frc.robot.RobotConstants;
 import frc.robot.commands.grabber.SetGrabber;
@@ -69,7 +70,7 @@ public class MoveToHeight extends Command {
         new SetGrabber(true, 0.8).start();
       }
 
-      if(Math.abs(Robot.m_grabberArm.getPos() - RobotConstants.GRABBER_ARM_HOLD_BALL) > 0.1) {
+      if(Math.abs(Robot.m_grabberArm.getPos() - RobotConstants.GRABBER_ARM_HOLD_BALL) > 0.2) {
         new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_BALL, 0.8).start();
       }
     }

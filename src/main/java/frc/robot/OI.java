@@ -80,7 +80,7 @@ public class OI {
     m_LBButtonOperator.whileHeld(new SetDriveTrain(0.2));
     m_LBButtonOperator.whileHeld(new SetIntakeSpeed(-0.99));
     m_RBButtonOperator.whileHeld(new SetDriveTrain(-0.2));
-    m_RBButtonOperator.whileHeld(new SetDriveTrain(0.99));
+    m_RBButtonOperator.whileHeld(new SetIntakeSpeed(0.99));
 
     //----- driver stick
     m_AButton.whileHeld(new SetElbowSpeed(0.2));

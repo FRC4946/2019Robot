@@ -13,6 +13,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
@@ -50,13 +51,13 @@ public class DriveTrain extends Subsystem {
     m_rightBackEnc.setDistancePerPulse(RobotConstants.ENC_DIST_PER_PULSE);
 
     m_mecanumDrive = new MecanumDrive(m_leftFront, m_rightFront, m_leftBack, m_rightBack);
-    m_gyro = new AHRS(Port.kMXP);
+    m_gyro = new AHRS(SPI.Port.kMXP);
+
    }
 
   @Override
   public void initDefaultCommand() {
     setDefaultCommand(new JoystickDrive()); 
-    //setDefaultCommand(new SetDriveTrain(0));
   }
 
   /**

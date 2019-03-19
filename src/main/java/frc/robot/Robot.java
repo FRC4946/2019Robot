@@ -52,12 +52,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    
     m_robotPrefs = Preferences.getInstance();
 
     initializeSmartDashboard();
     RobotConstants.repopulatePrefs(m_robotPrefs);
-    
-    m_climber.resetEncs();
   }
 
   /**

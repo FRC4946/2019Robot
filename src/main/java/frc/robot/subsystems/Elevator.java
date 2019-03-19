@@ -29,10 +29,10 @@ public class Elevator extends Subsystem {
 
   public Elevator (){
 
-  m_elevatorMotor = new CANSparkMax(RobotMap.CAN_SPARK_ELEVATOR, MotorType.kBrushless);
+    m_elevatorMotor = new CANSparkMax(RobotMap.CAN_SPARK_ELEVATOR, MotorType.kBrushless);
     m_analogPot = new AnalogPotentiometer(RobotMap.ANALOG_ELEVATOR_POT, 
-  RobotConstants.ELEVATOR_SCALING_VALUE, RobotConstants.ELEVATOR_OFFSET_VALUE);
-  m_analogPot.setPIDSourceType(PIDSourceType.kDisplacement);
+      RobotConstants.ELEVATOR_SCALING_VALUE, RobotConstants.ELEVATOR_OFFSET_VALUE);
+    m_analogPot.setPIDSourceType(PIDSourceType.kDisplacement);
   }
 
   @Override

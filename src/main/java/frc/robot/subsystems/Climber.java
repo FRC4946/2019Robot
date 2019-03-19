@@ -12,10 +12,10 @@ import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotConstants;
 import frc.robot.RobotMap;
-import frc.robot.commands.climber.ClimberDefault;
 import frc.robot.commands.climber.LiftRobot;;
 
 /**
@@ -24,7 +24,7 @@ import frc.robot.commands.climber.LiftRobot;;
 public class Climber extends Subsystem {
 
   private CANSparkMax m_front, m_back;
-  private DigitalInput frontLimitSwitch, backLimitSwitch;
+  private AnalogPotentiometer m_frontPot, m_backPot;
 
   public Climber() {
 
@@ -32,8 +32,8 @@ public class Climber extends Subsystem {
     m_back = new CANSparkMax(RobotMap.CAN_SPARK_LIFT_BACK, MotorType.kBrushless);
     m_back.setInverted(true);
 
-    frontLimitSwitch = new DigitalInput(RobotMap.DIO_CLIMBER_UP_FRONT);
-    backLimitSwitch = new DigitalInput(RobotMap.DIO_CLIMBER_UP_BACK);
+    m_backPot = new AnalogPotentiometer(RobotMap.ANALOG_ELEVATOR_BACK_POT);
+    m_frontPot = new AnalogPotentiometer(RobotMap.ANALOG_ELEVATOR_FRONT_POT);
   }
 
   /**
@@ -93,36 +93,44 @@ public class Climber extends Subsystem {
     setClimber(0.0);
   }
   
+  public AnalogPotentiometer getFrontPot(){
+    return m_frontPot;
+  }
+
+  public AnalogPotentiometer getBackPot(){
+    return m_backPot;  
+  }
+
   /**
    * 
    * @return
    */
   public boolean isClimberTopped() {
-    return (!frontLimitSwitch.get() || !backLimitSwitch.get());
+    return frontIsTopped() || backIsTopped();  
   }
 
   public boolean frontIsTopped() {
-    return !frontLimitSwitch.get();
+    return getFrontClimberHeight() >= RobotConstants.CLIMBER_MAX_HEIGHT;
   }
 
   public boolean backIsTopped() {
-    return !backLimitSwitch.get();
+    return getBackClimberHeight() >= RobotConstants.CLIMBER_MAX_HEIGHT;
   }
-  
+
+  public double getFrontClimberHeight() {
+    return m_frontPot.get();
+  }
+
+  public double getBackClimberHeight() {
+    return -m_backPot.get();
+  }
+
   public CANEncoder getFrontEncoder() {
     return m_front.getEncoder();
   }
 
-  public CANEncoder getBackEncoder() {
+  public CANEncoder getBackEncoder() { 
     return m_back.getEncoder();
-  }
-
-  public double getFrontClimberHeight() {
-    return m_front.getEncoder().getPosition();
-  }
-
-  public double getBackClimberHeight() {
-    return m_back.getEncoder().getPosition();
   }
 
   public CANPIDController getFrontPIDController() {

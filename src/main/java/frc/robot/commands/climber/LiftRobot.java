@@ -12,8 +12,6 @@ import frc.robot.Robot;
 
 public class LiftRobot extends Command {
 
-  private double m_frontSpeed, m_backSpeed;
-
   public LiftRobot() {
     requires(Robot.m_climber);
   }

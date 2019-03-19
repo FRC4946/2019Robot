@@ -21,7 +21,6 @@ import frc.robot.RobotConstants;
 public class LiftRobotPosition extends Command {
 
   PIDController m_frontPosPID, m_backPosPID; 
-  PIDSourceEnc m_frontMotorEncSource, m_backMotorEncSource;
   double m_desiredPos, m_maxSpeed, m_desiredPosInit, m_maxSpeedInit;
   double m_frontPosPIDGet, m_backPosPIDGet, m_frontVelPIDGet, m_backVelPIDGet; 
   int m_direction; //1 or -1
@@ -37,19 +36,16 @@ public class LiftRobotPosition extends Command {
     m_desiredPos = desiredPos;
     m_maxSpeed = maxSpeed;
 
-    m_frontMotorEncSource = new PIDSourceEnc(Robot.m_climber.getFrontEncoder());
-    m_backMotorEncSource = new PIDSourceEnc(Robot.m_climber.getBackEncoder());
-
     m_frontPosPID = new PIDController(RobotConstants.PID_CLIMBER_FRONT_DOWN_POSITION_P, 
       RobotConstants.PID_CLIMBER_FRONT_DOWN_POSITION_I, 
       RobotConstants.PID_CLIMBER_FRONT_DOWN_POSITION_D,
-      m_frontMotorEncSource,
+      Robot.m_climber.getFrontPot(),
       new DummyPIDOutput(), 0.05);
 
     m_backPosPID = new PIDController(RobotConstants.PID_CLIMBER_DOWN_POSITION_P, 
       RobotConstants.PID_CLIMBER_DOWN_POSITION_I, 
       RobotConstants.PID_CLIMBER_DOWN_POSITION_D,
-      m_backMotorEncSource,
+      Robot.m_climber.getBackPot(),
       new DummyPIDOutput(), 0.05);
 
   }
