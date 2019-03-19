@@ -77,18 +77,18 @@ public class Elevator extends Subsystem {
     setElevator(0);
   }
 
-  /**
-   * Gets the speed that the motor is running at
-   * @return the speed of the motor
-   */
-  public CANSparkMax getMotor() {
-    return m_elevatorMotor;
-  }
+	/**
+ 	* Gets the speed that the motor is running at
+ 	* @return the speed of the motor
+ 	*/
+	public CANSparkMax getMotor() {
+		return m_elevatorMotor;
+	}
 
-  /**
-   * Gets the value of the analog potentiometer
-   */
-  public AnalogPotentiometer getPot() {
-    return m_analogPot;
-  }
+	/**
+	 * Gets the value of the analog potentiometer
+	 */
+	public AnalogPotentiometer getPot() {
+		return m_analogPot;
+	}
 }

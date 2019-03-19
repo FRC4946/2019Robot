@@ -13,6 +13,9 @@ import frc.robot.Utilities;
 import frc.robot.RobotConstants;
 
 public class JoystickDriveAbs extends Command {
+/**
+ * A more accurate version of joystick drive
+ */
 
   public JoystickDriveAbs() {
     requires(Robot.m_driveTrain);

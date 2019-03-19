@@ -40,8 +40,8 @@ public class Grabber extends Subsystem {
   }
 
   /**
-   * 
-   * 
+   * Checks if the grabber is out
+   * @return if the grabber is in
    */
   public boolean getGrabberIn() {
     return m_innerSwitch.get();

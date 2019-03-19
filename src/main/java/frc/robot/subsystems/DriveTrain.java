@@ -71,6 +71,9 @@ public class DriveTrain extends Subsystem {
     m_mecanumDrive.driveCartesian(Y, X, Z);
   }
 
+  /**
+   * Stops the drivetrain
+   */
   public void stop() {
     m_mecanumDrive.driveCartesian(0.0, 0.0, 0.0);
   }
@@ -96,7 +99,6 @@ public class DriveTrain extends Subsystem {
     m_leftBackEnc.reset();
     m_rightBackEnc.reset();
   }
-
 
   public double getAvgStraightDist() {
     return (m_leftFrontEnc.getDistance() + m_rightFrontEnc.getDistance() + m_leftBackEnc.getDistance() + m_rightBackEnc.getDistance())/4.0;

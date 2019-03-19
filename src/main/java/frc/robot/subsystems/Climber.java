@@ -70,22 +70,6 @@ public class Climber extends Subsystem {
     }
   }
 
-  public void setClimberFront(double speed) {
-    if (speed > 0 && isClimberTopped()) {
-      stopClimber();
-    } else {
-      m_front.set(speed);
-    }
-  } 
-
-  public void setClimberBack(double speed) {
-    if (speed > 0 && isClimberTopped()) {
-      stopClimber();
-    } else {
-      m_back.set(speed);
-    }
-  } 
-
   /**
    * Stops the climber motors
    */
@@ -102,8 +86,8 @@ public class Climber extends Subsystem {
   }
 
   /**
-   * 
-   * @return
+   * Tells if the climber has reached the maximum height
+   * @return if the climber has reached the maximum height
    */
   public boolean isClimberTopped() {
     return frontIsTopped() || backIsTopped();  

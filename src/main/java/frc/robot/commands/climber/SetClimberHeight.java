@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotConstants;
 
+/**
+ * Sets the climber hight to the height needed for autonomus climbing
+ */
 public class SetClimberHeight extends Command {
 
   double m_velocity, m_height;

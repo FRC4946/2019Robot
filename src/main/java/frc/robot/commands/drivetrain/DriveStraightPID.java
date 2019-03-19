@@ -14,6 +14,10 @@ import frc.robot.Robot;
 import frc.robot.RobotConstants;
 
 public class DriveStraightPID extends PIDCommand {
+/**
+ * An autonomous command that makes the robot drive straight without user imput for 
+ * the desired amount of time
+ */
 
   double m_dist;
   PIDController m_gyroController;

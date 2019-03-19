@@ -75,7 +75,7 @@ public class Limelight extends Subsystem{
    * Returns the area of the target as a percentage of the whole image (0% to
    * 100%)
    *
-   * @return the area of the target
+   * @return  the area of the target
    */
   public double getTargetArea() {
     return m_ta.getDouble(0);

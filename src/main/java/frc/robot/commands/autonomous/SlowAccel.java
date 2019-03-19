@@ -10,6 +10,9 @@ package frc.robot.commands.autonomous;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
+/**
+ * This command slows down the acceleration of the robot by slowing down the speed
+ */
 public class SlowAccel extends Command {
 
   double m_dist, m_speed, m_time, m_accel, m_currSpeed, m_count;

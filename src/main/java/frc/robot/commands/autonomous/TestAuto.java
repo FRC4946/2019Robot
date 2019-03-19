@@ -16,7 +16,7 @@ import frc.robot.commands.limelight.SetLimelightLED;
 public class TestAuto extends CommandGroup {
 
   /**
-   * Add your docs here.
+   * Test autonomus code
    */
   public TestAuto() {
     /*

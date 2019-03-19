@@ -17,6 +17,9 @@ import frc.robot.RobotConstants;
 //TODO : Tuning
 
 public class StrafeToTarget extends PIDCommand {
+/**
+ * Makes the robot move sideways towards the targeted area
+ */
   
   PIDController gyroController;
   DummyPIDOutput dummyOutput;

@@ -12,6 +12,9 @@ import frc.robot.Robot;
 import frc.robot.RobotConstants;
 import frc.robot.commands.grabberarm.SetArmToPos;
 
+/**
+ * Allows the grabber to go inwards and outwards with the press of a button
+ */
 public class ToggleGrabber extends Command {
 
   private boolean m_setIn;

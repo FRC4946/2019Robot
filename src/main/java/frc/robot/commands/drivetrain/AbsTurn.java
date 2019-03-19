@@ -13,6 +13,9 @@ import frc.robot.Utilities;
 
 
 public class AbsTurn extends Command {
+/**
+ * This command makes the robot turn to the desired angle
+ */
 
   private double m_angle; // angle to turn to in degrees
   private boolean m_turnLeft; // whether to turn left or not

@@ -12,7 +12,9 @@ import frc.robot.Robot;
 import frc.robot.RobotConstants;
 
 public class TargetLine extends PIDCommand {
- 
+/**
+ * Makes the robot move towards the centre of a line
+ */
   public TargetLine() {
 
     super(RobotConstants.PID_TARGET_LINE_P, 
