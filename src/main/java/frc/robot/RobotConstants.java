@@ -33,7 +33,7 @@ public class RobotConstants {
   public static final double ELEVATOR_LEVEL_2_ROCKET = 4.65;
   public static final double ELEVATOR_LEVEL_3_ROCKET = 6.87;
 
-  public static final double INTAKE_POT_UP = 654;
+  public static final double INTAKE_POT_UP = 684;
   public static final double INTAKE_POT_DOWN = 2165;
   public static final double INTAKE_POT_BALL_HEIGHT = 1303;
   public static final double INTAKE_POT_SCALING = 3600;
@@ -49,8 +49,8 @@ public class RobotConstants {
   public static final double CLIMBER_MIN_HEIGHT = -100.0; //TUNE
   public static final double CLIMBER_MAX_HEIGHT = 400.0; //TUNE
   public static final double CLIMBER_SCALING_VALUE = 10.0;
-  public static final double LOWER_PLATFORM_HEIGHT = 6.0; //inches
-  public static final double UPPER_PLATFORM_HEIGHT = 19.0; //inches
+  public static final double LOWER_PLATFORM_HEIGHT = 3.0; //inches
+  public static final double UPPER_PLATFORM_HEIGHT = 8.0; //inches
 
   // -------------- PID time (default P = 0.002, I = 0.0, D = 0.0)
 
