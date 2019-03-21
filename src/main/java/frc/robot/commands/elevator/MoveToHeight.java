@@ -39,12 +39,12 @@ public class MoveToHeight extends Command {
       m_speedInit *= 0.45;
     }
 
-
+    /*
     if(m_height < RobotConstants.ELEVATOR_RIGHT_ABOVE_ELBOW) {
       if(Math.abs(Robot.m_intakeElbow.getPos() - RobotConstants.INTAKE_POT_BALL_HEIGHT) > 10) {
         new SetIntakePos(RobotConstants.INTAKE_POT_BALL_HEIGHT, 0.25).start(); 
       } 
-    }
+    }*/
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -57,7 +57,8 @@ public class MoveToHeight extends Command {
     } else {
       Robot.m_elevator.setElevator(m_speedInit);
     }
-     
+    
+    /*
     if(Robot.m_elevator.getHeight() >= RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT + 0.5) {
         
       if(Math.abs(Robot.m_intakeElbow.getPos() - RobotConstants.INTAKE_POT_UP) > 30) {
@@ -73,7 +74,7 @@ public class MoveToHeight extends Command {
       if(Math.abs(Robot.m_grabberArm.getPos() - RobotConstants.GRABBER_ARM_HOLD_BALL) > 0.2) {
         new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_BALL, 0.8).start();
       }
-    }
+    }*/
   }
 
   // Make this return true when this Command no longer needs to run execute()
