@@ -18,6 +18,7 @@ import frc.robot.commands.intakeelbow.SetIntakePos;
 public class MoveToHeight extends Command {
   
   double m_height, m_speed, m_speedInit;
+  SetArmToPos m_setArmOut = new SetArmToPos(RobotConstants.GRABBER_ARM_OUT, 0.8);
 
   public MoveToHeight(double height, double speed) {
     requires(Robot.m_elevator);
@@ -38,13 +39,7 @@ public class MoveToHeight extends Command {
     if(m_speedInit < 0) {
       m_speedInit *= 0.45;
     }
-
-    /*
-    if(m_height < RobotConstants.ELEVATOR_RIGHT_ABOVE_ELBOW) {
-      if(Math.abs(Robot.m_intakeElbow.getPos() - RobotConstants.INTAKE_POT_BALL_HEIGHT) > 10) {
-        new SetIntakePos(RobotConstants.INTAKE_POT_BALL_HEIGHT, 0.25).start(); 
-      } 
-    }*/
+    
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -57,24 +52,11 @@ public class MoveToHeight extends Command {
     } else {
       Robot.m_elevator.setElevator(m_speedInit);
     }
+
+    if (Math.abs(Robot.m_grabberArm.getPos() - RobotConstants.GRABBER_ARM_OUT) > 0.3) {
+      m_setArmOut.start();
+    }
     
-    /*
-    if(Robot.m_elevator.getHeight() >= RobotConstants.ELEVATOR_NO_CONFLICT_HEIGHT + 0.5) {
-        
-      if(Math.abs(Robot.m_intakeElbow.getPos() - RobotConstants.INTAKE_POT_UP) > 30) {
-        new SetIntakePos(RobotConstants.INTAKE_POT_UP, 0.3).start(); 
-      } 
-
-    } else if (Robot.m_elevator.getHeight() < (RobotConstants.ELEVATOR_RIGHT_ABOVE_ELBOW-0.2)) {
-
-      if (Robot.m_grabber.getGrabberOut()) {
-        new SetGrabber(true, 0.8).start();
-      }
-
-      if(Math.abs(Robot.m_grabberArm.getPos() - RobotConstants.GRABBER_ARM_HOLD_BALL) > 0.2) {
-        new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_BALL, 0.8).start();
-      }
-    }*/
   }
 
   // Make this return true when this Command no longer needs to run execute()

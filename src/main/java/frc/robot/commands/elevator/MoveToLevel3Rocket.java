@@ -8,10 +8,14 @@
 package frc.robot.commands.elevator;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import frc.robot.RobotConstants;
+import frc.robot.commands.grabberarm.SetArmToPos;
+import frc.robot.commands.intakeelbow.SetIntakePos;
 
 public class MoveToLevel3Rocket extends CommandGroup {
   public MoveToLevel3Rocket() {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+    addParallel(new SetIntakePos(RobotConstants.INTAKE_POT_UP, 0.25), 1.5);
+    addSequential(new MoveToHeight(RobotConstants.ELEVATOR_LEVEL_3_ROCKET + 0.3, 0.4), 3.0);
+    addSequential(new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_HATCH, 0.8), 0.8);
   }
 }

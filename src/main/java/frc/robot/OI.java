@@ -12,15 +12,13 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.climber.SetBackClimber;
 import frc.robot.commands.climber.SetFrontClimber;
-import frc.robot.commands.drivetrain.SetDriveTrain;
 import frc.robot.commands.drivetrain.StrafeToTarget;
-import frc.robot.commands.elevator.MoveToHeight;
+import frc.robot.commands.elevator.MoveToLevel2Rocket;
+import frc.robot.commands.elevator.MoveToLevel3Rocket;
 import frc.robot.commands.elevator.MoveToLowHeight;
-import frc.robot.commands.elevator.OverrideElevator;
 import frc.robot.commands.elevator.SetElevatorToAboveElbow;
 import frc.robot.commands.grabber.ToggleGrabber;
 import frc.robot.commands.grabberarm.SetArmToPos;
-import frc.robot.commands.intake.SetIntakeSpeed;
 import frc.robot.commands.intakeelbow.SetElbowSpeed;
 
 /**
@@ -73,8 +71,8 @@ public class OI {
 
   public OI() { 
     //----- operator stick
-    m_YButtonOperator.whenPressed(new MoveToHeight(RobotConstants.ELEVATOR_LEVEL_3_ROCKET, 0.8));
-    m_BButtonOperator.whenPressed(new MoveToHeight(RobotConstants.ELEVATOR_LEVEL_2_ROCKET, 0.8));
+    m_YButtonOperator.whenPressed(new MoveToLevel3Rocket());
+    m_BButtonOperator.whenPressed(new MoveToLevel2Rocket());
     m_XButtonOperator.whenPressed(new SetElevatorToAboveElbow());
     m_AButtonOperator.whenPressed(new MoveToLowHeight());
     //m_LeftStickButtonOperator.whenPressed(new OverrideElevator());
