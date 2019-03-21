@@ -48,9 +48,9 @@ public class RobotMap {
   public static final int DIO_CLIMBER_UP_BACK = 13;
 
   public static final int ANALOG_ELEVATOR_POT = 0;
-  public static final int ANALOG_INTAKE_POT = 1;
+  public static final int ANALOG_ELEVATOR_FRONT_POT = 1;
   public static final int ANALOG_GRABBER_ARM_POT = 2;
-  public static final int ANALOG_ELEVATOR_FRONT_POT = 3;
-  public static final int ANALOG_ELEVATOR_BACK_POT = 4;
+  public static final int ANALOG_INTAKE_POT = 4;
+  public static final int ANALOG_ELEVATOR_BACK_POT = 5;
 
 }

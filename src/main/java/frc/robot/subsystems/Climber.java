@@ -32,7 +32,7 @@ public class Climber extends Subsystem {
     m_back = new CANSparkMax(RobotMap.CAN_SPARK_LIFT_BACK, MotorType.kBrushless);
     m_back.setInverted(true);
 
-    m_backPot = new AnalogPotentiometer(RobotMap.ANALOG_ELEVATOR_BACK_POT);
+    m_backPot = new AnalogPotentiometer(RobotMap.ANALOG_ELEVATOR_BACK_POT, RobotConstants.CLIMBER_SCALING_VALUE, RobotConstants.CLIMBER_OFFSET);
     m_frontPot = new AnalogPotentiometer(RobotMap.ANALOG_ELEVATOR_FRONT_POT);
   }
 

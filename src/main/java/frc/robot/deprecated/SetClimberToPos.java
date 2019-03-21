@@ -47,8 +47,10 @@ public class SetClimberToPos extends PIDCommand {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    /*
     Robot.m_climber.setClimberFront(m_front.get()*0.8);
     Robot.m_climber.setClimberFront(m_back.get()*0.8);
+    */
   }
 
   // Make this return true when this Command no longer needs to run execute()

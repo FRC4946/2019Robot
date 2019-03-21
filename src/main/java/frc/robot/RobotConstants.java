@@ -33,11 +33,11 @@ public class RobotConstants {
   public static final double ELEVATOR_LEVEL_2_ROCKET = 4.65;
   public static final double ELEVATOR_LEVEL_3_ROCKET = 6.87;
 
-  public static final double INTAKE_POT_UP = 3468;
-  public static final double INTAKE_POT_DOWN = 3319;
-  public static final double INTAKE_POT_BALL_HEIGHT = 3384;
+  public static final double INTAKE_POT_UP = 654;
+  public static final double INTAKE_POT_DOWN = 2165;
+  public static final double INTAKE_POT_BALL_HEIGHT = 1303;
   public static final double INTAKE_POT_SCALING = 3600;
-  public static final double INTAKE_POT_OFFSET = 1664.0;
+  public static final double INTAKE_POT_OFFSET = 0;
 
   public static final double GRABBER_ARM_OUT = 5.45;
   public static final double GRABBER_ARM_HOLD_HATCH = 3.4;
@@ -45,9 +45,10 @@ public class RobotConstants {
   public static final double GRABBER_ARM_IN = 2.34;
   public static final double GRABBER_ARM_SCALING_VALUE = 10.0;
 
-  public static final double CLIMBER_OFFSET = 1.63; //enc ticks
-  public static final double CLIMBER_MIN_HEIGHT = 0.0;
-  public static final double CLIMBER_MAX_HEIGHT = 40.0;
+  public static final double CLIMBER_OFFSET = 0; //TUNE
+  public static final double CLIMBER_MIN_HEIGHT = -100.0; //TUNE
+  public static final double CLIMBER_MAX_HEIGHT = 400.0; //TUNE
+  public static final double CLIMBER_SCALING_VALUE = 10.0;
   public static final double LOWER_PLATFORM_HEIGHT = 6.0; //inches
   public static final double UPPER_PLATFORM_HEIGHT = 19.0; //inches
 

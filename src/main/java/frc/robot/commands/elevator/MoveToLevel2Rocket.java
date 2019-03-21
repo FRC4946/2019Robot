@@ -5,17 +5,14 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.climber;
+package frc.robot.commands.elevator;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
-/**
- * Makes the climber run with human imput for when to run and for how long
- */
-public class LiftRobot extends Command {
 
-  public LiftRobot() {
-    requires(Robot.m_climber);
+public class MoveToLevel2Rocket extends Command {
+  public MoveToLevel2Rocket() {
+    // Use requires() here to declare subsystem dependencies
+    // eg. requires(chassis);
   }
 
   // Called just before this Command runs the first time
@@ -26,28 +23,6 @@ public class LiftRobot extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    
-    if(Robot.m_oi.getOperatorStick().getPOV() == 0) {
-
-      Robot.m_climber.setFront(0.4);
-      Robot.m_climber.setBack(0.3);
-
-    } else if (Robot.m_oi.getOperatorStick().getPOV() == 90) {
-
-      Robot.m_climber.setFront(-0.5);
-
-    } else if (Robot.m_oi.getOperatorStick().getPOV() == 180) {
-
-      Robot.m_climber.setFront(-0.2);
-      Robot.m_climber.setBack(-0.45);
-
-    } else if (Robot.m_oi.getOperatorStick().getPOV() == 270) {
-
-      Robot.m_climber.setBack(-0.5);
-
-    } else {
-      Robot.m_climber.setClimber(0);
-    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -59,13 +34,11 @@ public class LiftRobot extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.m_climber.stopClimber();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
   }
 }
