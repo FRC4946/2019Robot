@@ -26,6 +26,7 @@ public class RobotConstants {
   public static final double ELEVATOR_AT_TOP = 10;
   public static final double ELEVATOR_AT_MAX = 8.0;
   public static final double ELEVATOR_AT_BOTTOM = 1.07;
+  public static final double ELEVATOR_THRESHOLD = 1.5;
   public static final double ELEVATOR_AT_MIN = 0.88;
   public static final double ELEVATOR_NO_CONFLICT_GRABBER = 2.8;
   public static final double ELEVATOR_NO_CONFLICT_HEIGHT = 2.3; //elbow 
@@ -33,9 +34,9 @@ public class RobotConstants {
   public static final double ELEVATOR_LEVEL_2_ROCKET = 4.65;
   public static final double ELEVATOR_LEVEL_3_ROCKET = 6.87;
 
-  public static final double INTAKE_POT_UP = 654;
-  public static final double INTAKE_POT_DOWN = 2165;
-  public static final double INTAKE_POT_BALL_HEIGHT = 1303;
+  public static final double INTAKE_POT_UP = 736;
+  public static final double INTAKE_POT_DOWN = 2300;
+  public static final double INTAKE_POT_BALL_HEIGHT = 1283;
   public static final double INTAKE_POT_SCALING = 3600;
   public static final double INTAKE_POT_OFFSET = 0;
 
@@ -46,11 +47,13 @@ public class RobotConstants {
   public static final double GRABBER_ARM_SCALING_VALUE = 10.0;
 
   public static final double CLIMBER_OFFSET = 0; //TUNE
-  public static final double CLIMBER_MIN_HEIGHT = -100.0; //TUNE
-  public static final double CLIMBER_MAX_HEIGHT = 400.0; //TUNE
+  public static final double FRONT_CLIMBER_MIN_HEIGHT = 0.4882; //TUNE
+  public static final double FRONT_CLIMBER_MAX_HEIGHT = 9.060; //TUNE
+  public static final double BACK_CLIMBER_MIN_HEIGHT = 0.0591; //TUNE
+  public static final double BACK_CLIMBER_MAX_HEIGHT = 5.636; //TUNE
   public static final double CLIMBER_SCALING_VALUE = 10.0;
-  public static final double LOWER_PLATFORM_HEIGHT = 6.0; //inches
-  public static final double UPPER_PLATFORM_HEIGHT = 19.0; //inches
+  public static final double LOWER_PLATFORM_HEIGHT = 6.0;   //inches
+  public static final double UPPER_PLATFORM_HEIGHT = 19.0;  //inches
 
   // -------------- PID time (default P = 0.002, I = 0.0, D = 0.0)
 

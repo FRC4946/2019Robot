@@ -34,16 +34,16 @@ public class RobotMap {
   public static final int CAN_TALON_INTAKE_INNER_LEFT = 12;
   public static final int CAN_TALON_INTAKE_INNER_RIGHT = 13;
 
-  public static final int DIO_DRIVE_LEFT_FRONT_ENCA = 0;
-  public static final int DIO_DRIVE_LEFT_FRONT_ENCB = 1;
+  public static final int DIO_DRIVE_LEFT_FRONT_ENCA = 10;
+  public static final int DIO_DRIVE_LEFT_FRONT_ENCB = 11;
   public static final int DIO_DRIVE_LEFT_BACK_ENCA = 2;
   public static final int DIO_DRIVE_LEFT_BACK_ENCB = 3;
   public static final int DIO_DRIVE_RIGHT_FRONT_ENCA = 4;
   public static final int DIO_DRIVE_RIGHT_FRONT_ENCB = 5;
   public static final int DIO_DRIVE_RIGHT_BACK_ENCA = 6;
   public static final int DIO_DRIVE_RIGHT_BACK_ENCB = 7;
-  public static final int DIO_GRABBER_IN = 10;
-  public static final int DIO_GRABBER_OUT = 11;
+  public static final int DIO_GRABBER_IN = 0;
+  public static final int DIO_GRABBER_OUT = 1;
   public static final int DIO_CLIMBER_UP_FRONT = 12;
   public static final int DIO_CLIMBER_UP_BACK = 13;
 

@@ -29,21 +29,21 @@ public class LiftRobot extends Command {
     
     if(Robot.m_oi.getOperatorStick().getPOV() == 0) {
 
-      Robot.m_climber.setFront(0.4);
-      Robot.m_climber.setBack(0.3);
+      Robot.m_climber.setFront(0.45);
+      Robot.m_climber.setBack(0.3775);
 
     } else if (Robot.m_oi.getOperatorStick().getPOV() == 90) {
 
-      Robot.m_climber.setFront(-0.5);
+      Robot.m_climber.setFront(-0.2);
 
     } else if (Robot.m_oi.getOperatorStick().getPOV() == 180) {
 
-      Robot.m_climber.setFront(-0.2);
+      Robot.m_climber.setFront(-0.375);
       Robot.m_climber.setBack(-0.45);
 
     } else if (Robot.m_oi.getOperatorStick().getPOV() == 270) {
 
-      Robot.m_climber.setBack(-0.5);
+      Robot.m_climber.setBack(-0.2);
 
     } else {
       Robot.m_climber.setClimber(0);

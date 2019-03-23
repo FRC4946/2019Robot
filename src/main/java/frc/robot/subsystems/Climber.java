@@ -33,7 +33,7 @@ public class Climber extends Subsystem {
     m_back.setInverted(true);
 
     m_backPot = new AnalogPotentiometer(RobotMap.ANALOG_ELEVATOR_BACK_POT, RobotConstants.CLIMBER_SCALING_VALUE, RobotConstants.CLIMBER_OFFSET);
-    m_frontPot = new AnalogPotentiometer(RobotMap.ANALOG_ELEVATOR_FRONT_POT);
+    m_frontPot = new AnalogPotentiometer(RobotMap.ANALOG_ELEVATOR_FRONT_POT, RobotConstants.CLIMBER_SCALING_VALUE, RobotConstants.CLIMBER_OFFSET);
   }
 
   /**
@@ -41,13 +41,13 @@ public class Climber extends Subsystem {
    * @param climberSpeed The desired speed for the climber motors
    */
   public void setClimber(double climberSpeed) { //negative is down
-    if (climberSpeed > 0 && frontIsTopped()) {
+    if ((climberSpeed > 0 && frontIsTopped()) || (climberSpeed < 0 && getFrontClimberHeight() <= RobotConstants.FRONT_CLIMBER_MIN_HEIGHT)) {
       m_front.set(0.0);
     } else {
       m_front.set(climberSpeed);
     }
 
-    if (climberSpeed > 0 && backIsTopped()) {
+    if ((climberSpeed > 0 && backIsTopped()) || (climberSpeed < 0 && getBackClimberHeight() <= RobotConstants.BACK_CLIMBER_MIN_HEIGHT)) {
       m_back.set(0.0);
     } else {
       m_back.set(climberSpeed);
@@ -55,7 +55,7 @@ public class Climber extends Subsystem {
   }
 
   public void setFront(double climberSpeed) {
-    if (climberSpeed > 0 && frontIsTopped()) {
+    if ((climberSpeed > 0 && frontIsTopped()) || (climberSpeed < 0 && getFrontClimberHeight() <= RobotConstants.FRONT_CLIMBER_MIN_HEIGHT)) {
       m_front.set(0.0);
     } else {
       m_front.set(climberSpeed);
@@ -63,7 +63,7 @@ public class Climber extends Subsystem {
   }
 
   public void setBack(double climberSpeed) {
-    if (climberSpeed > 0 && backIsTopped()) {
+    if ((climberSpeed > 0 && backIsTopped()) || (climberSpeed < 0 && getBackClimberHeight() <= RobotConstants.BACK_CLIMBER_MIN_HEIGHT)) {
       m_back.set(0.0);
     } else {
       m_back.set(climberSpeed);
@@ -94,11 +94,11 @@ public class Climber extends Subsystem {
   }
 
   public boolean frontIsTopped() {
-    return getFrontClimberHeight() >= RobotConstants.CLIMBER_MAX_HEIGHT;
+    return getFrontClimberHeight() >= RobotConstants.FRONT_CLIMBER_MAX_HEIGHT;
   }
 
   public boolean backIsTopped() {
-    return getBackClimberHeight() >= RobotConstants.CLIMBER_MAX_HEIGHT;
+    return getBackClimberHeight() >= RobotConstants.BACK_CLIMBER_MAX_HEIGHT;
   }
 
   public double getFrontClimberHeight() {
@@ -106,7 +106,7 @@ public class Climber extends Subsystem {
   }
 
   public double getBackClimberHeight() {
-    return -m_backPot.get();
+    return m_backPot.get();
   }
 
   public CANEncoder getFrontEncoder() {
