@@ -109,6 +109,10 @@ public class Climber extends Subsystem {
     return m_backPot.get();
   }
 
+  public double getAvgClimberHeight() {
+    return (m_frontPot.get() + m_backPot.get())/2.0;
+  } 
+
   public CANEncoder getFrontEncoder() {
     return m_front.getEncoder();
   }
