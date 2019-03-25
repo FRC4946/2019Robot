@@ -5,21 +5,22 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.intakeelbow;
+package frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotConstants;
 
-public class SetIntakePos extends Command {
+public class SetAndRunIntake extends Command {
 
   double m_desiredPos, m_desiredPosInit, m_speed, m_speedInit;
 
-  public SetIntakePos(double desiredPos, double speed) {
+  public SetAndRunIntake(double desiredPos, double speed) {
+    requires(Robot.m_intake);
     requires(Robot.m_intakeElbow);
+
     m_desiredPos = desiredPos;
     m_speed = Math.abs(speed);
-    this.setTimeout(2.5);
   }
 
   // Called just before this Command runs the first time
@@ -33,18 +34,23 @@ public class SetIntakePos extends Command {
   @Override
   protected void execute() {
     m_speedInit = Math.signum(Robot.m_intakeElbow.getPos() - m_desiredPosInit)*m_speed;
-    Robot.m_intakeElbow.setElbow(m_speedInit);
+
+    Robot.m_intake.runOuter(-0.9);
+
+    if (Math.abs(Robot.m_intakeElbow.getPos() - m_desiredPosInit) > 50)
+      Robot.m_intakeElbow.setElbow(m_speedInit);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return (Math.abs(Robot.m_intakeElbow.getPos() - m_desiredPosInit) < 50);
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.m_intake.stopAll();
     Robot.m_intakeElbow.stop();
   }
 
