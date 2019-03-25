@@ -46,7 +46,6 @@ public class RobotConstants {
   public static final double GRABBER_ARM_IN = 2.34;
   public static final double GRABBER_ARM_SCALING_VALUE = 10.0;
 
-  public static final double CLIMBER_OFFSET = 0; //TUNE
   public static final double FRONT_CLIMBER_MIN_HEIGHT = 0.4882; //TUNE
   public static final double FRONT_CLIMBER_MAX_HEIGHT = 9.060; //TUNE
   public static final double BACK_CLIMBER_MIN_HEIGHT = 0.0591; //TUNE

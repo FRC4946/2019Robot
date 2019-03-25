@@ -21,6 +21,6 @@ public class MoveToLowHeight extends CommandGroup {
   public MoveToLowHeight() { 
     addSequential(new SetGrabber(true, 0.8));
     addSequential(new SetIntakePos(RobotConstants.INTAKE_POT_BALL_HEIGHT, 0.25));
-    addSequential(new MoveToHeight(RobotConstants.ELEVATOR_AT_MIN, 0.6), 2.0);
+    addSequential(new MoveToHeight(RobotConstants.ELEVATOR_AT_MIN, 0.6), 5.0);
   }
 }

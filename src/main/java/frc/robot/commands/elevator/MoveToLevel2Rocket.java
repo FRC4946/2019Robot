@@ -8,13 +8,18 @@
 package frc.robot.commands.elevator;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj.command.WaitCommand;
+import frc.robot.Robot;
 import frc.robot.RobotConstants;
-import frc.robot.commands.grabberarm.SetArmToPos;
 import frc.robot.commands.intakeelbow.SetIntakePos;
 
 public class MoveToLevel2Rocket extends CommandGroup {
+
+  private boolean startedLow;
+
   public MoveToLevel2Rocket() {
-    addSequential(new MoveToHeight(RobotConstants.ELEVATOR_LEVEL_2_ROCKET + 0.3, 0.4), 2.0); 
+
+    startedLow = false;
+    addSequential(new MoveToHeight(RobotConstants.ELEVATOR_LEVEL_2_ROCKET + 0.3, 0.4), 4.0); 
+
   }
 }

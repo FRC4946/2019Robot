@@ -28,12 +28,12 @@ public class ClimbOnPlatform extends CommandGroup {
     //move forward and raise the front legs up
     addSequential(new SetIntakePos(RobotConstants.INTAKE_POT_DOWN, 0.3), 2.0);
     addParallel(new SetIntakeSpeed(0.99), 2.0);
-    addParallel(new SetDriveTrain(0.1), 2.0);
+    addSequential(new SetDriveTrain(0.1), 2.0);
     addSequential(new ClimbToPosFront(0), 2.0);
 
     //move forward and raise the back legs up
     addParallel(new SetDriveTrain(0.99), 2.0);
-    addParallel(new SetIntakeSpeed(0.1), 2.0);
+    addSequential(new SetIntakeSpeed(0.1), 2.0);
     addSequential(new ClimbToPosBack(0), 2.0);
 
     //move forward and complete the climb
