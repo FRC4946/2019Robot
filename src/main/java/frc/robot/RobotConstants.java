@@ -51,6 +51,7 @@ public class RobotConstants {
   public static final double BACK_CLIMBER_MIN_HEIGHT = 0.320; //TUNE
   public static final double BACK_CLIMBER_MAX_HEIGHT = 5.980; //TUNE
   public static final double CLIMBER_SCALING_VALUE = 10.0;
+  public static final double CLIMBER_OFFSET = 0.0;
   public static final double LOWER_PLATFORM_HEIGHT = 6.0;   //inches
   public static final double UPPER_PLATFORM_HEIGHT = 19.0;  //inches
 

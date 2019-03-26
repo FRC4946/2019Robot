@@ -22,6 +22,8 @@ public class SetElevatorJoystick extends Command {
 
   boolean isBelowConflict;
 
+  SetArmToPos m_armOut = new SetArmToPos(RobotConstants.GRABBER_ARM_OUT, 0.7);
+
   public SetElevatorJoystick() {
     requires(Robot.m_elevator);
   }
@@ -43,9 +45,10 @@ public class SetElevatorJoystick extends Command {
       Robot.m_elevator.setElevator(Utilities.deadzone(-Robot.m_oi.getOperatorStick().getRawAxis(1)*0.8));
     }
     
-    if((Utilities.deadzone(-Robot.m_oi.getOperatorStick().getRawAxis(1)*0.8) > 0 && Robot.m_elevator.getHeight() < RobotConstants.ELEVATOR_NO_CONFLICT_GRABBER) || (Utilities.deadzone(-Robot.m_oi.getOperatorStick().getRawAxis(1)*0.8) < 0 && Robot.m_elevator.getHeight() > RobotConstants.ELEVATOR_NO_CONFLICT_GRABBER)) {
+    if (Math.abs(Utilities.deadzone(-Robot.m_oi.getOperatorStick().getRawAxis(1)*0.8)) > 0) {
       if (Math.abs(Robot.m_grabberArm.getPos()-RobotConstants.GRABBER_ARM_OUT) > 0.2) {
-        new SetArmToPos(RobotConstants.GRABBER_ARM_OUT, 0.7).start();
+        if (!m_armOut.isRunning())
+          m_armOut.start();
       }  
     }
   }
