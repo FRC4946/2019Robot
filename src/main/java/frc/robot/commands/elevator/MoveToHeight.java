@@ -40,7 +40,7 @@ public class MoveToHeight extends Command {
     m_setIntakeUpIsRunning = false;
 
     if(m_speedInit < 0) {
-      m_speedInit *= 0.45;
+      m_speedInit *= 0.75;
     }
     
   }
