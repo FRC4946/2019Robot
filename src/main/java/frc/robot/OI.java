@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.climber.DropClimber;
 import frc.robot.commands.climber.SetBackClimber;
 import frc.robot.commands.climber.SetFrontClimber;
 import frc.robot.commands.drivetrain.StrafeToTarget;
@@ -95,5 +96,7 @@ public class OI {
 
     m_LBButton.whileHeld(new StrafeToTarget());
     m_RBButton.whenPressed(new ToggleGrabber(0.8));
+
+    m_StartButton.whileHeld(new DropClimber());
   }
 }
