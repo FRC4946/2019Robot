@@ -183,6 +183,8 @@ public class Robot extends TimedRobot {
     //climber
     SmartDashboard.putNumber("Climber/Front Climber Position", m_climber.getFrontClimberHeight());
     SmartDashboard.putNumber("Climber/Back Climber Position", m_climber.getBackClimberHeight());
+    SmartDashboard.putBoolean("Climber/Front Stilt Up", m_climber.frontIsIn());
+    SmartDashboard.putBoolean("Climber/Back Stilt Up", m_climber.backIsIn());
    }
 
   /**
@@ -210,6 +212,8 @@ public class Robot extends TimedRobot {
     //climber
     SmartDashboard.getEntry("Climber/Front Climber Position").setDouble(m_climber.getFrontClimberHeight());
     SmartDashboard.getEntry("Climber/Back Climber Position").setDouble(m_climber.getBackClimberHeight());
+    SmartDashboard.getEntry("Climber/Front Stilt Up").setBoolean(m_climber.frontIsIn());
+    SmartDashboard.getEntry("Climber/Back Stilt Up").setBoolean(m_climber.backIsIn());
   }
 
 }

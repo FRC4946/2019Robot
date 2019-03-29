@@ -51,7 +51,13 @@ public class DriveTrain extends Subsystem {
     m_rightBackEnc.setDistancePerPulse(RobotConstants.ENC_DIST_PER_PULSE);
 
     m_mecanumDrive = new MecanumDrive(m_leftFront, m_rightFront, m_leftBack, m_rightBack);
-    m_gyro = new AHRS(SPI.Port.kMXP);
+    
+    try {
+      m_gyro = new AHRS(SPI.Port.kMXP);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    
 
    }
 
@@ -105,7 +111,12 @@ public class DriveTrain extends Subsystem {
   }
 
   public double getGyroAngle() {
-    return Utilities.conformAngle(m_gyro.getAngle());
+    try {
+      return Utilities.conformAngle(m_gyro.getAngle());
+    } catch (Exception e) {
+      return 0;
+    }
+    
   }
 
   public AHRS getGyro(){

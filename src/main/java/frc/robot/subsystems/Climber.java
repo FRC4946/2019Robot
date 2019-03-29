@@ -101,6 +101,14 @@ public class Climber extends Subsystem {
     return getBackClimberHeight() >= RobotConstants.BACK_CLIMBER_MAX_HEIGHT;
   }
 
+  public boolean frontIsIn() {
+    return (getFrontClimberHeight() <= RobotConstants.FRONT_CLIMBER_MIN_HEIGHT || Math.abs(getFrontClimberHeight() - RobotConstants.FRONT_CLIMBER_MIN_HEIGHT) < 0.2); 
+  }
+
+  public boolean backIsIn() {
+    return (getBackClimberHeight() <= RobotConstants.BACK_CLIMBER_MIN_HEIGHT || Math.abs(getBackClimberHeight() - RobotConstants.BACK_CLIMBER_MIN_HEIGHT) < 0.2); 
+  }
+
   public double getFrontClimberHeight() {
     return m_frontPot.get();
   }

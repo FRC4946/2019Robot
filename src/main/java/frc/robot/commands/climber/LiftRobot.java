@@ -20,6 +20,7 @@ import frc.robot.commands.intakeelbow.SetIntakePos;
 public class LiftRobot extends Command {
 
   double m_backLiftTime = 0;
+  double m_frontStiltTimer = 5;
   Timer m_climbTimer = new Timer();
   SetAndRunIntake m_setIntakeDown = new SetAndRunIntake(RobotConstants.INTAKE_POT_DOWN, 0.2);
   SetDriveTrain m_driveForwards = new SetDriveTrain(0.15);
@@ -40,13 +41,13 @@ public class LiftRobot extends Command {
     
     if(Robot.m_oi.getOperatorStick().getPOV() == 0) {
 
-      if (m_climbTimer.get() > 5 && Math.abs(Robot.m_climber.getFrontClimberHeight() - RobotConstants.FRONT_CLIMBER_MIN_HEIGHT) > 0.2) {
+      if (m_climbTimer.get() > m_frontStiltTimer && Math.abs(Robot.m_climber.getFrontClimberHeight() - RobotConstants.FRONT_CLIMBER_MIN_HEIGHT) > 0.2) {
         Robot.m_climber.setFront(-0.4);
         if (Robot.m_climber.getBackClimberHeight() > 5.2)
           Robot.m_climber.setBack(0.3975);
         else
           Robot.m_climber.setBack(0.8);
-      } else if (m_climbTimer.get() > 5) {
+      } else if (m_climbTimer.get() > m_frontStiltTimer) {
         if (m_backLiftTime == 0)
           m_backLiftTime = m_climbTimer.get() + 1.5;
         if (m_climbTimer.get() > m_backLiftTime) {

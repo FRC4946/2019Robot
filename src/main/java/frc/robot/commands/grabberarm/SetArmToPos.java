@@ -22,6 +22,7 @@ public class SetArmToPos extends Command {
     requires(Robot.m_grabberArm);
     m_speed = speed; 
     m_desiredPos = desiredPos;
+    this.setTimeout(0.6);
   }
 
   // Called just before this Command runs the first time
