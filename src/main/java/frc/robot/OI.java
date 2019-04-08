@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.climber.DropClimber;
+import frc.robot.commands.climber.MidStageClimb;
 import frc.robot.commands.climber.SetBackClimber;
 import frc.robot.commands.climber.SetFrontClimber;
 import frc.robot.commands.drivetrain.StrafeToTarget;
@@ -98,5 +99,6 @@ public class OI {
     m_RBButton.whenPressed(new ToggleGrabber(0.9));
 
     m_StartButton.whileHeld(new DropClimber());
+    m_ViewButton.whileHeld(new MidStageClimb());
   }
 }
