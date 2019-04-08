@@ -20,7 +20,7 @@ import frc.robot.commands.intakeelbow.SetIntakePos;
 public class LiftRobot extends Command {
 
   double m_backLiftTime = 0;
-  double m_frontStiltTimer = 5;
+  double m_frontStiltTimer = 3.5;
   Timer m_climbTimer = new Timer();
   SetAndRunIntake m_setIntakeDown = new SetAndRunIntake(RobotConstants.INTAKE_POT_DOWN, 0.2);
   SetDriveTrain m_driveForwards = new SetDriveTrain(0.15);

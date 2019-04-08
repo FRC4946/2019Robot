@@ -24,26 +24,27 @@ public class RobotConstants {
   public static final double ELEVATOR_OFFSET_VALUE = 0.0;
 
   public static final double ELEVATOR_AT_TOP = 10;
-  public static final double ELEVATOR_AT_MAX = 8.0;
-  public static final double ELEVATOR_AT_BOTTOM = 1.07;
-  public static final double ELEVATOR_THRESHOLD = 1.5;
+  public static final double ELEVATOR_AT_MAX = 7.36; //8.0
+  public static final double ELEVATOR_AT_BOTTOM = 0.91;
+  public static final double ELEVATOR_THRESHOLD = 1.8;
   public static final double ELEVATOR_AT_MIN = 0.88;
   public static final double ELEVATOR_NO_CONFLICT_GRABBER = 2.8;
   public static final double ELEVATOR_NO_CONFLICT_HEIGHT = 2.3; //elbow 
-  public static final double ELEVATOR_RIGHT_ABOVE_ELBOW = 2.2;
-  public static final double ELEVATOR_LEVEL_2_ROCKET = 4.65;
-  public static final double ELEVATOR_LEVEL_3_ROCKET = 6.87; //7.08
+  public static final double ELEVATOR_RIGHT_ABOVE_ELBOW = 2.27;
+  public static final double ELEVATOR_LEVEL_2_ROCKET = 4.95;
+  public static final double ELEVATOR_LEVEL_3_ROCKET = 7.34; //7.08
 
-  public static final double INTAKE_POT_UP = 797;
-  public static final double INTAKE_POT_DOWN = 2344;
-  public static final double INTAKE_POT_BALL_HEIGHT = 1399;
+  public static final double INTAKE_POT_UP = 672;
+  public static final double INTAKE_POT_DOWN = 2149;
+  public static final double INTAKE_POT_BALL_HEIGHT = 1362;
   public static final double INTAKE_POT_SCALING = 3600;
   public static final double INTAKE_POT_OFFSET = 0;
 
-  public static final double GRABBER_ARM_OUT = 5.45;
-  public static final double GRABBER_ARM_HOLD_HATCH = 3.4;
-  public static final double GRABBER_ARM_HOLD_BALL = 2.56;
-  public static final double GRABBER_ARM_IN = 2.34;
+  public static final double GRABBER_ARM_OUT = 6.16;
+  public static final double GRABBER_ARM_HOLD_HATCH = 3.59;
+  public static final double GRABBER_ARM_HOLD_BALL = 2.87;
+  public static final double GRABBER_ARM_IN = 2.67;
+  public static final double GRABBER_ARM_MOVE_ELEVATOR = 4.87;
   public static final double GRABBER_ARM_SCALING_VALUE = 10.0;
 
   public static final double FRONT_CLIMBER_MIN_HEIGHT = 0.4882; //TUNE

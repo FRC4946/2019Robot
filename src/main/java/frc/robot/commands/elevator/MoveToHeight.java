@@ -17,7 +17,7 @@ public class MoveToHeight extends Command {
   
   double m_height, m_speed, m_speedInit; 
   boolean m_setIntakeToBallIsRunning, m_setIntakeUpIsRunning;
-  SetArmToPos m_setOut = new SetArmToPos(RobotConstants.GRABBER_ARM_OUT, 0.7);
+  SetArmToPos m_setOut = new SetArmToPos(RobotConstants.GRABBER_ARM_MOVE_ELEVATOR, 0.7);
   SetArmToPos m_setBall = new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_BALL, 0.7);
   SetIntakePos m_setIntakeToBall = new SetIntakePos(RobotConstants.INTAKE_POT_BALL_HEIGHT, 0.25);
   SetIntakePos m_setIntakeUp = new SetIntakePos(RobotConstants.INTAKE_POT_UP, 0.2);

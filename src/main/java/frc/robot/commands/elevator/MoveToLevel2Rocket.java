@@ -19,7 +19,7 @@ public class MoveToLevel2Rocket extends CommandGroup {
   public MoveToLevel2Rocket() {
 
     startedLow = false;
-    addSequential(new MoveToHeight(RobotConstants.ELEVATOR_LEVEL_2_ROCKET + 0.3, 0.4), 4.0); 
+    addSequential(new MoveToHeight(RobotConstants.ELEVATOR_LEVEL_2_ROCKET + 0.3, 0.8), 4.0); 
 
   }
 }

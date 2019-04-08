@@ -75,11 +75,11 @@ public class JoystickDrive extends Command {
       */
       isSidewaysStrafing = false;
       Robot.m_driveTrain.mecanumDrive(
-        Utilities.deadzone(-Robot.m_oi.getDriveStick().getRawAxis(1), 
+        Utilities.deadzone(-0.9*Robot.m_oi.getDriveStick().getRawAxis(1), 
           Math.abs(0.2*Robot.m_oi.getDriveStick().getRawAxis(0)) + RobotConstants.DEFAULT_DEADZONE),
-        Utilities.deadzone(Robot.m_oi.getDriveStick().getRawAxis(0), 
+        Utilities.deadzone(0.9*Robot.m_oi.getDriveStick().getRawAxis(0), 
           Math.abs(0.2*Robot.m_oi.getDriveStick().getRawAxis(1)) + RobotConstants.DEFAULT_DEADZONE),
-        Utilities.deadzone(Robot.m_oi.getDriveStick().getRawAxis(4),
+        Utilities.deadzone(0.9*Robot.m_oi.getDriveStick().getRawAxis(4),
           RobotConstants.DEFAULT_DEADZONE));
     //}
   }

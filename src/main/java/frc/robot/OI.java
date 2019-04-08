@@ -95,7 +95,7 @@ public class OI {
     m_BButton.whenPressed(new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_HATCH, 0.6));
 
     m_LBButton.whileHeld(new StrafeToTarget());
-    m_RBButton.whenPressed(new ToggleGrabber(0.8));
+    m_RBButton.whenPressed(new ToggleGrabber(0.9));
 
     m_StartButton.whileHeld(new DropClimber());
   }

@@ -45,12 +45,7 @@ public class SetArmToPos extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if(m_speedInit < 0) { //moving out
-      return Robot.m_grabberArm.getPos() >= m_desiredPosInit;
-    } else {
-      //return Robot.m_grabber.getGrabberOut() && Robot.m_grabberArm.getPos() <= RobotConstants.GRABBER_ARM_HOLD_HATCH || Robot.m_grabberArm.getPos() <= m_desiredPos;
-      return Robot.m_grabberArm.getPos() <= m_desiredPosInit;
-    }
+    return Math.abs(Robot.m_grabberArm.getPos() - m_desiredPos) < 0.6;
   }
 
   // Called once after isFinished returns true

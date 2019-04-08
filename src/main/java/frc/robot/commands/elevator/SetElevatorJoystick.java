@@ -22,7 +22,7 @@ public class SetElevatorJoystick extends Command {
 
   boolean isBelowConflict;
 
-  SetArmToPos m_armOut = new SetArmToPos(RobotConstants.GRABBER_ARM_OUT, 0.7);
+  SetArmToPos m_armOut = new SetArmToPos(RobotConstants.GRABBER_ARM_MOVE_ELEVATOR, 0.7);
 
   public SetElevatorJoystick() {
     requires(Robot.m_elevator);

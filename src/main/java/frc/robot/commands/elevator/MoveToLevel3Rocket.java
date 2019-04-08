@@ -15,6 +15,6 @@ import frc.robot.commands.intakeelbow.SetIntakePos;
 
 public class MoveToLevel3Rocket extends CommandGroup {
   public MoveToLevel3Rocket() {
-    addSequential(new MoveToHeight(RobotConstants.ELEVATOR_LEVEL_3_ROCKET, 0.6), 4.0);
+    addSequential(new MoveToHeight(RobotConstants.ELEVATOR_LEVEL_3_ROCKET, 0.8), 4.0);
   }
 }
