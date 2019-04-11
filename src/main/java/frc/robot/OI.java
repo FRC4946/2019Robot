@@ -14,6 +14,7 @@ import frc.robot.commands.climber.DropClimber;
 import frc.robot.commands.climber.MidStageClimb;
 import frc.robot.commands.climber.SetBackClimber;
 import frc.robot.commands.climber.SetFrontClimber;
+import frc.robot.commands.drivetrain.RotateToTarget;
 import frc.robot.commands.drivetrain.StrafeToTarget;
 import frc.robot.commands.elevator.MoveToLevel2Rocket;
 import frc.robot.commands.elevator.MoveToLevel3Rocket;
@@ -95,7 +96,7 @@ public class OI {
     m_XButton.whenPressed(new SetArmToPos(RobotConstants.GRABBER_ARM_OUT, 0.6));
     m_BButton.whenPressed(new SetArmToPos(RobotConstants.GRABBER_ARM_HOLD_HATCH, 0.6));
 
-    m_LBButton.whileHeld(new StrafeToTarget());
+    m_LBButton.whileHeld(new RotateToTarget(0.2));
     m_RBButton.whenPressed(new ToggleGrabber(0.9));
 
     m_StartButton.whileHeld(new DropClimber());

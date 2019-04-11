@@ -32,7 +32,8 @@ public class RotateToTarget extends PIDCommand {
       RobotConstants.PID_ROTATE_TO_TARGET_I, RobotConstants.PID_ROTATE_TO_TARGET_D);
     
     requires(Robot.m_driveTrain);
-    getPIDController().setInputRange(-20.5, 20.5);
+    requires(Robot.m_limelight);
+    //getPIDController().setInputRange(-59.6, 59.6);
     getPIDController().setOutputRange(-maxSpeed, maxSpeed); // Dummy numbers, will need to be updates
     getPIDController().setContinuous(false);
     getPIDController().setAbsoluteTolerance(4.0);
@@ -42,6 +43,7 @@ public class RotateToTarget extends PIDCommand {
   @Override
   protected void initialize() {
     getPIDController().enable();
+    Robot.m_limelight.setLED(true);
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -52,12 +54,13 @@ public class RotateToTarget extends PIDCommand {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return getPIDController().onTarget();
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.m_limelight.setLED(false);
     Robot.m_driveTrain.stop();
   }
 
@@ -79,6 +82,6 @@ public class RotateToTarget extends PIDCommand {
   @Override
   protected void usePIDOutput(double output) {
     // drives at the outputted speed, or the max speed
-    Robot.m_driveTrain.mecanumDrive(0.0, 0.0, output);
+    Robot.m_driveTrain.mecanumDrive(0.1, 0.0, -output);
   }
 }

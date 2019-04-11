@@ -69,7 +69,7 @@ public class RobotConstants {
   public static double PID_DRIVE_STRAIGHT_GYRO_I = 0.005;
   public static double PID_DRIVE_STRAIGHT_GYRO_D = 0.0;
 
-  public static double PID_ROTATE_TO_TARGET_P = 0.02;
+  public static double PID_ROTATE_TO_TARGET_P = 0.015;
   public static double PID_ROTATE_TO_TARGET_I = 0.0;
   public static double PID_ROTATE_TO_TARGET_D = 0.0;
 
