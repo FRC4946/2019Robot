@@ -15,6 +15,11 @@ import frc.robot.commands.limelight.SetLimelightLED;
 
 /**
  * Limelight Object
+ * 
+ * Pipelines:
+ * 0 - Driving
+ * 1 - Pickup Hatch
+ * 2 - Drop Hatch
  *
  * @author Jacob4649
  */
@@ -137,8 +142,7 @@ public class Limelight extends Subsystem{
    * Sets the limelight to the desired vision processcing pipeline
    *
    * @param pipeline the pipeline to set the limelight to from 0 to 9
-   * @throws IndexOutOfBoundsException if the pipeine number is not between 0 and
-   *                                   9
+   * @throws IndexOutOfBoundsException if the pipeine number is not between 0 and 9
    */
   public void setPipeline(int pipeline) {
 

@@ -14,7 +14,7 @@ import frc.robot.commands.intakeelbow.SetIntakePos;
 
 public class MoveToLevel2Rocket extends CommandGroup {
 
-  private boolean startedLow;
+  private boolean startedLow; //lol k?
 
   public MoveToLevel2Rocket() {
 

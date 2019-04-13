@@ -52,12 +52,12 @@ public class MoveToHeight extends Command {
     Robot.m_elevator.setElevator(m_speedInit);
 
     if (Robot.m_elevator.getHeight() > RobotConstants.ELEVATOR_THRESHOLD) {
-      if (Math.abs(Robot.m_grabberArm.getPos() - RobotConstants.GRABBER_ARM_OUT) > 0.3) {
+      if (Math.abs(Robot.m_grabberArm.getPos() - RobotConstants.GRABBER_ARM_OUT) > 0.5 && !m_setOut.isRunning()) {
         //m_setBall.cancel();
         m_setOut.start();
       }
     } else if (Robot.m_elevator.getHeight() <= RobotConstants.ELEVATOR_THRESHOLD - 0.01) {
-      if (Math.abs(Robot.m_grabberArm.getPos() - RobotConstants.GRABBER_ARM_HOLD_BALL) > 1.0) {
+      if (Math.abs(Robot.m_grabberArm.getPos() - RobotConstants.GRABBER_ARM_HOLD_BALL) > 1.0 && !m_setBall.isRunning()) {
         //m_setOut.cancel();
         m_setBall.start();
       } 

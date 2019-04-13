@@ -32,12 +32,12 @@ public class MidStageClimb extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (m_climbTimer.get() <= 1) {
+    if (m_climbTimer.get() <= 1.5) {
       if (Robot.m_climber.getFrontClimberHeight() < 2.83)
         Robot.m_climber.setFront(0.6);
       else
         Robot.m_climber.setFront(0.0);
-    } else if (m_climbTimer.get() <= 2.5) {
+    } else if (m_climbTimer.get() <= 3) {
       Robot.m_climber.setFront(-0.6);
       if (Robot.m_climber.getBackClimberHeight() < 2.6)
         Robot.m_climber.setBack(0.6);

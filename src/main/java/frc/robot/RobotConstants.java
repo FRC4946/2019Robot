@@ -24,15 +24,15 @@ public class RobotConstants {
   public static final double ELEVATOR_OFFSET_VALUE = 0.0;
 
   public static final double ELEVATOR_AT_TOP = 10;
-  public static final double ELEVATOR_AT_MAX = 7.36; //8.0
-  public static final double ELEVATOR_AT_BOTTOM = 0.91;
-  public static final double ELEVATOR_THRESHOLD = 1.8;
-  public static final double ELEVATOR_AT_MIN = 0.88;
-  public static final double ELEVATOR_NO_CONFLICT_GRABBER = 2.8;
-  public static final double ELEVATOR_NO_CONFLICT_HEIGHT = 2.3; //elbow 
-  public static final double ELEVATOR_RIGHT_ABOVE_ELBOW = 2.27;
-  public static final double ELEVATOR_LEVEL_2_ROCKET = 4.95;
-  public static final double ELEVATOR_LEVEL_3_ROCKET = 7.34; //7.08
+  public static final double ELEVATOR_AT_MAX = 7.67; //8.0
+  public static final double ELEVATOR_AT_BOTTOM = 1.22;
+  public static final double ELEVATOR_THRESHOLD = 2.21;
+  public static final double ELEVATOR_AT_MIN = 1.19;
+  public static final double ELEVATOR_NO_CONFLICT_GRABBER = 3.11;
+  public static final double ELEVATOR_NO_CONFLICT_HEIGHT = 2.61; //elbow 
+  public static final double ELEVATOR_RIGHT_ABOVE_ELBOW = 2.58;
+  public static final double ELEVATOR_LEVEL_2_ROCKET = 4.91; //feels kinda low?? but low bc of overshoot - z
+  public static final double ELEVATOR_LEVEL_3_ROCKET = 7.54; //7.08
 
   public static final double INTAKE_POT_UP = 672;
   public static final double INTAKE_POT_DOWN = 2149;
@@ -52,12 +52,20 @@ public class RobotConstants {
   public static final double BACK_CLIMBER_MIN_HEIGHT = 0.320; //TUNE
   public static final double BACK_CLIMBER_MAX_HEIGHT = 5.980; //TUNE
   public static final double FRONT_CLIMBER_MID_LEVEL_HEIGHT = 3.504; //TUNE
-  public static final double FRONT_CLIMBER_GROUND_HEIGHT = 0.983; //TUNE
+  public static final double FRONT_CLIMBER_GROUND_HEIGHT = 0.78; //TUNE
   public static final double BACK_CLIMBER_MID_LEVEL_HEIGHT = 2.289; //TUNE
+  public static final double FRONT_CLIMBER_DOUBLE_CLIMB_HEIGHT = 4.005; //TUNE
+  public static final double BACK_CLIMBER_DOUBLE_CLIMB_HEIGHT = 2.289; //TUNE
   public static final double CLIMBER_SCALING_VALUE = 10.0;
   public static final double CLIMBER_OFFSET = 0.0;
   public static final double LOWER_PLATFORM_HEIGHT = 6.0;   //inches
   public static final double UPPER_PLATFORM_HEIGHT = 19.0;  //inches
+
+  public static final int LIMELIGHT_DRIVE_PIPELINE = 0;
+  public static final int LIMELIGHT_GRAB_PIPELINE = 1;
+  public static final int LIMELIGHT_PLACE_PIPELINE = 2;
+  public static final double LIMELIGHT_STRAFE_THRESHOLD = 3.0;
+  public static final double LIMELIGHT_ERROR_THRESHOLD = 5.0;
 
   // -------------- PID time (default P = 0.002, I = 0.0, D = 0.0)
 
@@ -69,12 +77,12 @@ public class RobotConstants {
   public static double PID_DRIVE_STRAIGHT_GYRO_I = 0.005;
   public static double PID_DRIVE_STRAIGHT_GYRO_D = 0.0;
 
-  public static double PID_ROTATE_TO_TARGET_P = 0.015;
+  public static double PID_ROTATE_TO_TARGET_P = 0.015; //0.015
   public static double PID_ROTATE_TO_TARGET_I = 0.0;
   public static double PID_ROTATE_TO_TARGET_D = 0.0;
 
-  public static double PID_STRAFE_TO_TARGET_P = 0.0005;
-  public static double PID_STRAFE_TO_TARGET_I = 0.0005;
+  public static double PID_STRAFE_TO_TARGET_P = 0.0175; //0.0175
+  public static double PID_STRAFE_TO_TARGET_I = 0.0000;
   public static double PID_STRAFE_TO_TARGET_D = 0.0;
 
   public static double PID_STRAFE_TO_TARGET_GYRO_P = 0.018;
